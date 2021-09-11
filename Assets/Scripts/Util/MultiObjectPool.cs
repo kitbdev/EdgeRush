@@ -12,8 +12,8 @@ public class MultiObjectPool : MonoBehaviour {
     public int initpoolSizeEach = 0;
     [Min(0)]
     public int maxPoolSizeEach = 100;
-    [Min(0)]
-    public int maxPoolSize = 1000;
+    // [Min(0)]
+    // public int maxPoolSize = 1000;
     public bool forceAddPoolObjectComponent = false;
 
     [Space]
@@ -67,6 +67,7 @@ public class MultiObjectPool : MonoBehaviour {
         Initialize();
     }
     void Initialize() {
+        poolGos.Clear();
         poolGos.Add(new List<GameObject>());
         for (int i = 0; i < prefabs.Count; i++) {
             poolGos.Add(new List<GameObject>());
@@ -97,7 +98,7 @@ public class MultiObjectPool : MonoBehaviour {
     /// </summary>
     /// <param name="amount"></param>
     public void CreateAmount(int typeId, int amount) {
-        amount = Mathf.Min(amount, maxPoolSize - currentPoolSize);
+        amount = Mathf.Min(amount, maxPoolSizeEach - poolGos[typeId].poolGos.Count);
         if (amount <= 0) return;
         for (int i = 0; i < amount; i++) {
             var go = MakeGo(typeId);
@@ -140,12 +141,25 @@ public class MultiObjectPool : MonoBehaviour {
         }
         poolGos[typeId].poolGos.Clear();
     }
+    public bool HasPrefab(GameObject prefab) {
+        return prefabs.Contains(prefab);
+    }
     /// <summary>
-    /// Gets the type id for the prefab
+    /// Gets the type id for the prefab. 
+    /// adds if not found
     /// </summary>
     /// <param name="prefab"></param>
     /// <returns></returns>
-    public int GetTypeId(GameObject prefab) {
+    public int GetTypeId(GameObject prefab, bool autoAdd = true) {
+        if (!prefabs.Contains(prefab)) {
+            if (autoAdd) {
+                prefabs.Add(prefab);
+                poolGos.Add(new List<GameObject>());
+                CreateAmount(poolGos.Count - 1, initpoolSizeEach);
+            } else {
+                return -1;
+            }
+        }
         // ? hashcode instead?
         var id = prefabs.IndexOf(prefab);
         return id + 1;
@@ -179,6 +193,11 @@ public class MultiObjectPool : MonoBehaviour {
     /// <returns>your new active GameObject</returns>
     public GameObject Get(int typeId) {
         GameObject ngo;
+        if (typeId < 0 || typeId > poolGos.Count) {
+            // invalid ID!
+            Debug.LogWarning($"Trying to get invalid pool typeid {typeId}!");
+            return null;
+        }
         if (poolGos.Count == 0 || poolGos[typeId].poolGos.Count == 0) {
             ngo = MakeGo(typeId);
         } else {
@@ -222,7 +241,7 @@ public class MultiObjectPool : MonoBehaviour {
     /// </summary>
     /// <param name="go">GameObject to remove</param>
     public void Recycle(int typeId, GameObject go) {
-        if (poolGos.Count >= maxPoolSize) {
+        if (poolGos[typeId].poolGos.Count >= maxPoolSizeEach) {
             DestroyGo(go);
             return;
         }

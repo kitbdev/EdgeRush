@@ -13,25 +13,66 @@ public class Player : MonoBehaviour {
     [SerializeField] Transform shootPoint;
     [SerializeField] Transform[] shootPoints = new Transform[0];
     [SerializeField] WeaponSO currentWeapon;
-    [SerializeField] Transform shootPrefab;// todo
 
-    Vector2 velocity = Vector2.zero;
+    [SerializeField, ReadOnly] Vector2 velocity = Vector2.zero;
+    [SerializeField, ReadOnly] float lastShootTime = 0;
+
+    Controls controls;
+    [SerializeField, ReadOnly] Vector2 inputMove = Vector2.zero;
+    [SerializeField, ReadOnly] bool inputShoot;
+    [SerializeField, ReadOnly] bool inputShootHold;
 
     Rigidbody2D rb;
 
-    Controls controls;
-    Vector2 inputMove;
-    bool inputShoot;
-
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
+    }
+    private void OnEnable() {
         controls = new Controls();
         controls.Enable();
         controls.Player.Move.performed += c => inputMove = c.ReadValue<Vector2>();
         controls.Player.Move.canceled += c => inputMove = Vector2.zero;
+        controls.Player.Fire.performed += c => { inputShootHold = true; inputShoot = true; };
+        controls.Player.Fire.canceled += c => { inputShootHold = false; };
+    }
+    private void OnDisable() {
+        controls?.Disable();
+    }
+    private void Update() {
+        if (Time.timeScale == 0) return;
+        if (inputShootHold) {
+            if (Time.time > lastShootTime + currentWeapon.shootHoldCooldownDur) {
+                ShootCurWeapon();
+            }
+        } else if (inputShoot) {
+            if (Time.time > lastShootTime + currentWeapon.shootCooldownDur) {
+                ShootCurWeapon();
+            }
+        }
+    }
+    void ShootCurWeapon() {
+        Transform[] curShootPoints = new Transform[currentWeapon.numShootPoints];
+        // todo check
+        switch (curShootPoints.Length) {
+            case 1:
+                curShootPoints[0] = shootPoints[0];
+                break;
+                // case 2:
+                //     curShootPoints[0] = shootPoints[1];
+                //     curShootPoints[1] = shootPoints[2];
+                //     break;
+                // case 3:
+                //     curShootPoints[0] = shootPoints[0];
+                //     curShootPoints[1] = shootPoints[1];
+                //     curShootPoints[2] = shootPoints[2];
+                // break;
+        }
+        currentWeapon.Shoot(curShootPoints, true);
+        lastShootTime = Time.time;
+        inputShoot = false;
     }
     private void FixedUpdate() {
-
+        if (Time.timeScale == 0) return;
         // move
         Vector2 nvel = Vector2.ClampMagnitude(inputMove, 1f) * moveSpeed;
         velocity = Vector2.Lerp(velocity, nvel, accelerationRate * Time.deltaTime);
@@ -56,7 +97,6 @@ public class Player : MonoBehaviour {
             pos.y = boundMinY;
             transform.position = pos;
         }
-
     }
     private void OnDrawGizmosSelected() {
         Vector3 topleft = new Vector3(-boundMaxX, boundMaxY);

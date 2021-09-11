@@ -17,3 +17,5 @@ MonoBehaviour:
   shootHoldCooldownDur: 0.2
   numShootPoints: 1
   damage: 1
+  launchForce: 5
+  bulletPrefabTypeId: 1

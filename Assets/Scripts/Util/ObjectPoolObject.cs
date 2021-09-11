@@ -19,8 +19,8 @@ public class ObjectPoolObject : MonoBehaviour {
         this.multiObjectPool = pool;
         this.typeId = typeId;
     }
-    [ContextMenu("Remove From Pool")]
-    public void RemoveFromPool() {
+    [ContextMenu("Recycle From Pool")]
+    public void RecycleFromPool() {
         if (pool != null) {
             pool.Recycle(gameObject);
         } else if (multiObjectPool != null) {

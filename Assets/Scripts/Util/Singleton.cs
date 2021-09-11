@@ -16,7 +16,6 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T> {
         get {
             if (_instance == null) {
                 _instance = GameObject.FindObjectOfType<T>();
-               
             }
             return _instance;
         }
