@@ -23,7 +23,7 @@ public class BulletManager : Singleton<BulletManager> {
         Shoot(weapon, shootPoints, isPlayer);
     }
     public void Shoot(WeaponSO weapon, Transform[] shootPoints, bool isPlayer = false) {
-        if (shootPoints.Length != weapon.numShootPoints) {
+        if (shootPoints.Length < weapon.numShootPoints) {
             Debug.LogWarning("invalid number of shootpoints for " + name);
             return;
         }
@@ -31,13 +31,16 @@ public class BulletManager : Singleton<BulletManager> {
         // Debug.Log("Shooting " + name);
         GameObject[] gos = pool.Get(weapon.bulletId, weapon.numShootPoints);
         for (int i = 0; i < weapon.numShootPoints; i++) {
-            gos[i].transform.position = shootPoints[i].position;
-            gos[i].transform.rotation = shootPoints[i].rotation;
-            Vector2 forw = gos[i].transform.up;
+            GameObject go = gos[i];
+            int shootPointIndex = weapon.shotPointIndexes.Length > 0 ? weapon.shotPointIndexes[i] : i;
+            go.transform.position = shootPoints[shootPointIndex].position;
+            go.transform.rotation = shootPoints[shootPointIndex].rotation;
+            go.transform.localScale = weapon.bulletScale * Vector3.one;
+            Vector2 forw = go.transform.up;
             Layer curLayer = isPlayer ? playerBulletLayer : enemyBulletLayer;
-            curLayer.SetLayerAllChildren(gos[i]);
-            gos[i].GetComponent<Rigidbody2D>().AddForce(forw * weapon.launchForce, ForceMode2D.Impulse);
-            gos[i].GetComponentsInChildren<Damager>().ToList().ForEach(d => d.damageAmount = weapon.damage);
+            curLayer.SetLayerAllChildren(go);
+            go.GetComponent<Rigidbody2D>().AddForce(forw * weapon.launchForce, ForceMode2D.Impulse);
+            go.GetComponentsInChildren<Damager>().ToList().ForEach(d => d.damageAmount = weapon.damage);
         }
     }
 }

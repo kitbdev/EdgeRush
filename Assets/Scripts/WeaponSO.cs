@@ -14,9 +14,11 @@ public class WeaponSO : ScriptableObject {
     [Min(1)]
     public int numShootPoints = 1;
     public float damage = 1;
+    public float bulletScale = 1;
     public float launchForce = 5;
     public bool aimAtPlayer = false;
     public float[] aimOffsets = new float[0];
+    public int[] shotPointIndexes = new int[0];
     // add random options to startpos?
     // types
     // unaimed (straight)

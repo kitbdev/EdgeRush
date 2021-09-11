@@ -58,24 +58,28 @@ public class Player : MonoBehaviour {
             }
         }
     }
+    public void SetCurrentWeapon(WeaponSO weapon) {
+        Debug.Log($"Switchin player weapon to {weapon.name}");
+        currentWeapon = weapon;
+    }
     void ShootCurWeapon() {
-        Transform[] curShootPoints = new Transform[currentWeapon.numShootPoints];
-        // todo check
-        switch (curShootPoints.Length) {
-            case 1:
-                curShootPoints[0] = shootPoints[0];
-                break;
-            case 2:
-                curShootPoints[0] = shootPoints[1];
-                curShootPoints[1] = shootPoints[2];
-                break;
-            case 3:
-                curShootPoints[0] = shootPoints[0];
-                curShootPoints[1] = shootPoints[1];
-                curShootPoints[2] = shootPoints[2];
-                break;
-        }
-        BulletManager.Instance.Shoot(currentWeapon, curShootPoints, true);
+        // Transform[] curShootPoints = new Transform[currentWeapon.numShootPoints];
+        // // todo check
+        // switch (curShootPoints.Length) {
+        //     case 1:
+        //         curShootPoints[0] = shootPoints[0];
+        //         break;
+        //     case 2:
+        //         curShootPoints[0] = shootPoints[1];
+        //         curShootPoints[1] = shootPoints[2];
+        //         break;
+        //     case 3:
+        //         curShootPoints[0] = shootPoints[0];
+        //         curShootPoints[1] = shootPoints[1];
+        //         curShootPoints[2] = shootPoints[2];
+        //         break;
+        // }
+        BulletManager.Instance.Shoot(currentWeapon, shootPoints, true);
         lastShootTime = Time.time;
         inputShoot = false;
     }
