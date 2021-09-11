@@ -32,15 +32,21 @@ public class PatternRunner : MonoBehaviour {
         public static SubpatternPlace origin = new SubpatternPlace() {
             position = Vector2.zero, angle = 0,
         };
+
+        private SubpatternPlace() { }
+        public SubpatternPlace(SubpatternPlace copy) {
+            this.position = copy.position;
+            this.angle = copy.angle;
+        }
+
         public Vector3 posWorld => position;
-        public Quaternion angWorld => Quaternion.Euler(0, 0, angle);
+        public Quaternion angWorld => Quaternion.Euler(0, 0, Mathf.Rad2Deg * angle);
         public override string ToString() {
             return position + "," + angle;
         }
+
     }
     void CreateSubPattern(SubPatternSO[] subPatterns) {
-        // todo randomize?
-        // SubpatternPlace offset = SubpatternPlace.origin;
         List<SubpatternPlace> offsets = new List<SubpatternPlace>();
         offsets.Add(SubpatternPlace.origin);
         for (int i = 0; i < subPatterns.Length; i++) {
@@ -53,20 +59,25 @@ public class PatternRunner : MonoBehaviour {
     }
     List<SubpatternPlace> SpawnSubPattern(SubPatternSO subPattern, SubpatternPlace place) {
         List<SubpatternPlace> offsets = new List<SubpatternPlace>();
+        if (subPattern == null) {
+            return offsets;
+        }
         switch (subPattern.patternType) {
             case SubPatternSO.PatternType.none:
                 // do nothing
                 break;
             case SubPatternSO.PatternType.bullet:
-                // todo random stuff
-                for (int i = 0; i < subPattern.numSubPatterns; i++) {
-                    // float initang = subPattern.bulletInitAngle + place.angle;
-                    // Vector2 pos = place.position;
-                    BulletManager.Instance.Shoot(subPattern.bulletSpawnSettings, place, spawnPoints, isPlayer);
+                if (subPattern.bulletSpawnSettings == null) {
+                    break;
                 }
+                BulletManager.Instance.Shoot(subPattern.bulletSpawnSettings, place, spawnPoints, isPlayer);
+                // for (int i = 0; i < subPattern.numSubPatterns; i++) {
+                // float initang = subPattern.bulletInitAngle + place.angle;
+                // Vector2 pos = place.position;
+                // }
                 break;
             case SubPatternSO.PatternType.randomize:
-                SubpatternPlace nplace = place;
+                SubpatternPlace nplace = new SubpatternPlace(place);
                 float initrandangoffset = Random.Range(subPattern.initRandomAngleOffsetMin, subPattern.initRandomAngleOffsetMax);
                 nplace.angle += initrandangoffset;
                 offsets.Add(nplace);
@@ -77,19 +88,23 @@ public class PatternRunner : MonoBehaviour {
                 break;
             case SubPatternSO.PatternType.line:
                 // make a line of subpatterns
+                float half = (subPattern.numSubPatterns - 1) * subPattern.spacing / 2f;
                 for (int i = 0; i < subPattern.numSubPatterns; i++) {
-                    nplace = place;
-                    nplace.position += subPattern.spacing * new Vector2(Mathf.Cos(place.angle), Mathf.Sin(place.angle));
+                    nplace = new SubpatternPlace(place);
+                    float dist = i * subPattern.spacing - half;
+                    float alignAng = place.angle + Mathf.Deg2Rad * subPattern.alignmentDegree;
+                    // todo adjust angle?
+                    nplace.position += dist * new Vector2(Mathf.Cos(alignAng), Mathf.Sin(alignAng));
                     offsets.Add(nplace);
                 }
                 break;
             case SubPatternSO.PatternType.arc:
-                // make a line of subpatterns
+                // make a arc of subpatterns
                 for (int i = 0; i < subPattern.numSubPatterns; i++) {
                     float angdeg = subPattern.minAngle + i * 1f / subPattern.numSubPatterns * (subPattern.maxAngle - subPattern.minAngle);
                     float ang = Mathf.Deg2Rad * angdeg;
-                    nplace = place;
-                    nplace.angle += ang;
+                    nplace = new SubpatternPlace(place);
+                    nplace.angle = ang;
                     nplace.position += subPattern.radius * new Vector2(Mathf.Cos(ang), Mathf.Sin(ang));
                     offsets.Add(nplace);
                 }
@@ -98,7 +113,7 @@ public class PatternRunner : MonoBehaviour {
                 // make a ring of subpatterns
                 for (int i = 0; i < subPattern.numSubPatterns; i++) {
                     float ang = i * Mathf.PI * 2 / subPattern.numSubPatterns;
-                    nplace = place;
+                    nplace = new SubpatternPlace(place);
                     nplace.angle += ang;
                     nplace.position += subPattern.radius * new Vector2(Mathf.Cos(ang), Mathf.Sin(ang));
                     offsets.Add(nplace);

@@ -44,15 +44,16 @@ public class BulletManager : Singleton<BulletManager> {
         }
     }
     public void Shoot(BulletSpawnSettings bulletPattern, PatternRunner.SubpatternPlace offset, Transform[] shootPoints, bool isPlayer = false) {
-        if (shootPoints.Length < bulletPattern.spawnPointIndices.Length) {
+        int numBullets = bulletPattern.spawnPointIndices.Length > 0 ? bulletPattern.spawnPointIndices.Length : 1;
+        if (shootPoints.Length < numBullets) {
             Debug.LogWarning("invalid number of shootpoints for " + name);
             return;
         }
 
         // Debug.Log($"Shooting {bulletPattern} {offset}");
-        int poolId = BulletManager.Instance.pool.GetTypeId(bulletPattern.prefab);
-        GameObject[] gos = pool.Get(poolId, bulletPattern.spawnPointIndices.Length);
-        for (int i = 0; i < bulletPattern.spawnPointIndices.Length; i++) {
+        int poolId = pool.GetTypeId(bulletPattern.prefab);
+        GameObject[] gos = pool.Get(poolId, numBullets);
+        for (int i = 0; i < numBullets; i++) {
             GameObject go = gos[i];
             int shootPointIndex = bulletPattern.spawnPointIndices.Length > 0 ? bulletPattern.spawnPointIndices[i] : i;
             go.transform.position = shootPoints[shootPointIndex].position + offset.posWorld;

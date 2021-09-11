@@ -13,14 +13,22 @@ MonoBehaviour:
   m_Name: line
   m_EditorClassIdentifier: 
   patternType: 2
-  numSubPatterns: 1
-  bulletPrefab: {fileID: 0}
-  spacing: 5
+  numSubPatterns: 5
+  spacing: 0.5
+  alignmentDegree: 90
   minAngle: -30
   maxAngle: 30
+  radius: 1
   angleSpread: 15
-  followPlayer: 0
-  bulletAngleVelocity: 0
-  bulletSpeedVelocity: 0
-  bulletMaxSpeed: 0
-  subpattern: {fileID: 11400000, guid: 8298503440853f24592a9e23fbff00b8, type: 2}
+  initRandomAngleOffsetMin: 0
+  initRandomAngleOffsetMax: 0
+  bulletSpawnSettings:
+    prefab: {fileID: 0}
+    initSpeed: 5
+    initAngle: 0
+    acceleration: 0
+    maxSpeed: 10
+    angularAcceleration: 0
+    maxAngularSpeed: 10
+    initScale: 1
+    spawnPointIndices: 
