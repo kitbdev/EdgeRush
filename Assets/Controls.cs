@@ -28,7 +28,7 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""MoveTo"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""e69a76e6-286f-42e9-bd36-69db1d49e1a9"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
@@ -46,6 +46,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""213a85b6-8821-48c4-a8ce-331fb393e854"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MoveToPoint"",
+                    ""type"": ""Button"",
+                    ""id"": ""e24a9ee6-5d49-457c-92cb-0267c7bc528e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -197,6 +205,17 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""d94930c1-f456-4059-aa1c-efb5bb7b4d65"",
+                    ""path"": ""<Pointer>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse;Touch"",
+                    ""action"": ""MoveTo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""143bb1cd-cc10-4eca-a2f0-a3664166fe91"",
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
@@ -302,6 +321,50 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4314abc1-9f6f-4699-9c8d-2239faf8cbba"",
+                    ""path"": ""<Pen>/inRange"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveToPoint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2fa125b9-2344-43a2-93a6-13840a885dee"",
+                    ""path"": ""<Mouse>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""MoveToPoint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a28e470f-1d07-4f6a-964c-c4d6b839fbb4"",
+                    ""path"": ""<Touchscreen>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Touch"",
+                    ""action"": ""MoveToPoint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a5aa6499-e588-4a62-b221-0ebee89f9b83"",
+                    ""path"": ""<Pointer>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse;Touch"",
+                    ""action"": ""MoveToPoint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -883,6 +946,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Player_MoveTo = m_Player.FindAction("MoveTo", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_MoveToPoint = m_Player.FindAction("MoveToPoint", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -948,6 +1012,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_MoveTo;
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_MoveToPoint;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -956,6 +1021,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @MoveTo => m_Wrapper.m_Player_MoveTo;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @MoveToPoint => m_Wrapper.m_Player_MoveToPoint;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -977,6 +1043,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @MoveToPoint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveToPoint;
+                @MoveToPoint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveToPoint;
+                @MoveToPoint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveToPoint;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -993,6 +1062,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @MoveToPoint.started += instance.OnMoveToPoint;
+                @MoveToPoint.performed += instance.OnMoveToPoint;
+                @MoveToPoint.canceled += instance.OnMoveToPoint;
             }
         }
     }
@@ -1153,6 +1225,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnMoveTo(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnMoveToPoint(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -753,7 +753,37 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &493470275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 493470276}
+  m_Layer: 0
+  m_Name: moveTo
+  m_TagString: Untagged
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &493470276
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493470275}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.71, y: -1.26, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &554248722
 GameObject:
@@ -1141,7 +1171,7 @@ Transform:
   - {fileID: 1691280517}
   - {fileID: 1135254226}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &836089552
 GameObject:
@@ -1225,7 +1255,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &836089556
 MonoBehaviour:
@@ -2203,7 +2233,7 @@ Transform:
   m_Children:
   - {fileID: 954762711}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1476050714
 MonoBehaviour:
@@ -2533,7 +2563,7 @@ Transform:
   - {fileID: 345328317}
   - {fileID: 271651032}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1893700205
 GameObject:
@@ -2667,17 +2697,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 762d600bb985b524abb34ae0c7f03229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boundMaxX: 10
-  boundMaxY: 0
-  boundMinY: -5
   moveSpeed: 10
   accelerationRate: 5
-  shootPoint: {fileID: 120187606}
+  moveTo: {fileID: 493470276}
   shootPoints:
   - {fileID: 120187606}
   currentWeapon: {fileID: 11400000, guid: 5d5b2ae7a2b46004fa563fd390dbad9e, type: 2}
   velocity: {x: 0, y: 0}
   lastShootTime: 0
   inputMove: {x: 0, y: 0}
+  inputMoveTo: 0
   inputShoot: 0
   inputShootHold: 0

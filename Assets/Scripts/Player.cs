@@ -5,12 +5,10 @@ using UnityEngine;
 [SelectionBase]
 public class Player : MonoBehaviour {
 
-    [SerializeField] float boundMaxX = 10;
-    [SerializeField] float boundMaxY = 0;
-    [SerializeField] float boundMinY = -5;
     [SerializeField] float moveSpeed = 10;
     [SerializeField] float accelerationRate = 2;
-    [SerializeField] Transform shootPoint;
+    [SerializeField] Transform moveTo;
+
     [SerializeField] Transform[] shootPoints = new Transform[0];
     [SerializeField] WeaponSO currentWeapon;
 
@@ -19,19 +17,29 @@ public class Player : MonoBehaviour {
 
     Controls controls;
     [SerializeField, ReadOnly] Vector2 inputMove = Vector2.zero;
+    [SerializeField, ReadOnly] bool inputMoveTo;
     [SerializeField, ReadOnly] bool inputShoot;
     [SerializeField, ReadOnly] bool inputShootHold;
 
     Rigidbody2D rb;
+    Camera cam;
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
+        cam = Camera.main;
     }
     private void OnEnable() {
         controls = new Controls();
         controls.Enable();
         controls.Player.Move.performed += c => inputMove = c.ReadValue<Vector2>();
         controls.Player.Move.canceled += c => inputMove = Vector2.zero;
+        controls.Player.MoveTo.performed += c => {
+            var pos = c.ReadValue<Vector2>();
+            moveTo.transform.position = cam.ScreenToWorldPoint(new Vector3(pos.x, pos.y, -cam.transform.position.z));
+            // inputMoveTo = true;
+        };
+        controls.Player.MoveToPoint.performed += c => inputMoveTo = true;
+        controls.Player.MoveToPoint.canceled += c => inputMoveTo = false;
         controls.Player.Fire.performed += c => { inputShootHold = true; inputShoot = true; };
         controls.Player.Fire.canceled += c => { inputShootHold = false; };
     }
@@ -74,40 +82,18 @@ public class Player : MonoBehaviour {
     private void FixedUpdate() {
         if (Time.timeScale == 0) return;
         // move
-        Vector2 nvel = Vector2.ClampMagnitude(inputMove, 1f) * moveSpeed;
+        Vector2 nvel;
+        if (inputMoveTo) {
+            nvel = moveTo.transform.position - transform.position;
+            // inputMoveTo = false;
+        } else {
+            nvel = inputMove;
+        }
+        nvel = Vector2.ClampMagnitude(nvel, 1f) * moveSpeed;
         velocity = Vector2.Lerp(velocity, nvel, accelerationRate * Time.deltaTime);
         // if (velocity.sqrMagnitude > 0.001f) {
         // }
         rb.velocity = velocity;
 
-        // keep player in bounds
-        Vector3 pos = transform.position;
-        if (pos.x > boundMaxX) {
-            pos.x = boundMaxX;
-            transform.position = pos;
-        } else if (pos.x < -boundMaxX) {
-            pos.x = -boundMaxX;
-            transform.position = pos;
-        }
-        pos = transform.position;
-        if (pos.y > boundMaxY) {
-            pos.y = boundMaxY;
-            transform.position = pos;
-        } else if (pos.y < boundMinY) {
-            pos.y = boundMinY;
-            transform.position = pos;
-        }
     }
-    private void OnDrawGizmosSelected() {
-        Vector3 topleft = new Vector3(-boundMaxX, boundMaxY);
-        Vector3 topright = new Vector3(boundMaxX, boundMaxY);
-        Vector3 bottomleft = new Vector3(-boundMaxX, boundMinY);
-        Vector3 bottomright = new Vector3(boundMaxX, boundMinY);
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(topleft, topright);
-        Gizmos.DrawLine(topleft, bottomleft);
-        Gizmos.DrawLine(bottomright, bottomleft);
-        Gizmos.DrawLine(bottomright, topright);
-    }
-
 }
