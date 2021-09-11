@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// holds data for shooting bullets in a single pattern
+/// </summary>
 [CreateAssetMenu(fileName = "WeaponSO", menuName = "EdgeRush/WeaponSO", order = 0)]
 public class WeaponSO : ScriptableObject {
 
@@ -12,8 +15,23 @@ public class WeaponSO : ScriptableObject {
     public int numShootPoints = 1;
     public float damage = 1;
     public float launchForce = 5;
+    public bool aimAtPlayer = false;
+    public float[] aimOffsets = new float[0];
+    // add random options to startpos?
+    // types
+    // unaimed (straight)
+    // aimed at player
+    // angle change over time
 
     [ReadOnly, SerializeField] int bulletPrefabTypeId = -1;
+    public int bulletId {
+        get {
+            if (bulletPrefabTypeId == -1) {
+                GetId();
+            }
+            return bulletPrefabTypeId;
+        }
+    }
 
     private void OnValidate() {
         if (bulletPrefab == null || !Application.isPlaying) {
@@ -28,25 +46,5 @@ public class WeaponSO : ScriptableObject {
     private void OnEnable() {
         // Debug.Log("weapon awake");
         bulletPrefabTypeId = -1;
-    }
-
-    public void Shoot(Transform[] shootPoints, bool isPlayer = false) {
-        if (shootPoints.Length != numShootPoints) {
-            Debug.LogWarning("invalid number of shootpoints for " + name);
-            return;
-        }
-        if (bulletPrefabTypeId == -1) {
-            GetId();
-        }
-        // Debug.Log("Shooting " + name);
-        GameObject[] gos = BulletManager.Instance.pool.Get(bulletPrefabTypeId, numShootPoints);
-        for (int i = 0; i < numShootPoints; i++) {
-            gos[i].transform.position = shootPoints[i].position;
-            gos[i].transform.rotation = shootPoints[i].rotation;
-            Vector2 forw = gos[i].transform.up;
-            gos[i].GetComponent<Rigidbody2D>().AddForce(forw * launchForce, ForceMode2D.Impulse);
-            Layer curLayer = isPlayer ? BulletManager.Instance.playerBulletLayer : BulletManager.Instance.enemyBulletLayer;
-            curLayer.SetLayerAllChildren(gos[i]);
-        }
     }
 }

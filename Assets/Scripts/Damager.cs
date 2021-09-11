@@ -4,7 +4,19 @@ using UnityEngine;
 
 public class Damager : MonoBehaviour {
 
-    private void OnCollisionEnter(Collision other) {
-        // todo
+    public float damageAmount = 0;
+    public ObjectPoolObject recycleObject;
+
+    private void Awake() {
+        recycleObject ??= GetComponent<ObjectPoolObject>();
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        // Debug.Log($"{name} hit {other.gameObject.name}");
+        var health = other.gameObject.GetComponentInParent<Health>();
+        if (health) {
+            health.TakeDamage(damageAmount);
+            recycleObject.RecycleFromPool();
+        }
     }
 }

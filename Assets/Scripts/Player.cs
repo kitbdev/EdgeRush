@@ -65,17 +65,17 @@ public class Player : MonoBehaviour {
             case 1:
                 curShootPoints[0] = shootPoints[0];
                 break;
-                // case 2:
-                //     curShootPoints[0] = shootPoints[1];
-                //     curShootPoints[1] = shootPoints[2];
-                //     break;
-                // case 3:
-                //     curShootPoints[0] = shootPoints[0];
-                //     curShootPoints[1] = shootPoints[1];
-                //     curShootPoints[2] = shootPoints[2];
-                // break;
+            case 2:
+                curShootPoints[0] = shootPoints[1];
+                curShootPoints[1] = shootPoints[2];
+                break;
+            case 3:
+                curShootPoints[0] = shootPoints[0];
+                curShootPoints[1] = shootPoints[1];
+                curShootPoints[2] = shootPoints[2];
+                break;
         }
-        currentWeapon.Shoot(curShootPoints, true);
+        BulletManager.Instance.Shoot(currentWeapon, curShootPoints, true);
         lastShootTime = Time.time;
         inputShoot = false;
     }
