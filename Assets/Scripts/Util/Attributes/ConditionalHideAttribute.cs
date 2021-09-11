@@ -7,22 +7,25 @@ using System.Collections;
 
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property |
     AttributeTargets.Class | AttributeTargets.Struct, Inherited = true)]
-public class ConditionalHideAttribute : PropertyAttribute
-{
+public class ConditionalHideAttribute : PropertyAttribute {
     public string conditionalSourceField;
     public bool showIfTrue = true;
-    public int enumIndex;
+    public int[] enumIndices = new int[0];
 
-    public ConditionalHideAttribute(string boolVariableName, bool showIfTrue)
-    {
+    public ConditionalHideAttribute(string boolVariableName, bool showIfTrue) {
         conditionalSourceField = boolVariableName;
         this.showIfTrue = showIfTrue;
     }
 
-    public ConditionalHideAttribute(string enumVariableName, int enumIndex)
-    {
+    public ConditionalHideAttribute(string enumVariableName, params int[] enumIndices) {
         conditionalSourceField = enumVariableName;
-        this.enumIndex = enumIndex;
+        this.enumIndices = enumIndices;
+        this.showIfTrue = true;
+    }
+    public ConditionalHideAttribute(string enumVariableName, bool showIfTrue = true, params int[] enumIndices) {
+        conditionalSourceField = enumVariableName;
+        this.enumIndices = enumIndices;
+        this.showIfTrue = showIfTrue;
     }
 
 }

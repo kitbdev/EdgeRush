@@ -602,15 +602,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f15b32cc9a2cfab4d8df5e11db1601da, type: 3}
       propertyPath: m_LocalScale.x
-      value: 30
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f15b32cc9a2cfab4d8df5e11db1601da, type: 3}
       propertyPath: m_LocalScale.y
-      value: 30
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f15b32cc9a2cfab4d8df5e11db1601da, type: 3}
       propertyPath: m_LocalScale.z
-      value: 30
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f15b32cc9a2cfab4d8df5e11db1601da, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1693,7 +1693,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 394431117}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -6572,6 +6572,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 852461462}
     m_Modifications:
+    - target: {fileID: 1243312686173974620, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: f71643909a7ac7e4f87f0e7e96e127d0, type: 2}
+    - target: {fileID: 1376320859788207865, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
+      propertyPath: patternSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 2ad3a522453f9674b9ff451593b192db, type: 2}
     - target: {fileID: 9219814045859052586, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
       propertyPath: m_RootOrder
       value: 0

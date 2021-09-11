@@ -6,9 +6,10 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour {
 
     // shot pattern
-    [SerializeField] WeaponSO[] weapons;
+    // [SerializeField] WeaponSO[] weapons;
 
-    [SerializeField, ReadOnly] WeaponSO curWeapon;
+    // [SerializeField, ReadOnly] WeaponSO curWeapon;
+    [SerializeField] PatternRunner attackPattern;
 
     // todo move pattern
 
@@ -19,6 +20,6 @@ public class EnemyAI : MonoBehaviour {
     }
 
     private void Update() {
-
+        attackPattern.ProcessPattern();
     }
 }

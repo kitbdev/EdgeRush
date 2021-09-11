@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abe699bbeca79ee41ad76d5d9c063313, type: 3}
+  m_Name: arc
+  m_EditorClassIdentifier: 
+  patternType: 3
+  numSubPatterns: 1
+  bulletPrefab: {fileID: 0}
+  spacing: 5
+  minAngle: -30
+  maxAngle: 30
+  angleSpread: 30
+  followPlayer: 0
+  bulletAngleVelocity: 0
+  bulletSpeedVelocity: 0
+  bulletMaxSpeed: 0
+  subpattern: {fileID: 11400000, guid: 1edd9969d305f1c43bda6e78bab0a593, type: 2}
