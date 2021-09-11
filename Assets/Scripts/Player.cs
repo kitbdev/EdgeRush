@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[SelectionBase]
 public class Player : MonoBehaviour {
 
     [SerializeField] float boundMaxX = 10;
@@ -10,6 +11,8 @@ public class Player : MonoBehaviour {
     [SerializeField] float moveSpeed = 10;
     [SerializeField] float accelerationRate = 2;
     [SerializeField] Transform shootPoint;
+    [SerializeField] Transform[] shootPoints = new Transform[0];
+    [SerializeField] WeaponSO currentWeapon;
     [SerializeField] Transform shootPrefab;// todo
 
     Vector2 velocity = Vector2.zero;
