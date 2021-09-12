@@ -41,6 +41,7 @@ public class Player : MonoBehaviour {
                 Vector3 point = screenRay.origin + screenRay.direction * enter;
                 moveTo.transform.position = point;
             }
+            // todo switch to moveto mode vs delta mode
             // moveTo.transform.position = cam.ScreenToWorldPoint(new Vector3(pos.x, pos.y, -cam.transform.position.z));
             // inputMoveTo = true;
         };

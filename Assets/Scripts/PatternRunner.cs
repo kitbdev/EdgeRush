@@ -9,6 +9,7 @@ public class PatternRunner : MonoBehaviour {
     public Transform[] spawnPoints;
     public bool isPlayer = false;
     public Transform player;
+    BulletInitState emitterState = BulletInitState.origin;
 
     public void ProcessPattern() {
         PatternSO.PatternDur patternDur = patternSO.subPatternDurs[index];
@@ -27,17 +28,26 @@ public class PatternRunner : MonoBehaviour {
             curRepetition = 0;
         }
     }
-    public class SubpatternPlace {
-        public Vector2 position;
-        public float angle;
-        public static SubpatternPlace origin = new SubpatternPlace() {
+    public class BulletInitState {
+        public Vector2 position = Vector2.zero;
+        public float angle = 0;
+        public float speed = 0;
+        public float angSpeed = 0;
+        public float acceleration = 0;
+        public float angAcceleration = 0;
+
+        public static BulletInitState origin = new BulletInitState() {
             position = Vector2.zero, angle = 0,
         };
 
-        private SubpatternPlace() { }
-        public SubpatternPlace(SubpatternPlace copy) {
+        private BulletInitState() { }
+        public BulletInitState(BulletInitState copy) {
             this.position = copy.position;
             this.angle = copy.angle;
+            this.speed = copy.speed;
+            this.angSpeed = copy.angSpeed;
+            this.acceleration = copy.acceleration;
+            this.angAcceleration = copy.angAcceleration;
         }
 
         public Vector3 posWorld => position;
@@ -48,18 +58,18 @@ public class PatternRunner : MonoBehaviour {
 
     }
     void CreateSubPattern(SubPatternSO[] subPatterns) {
-        List<SubpatternPlace> offsets = new List<SubpatternPlace>();
-        offsets.Add(SubpatternPlace.origin);
+        List<BulletInitState> offsets = new List<BulletInitState>();
+        offsets.Add(BulletInitState.origin);
         for (int i = 0; i < subPatterns.Length; i++) {
-            List<SubpatternPlace> noffsets = new List<SubpatternPlace>();
+            List<BulletInitState> noffsets = new List<BulletInitState>();
             foreach (var offset in offsets) {
                 noffsets.AddRange(SpawnSubPattern(subPatterns[i], offset));
             }
             offsets = noffsets;
         }
     }
-    List<SubpatternPlace> SpawnSubPattern(SubPatternSO subPattern, SubpatternPlace place) {
-        List<SubpatternPlace> offsets = new List<SubpatternPlace>();
+    List<BulletInitState> SpawnSubPattern(SubPatternSO subPattern, BulletInitState place) {
+        List<BulletInitState> offsets = new List<BulletInitState>();
         if (subPattern == null) {
             return offsets;
         }
@@ -67,7 +77,8 @@ public class PatternRunner : MonoBehaviour {
             case SubPatternSO.PatternType.none:
                 // do nothing
                 offsets.Add(place);
-                break;
+                return offsets;
+                // break;
             case SubPatternSO.PatternType.bullet:
                 if (subPattern.bulletSpawnSettings == null) {
                     break;
@@ -79,18 +90,27 @@ public class PatternRunner : MonoBehaviour {
                 // }
                 break;
             case SubPatternSO.PatternType.target:
-                SubpatternPlace nplace = new SubpatternPlace(place);
+                BulletInitState nplace = new BulletInitState(place);
                 Vector3 toPlayer = player.position - spawnPoints[0].position;
                 toPlayer.Normalize();
                 nplace.angle = Vector2.SignedAngle(Vector2.down, (Vector2)toPlayer) * Mathf.Deg2Rad;
                 offsets.Add(nplace);
                 break;
             case SubPatternSO.PatternType.randomize:
-                nplace = new SubpatternPlace(place);
+                nplace = new BulletInitState(place);
                 float initrandangoffset = Random.Range(subPattern.initRandomAngleOffsetMin, subPattern.initRandomAngleOffsetMax);
                 nplace.angle += initrandangoffset;
                 offsets.Add(nplace);
                 break;
+            case SubPatternSO.PatternType.emitter:
+                // adjust cross subpatterns emitter settings
+                // todo
+                // ?emitterstate speed?
+                // emitterState.position
+                // emitterState.angle
+                offsets.Add(place);
+                return offsets;
+                // break;
             case SubPatternSO.PatternType.single:
                 // make a single subpattern
                 offsets.Add(place);
@@ -99,7 +119,7 @@ public class PatternRunner : MonoBehaviour {
                 // make a line of subpatterns
                 float half = (subPattern.numSubPatterns - 1) * subPattern.spacing / 2f;
                 for (int i = 0; i < subPattern.numSubPatterns; i++) {
-                    nplace = new SubpatternPlace(place);
+                    nplace = new BulletInitState(place);
                     float dist = i * subPattern.spacing - half;
                     float alignAng = place.angle + Mathf.Deg2Rad * subPattern.alignmentDegree;
                     // todo adjust angle?
@@ -116,7 +136,7 @@ public class PatternRunner : MonoBehaviour {
                     angdeg -= halfang;
                     // angdeg += 180;
                     float ang = Mathf.Deg2Rad * angdeg + place.angle;
-                    nplace = new SubpatternPlace(place);
+                    nplace = new BulletInitState(place);
                     if (subPattern.angleOut) {
                         nplace.angle = ang + Mathf.PI / 2f + Mathf.Deg2Rad * subPattern.angleTurn;
                     }
@@ -131,7 +151,7 @@ public class PatternRunner : MonoBehaviour {
                     float ang = i * Mathf.PI * 2 / (subPattern.numSubPatterns - 1);
                     ang += subPattern.angleOffset * Mathf.Deg2Rad;
                     ang += place.angle;
-                    nplace = new SubpatternPlace(place);
+                    nplace = new BulletInitState(place);
                     if (subPattern.angleOut) {
                         nplace.angle = ang + Mathf.PI / 2f + Mathf.Deg2Rad * subPattern.angleTurn;
                     }
@@ -140,15 +160,23 @@ public class PatternRunner : MonoBehaviour {
                 }
                 break;
         }
+        for (int i = 0; i < offsets.Count; i++)
+        {
+            // int index = i-offsets.c
+            if (subPattern.setAccelb) offsets[i].acceleration = subPattern.setAccel;
+            if (subPattern.setAngAccelb) offsets[i].angAcceleration = subPattern.setAngAccel * Mathf.Deg2Rad;
+            offsets[i].speed += subPattern.addSpeed + subPattern.addSpeedByIndex * i;
+            offsets[i].angSpeed += (subPattern.addAngSpeed + subPattern.addAngSpeedByIndex * i) * Mathf.Deg2Rad;
+        }
         return offsets;
     }
     private void OnDrawGizmosSelected() {
         if (patternSO == null) return;
         foreach (var subdirs in patternSO.subPatternDurs) {
-            List<SubpatternPlace> offsets = new List<SubpatternPlace>();
-            offsets.Add(SubpatternPlace.origin);
+            List<BulletInitState> offsets = new List<BulletInitState>();
+            offsets.Add(BulletInitState.origin);
             foreach (var subpattern in subdirs.subPatterns) {
-                List<SubpatternPlace> noffsets = new List<SubpatternPlace>();
+                List<BulletInitState> noffsets = new List<BulletInitState>();
                 foreach (var offset in offsets) {
                     if (subpattern.patternType == SubPatternSO.PatternType.bullet) {
                         noffsets = offsets;

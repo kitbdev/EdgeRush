@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abe699bbeca79ee41ad76d5d9c063313, type: 3}
   m_Name: targetplayer
   m_EditorClassIdentifier: 
-  patternType: 6
+  patternType: 7
   numSubPatterns: 1
   spacing: 5
   alignmentDegree: 0
@@ -24,6 +24,8 @@ MonoBehaviour:
   angleOut: 0
   initRandomAngleOffsetMin: -10
   initRandomAngleOffsetMax: 10
+  addSpeed: 0
+  addSpeedByIndex: 0
   bulletSpawnSettings:
     prefab: {fileID: 0}
     initSpeed: 5

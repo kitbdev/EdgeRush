@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abe699bbeca79ee41ad76d5d9c063313, type: 3}
   m_Name: arc 3
   m_EditorClassIdentifier: 
-  patternType: 3
+  patternType: 4
   numSubPatterns: 3
   spacing: 5
   alignmentDegree: 0
@@ -24,6 +24,14 @@ MonoBehaviour:
   angleOut: 1
   initRandomAngleOffsetMin: 0
   initRandomAngleOffsetMax: 0
+  setAccelb: 0
+  setAccel: 0
+  setAngAccelb: 0
+  setAngAccel: 0
+  addSpeed: 0
+  addSpeedByIndex: 0
+  addAngSpeed: -5
+  addAngSpeedByIndex: 5
   bulletSpawnSettings:
     prefab: {fileID: 0}
     initSpeed: 5

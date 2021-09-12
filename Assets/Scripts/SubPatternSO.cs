@@ -4,6 +4,7 @@
 public class SubPatternSO : ScriptableObject {
 
     public enum PatternType {
+        none,
         bullet,
         single,
         line,
@@ -11,7 +12,7 @@ public class SubPatternSO : ScriptableObject {
         ring,
         randomize,
         target,
-        none,
+        emitter,
     }
     public PatternType patternType;
     [ConditionalHide(nameof(patternType), false, (int)PatternType.single, (int)PatternType.bullet)]
@@ -45,6 +46,23 @@ public class SubPatternSO : ScriptableObject {
     [ConditionalHide(nameof(patternType), (int)PatternType.randomize)]
     public float initRandomAngleOffsetMax = 0;
 
+    [Space]
+    [ConditionalHide(nameof(patternType), false, (int)PatternType.bullet, (int)PatternType.none)]
+    public bool setAccelb = false;
+    [ConditionalHide(nameof(patternType), false, (int)PatternType.bullet, (int)PatternType.none)]
+    public float setAccel = 0;
+    [ConditionalHide(nameof(patternType), false, (int)PatternType.bullet, (int)PatternType.none)]
+    public bool setAngAccelb = false;
+    [ConditionalHide(nameof(patternType), false, (int)PatternType.bullet, (int)PatternType.none)]
+    public float setAngAccel = 0;
+    [ConditionalHide(nameof(patternType), false, (int)PatternType.bullet, (int)PatternType.none)]
+    public float addSpeed = 0;
+    [ConditionalHide(nameof(patternType), false, (int)PatternType.bullet, (int)PatternType.none)]
+    public float addSpeedByIndex = 0;
+    [ConditionalHide(nameof(patternType), false, (int)PatternType.bullet, (int)PatternType.none)]
+    public float addAngSpeed = 0;
+    [ConditionalHide(nameof(patternType), false, (int)PatternType.bullet, (int)PatternType.none)]
+    public float addAngSpeedByIndex = 0;
     // [ConditionalHide(nameof(patternType), (int)PatternType.bullet)]
     // public bool followPlayer = false;
     [ConditionalHide(nameof(patternType), (int)PatternType.bullet)]

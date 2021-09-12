@@ -16,9 +16,8 @@ MonoBehaviour:
   - duration: 0
     repetitions: 1
     subPatterns:
-    - {fileID: 11400000, guid: 8b5f84f8b5d706148aba5b0af014411b, type: 2}
-    - {fileID: 11400000, guid: be27216d4b7c2e644b0617b8084ea1d3, type: 2}
-    - {fileID: 11400000, guid: eaeb1bc6f14e2d2408756e403bdf0e71, type: 2}
+    - {fileID: 11400000, guid: 6f9d0fdab8ed0f2469b850205c3da6b2, type: 2}
+    - {fileID: 11400000, guid: 8cba6666ab3dd314db2faed2a8f87656, type: 2}
     - {fileID: 11400000, guid: 8298503440853f24592a9e23fbff00b8, type: 2}
   - duration: 0.2
     repetitions: 1
