@@ -28,7 +28,8 @@ public class MultiObjectPool : MonoBehaviour {
 
     [ReadOnly] public int outCount = 0;
 
-    public List<GameObject> prefabs = new List<GameObject>();
+    [SerializeField] List<GameObject> _prefabs = new List<GameObject>();
+    public List<GameObject> prefabs => _prefabs;
 
     /// <summary>
     /// Called when GameObject is first created, to initialize it
@@ -81,6 +82,10 @@ public class MultiObjectPool : MonoBehaviour {
             poolGos.Add(new List<GameObject>());
             CreateAmount(i + 1, initpoolSizeEach);
         }
+    }
+    public void SetPrefabs(List<GameObject> prefabs){
+        this._prefabs = prefabs;
+        Initialize();
     }
     private void OnDestroy() {
         // ? clear pool on disable too

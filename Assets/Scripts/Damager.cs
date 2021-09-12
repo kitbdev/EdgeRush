@@ -11,7 +11,7 @@ public class Damager : MonoBehaviour {
         recycleObject ??= GetComponent<ObjectPoolObject>();
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
+    private void OnTriggerEnter2D(Collider2D other) {
         // Debug.Log($"{name} hit {other.gameObject.name}");
         var health = other.gameObject.GetComponentInParent<Health>();
         if (health) {

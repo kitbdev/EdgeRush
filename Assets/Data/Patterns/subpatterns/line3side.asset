@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patternType: 3
   numSubPatterns: 3
-  spacing: 0.5
-  alignmentDegree: 0
+  spacing: 0.2
+  alignmentDegree: 45
   radius: 1
   startAngle: -90
   angleDist: 30
@@ -24,8 +24,14 @@ MonoBehaviour:
   angleOut: 0
   initRandomAngleOffsetMin: 0
   initRandomAngleOffsetMax: 0
+  setAccelb: 1
+  setAccel: 10
+  setAngAccelb: 0
+  setAngAccel: 0
   addSpeed: 0
   addSpeedByIndex: 0
+  addAngSpeed: 20
+  addAngSpeedByIndex: 0
   bulletSpawnSettings:
     prefab: {fileID: 0}
     initSpeed: 5
