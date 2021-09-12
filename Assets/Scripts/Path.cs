@@ -10,7 +10,10 @@ public class Path : MonoBehaviour {
     [System.Serializable]
     public class PathCurve {
         public BezierCurve curve;
+        [Min(1)]
         public int loops = 1;
+        [Min(0)]
+        public float delay = 0;
         public LoopType loopType = LoopType.Restart;
         public Ease easeType = Ease.Linear;
         // [SerializeField] Ease easeTypeCloseRestart = Ease.InOutCubic;
@@ -28,9 +31,9 @@ public class Path : MonoBehaviour {
             }
             Vector2 lastHandle2;
             if (curve.close) {
-                lastHandle2 = curve[curve.pointCount - 1].handle2;
+                lastHandle2 = curve[curve.pointCount - 1].globalHandle2;
             } else {
-                lastHandle2 = curve[0].handle1;
+                lastHandle2 = curve[0].globalHandle1;// + curve[0].handle1;
             }
             for (int i = 0; i < curve.pointCount; i++) {
                 BezierPoint bezierPoint = curve[i];
@@ -76,7 +79,7 @@ public class Path : MonoBehaviour {
             pathCurve.distance = pathCurve.curve.length;
             pathCurve.duration = pathCurve.distance / moveSpeed;
             pathCurve.distanceTotal = pathCurve.distance * pathCurve.loops;
-            pathCurve.durationTotal = pathCurve.duration * pathCurve.loops;
+            pathCurve.durationTotal = pathCurve.duration * pathCurve.loops + pathCurve.delay;
             totalDistance += pathCurve.distanceTotal;
             totalDuration += pathCurve.durationTotal;
         }
@@ -104,20 +107,25 @@ public class Path : MonoBehaviour {
         CalcDistances();
         pathseq = DOTween.Sequence();
         Vector3? startPos = null;
+        Vector2 lastEndPoint = Vector2.zero;
         for (int i = 0; i < pathCurves.Count; i++) {
+            // if (i > 0) {
+            //     // link to prev path
+            //     var connectTween = rb.DOMove(lastEndPoint, 0.01f);
+            //     connectTween.SetEase(Ease.Linear);
+            //     pathseq.Append(connectTween);
+            // }
             PathCurve pathCurve = pathCurves[i];
             Vector2[] points = pathCurve.GetPoints();
+            lastEndPoint = points[points.Length - 3];
             float dur = pathCurve.duration;
             var pathtween = rb.DOPath(points, dur, PathType.CubicBezier, PathMode.Sidescroller2D);
             if (startPos == null) startPos = points[0];
             pathtween.SetLoops(pathCurve.loops, pathCurve.loopType);
             pathtween.SetEase(pathCurve.easeType);
+            pathtween.SetDelay(pathCurve.delay);
             // pathtween.SetSpeedBased(true);
             pathseq.Append(pathtween);
-            if (i < pathCurves.Count - 1) {
-                // link to next path
-                // rb.DOMove
-            }
         }
         pathseq.PrependInterval(delay);
         // loopType = curve.close ? LoopType.Restart : LoopType.Yoyo;
@@ -133,6 +141,14 @@ public class Path : MonoBehaviour {
 
     public void StopPath() {
         pathseq.Kill();
+    }
+
+    private void OnDrawGizmosSelected() {
+        // for (int i = 1; i < pathCurves.Count; i++) {
+        //     var lastcurve = pathCurves[i - 1].curve;
+        //     var curve = pathCurves[i].curve;
+        //     BezierCurve.DrawCurve(lastcurve[lastcurve.pointCount - 1], curve[0], 30);
+        // }
     }
 
 }
