@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using static PatternRunner;
 
 [CreateAssetMenu(fileName = "PatternSO", menuName = "EdgeRush/PatternSO", order = 0)]
 public class PatternSO : ScriptableObject {
@@ -12,4 +14,5 @@ public class PatternSO : ScriptableObject {
         public SubPatternSO[] subPatterns;
     }
     public PatternDur[] subPatternDurs;
+    
 }

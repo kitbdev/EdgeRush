@@ -54,6 +54,8 @@ public class Player : MonoBehaviour {
         controls?.Disable();
     }
     private void Update() {
+        // todo player should be restricted to walls (dynamic), but should not be pushed by bullets
+            // ? make bullets triggers?
         if (Time.timeScale == 0) return;
         if (inputShootHold) {
             if (Time.time > lastShootTime + currentWeapon.shootHoldCooldownDur) {

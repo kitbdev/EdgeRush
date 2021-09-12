@@ -91,6 +91,11 @@ public class PatternRunner : MonoBehaviour {
                 break;
             case SubPatternSO.PatternType.target:
                 BulletInitState nplace = new BulletInitState(place);
+                if (player == null){
+                    Debug.LogWarning(name +" has no player!");
+                    offsets.Add(nplace);
+                    break;
+                }
                 Vector3 toPlayer = player.position - spawnPoints[0].position;
                 toPlayer.Normalize();
                 nplace.angle = Vector2.SignedAngle(Vector2.down, (Vector2)toPlayer) * Mathf.Deg2Rad;
@@ -169,6 +174,43 @@ public class PatternRunner : MonoBehaviour {
             offsets[i].angSpeed += (subPattern.addAngSpeed + subPattern.addAngSpeedByIndex * i) * Mathf.Deg2Rad;
         }
         return offsets;
+    }
+    public void ForEachInitState(System.Action<BulletInitState> action){
+        if (patternSO == null) return;
+        foreach (var subdirs in patternSO.subPatternDurs) {
+            List<BulletInitState> offsets = new List<BulletInitState>();
+            offsets.Add(BulletInitState.origin);
+            foreach (var subpattern in subdirs.subPatterns) {
+                List<BulletInitState> noffsets = new List<BulletInitState>();
+                foreach (var offset in offsets) {
+                    if (subpattern.patternType == SubPatternSO.PatternType.bullet) {
+                        noffsets = offsets;
+                        continue;
+                    }
+                    noffsets.AddRange(SpawnSubPattern(subpattern, offset));
+                }
+                offsets = noffsets;
+            }
+            foreach (var offset in offsets) {
+                action.Invoke(offset);
+            }
+        }
+    }
+    [Space]
+    [SerializeField, ReadOnly] float totalDuration = 0;
+    [SerializeField, ReadOnly] int bulletsPerLoop = 0;
+
+    private void OnValidate() {
+        totalDuration = 0;
+        bulletsPerLoop = 0;
+        foreach (var patterndur in patternSO.subPatternDurs) {
+            totalDuration += patterndur.duration * patterndur.repetitions;
+            // patterndur.numBullets = 0;
+            // totalNumBullets += patterndur.numBullets;
+        }
+        ForEachInitState(state=>{
+            bulletsPerLoop++;
+        });
     }
     private void OnDrawGizmosSelected() {
         if (patternSO == null) return;
