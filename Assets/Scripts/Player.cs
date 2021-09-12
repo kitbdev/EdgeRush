@@ -23,6 +23,7 @@ public class Player : MonoBehaviour {
 
     Rigidbody2D rb;
     Camera cam;
+    Plane interactionPlane = new Plane(Vector3.back, Vector3.zero);
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -35,7 +36,12 @@ public class Player : MonoBehaviour {
         controls.Player.Move.canceled += c => inputMove = Vector2.zero;
         controls.Player.MoveTo.performed += c => {
             var pos = c.ReadValue<Vector2>();
-            moveTo.transform.position = cam.ScreenToWorldPoint(new Vector3(pos.x, pos.y, -cam.transform.position.z));
+            Ray screenRay = cam.ScreenPointToRay(pos);
+            if (interactionPlane.Raycast(screenRay, out float enter)) {
+                Vector3 point = screenRay.origin + screenRay.direction * enter;
+                moveTo.transform.position = point;
+            }
+            // moveTo.transform.position = cam.ScreenToWorldPoint(new Vector3(pos.x, pos.y, -cam.transform.position.z));
             // inputMoveTo = true;
         };
         controls.Player.MoveToPoint.performed += c => inputMoveTo = true;

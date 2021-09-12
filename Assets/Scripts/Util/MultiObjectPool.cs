@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +14,7 @@ public class MultiObjectPool : MonoBehaviour {
     [Min(0)]
     public int maxPoolSizeEach = 100;
     // [Min(0)]
-    // public int maxPoolSize = 1000;
+    // public int maxGos = 5000;
     public bool forceAddPoolObjectComponent = false;
 
     [Space]
@@ -24,6 +25,8 @@ public class MultiObjectPool : MonoBehaviour {
     [ConditionalHide(nameof(autoDeleteUnusedTypesInPool), true)]
     [Min(0)]
     public int autoDeletePoolMinSize = 0;
+
+    [ReadOnly] public int outCount = 0;
 
     public List<GameObject> prefabs = new List<GameObject>();
 
@@ -61,7 +64,12 @@ public class MultiObjectPool : MonoBehaviour {
     List<GoList> poolGos = new List<GoList>();
     // Dictionary<int, List<GameObject>> poolGos = new Dictionary<int, List<GameObject>>();// not serialized
 
-    public int currentPoolSize => poolGos.Count;
+    public int currentPoolSize {
+        get {
+            return poolGos.Sum(gl => gl.poolGos.Count);
+        }
+    }
+    public int totalCount => currentPoolSize + outCount;
 
     private void Start() {
         Initialize();
@@ -206,6 +214,7 @@ public class MultiObjectPool : MonoBehaviour {
             golist.RemoveAt(golist.Count - 1);
         }
         ngo.SetActive(true);
+        outCount++;
         return ngo;
     }
     /// <summary>
@@ -241,6 +250,7 @@ public class MultiObjectPool : MonoBehaviour {
     /// </summary>
     /// <param name="go">GameObject to remove</param>
     public void Recycle(int typeId, GameObject go) {
+        outCount--;
         if (poolGos[typeId].poolGos.Count >= maxPoolSizeEach) {
             DestroyGo(go);
             return;

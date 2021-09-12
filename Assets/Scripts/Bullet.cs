@@ -5,13 +5,31 @@ using UnityEngine;
 [SelectionBase]
 public class Bullet : MonoBehaviour {
 
-    public float speed;
-    public float ang;
-    public float angSpeed;
+    // public float speed;
+    // public float ang;
+    // public float angSpeed;
 
     public float acceleration;
     public float angAcceleration;
     public float maxspeed;
+
+    [SerializeField] float timeoutDur = 0.5f;
+    [ReadOnly] float enableTime = 0;
+
+    ObjectPoolObject poolObject;
+
+    private void Awake() {
+        poolObject = GetComponent<ObjectPoolObject>();
+    }
+    private void OnEnable() {
+        enableTime = Time.time;
+    }
+    private void Update() {
+        // todo move all logic (including physics) elsewhere
+        if (Time.time > enableTime + timeoutDur) {
+            poolObject.RecycleFromPool();
+        }
+    }
 }
 [System.Serializable]
 public class BulletSpawnSettings {

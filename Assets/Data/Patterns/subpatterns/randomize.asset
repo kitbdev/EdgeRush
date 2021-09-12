@@ -15,17 +15,19 @@ MonoBehaviour:
   patternType: 5
   numSubPatterns: 1
   spacing: 5
-  minAngle: -30
-  maxAngle: 30
+  alignmentDegree: 0
   radius: 1
-  angleSpread: 30
-  followPlayer: 0
+  startAngle: -90
+  angleDist: 30
+  angleOffset: 0
+  angleTurn: 0
+  angleOut: 0
+  initRandomAngleOffsetMin: -10
+  initRandomAngleOffsetMax: 10
   bulletSpawnSettings:
     prefab: {fileID: 0}
     initSpeed: 5
     initAngle: 0
-    initRandomAngleOffsetMin: 0
-    initRandomAngleOffsetMax: 0
     acceleration: 0
     maxSpeed: 10
     angularAcceleration: 0

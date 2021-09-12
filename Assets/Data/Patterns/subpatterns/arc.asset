@@ -13,14 +13,24 @@ MonoBehaviour:
   m_Name: arc
   m_EditorClassIdentifier: 
   patternType: 3
-  numSubPatterns: 1
-  bulletPrefab: {fileID: 0}
+  numSubPatterns: 2
   spacing: 5
-  minAngle: -30
-  maxAngle: 30
-  angleSpread: 30
-  followPlayer: 0
-  bulletAngleVelocity: 0
-  bulletSpeedVelocity: 0
-  bulletMaxSpeed: 0
-  subpattern: {fileID: 11400000, guid: 1edd9969d305f1c43bda6e78bab0a593, type: 2}
+  alignmentDegree: 0
+  radius: 1
+  startAngle: -90
+  angleDist: 30
+  angleOffset: 15
+  angleTurn: 0
+  angleOut: 1
+  initRandomAngleOffsetMin: 0
+  initRandomAngleOffsetMax: 0
+  bulletSpawnSettings:
+    prefab: {fileID: 0}
+    initSpeed: 5
+    initAngle: 0
+    acceleration: 0
+    maxSpeed: 10
+    angularAcceleration: 0
+    maxAngularSpeed: 10
+    initScale: 1
+    spawnPointIndices: 

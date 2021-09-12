@@ -19,6 +19,7 @@ public class WeaponSO : ScriptableObject {
     public bool aimAtPlayer = false;
     public float[] aimOffsets = new float[0];
     public int[] shotPointIndexes = new int[0];
+    public BulletSpawnSettings bulletSpawnSettings;
     // add random options to startpos?
     // types
     // unaimed (straight)

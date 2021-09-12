@@ -10,6 +10,7 @@ public class SubPatternSO : ScriptableObject {
         arc,
         ring,
         randomize,
+        target,
         none,
     }
     public PatternType patternType;
@@ -22,17 +23,22 @@ public class SubPatternSO : ScriptableObject {
     [ConditionalHide(nameof(patternType), (int)PatternType.line)]
     public float alignmentDegree = 0;
 
-    [ConditionalHide(nameof(patternType), (int)PatternType.arc)]
-    // [Range(-360, 360)]
-    public float minAngle = -30;
-    [ConditionalHide(nameof(patternType), (int)PatternType.arc)]
-    public float maxAngle = 30;
-
-    [ConditionalHide(nameof(patternType), (int)PatternType.ring)]
+    [ConditionalHide(nameof(patternType), (int)PatternType.ring, (int)PatternType.arc)]
     [Min(0)]
     public float radius = 1;
+
+    [ConditionalHide(nameof(patternType), (int)PatternType.arc)]
+    // [Range(-360, 360)]
+    public float startAngle = -90;
+    [ConditionalHide(nameof(patternType), (int)PatternType.arc)]
+    public float angleDist = 30;
+
     [ConditionalHide(nameof(patternType), (int)PatternType.ring)]
-    public float angleSpread = 15;
+    public float angleOffset = 0;
+    [ConditionalHide(nameof(patternType), (int)PatternType.ring, (int)PatternType.arc)]
+    public float angleTurn = 0;
+    [ConditionalHide(nameof(patternType), (int)PatternType.ring, (int)PatternType.arc)]
+    public bool angleOut = false;
 
     [ConditionalHide(nameof(patternType), (int)PatternType.randomize)]
     public float initRandomAngleOffsetMin = 0;

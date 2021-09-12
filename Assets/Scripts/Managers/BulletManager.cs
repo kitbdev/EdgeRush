@@ -61,9 +61,11 @@ public class BulletManager : Singleton<BulletManager> {
             go.transform.localScale = bulletPattern.initScale * Vector3.one;
             Vector2 forw = go.transform.up;
             Layer curLayer = isPlayer ? playerBulletLayer : enemyBulletLayer;
-            curLayer.SetLayerAllChildren(go);
+            if (go.layer != curLayer) {
+                curLayer.SetLayerAllChildren(go);
+            }
             go.GetComponent<Rigidbody2D>().AddForce(forw * bulletPattern.initSpeed, ForceMode2D.Impulse);
-            go.GetComponentsInChildren<Damager>().ToList().ForEach(d => d.damageAmount = 1);
+            go.GetComponent<Damager>().damageAmount = 1;
             Bullet bullet = go.GetComponent<Bullet>();
             bullet.acceleration = bulletPattern.acceleration;
             bullet.angAcceleration = bulletPattern.angularAcceleration;

@@ -17,5 +17,19 @@ MonoBehaviour:
   shootHoldCooldownDur: 0.2
   numShootPoints: 1
   damage: 1
+  bulletScale: 1
   launchForce: 5
-  bulletPrefabTypeId: 1
+  aimAtPlayer: 0
+  aimOffsets: []
+  shotPointIndexes: 
+  bulletSpawnSettings:
+    prefab: {fileID: 6110090707465297226, guid: 0d5847e6210b6b54eb112f198b5afe3b, type: 3}
+    initSpeed: 5
+    initAngle: 0
+    acceleration: 0
+    maxSpeed: 10
+    angularAcceleration: 0
+    maxAngularSpeed: 10
+    initScale: 1
+    spawnPointIndices: 
+  bulletPrefabTypeId: -1

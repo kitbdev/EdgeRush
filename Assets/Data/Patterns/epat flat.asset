@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 193f4d72e9ef5414596d9eaf7e648ca2, type: 3}
-  m_Name: testpattern
+  m_Name: epat flat
   m_EditorClassIdentifier: 
   subPatternDurs:
   - duration: 0
     repetitions: 1
     subPatterns:
-    - {fileID: 11400000, guid: be27216d4b7c2e644b0617b8084ea1d3, type: 2}
     - {fileID: 11400000, guid: 1edd9969d305f1c43bda6e78bab0a593, type: 2}
     - {fileID: 11400000, guid: 8298503440853f24592a9e23fbff00b8, type: 2}
   - duration: 0.2
