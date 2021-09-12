@@ -13,15 +13,11 @@ MonoBehaviour:
   m_Name: machinegun
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6110090707465297226, guid: 0d5847e6210b6b54eb112f198b5afe3b, type: 3}
+  modelIndex: 2
   shootCooldownDur: 0.1
   shootHoldCooldownDur: 0.1
-  numShootPoints: 1
   damage: 1
-  bulletScale: 1
-  launchForce: 5
   aimAtPlayer: 0
-  aimOffsets: []
-  shotPointIndexes: 
   bulletSpawnSettings:
     prefab: {fileID: 6110090707465297226, guid: 0d5847e6210b6b54eb112f198b5afe3b, type: 3}
     initSpeed: 5
@@ -32,4 +28,3 @@ MonoBehaviour:
     maxAngularSpeed: 10
     initScale: 1
     spawnPointIndices: 
-  bulletPrefabTypeId: -1

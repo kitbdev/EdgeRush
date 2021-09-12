@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: shotgun
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6110090707465297226, guid: 0d5847e6210b6b54eb112f198b5afe3b, type: 3}
+  modelIndex: 3
   shootCooldownDur: 0.2
   shootHoldCooldownDur: 0.2
   damage: 1

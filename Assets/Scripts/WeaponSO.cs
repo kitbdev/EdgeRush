@@ -7,6 +7,7 @@
 public class WeaponSO : ScriptableObject {
 
     public GameObject bulletPrefab;
+    public int modelIndex = 0;
     [Min(0f)]
     public float shootCooldownDur = 0.2f;
     [Min(0f)]

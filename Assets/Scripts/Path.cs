@@ -9,6 +9,9 @@ public class Path : MonoBehaviour {
 
     [System.Serializable]
     public class PathCurve {
+        // todo move to from anywhere option
+        // public bool moveTo = false;
+        // public Transform moveToTransform;
         public BezierCurve curve;
         [Min(1)]
         public int loops = 1;

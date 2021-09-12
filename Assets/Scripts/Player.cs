@@ -11,6 +11,7 @@ public class Player : MonoBehaviour {
 
     [SerializeField] Transform[] shootPoints = new Transform[0];
     [SerializeField] WeaponSO currentWeapon;
+    [SerializeField] GameObject[] gunModels = new GameObject[0];
 
     [SerializeField, ReadOnly] Vector2 velocity = Vector2.zero;
     [SerializeField, ReadOnly] float lastShootTime = 0;
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour {
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
+        SetCurrentWeapon(currentWeapon);
     }
     private void OnEnable() {
         controls = new Controls();
@@ -55,7 +57,7 @@ public class Player : MonoBehaviour {
     }
     private void Update() {
         // todo player should be restricted to walls (dynamic), but should not be pushed by bullets
-            // ? make bullets triggers?
+        // ? make bullets triggers?
         if (Time.timeScale == 0) return;
         if (inputShootHold) {
             if (Time.time > lastShootTime + currentWeapon.shootHoldCooldownDur) {
@@ -68,8 +70,16 @@ public class Player : MonoBehaviour {
         }
     }
     public void SetCurrentWeapon(WeaponSO weapon) {
-        Debug.Log($"Switchin player weapon to {weapon.name}");
+        Debug.Log($"Switching player weapon to {weapon.name}");
         currentWeapon = weapon;
+        for (int i = 0; i < gunModels.Length; i++) {
+            GameObject gunModel = gunModels[i];
+            if (gunModel != null) gunModel.SetActive(false);
+        }
+        int weaponIndex = currentWeapon.modelIndex;
+        if (weaponIndex >= 0 && weaponIndex < gunModels.Length) {
+            gunModels[weaponIndex]?.SetActive(true);
+        }
     }
     void ShootCurWeapon() {
         // Transform[] curShootPoints = new Transform[currentWeapon.numShootPoints];
