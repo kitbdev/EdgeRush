@@ -59,6 +59,7 @@ public class LevelManager : Singleton<LevelManager> {
                     offset = levelEvent.spawnOffset,
                     offsetByIndex = levelEvent.spawnOffsetByIndex,
                     followPath = levelEvent.pathToFollow,
+                    attackPatternOverride = levelEvent.attackPatternOverride,
                 });
                 break;
             case LevelEvent.LevelEventType.spawnBoss:
@@ -69,6 +70,7 @@ public class LevelManager : Singleton<LevelManager> {
                     offset = levelEvent.spawnOffset,
                     offsetByIndex = Vector2.zero,
                     followPath = levelEvent.pathToFollow,
+                    attackPatternOverride = levelEvent.attackPatternOverride,
                 });
                 break;
             case LevelEvent.LevelEventType.spawnMisc:

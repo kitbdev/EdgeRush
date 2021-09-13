@@ -14,12 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subPatternPhases:
   - duration: 0
-    repetitions: 0
+    repetitions: 1
     subPatterns:
     - {fileID: 11400000, guid: b2873abe8d253de42823b5f423c090d4, type: 2}
     - {fileID: 11400000, guid: 8298503440853f24592a9e23fbff00b8, type: 2}
-  - duration: 0.2
-    repetitions: 0
-    subPatterns:
-    - {fileID: 11400000, guid: b2873abe8d253de42823b5f423c090d4, type: 2}
-    - {fileID: 11400000, guid: 8298503440853f24592a9e23fbff00b8, type: 2}
+  - duration: 100
+    repetitions: 1
+    subPatterns: []

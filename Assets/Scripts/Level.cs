@@ -40,13 +40,18 @@ public class LevelEvent {
     [Min(1)]
     public int amountToSpawn = 1;
     [ConditionalHide(nameof(levelEventType), (int)LevelEventType.spawnEnemyWave,
+                                            (int)LevelEventType.spawnBoss,
                                             (int)LevelEventType.spawnMisc)]
-    public Vector2 spawnOffset = Vector2.right;
+    public Vector2 spawnOffset = Vector2.zero;
     [ConditionalHide(nameof(levelEventType), (int)LevelEventType.spawnEnemyWave,
                                             (int)LevelEventType.spawnMisc)]
     public Vector2 spawnOffsetByIndex = Vector2.right;
-    [ConditionalHide(nameof(levelEventType), (int)LevelEventType.spawnEnemyWave)]
+    [ConditionalHide(nameof(levelEventType), (int)LevelEventType.spawnEnemyWave,
+                                            (int)LevelEventType.spawnBoss)]
     public Path pathToFollow;
+    [ConditionalHide(nameof(levelEventType), (int)LevelEventType.spawnEnemyWave,
+                                            (int)LevelEventType.spawnBoss)]
+    public PatternSO attackPatternOverride = null;
 
     [ConditionalHide(nameof(levelEventType), (int)LevelEventType.clearMap)]
     public bool clearEnemies = true;

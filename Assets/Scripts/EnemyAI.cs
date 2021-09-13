@@ -8,7 +8,7 @@ public class EnemyAI : MonoBehaviour {
 
     public Path path;
     public Vector3 pathOffset;
-    [SerializeField] PatternRunner attackPattern;
+    public PatternRunner attackPattern;
 
     // todo move pattern
     Health health;

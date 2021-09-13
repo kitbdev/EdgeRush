@@ -22,12 +22,15 @@ public class EnemyManager : Singleton<EnemyManager> {
     private void Start() {
         // SpawnEnemy(0, epath, Vector2.zero);
     }
-    void SpawnEnemy(int typeId, Path path, Vector2 offset) {
+    void SpawnEnemy(int typeId, Path path, Vector2 offset, PatternSO patternOverride = null) {
         var ego = enemyPool.Get(typeId);
         var enemyai = ego.GetComponent<EnemyAI>();
         activeEnemies.Add(enemyai);
         enemyai.path = path;
         enemyai.pathOffset = offset;
+        if (patternOverride != null) {
+            enemyai.attackPattern.patternSO = patternOverride;
+        }
         ego.GetComponent<Health>().RestoreHealth();
         enemyai.OnSpawn();
     }
@@ -52,12 +55,13 @@ public class EnemyManager : Singleton<EnemyManager> {
         public Vector2 offset;
         public Vector2 offsetByIndex;
         public Path followPath;
+        public PatternSO attackPatternOverride;
     }
     public void SpawnWave(WaveSpawnData waveSpawnData) {
         int typeIndex = enemyPool.GetTypeId(waveSpawnData.prefab);
         for (int i = 0; i < waveSpawnData.amount; i++) {
             Vector2 offset = waveSpawnData.offset + waveSpawnData.offsetByIndex * i;
-            SpawnEnemy(typeIndex, waveSpawnData.followPath, offset);
+            SpawnEnemy(typeIndex, waveSpawnData.followPath, offset, waveSpawnData.attackPatternOverride);
         }
     }
 

@@ -9,6 +9,7 @@ public class BulletManager : Singleton<BulletManager> {
     public MultiObjectPool pool => _pool;
     public Layer playerBulletLayer;
     public Layer enemyBulletLayer;
+    public int maxTotalBullets = 6000;
     public List<Bullet> activeBullets = new List<Bullet>();
 
     protected override void Awake() {
@@ -30,6 +31,12 @@ public class BulletManager : Singleton<BulletManager> {
     public void RemoveBullet(Bullet bullet) {
         activeBullets.Remove(bullet);
         pool.RecyclePoolObject(bullet.gameObject);
+    }
+    void ClearOldestBullets(int amount) {
+        int clearamount = Mathf.Min(amount, activeBullets.Count);
+        for (int i = 0; i < clearamount; i++) {
+            RemoveBullet(activeBullets[0]);
+        }
     }
     public void Shoot(WeaponSO weapon, Transform shootPoint, bool isPlayer = false) {
         int numBullets = weapon.bulletSpawnSettings.spawnPointIndices.Length;
@@ -70,6 +77,9 @@ public class BulletManager : Singleton<BulletManager> {
         }
 
         // Debug.Log($"Shooting {bulletPattern} {offset}");
+        if (activeBullets.Count + numBullets >= maxTotalBullets) {
+            ClearOldestBullets(numBullets);
+        }
         int poolId = pool.GetTypeId(bulletPattern.prefab);
         GameObject[] gos = pool.Get(poolId, numBullets);
         for (int i = 0; i < numBullets; i++) {

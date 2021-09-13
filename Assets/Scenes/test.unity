@@ -2074,6 +2074,7 @@ MonoBehaviour:
     layerValue: 10
   enemyBulletLayer:
     layerValue: 7
+  maxTotalBullets: 5000
   activeBullets: []
 --- !u!4 &408527141
 Transform:
@@ -3542,9 +3543,10 @@ MonoBehaviour:
       levelEventType: 1
       spawnPrefab: {fileID: 9219814045859052589, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
       amountToSpawn: 1
-      spawnOffset: {x: 1, y: 0}
+      spawnOffset: {x: 0, y: 0}
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 1396211953}
+      attackPatternOverride: {fileID: 0}
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -3557,6 +3559,7 @@ MonoBehaviour:
       spawnOffset: {x: 1, y: 0}
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 0}
+      attackPatternOverride: {fileID: 0}
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -3566,9 +3569,10 @@ MonoBehaviour:
       levelEventType: 1
       spawnPrefab: {fileID: 8271556586339612306, guid: a92c420b82cf9914b8697f34ef4753cb, type: 3}
       amountToSpawn: 4
-      spawnOffset: {x: 1, y: 0}
+      spawnOffset: {x: 0, y: 0}
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 0}
+      attackPatternOverride: {fileID: 0}
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -3578,9 +3582,10 @@ MonoBehaviour:
       levelEventType: 1
       spawnPrefab: {fileID: 8271556586339612306, guid: a92c420b82cf9914b8697f34ef4753cb, type: 3}
       amountToSpawn: 4
-      spawnOffset: {x: 1, y: 0}
+      spawnOffset: {x: 0, y: 0}
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 0}
+      attackPatternOverride: {fileID: 0}
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -3593,6 +3598,7 @@ MonoBehaviour:
       spawnOffset: {x: 1, y: 0}
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 0}
+      attackPatternOverride: {fileID: 0}
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -3605,6 +3611,7 @@ MonoBehaviour:
       spawnOffset: {x: 1, y: 0}
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 0}
+      attackPatternOverride: {fileID: 0}
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -3617,6 +3624,7 @@ MonoBehaviour:
       spawnOffset: {x: 1, y: 0}
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 0}
+      attackPatternOverride: {fileID: 0}
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -3629,6 +3637,7 @@ MonoBehaviour:
       spawnOffset: {x: 1, y: 0}
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 0}
+      attackPatternOverride: {fileID: 0}
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -3645,6 +3654,7 @@ MonoBehaviour:
       spawnOffset: {x: 1, y: 0}
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 1396211953}
+      attackPatternOverride: {fileID: 0}
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -3657,6 +3667,7 @@ MonoBehaviour:
       spawnOffset: {x: 1, y: 0}
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 0}
+      attackPatternOverride: {fileID: 0}
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -3669,6 +3680,7 @@ MonoBehaviour:
       spawnOffset: {x: 1, y: 0}
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 0}
+      attackPatternOverride: {fileID: 0}
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -3681,6 +3693,7 @@ MonoBehaviour:
       spawnOffset: {x: 1, y: 0}
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 0}
+      attackPatternOverride: {fileID: 0}
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -5785,37 +5798,37 @@ MonoBehaviour:
     delay: 0
     loopType: 0
     easeType: 1
-    distance: 0
-    duration: 0
-    distanceTotal: 0
-    durationTotal: 0
+    distance: 9.179697
+    duration: 0.9179697
+    distanceTotal: 9.179697
+    durationTotal: 0.9179697
   - title: 1. maincurve
     curve: {fileID: 1380748399}
     loops: 5
     delay: 2
     loopType: 2
     easeType: 1
-    distance: 0
-    duration: 0
-    distanceTotal: 0
-    durationTotal: 2
+    distance: 44.44384
+    duration: 4.444384
+    distanceTotal: 222.21921
+    durationTotal: 24.22192
   - title: 2. exitcurve
     curve: {fileID: 269880396}
     loops: 1
     delay: 0
     loopType: 0
     easeType: 1
-    distance: 0
-    duration: 0
-    distanceTotal: 0
-    durationTotal: 0
+    distance: 18.499092
+    duration: 1.8499092
+    distanceTotal: 18.499092
+    durationTotal: 1.8499092
   moveSpeed: 10
   delay: 0
   loops: 1
   fullSequenceLoopType: 0
   fullSequenceEase: 1
-  totalDistance: 0
-  totalDuration: 2
+  totalDistance: 249.89801
+  totalDuration: 26.989798
 --- !u!1 &1397288686
 GameObject:
   m_ObjectHideFlags: 0
