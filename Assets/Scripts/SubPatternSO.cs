@@ -3,6 +3,11 @@
 [CreateAssetMenu(fileName = "SubPatternSO", menuName = "EdgeRush/SubPatternSO", order = 0)]
 public class SubPatternSO : ScriptableObject {
 
+    [SerializeField, HideInInspector] string title = "subpattern";
+    public void Validate(string prefix = "") {
+        title = prefix + patternType.ToString();
+    }
+
     public enum PatternType {
         none,
         bullet,
@@ -69,9 +74,4 @@ public class SubPatternSO : ScriptableObject {
     public BulletSpawnSettings bulletSpawnSettings;
 
     // public SubPatternSO subpattern;
-
-
-    public void PatternLogic() {
-
-    }
 }

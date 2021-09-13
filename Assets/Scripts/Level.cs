@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "LevelSO", menuName = "EdgeRush/LevelSO", order = 0)]
-public class LevelSO : ScriptableObject {
+[System.Serializable]
+public class Level {
     public int backgroundIndex;
     public AudioClip musicTrack;
     public LevelEvent[] levelEvents = new LevelEvent[0];
@@ -19,6 +19,12 @@ public class LevelEvent {
         checkpoint,
         endLevel,
     }
+
+    [SerializeField, HideInInspector] string title = "level event";
+    public void Validate(string prefix = "") {
+        title = prefix + levelEventType.ToString();
+    }
+
     public LevelEventType levelEventType;
 
     [ConditionalHide(nameof(levelEventType), (int)LevelEventType.spawnEnemyWave,
@@ -27,10 +33,14 @@ public class LevelEvent {
     public GameObject spawnPrefab;
     [ConditionalHide(nameof(levelEventType), (int)LevelEventType.spawnEnemyWave,
                                             (int)LevelEventType.spawnMisc)]
+    [Min(1)]
     public int amountToSpawn = 1;
     [ConditionalHide(nameof(levelEventType), (int)LevelEventType.spawnEnemyWave,
                                             (int)LevelEventType.spawnMisc)]
-    public Vector2 enemyOffsetByIndex = Vector2.right;
+    public Vector2 spawnOffsetBase = Vector2.right;
+    [ConditionalHide(nameof(levelEventType), (int)LevelEventType.spawnEnemyWave,
+                                            (int)LevelEventType.spawnMisc)]
+    public Vector2 spawnOffsetByIndex = Vector2.right;
     [ConditionalHide(nameof(levelEventType), (int)LevelEventType.spawnEnemyWave)]
     public Path pathToFollow;
 

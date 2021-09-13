@@ -20,14 +20,14 @@ public class EnemyManager : Singleton<EnemyManager> {
     }
     public Path epath;
     private void Start() {
-        SpawnEnemy(0, epath);
+        // SpawnEnemy(0, epath, Vector2.zero);
     }
-    void SpawnEnemy(int index, Path path) {
-        int typeId = index + 1;
+    void SpawnEnemy(int typeId, Path path, Vector2 offset) {
         var ego = enemyPool.Get(typeId);
         var enemyai = ego.GetComponent<EnemyAI>();
         activeEnemies.Add(enemyai);
         enemyai.path = path;
+        enemyai.pathOffset = offset;
         ego.GetComponent<Health>().RestoreHealth();
         enemyai.OnSpawn();
     }
@@ -46,12 +46,18 @@ public class EnemyManager : Singleton<EnemyManager> {
         enemy.OnStop();
         activeEnemies.Remove(enemy);
     }
-    public void SpawnWave(GameObject prefab, int amount, Vector2 offsetByIndex) {
-        // todo
-        int typeIndex = enemyPool.GetTypeId(prefab);
-        for (int i = 0; i < amount; i++)
-        {
-            // SpawnEnemy(typeIndex)
+    public struct WaveSpawnData {
+        public GameObject prefab;
+        public int amount;
+        public Vector2 offset;
+        public Vector2 offsetByIndex;
+        public Path followPath;
+    }
+    public void SpawnWave(WaveSpawnData waveSpawnData) {
+        int typeIndex = enemyPool.GetTypeId(waveSpawnData.prefab);
+        for (int i = 0; i < waveSpawnData.amount; i++) {
+            Vector2 offset = waveSpawnData.offset + waveSpawnData.offsetByIndex * i;
+            SpawnEnemy(typeIndex, waveSpawnData.followPath, offset);
         }
     }
 

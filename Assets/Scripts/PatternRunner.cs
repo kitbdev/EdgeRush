@@ -78,7 +78,7 @@ public class PatternRunner : MonoBehaviour {
                 // do nothing
                 offsets.Add(place);
                 return offsets;
-                // break;
+            // break;
             case SubPatternSO.PatternType.bullet:
                 if (subPattern.bulletSpawnSettings == null) {
                     break;
@@ -91,8 +91,8 @@ public class PatternRunner : MonoBehaviour {
                 break;
             case SubPatternSO.PatternType.target:
                 BulletInitState nplace = new BulletInitState(place);
-                if (player == null){
-                    Debug.LogWarning(name +" has no player!");
+                if (player == null) {
+                    Debug.LogWarning(name + " has no player!");
                     offsets.Add(nplace);
                     break;
                 }
@@ -115,7 +115,7 @@ public class PatternRunner : MonoBehaviour {
                 // emitterState.angle
                 offsets.Add(place);
                 return offsets;
-                // break;
+            // break;
             case SubPatternSO.PatternType.single:
                 // make a single subpattern
                 offsets.Add(place);
@@ -165,8 +165,7 @@ public class PatternRunner : MonoBehaviour {
                 }
                 break;
         }
-        for (int i = 0; i < offsets.Count; i++)
-        {
+        for (int i = 0; i < offsets.Count; i++) {
             // int index = i-offsets.c
             if (subPattern.setAccelb) offsets[i].acceleration = subPattern.setAccel;
             if (subPattern.setAngAccelb) offsets[i].angAcceleration = subPattern.setAngAccel * Mathf.Deg2Rad;
@@ -175,7 +174,7 @@ public class PatternRunner : MonoBehaviour {
         }
         return offsets;
     }
-    public void ForEachInitState(System.Action<BulletInitState> action){
+    public void ForEachInitState(System.Action<BulletInitState> action) {
         if (patternSO == null) return;
         foreach (var subdirs in patternSO.subPatternDurs) {
             List<BulletInitState> offsets = new List<BulletInitState>();
@@ -203,12 +202,17 @@ public class PatternRunner : MonoBehaviour {
     private void OnValidate() {
         totalDuration = 0;
         bulletsPerLoop = 0;
+        if (!patternSO) return;
         foreach (var patterndur in patternSO.subPatternDurs) {
             totalDuration += patterndur.duration * patterndur.repetitions;
             // patterndur.numBullets = 0;
             // totalNumBullets += patterndur.numBullets;
+            for (int i = 0; i < patterndur.subPatterns.Length; i++) {
+                SubPatternSO subpattern = patterndur.subPatterns[i];
+                subpattern.Validate(i + ". ");
+            }
         }
-        ForEachInitState(state=>{
+        ForEachInitState(state => {
             bulletsPerLoop++;
         });
     }

@@ -14,5 +14,5 @@ public class PatternSO : ScriptableObject {
         public SubPatternSO[] subPatterns;
     }
     public PatternDur[] subPatternDurs;
-    
+
 }

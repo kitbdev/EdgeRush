@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager> {
 
-    public LevelSO[] levels = new LevelSO[0];
+    public Level[] levels = new Level[0];
 
     [SerializeField, ReadOnly] int _currentLevelIndex;
     public int currentLevelIndex => _currentLevelIndex;
-    int curLevelEventIndex = 0;
+    [SerializeField, ReadOnly] int curLevelEventIndex = 0;
     float lastEventTime = 0;
+
+    private void OnValidate() {
+        foreach (var level in levels) {
+            for (int i = 0; i < level.levelEvents.Length; i++) {
+                LevelEvent levelEvent = level.levelEvents[i];
+                levelEvent.Validate(i + ". ");
+            }
+        }
+    }
 
     private void Update() {
         ProcessLevel();
@@ -36,10 +45,23 @@ public class LevelManager : Singleton<LevelManager> {
     bool HandleLevelEvent(LevelEvent levelEvent) {
         switch (levelEvent.levelEventType) {
             case LevelEvent.LevelEventType.spawnEnemyWave:
-                EnemyManager.Instance.SpawnWave(levelEvent.spawnPrefab, levelEvent.amountToSpawn, levelEvent.enemyOffsetByIndex);
+                EnemyManager.Instance.SpawnWave(new EnemyManager.WaveSpawnData() {
+                    prefab = levelEvent.spawnPrefab,
+                    amount = levelEvent.amountToSpawn,
+                    offset = levelEvent.spawnOffsetBase,
+                    offsetByIndex = levelEvent.spawnOffsetByIndex,
+                    followPath = levelEvent.pathToFollow,
+                });
                 break;
             case LevelEvent.LevelEventType.spawnBoss:
-                // todo
+                // ?
+                EnemyManager.Instance.SpawnWave(new EnemyManager.WaveSpawnData() {
+                    prefab = levelEvent.spawnPrefab,
+                    amount = 1,
+                    offset = levelEvent.spawnOffsetBase,
+                    offsetByIndex = Vector2.zero,
+                    followPath = levelEvent.pathToFollow,
+                });
                 break;
             case LevelEvent.LevelEventType.spawnMisc:
                 // todo

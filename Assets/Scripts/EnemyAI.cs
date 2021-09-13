@@ -33,6 +33,6 @@ public class EnemyAI : MonoBehaviour {
     }
 
     private void Update() {
-        attackPattern.ProcessPattern();
+        attackPattern?.ProcessPattern();
     }
 }

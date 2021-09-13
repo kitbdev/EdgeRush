@@ -9,6 +9,7 @@ public class Path : MonoBehaviour {
 
     [System.Serializable]
     public class PathCurve {
+        [SerializeField, HideInInspector] string title = "pathcurve";
         // todo move to from anywhere option
         // public bool moveTo = false;
         // public Transform moveToTransform;
@@ -25,6 +26,10 @@ public class Path : MonoBehaviour {
         [ReadOnly] public float duration;
         [ReadOnly] public float distanceTotal;
         [ReadOnly] public float durationTotal;
+
+        public void Validate(string prefix = "") {
+            title = prefix + curve.name;
+        }
 
         public Vector2[] GetPoints() {
             List<Vector2> points = new List<Vector2>();
@@ -69,6 +74,9 @@ public class Path : MonoBehaviour {
 
     private void OnValidate() {
         CalcDistances();
+        for (int i = 0; i < pathCurves.Count; i++) {
+            pathCurves[i].Validate(i + ". ");
+        }
     }
     private void Awake() {
         CalcDistances();
