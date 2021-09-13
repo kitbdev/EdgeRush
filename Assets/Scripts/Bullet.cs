@@ -22,11 +22,9 @@ public class Bullet : MonoBehaviour {
     [ReadOnly] float enableTime = 0;
 
 
-    ObjectPoolObject poolObject;
     Rigidbody2D rb;
 
     private void Awake() {
-        poolObject = GetComponent<ObjectPoolObject>();
         rb = GetComponent<Rigidbody2D>();
     }
     private void OnEnable() {
@@ -42,7 +40,7 @@ public class Bullet : MonoBehaviour {
     private void Update() {
         // todo move all logic (including physics) elsewhere
         if (Time.time > enableTime + timeoutDur) {
-            poolObject.RecycleFromPool();
+            BulletManager.Instance.RemoveBullet(this);
         }
     }
     private void FixedUpdate() {

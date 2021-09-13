@@ -7,6 +7,7 @@ using DG.Tweening;
 public class EnemyAI : MonoBehaviour {
 
     public Path path;
+    public Vector3 pathOffset;
     [SerializeField] PatternRunner attackPattern;
 
     // todo move pattern
@@ -21,7 +22,8 @@ public class EnemyAI : MonoBehaviour {
     }
     [ContextMenu("spawn")]
     public void OnSpawn() {
-        path?.FollowPath(rb);
+        // todo offset
+        path?.FollowPath(rb, pathOffset);
     }
     public void OnStop() {
         path?.StopPath();

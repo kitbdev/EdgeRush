@@ -8,6 +8,8 @@ public class EnemyManager : Singleton<EnemyManager> {
 
     [ReadOnly] public List<EnemyAI> activeEnemies = new List<EnemyAI>();
 
+    public int numActiveEnemies => activeEnemies.Count;
+
     MultiObjectPool enemyPool;
 
     protected override void Awake() {
@@ -18,7 +20,7 @@ public class EnemyManager : Singleton<EnemyManager> {
     }
     public Path epath;
     private void Start() {
-        SpawnEnemy(0,epath);
+        SpawnEnemy(0, epath);
     }
     void SpawnEnemy(int index, Path path) {
         int typeId = index + 1;
@@ -29,10 +31,28 @@ public class EnemyManager : Singleton<EnemyManager> {
         ego.GetComponent<Health>().RestoreHealth();
         enemyai.OnSpawn();
     }
+    public void RemoveAllEnemies() {
+        for (int i = activeEnemies.Count - 1; i >= 0; i--) {
+            RemoveEnemy(activeEnemies[i]);
+        }
+        activeEnemies.Clear();
+    }
+    /// <summary>
+    /// call this to remove an enemy properly, when it dies
+    /// </summary>
+    /// <param name="enemy"></param>
     public void RemoveEnemy(EnemyAI enemy) {
         enemy.GetComponent<ObjectPoolObject>().RecycleFromPool();
         enemy.OnStop();
         activeEnemies.Remove(enemy);
+    }
+    public void SpawnWave(GameObject prefab, int amount, Vector2 offsetByIndex) {
+        // todo
+        int typeIndex = enemyPool.GetTypeId(prefab);
+        for (int i = 0; i < amount; i++)
+        {
+            // SpawnEnemy(typeIndex)
+        }
     }
 
 }

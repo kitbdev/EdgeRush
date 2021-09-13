@@ -17,15 +17,23 @@ public class BulletManager : Singleton<BulletManager> {
     }
 
     private void FixedUpdate() {
-        foreach (var bullet in activeBullets)
-        {
+        foreach (var bullet in activeBullets) {
             // physics
         }
     }
-
+    public void ClearAllActiveBullets() {
+        for (int i = activeBullets.Count - 1; i >= 0; i--) {
+            RemoveBullet(activeBullets[i]);
+        }
+        activeBullets.Clear();
+    }
+    public void RemoveBullet(Bullet bullet) {
+        activeBullets.Remove(bullet);
+        pool.RecyclePoolObject(bullet.gameObject);
+    }
     public void Shoot(WeaponSO weapon, Transform shootPoint, bool isPlayer = false) {
         int numBullets = weapon.bulletSpawnSettings.spawnPointIndices.Length;
-        if (numBullets==0) numBullets = 1;
+        if (numBullets == 0) numBullets = 1;
         Transform[] shootPoints = new Transform[numBullets];
         for (int i = 0; i < numBullets; i++) {
             shootPoints[i] = shootPoint;
@@ -86,6 +94,7 @@ public class BulletManager : Singleton<BulletManager> {
             bullet.angularSpeed = initState.angSpeed;
             bullet.acceleration = initState.acceleration;
             bullet.angularAcceleration = initState.angAcceleration;
+            activeBullets.Add(bullet);
             bullet.Init();
         }
     }

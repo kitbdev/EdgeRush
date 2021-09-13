@@ -13,7 +13,7 @@ public class Path : MonoBehaviour {
         // public bool moveTo = false;
         // public Transform moveToTransform;
         public BezierCurve curve;
-        [Min(1)]
+        [Min(-1)]
         public int loops = 1;
         [Min(0)]
         public float delay = 0;
@@ -105,7 +105,7 @@ public class Path : MonoBehaviour {
         OnValidate();
     }
 
-    public Sequence FollowPath(Rigidbody2D rb) {
+    public Sequence FollowPath(Rigidbody2D rb, Vector2 pathOffset) {
         StopPath();
         CalcDistances();
         pathseq = DOTween.Sequence();
@@ -120,6 +120,7 @@ public class Path : MonoBehaviour {
             // }
             PathCurve pathCurve = pathCurves[i];
             Vector2[] points = pathCurve.GetPoints();
+            points = points.ToList().ConvertAll<Vector2>(v => v + pathOffset).ToArray();
             lastEndPoint = points[points.Length - 3];
             float dur = pathCurve.duration;
             var pathtween = rb.DOPath(points, dur, PathType.CubicBezier, PathMode.Sidescroller2D);

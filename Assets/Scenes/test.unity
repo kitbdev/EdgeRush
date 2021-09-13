@@ -767,6 +767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f38f215064f14d43a156b2cf453a329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levels: []
   currentLevel: 0
 --- !u!114 &113407135
 MonoBehaviour:
@@ -3221,7 +3222,7 @@ Transform:
   - {fileID: 159293179}
   - {fileID: 1317324738}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &852461463
 MonoBehaviour:
@@ -5341,35 +5342,35 @@ MonoBehaviour:
     delay: 0
     loopType: 0
     easeType: 1
-    distance: 0
-    duration: 0
-    distanceTotal: 0
-    durationTotal: 0
+    distance: 9.179697
+    duration: 0.9179697
+    distanceTotal: 9.179697
+    durationTotal: 0.9179697
   - curve: {fileID: 1380748399}
     loops: 5
     delay: 2
     loopType: 2
     easeType: 1
-    distance: 0
-    duration: 0
-    distanceTotal: 0
-    durationTotal: 2
+    distance: 44.44384
+    duration: 4.444384
+    distanceTotal: 222.21921
+    durationTotal: 24.22192
   - curve: {fileID: 269880396}
     loops: 1
     delay: 0
     loopType: 0
     easeType: 1
-    distance: 0
-    duration: 0
-    distanceTotal: 0
-    durationTotal: 0
+    distance: 18.499092
+    duration: 1.8499092
+    distanceTotal: 18.499092
+    durationTotal: 1.8499092
   moveSpeed: 10
   delay: 0
   loops: 1
   fullSequenceLoopType: 0
   fullSequenceEase: 1
-  totalDistance: 0
-  totalDuration: 2
+  totalDistance: 249.89801
+  totalDuration: 26.989798
 --- !u!1 &1397288686
 GameObject:
   m_ObjectHideFlags: 0
@@ -6375,7 +6376,7 @@ Transform:
   - {fileID: 345328317}
   - {fileID: 271651032}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1760703402
 GameObject:
@@ -7375,7 +7376,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: d4f96c5b02bea944cbba3a0855a7ea19, type: 2}
     - target: {fileID: 8459970140060339802, guid: d0747ff92d56e4c4390a88a9b6e52dd2, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8459970140060339802, guid: d0747ff92d56e4c4390a88a9b6e52dd2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8059,7 +8060,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8459970140060339802, guid: d0747ff92d56e4c4390a88a9b6e52dd2, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8459970140060339802, guid: d0747ff92d56e4c4390a88a9b6e52dd2, type: 3}
       propertyPath: m_LocalPosition.x
