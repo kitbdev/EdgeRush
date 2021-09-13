@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
+[SelectionBase]
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyAI : MonoBehaviour {
 
@@ -28,6 +28,7 @@ public class EnemyAI : MonoBehaviour {
     public void OnStop() {
         path?.StopPath();
     }
+    [ContextMenu("Kill")]
     void OnDie() {
         EnemyManager.Instance.RemoveEnemy(this);
     }

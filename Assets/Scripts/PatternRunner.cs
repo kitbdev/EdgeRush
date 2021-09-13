@@ -12,7 +12,8 @@ public class PatternRunner : MonoBehaviour {
     BulletInitState emitterState = BulletInitState.origin;
 
     public void ProcessPattern() {
-        PatternSO.PatternDur patternDur = patternSO.subPatternDurs[index];
+        if (patternSO == null || patternSO.subPatternPhases.Length == 0) return;
+        PatternSO.PatternPhase patternDur = patternSO.subPatternPhases[index];
         // wait until next
         if (patternDur.duration <= 0 || Time.time > lastTime + patternDur.duration) {
             CreateSubPattern(patternDur.subPatterns);
@@ -22,7 +23,7 @@ public class PatternRunner : MonoBehaviour {
         if (curRepetition >= patternDur.repetitions) {
             // go to next pattern
             index++;
-            if (index >= patternSO.subPatternDurs.Length) {
+            if (index >= patternSO.subPatternPhases.Length) {
                 index = 0;
             }
             curRepetition = 0;
@@ -176,7 +177,7 @@ public class PatternRunner : MonoBehaviour {
     }
     public void ForEachInitState(System.Action<BulletInitState> action) {
         if (patternSO == null) return;
-        foreach (var subdirs in patternSO.subPatternDurs) {
+        foreach (var subdirs in patternSO.subPatternPhases) {
             List<BulletInitState> offsets = new List<BulletInitState>();
             offsets.Add(BulletInitState.origin);
             foreach (var subpattern in subdirs.subPatterns) {
@@ -203,12 +204,12 @@ public class PatternRunner : MonoBehaviour {
         totalDuration = 0;
         bulletsPerLoop = 0;
         if (!patternSO) return;
-        foreach (var patterndur in patternSO.subPatternDurs) {
-            totalDuration += patterndur.duration * patterndur.repetitions;
+        foreach (var patternPhase in patternSO.subPatternPhases) {
+            totalDuration += patternPhase.duration * patternPhase.repetitions;
             // patterndur.numBullets = 0;
             // totalNumBullets += patterndur.numBullets;
-            for (int i = 0; i < patterndur.subPatterns.Length; i++) {
-                SubPatternSO subpattern = patterndur.subPatterns[i];
+            for (int i = 0; i < patternPhase.subPatterns.Length; i++) {
+                SubPatternSO subpattern = patternPhase.subPatterns[i];
                 subpattern.Validate(i + ". ");
             }
         }
@@ -218,10 +219,10 @@ public class PatternRunner : MonoBehaviour {
     }
     private void OnDrawGizmosSelected() {
         if (patternSO == null) return;
-        foreach (var subdirs in patternSO.subPatternDurs) {
+        foreach (var phase in patternSO.subPatternPhases) {
             List<BulletInitState> offsets = new List<BulletInitState>();
             offsets.Add(BulletInitState.origin);
-            foreach (var subpattern in subdirs.subPatterns) {
+            foreach (var subpattern in phase.subPatterns) {
                 List<BulletInitState> noffsets = new List<BulletInitState>();
                 foreach (var offset in offsets) {
                     if (subpattern.patternType == SubPatternSO.PatternType.bullet) {

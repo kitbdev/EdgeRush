@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 193f4d72e9ef5414596d9eaf7e648ca2, type: 3}
   m_Name: epat ring
   m_EditorClassIdentifier: 
-  subPatternDurs:
+  subPatternPhases:
   - duration: 0
     repetitions: 1
     subPatterns:
-    - {fileID: 11400000, guid: 6f9d0fdab8ed0f2469b850205c3da6b2, type: 2}
     - {fileID: 11400000, guid: 8cba6666ab3dd314db2faed2a8f87656, type: 2}
     - {fileID: 11400000, guid: 8298503440853f24592a9e23fbff00b8, type: 2}
   - duration: 0.2

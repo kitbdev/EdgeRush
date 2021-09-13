@@ -12,10 +12,12 @@ public class LevelManager : Singleton<LevelManager> {
     float lastEventTime = 0;
 
     private void OnValidate() {
-        foreach (var level in levels) {
+        for (int i1 = 0; i1 < levels.Length; i1++) {
+            Level level = levels[i1];
+            level.Validate((i1 + 1) + "");
             for (int i = 0; i < level.levelEvents.Length; i++) {
                 LevelEvent levelEvent = level.levelEvents[i];
-                levelEvent.Validate(i + ". ");
+                levelEvent.Validate((i + 1) + ". ");
             }
         }
     }
@@ -24,6 +26,9 @@ public class LevelManager : Singleton<LevelManager> {
         ProcessLevel();
     }
     void ProcessLevel() {
+        if (currentLevelIndex >= levels.Length) {
+            return;
+        }
         var curLevel = levels[currentLevelIndex];
         LevelEvent curEvent = curLevel.levelEvents[curLevelEventIndex];
         bool finished = HandleLevelEvent(curEvent);
@@ -41,6 +46,9 @@ public class LevelManager : Singleton<LevelManager> {
         Debug.Log($"Level {currentLevelIndex} finished!");
         _currentLevelIndex++;
         curLevelEventIndex = 0;
+        if (currentLevelIndex >= levels.Length) {
+            Debug.Log("Finished all levels!");
+        }
     }
     bool HandleLevelEvent(LevelEvent levelEvent) {
         switch (levelEvent.levelEventType) {
@@ -48,7 +56,7 @@ public class LevelManager : Singleton<LevelManager> {
                 EnemyManager.Instance.SpawnWave(new EnemyManager.WaveSpawnData() {
                     prefab = levelEvent.spawnPrefab,
                     amount = levelEvent.amountToSpawn,
-                    offset = levelEvent.spawnOffsetBase,
+                    offset = levelEvent.spawnOffset,
                     offsetByIndex = levelEvent.spawnOffsetByIndex,
                     followPath = levelEvent.pathToFollow,
                 });
@@ -58,7 +66,7 @@ public class LevelManager : Singleton<LevelManager> {
                 EnemyManager.Instance.SpawnWave(new EnemyManager.WaveSpawnData() {
                     prefab = levelEvent.spawnPrefab,
                     amount = 1,
-                    offset = levelEvent.spawnOffsetBase,
+                    offset = levelEvent.spawnOffset,
                     offsetByIndex = Vector2.zero,
                     followPath = levelEvent.pathToFollow,
                 });

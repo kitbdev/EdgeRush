@@ -2,6 +2,10 @@
 
 [System.Serializable]
 public class Level {
+    [SerializeField, HideInInspector] string title = "level";
+    public void Validate(string prefix = "") {
+        title = "Level " + prefix;
+    }
     public int backgroundIndex;
     public AudioClip musicTrack;
     public LevelEvent[] levelEvents = new LevelEvent[0];
@@ -37,7 +41,7 @@ public class LevelEvent {
     public int amountToSpawn = 1;
     [ConditionalHide(nameof(levelEventType), (int)LevelEventType.spawnEnemyWave,
                                             (int)LevelEventType.spawnMisc)]
-    public Vector2 spawnOffsetBase = Vector2.right;
+    public Vector2 spawnOffset = Vector2.right;
     [ConditionalHide(nameof(levelEventType), (int)LevelEventType.spawnEnemyWave,
                                             (int)LevelEventType.spawnMisc)]
     public Vector2 spawnOffsetByIndex = Vector2.right;

@@ -6,13 +6,13 @@ using static PatternRunner;
 public class PatternSO : ScriptableObject {
 
     [System.Serializable]
-    public class PatternDur {
+    public class PatternPhase {
         [Min(0f)]
         public float duration = 0;
         [Min(1)]
         public float repetitions = 1;
         public SubPatternSO[] subPatterns;
     }
-    public PatternDur[] subPatternDurs;
+    public PatternPhase[] subPatternPhases;
 
 }

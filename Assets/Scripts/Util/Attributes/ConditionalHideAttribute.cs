@@ -16,6 +16,11 @@ public class ConditionalHideAttribute : PropertyAttribute {
         conditionalSourceField = boolVariableName;
         this.showIfTrue = showIfTrue;
     }
+    // todo multiple bools
+    // public ConditionalHideAttribute(bool showIfTrueparams, bool And, string boolVariableNames) {
+    //     conditionalSourceField = boolVariableName;
+    //     this.showIfTrue = showIfTrue;
+    // }
 
     public ConditionalHideAttribute(string enumVariableName, params int[] enumIndices) {
         conditionalSourceField = enumVariableName;
