@@ -163,7 +163,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 0
-  recycleObject: {fileID: 0}
+  onHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8972034596729345798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +187,12 @@ MonoBehaviour:
   maxspeed: 0
   speed: 0
   angle: 0
+  velocity: {x: 0, y: 0}
   timeoutDur: 5
+  enableTime: 0
+  rb: {fileID: 0}
+  activeIndex: -1
+  objectPoolObject: {fileID: 0}
 --- !u!58 &9078273727914020115
 CircleCollider2D:
   m_ObjectHideFlags: 0

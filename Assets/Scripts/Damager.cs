@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Damager : MonoBehaviour {
 
     public float damageAmount = 0;
-    public ObjectPoolObject recycleObject;
+    Bullet bullet;
+    public UnityEvent onHitEvent;
 
     private void Awake() {
-        recycleObject ??= GetComponent<ObjectPoolObject>();
+        bullet = GetComponent<Bullet>();
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -16,7 +18,8 @@ public class Damager : MonoBehaviour {
         var health = other.gameObject.GetComponentInParent<Health>();
         if (health) {
             health.TakeDamage(damageAmount);
-            recycleObject.RecycleFromPool();
+            onHitEvent?.Invoke();
+            BulletManager.Instance.RemoveBullet(bullet);
         }
     }
 }

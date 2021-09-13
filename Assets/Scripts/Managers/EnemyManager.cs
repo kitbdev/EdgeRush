@@ -29,7 +29,7 @@ public class EnemyManager : Singleton<EnemyManager> {
         enemyai.path = path;
         enemyai.pathOffset = offset;
         if (patternOverride != null) {
-            enemyai.attackPattern.patternSO = patternOverride;
+            enemyai.patternRunner.patternSO = patternOverride;
         }
         ego.GetComponent<Health>().RestoreHealth();
         enemyai.OnSpawn();

@@ -234,6 +234,9 @@ public class MultiObjectPool : MonoBehaviour {
         }
         return false;
     }
+    public void RecyclePoolObject(ObjectPoolObject poolObject) {
+        Recycle(poolObject.TypeId, poolObject.gameObject);
+    }
     public void Recycle(int typeId, params GameObject[] gos) {
         foreach (var go in gos) {
             Recycle(typeId, go);

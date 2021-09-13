@@ -14,18 +14,22 @@ public class Bullet : MonoBehaviour {
 
     public float maxspeed;
 
-    [SerializeField, ReadOnly] float speed = 0;
-    [SerializeField, ReadOnly] float angle = 0;
+    [SerializeField, ReadOnly] public float speed = 0;
+    [SerializeField, ReadOnly] public float angle = 0;
+    [ReadOnly] public Vector2 velocity;
 
 
-    [SerializeField] float timeoutDur = 0.5f;
-    [ReadOnly] float enableTime = 0;
+    [SerializeField] public float timeoutDur = 0.5f;
+    [ReadOnly] public float enableTime = 0;
 
 
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
+    [ReadOnly] public int activeIndex = -1;
+    [ReadOnly] public ObjectPoolObject objectPoolObject;
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
+        objectPoolObject = GetComponent<ObjectPoolObject>();
     }
     private void OnEnable() {
         // enableTime = Time.time;
@@ -37,24 +41,19 @@ public class Bullet : MonoBehaviour {
         angle = initAngle;
         initRot = transform.localRotation;
     }
-    private void Update() {
-        // todo move all logic (including physics) elsewhere
-        if (Time.time > enableTime + timeoutDur) {
-            BulletManager.Instance.RemoveBullet(this);
-        }
-    }
-    private void FixedUpdate() {
-        if (acceleration != 0) {
-            speed += acceleration * Time.fixedDeltaTime * Time.fixedDeltaTime;
-        }
-        if (angularSpeed != 0) {
-            angularSpeed += angularAcceleration * Time.fixedDeltaTime * Time.fixedDeltaTime;
-            angle += angularSpeed * Time.fixedDeltaTime;
-            // transform.up = new Vector2(Mathf.Cos(ang), Mathf.Sin(ang));
-        }
-        transform.localRotation = initRot * Quaternion.Euler(0, 0, Mathf.Rad2Deg * angle);
-        rb.velocity = transform.up * speed;
-    }
+    // private void FixedUpdate() {
+    //     // todo move all logic (including physics) elsewhere
+    //     if (acceleration != 0) {
+    //         speed += acceleration * Time.fixedDeltaTime * Time.fixedDeltaTime;
+    //     }
+    //     if (angularSpeed != 0) {
+    //         angularSpeed += angularAcceleration * Time.fixedDeltaTime * Time.fixedDeltaTime;
+    //         angle += angularSpeed * Time.fixedDeltaTime;
+    //         // transform.up = new Vector2(Mathf.Cos(ang), Mathf.Sin(ang));
+    //     }
+    //     transform.localRotation = initRot * Quaternion.Euler(0, 0, Mathf.Rad2Deg * angle);
+    //     rb.velocity = transform.up * speed;
+    // }
 }
 [System.Serializable]
 public class BulletSpawnSettings {

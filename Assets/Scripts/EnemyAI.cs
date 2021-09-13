@@ -8,7 +8,7 @@ public class EnemyAI : MonoBehaviour {
 
     public Path path;
     public Vector3 pathOffset;
-    public PatternRunner attackPattern;
+    [HideInInspector] public PatternRunner patternRunner;
 
     // todo move pattern
     Health health;
@@ -16,6 +16,7 @@ public class EnemyAI : MonoBehaviour {
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
+        patternRunner = GetComponent<PatternRunner>();
         health = GetComponent<Health>();
         health.destroyOnDie = false;
         health.dieEvent.AddListener(OnDie);
@@ -34,6 +35,6 @@ public class EnemyAI : MonoBehaviour {
     }
 
     private void Update() {
-        attackPattern?.ProcessPattern();
+        patternRunner?.ProcessPattern();
     }
 }

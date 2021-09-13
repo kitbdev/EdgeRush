@@ -53,21 +53,33 @@ public class SubPatternSO : ScriptableObject {
 
     [Space]
     [ConditionalHide(nameof(patternType), false, (int)PatternType.bullet, (int)PatternType.none)]
-    public bool setAccelb = false;
-    [ConditionalHide(nameof(patternType), false, (int)PatternType.bullet, (int)PatternType.none)]
-    public float setAccel = 0;
-    [ConditionalHide(nameof(patternType), false, (int)PatternType.bullet, (int)PatternType.none)]
-    public bool setAngAccelb = false;
-    [ConditionalHide(nameof(patternType), false, (int)PatternType.bullet, (int)PatternType.none)]
-    public float setAngAccel = 0;
-    [ConditionalHide(nameof(patternType), false, (int)PatternType.bullet, (int)PatternType.none)]
-    public float addSpeed = 0;
-    [ConditionalHide(nameof(patternType), false, (int)PatternType.bullet, (int)PatternType.none)]
-    public float addSpeedByIndex = 0;
-    [ConditionalHide(nameof(patternType), false, (int)PatternType.bullet, (int)PatternType.none)]
-    public float addAngSpeed = 0;
-    [ConditionalHide(nameof(patternType), false, (int)PatternType.bullet, (int)PatternType.none)]
-    public float addAngSpeedByIndex = 0;
+    public InitStateMod modifier = new InitStateMod();
+    [System.Serializable]
+    public class InitStateMod {
+        public bool setAccelb = false;
+        [ConditionalHide(nameof(setAccelb), true)]
+        public float setAccel = 0;
+        public bool setAngAccelb = false;
+        [ConditionalHide(nameof(setAngAccelb), true)]
+        public float setAngAccel = 0;
+        // public bool addAngb = false;
+        // [ConditionalHide(nameof(addAngb), true)]
+        public float addAng = 0;
+        [ConditionalHide(nameof(SubPatternSO.patternType), (int)SubPatternSO.PatternType.line,
+                                                        (int)SubPatternSO.PatternType.arc,
+                                                        (int)SubPatternSO.PatternType.ring)]
+        public float addAngByIndex = 0;
+        public float addSpeed = 0;
+        [ConditionalHide(nameof(SubPatternSO.patternType), (int)SubPatternSO.PatternType.line,
+                                                        (int)SubPatternSO.PatternType.arc,
+                                                        (int)SubPatternSO.PatternType.ring)]
+        public float addSpeedByIndex = 0;
+        public float addAngSpeed = 0;
+        [ConditionalHide(nameof(SubPatternSO.patternType), (int)SubPatternSO.PatternType.line,
+                                                        (int)SubPatternSO.PatternType.arc,
+                                                        (int)SubPatternSO.PatternType.ring)]
+        public float addAngSpeedByIndex = 0;
+    }
     // [ConditionalHide(nameof(patternType), (int)PatternType.bullet)]
     // public bool followPlayer = false;
     [ConditionalHide(nameof(patternType), (int)PatternType.bullet)]

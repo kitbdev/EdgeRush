@@ -16,21 +16,50 @@ public class BulletManager : Singleton<BulletManager> {
         base.Awake();
         _pool = GetComponent<MultiObjectPool>();
     }
-
+    private void Update() {
+        float curTime = Time.time;
+        for (int i = 0; i < activeBullets.Count; i++) {
+            Bullet bullet = activeBullets[i];
+            if (curTime > bullet.enableTime + bullet.timeoutDur) {
+                RemoveBullet(i);
+                i--;
+            }
+        }
+    }
     private void FixedUpdate() {
         foreach (var bullet in activeBullets) {
             // physics
+            if (bullet.acceleration != 0) {
+                bullet.speed += bullet.acceleration * Time.fixedDeltaTime * Time.fixedDeltaTime;
+            }
+            if (bullet.angularSpeed != 0) {
+                bullet.angularSpeed += bullet.angularAcceleration * Time.fixedDeltaTime * Time.fixedDeltaTime;
+                bullet.angle += bullet.angularSpeed * Time.fixedDeltaTime;
+                // bullet.transform.up = new Vector2(Mathf.Cos(ang), Mathf.Sin(ang));
+            }
+            bullet.transform.localRotation = bullet.initRot * Quaternion.Euler(0, 0, Mathf.Rad2Deg * bullet.angle);
+            Vector2 vel = bullet.transform.up * bullet.speed;
+            // bullet.rb.velocity = vel;
+            bullet.rb.MovePosition(bullet.rb.position + vel * Time.fixedDeltaTime);
+            // bullet.velocity = vel;
+            // bullet.transform.position = bullet.transform.position + (Vector3)bullet.velocity * Time.deltaTime;
         }
     }
     public void ClearAllActiveBullets() {
         for (int i = activeBullets.Count - 1; i >= 0; i--) {
-            RemoveBullet(activeBullets[i]);
+            Debug.Assert(activeBullets[i] != null);
+            RemoveBullet(i);
         }
         activeBullets.Clear();
     }
+    public void RemoveBullet(int index) {
+        Bullet bullet = activeBullets[index];
+        activeBullets.RemoveAt(index);
+        pool.RecyclePoolObject(bullet.objectPoolObject);
+    }
     public void RemoveBullet(Bullet bullet) {
         activeBullets.Remove(bullet);
-        pool.RecyclePoolObject(bullet.gameObject);
+        pool.RecyclePoolObject(bullet.objectPoolObject);
     }
     void ClearOldestBullets(int amount) {
         int clearamount = Mathf.Min(amount, activeBullets.Count);
@@ -104,6 +133,7 @@ public class BulletManager : Singleton<BulletManager> {
             bullet.angularSpeed = initState.angSpeed;
             bullet.acceleration = initState.acceleration;
             bullet.angularAcceleration = initState.angAcceleration;
+            bullet.activeIndex = activeBullets.Count;
             activeBullets.Add(bullet);
             bullet.Init();
         }

@@ -25,6 +25,33 @@ public class LevelManager : Singleton<LevelManager> {
     private void Update() {
         ProcessLevel();
     }
+    public void RestartLevel() {
+        // Debug.Log("Restarting level " + currentLevelIndex);
+        StartLevel(currentLevelIndex);
+    }
+    public void StartLevel(int levelIndex) {
+        Debug.Log("Starting level " + levelIndex);
+        ClearLevel();
+        _currentLevelIndex = levelIndex;
+        curLevelEventIndex = 0;
+        if (currentLevelIndex >= levels.Length){
+            // something
+        }
+    }
+    void ClearLevel() {
+        EnemyManager.Instance.RemoveAllEnemies();
+        // todo debris and powerups clear
+        // todo reset background?
+        BulletManager.Instance.ClearAllActiveBullets();
+        // todo player position reset?
+    }
+    void NextLevel() {
+        Debug.Log($"Level {currentLevelIndex} finished!");
+        StartLevel(_currentLevelIndex + 1);
+        if (currentLevelIndex >= levels.Length) {
+            Debug.Log("Finished all levels!");
+        }
+    }
     void ProcessLevel() {
         if (currentLevelIndex >= levels.Length) {
             return;
@@ -40,14 +67,6 @@ public class LevelManager : Singleton<LevelManager> {
                 // level is finished!
                 NextLevel();
             }
-        }
-    }
-    void NextLevel() {
-        Debug.Log($"Level {currentLevelIndex} finished!");
-        _currentLevelIndex++;
-        curLevelEventIndex = 0;
-        if (currentLevelIndex >= levels.Length) {
-            Debug.Log("Finished all levels!");
         }
     }
     bool HandleLevelEvent(LevelEvent levelEvent) {

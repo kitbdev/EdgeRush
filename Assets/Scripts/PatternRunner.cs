@@ -166,12 +166,14 @@ public class PatternRunner : MonoBehaviour {
                 }
                 break;
         }
+        var mod = subPattern.modifier;
         for (int i = 0; i < offsets.Count; i++) {
             // int index = i-offsets.c
-            if (subPattern.setAccelb) offsets[i].acceleration = subPattern.setAccel;
-            if (subPattern.setAngAccelb) offsets[i].angAcceleration = subPattern.setAngAccel * Mathf.Deg2Rad;
-            offsets[i].speed += subPattern.addSpeed + subPattern.addSpeedByIndex * i;
-            offsets[i].angSpeed += (subPattern.addAngSpeed + subPattern.addAngSpeedByIndex * i) * Mathf.Deg2Rad;
+            if (mod.setAccelb) offsets[i].acceleration = mod.setAccel;
+            if (mod.setAngAccelb) offsets[i].angAcceleration = mod.setAngAccel * Mathf.Deg2Rad;
+            offsets[i].angle += mod.addAng + mod.addAngByIndex * i;
+            offsets[i].speed += mod.addSpeed + mod.addSpeedByIndex * i;
+            offsets[i].angSpeed += (mod.addAngSpeed + mod.addAngSpeedByIndex * i) * Mathf.Deg2Rad;
         }
         return offsets;
     }
