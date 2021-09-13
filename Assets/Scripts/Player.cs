@@ -5,22 +5,36 @@ using UnityEngine;
 [SelectionBase]
 public class Player : MonoBehaviour {
 
+    [Header("Movement")]
     [SerializeField] float moveSpeed = 10;
     [SerializeField] float accelerationRate = 2;
     [SerializeField] Transform moveTo;
 
+    [SerializeField, ReadOnly] Vector2 velocity = Vector2.zero;
+    [SerializeField, ReadOnly] float lastShootTime = 0;
+
+    [Header("Weapons")]
     [SerializeField] Transform[] shootPoints = new Transform[0];
     [SerializeField] WeaponSO currentWeapon;
     [SerializeField] GameObject[] gunModels = new GameObject[0];
 
-    [SerializeField, ReadOnly] Vector2 velocity = Vector2.zero;
-    [SerializeField, ReadOnly] float lastShootTime = 0;
+    [Header("Anim")]
+    [SerializeField] Transform modelMove;
 
-    Controls controls;
+    [Header("Audio")]
+    [SerializeField] AudioClip shootClip;// todo per weapon
+    [SerializeField] AudioSource engineAudio;
+    [SerializeField] [Range(0, 1)] float minVolume = 0.6f;
+    [SerializeField] [Range(0, 1)] float maxVolume = 0.8f;
+    [SerializeField] [Range(-3, 3)] float minPitch = 0.9f;
+    [SerializeField] [Range(-3, 3)] float maxPitch = 1.2f;
+
+    [Header("Input")]
     [SerializeField, ReadOnly] Vector2 inputMove = Vector2.zero;
     [SerializeField, ReadOnly] bool inputMoveTo;
     [SerializeField, ReadOnly] bool inputShoot;
     [SerializeField, ReadOnly] bool inputShootHold;
+    Controls controls;
 
     Rigidbody2D rb;
     Camera cam;
@@ -56,9 +70,8 @@ public class Player : MonoBehaviour {
         controls?.Disable();
     }
     private void Update() {
-        // todo player should be restricted to walls (dynamic), but should not be pushed by bullets
-        // ? make bullets triggers?
         if (Time.timeScale == 0) return;
+        // input
         if (inputShootHold) {
             if (Time.time > lastShootTime + currentWeapon.shootHoldCooldownDur) {
                 ShootCurWeapon();
@@ -67,6 +80,18 @@ public class Player : MonoBehaviour {
             if (Time.time > lastShootTime + currentWeapon.shootCooldownDur) {
                 ShootCurWeapon();
             }
+        }
+        // audio
+        float nVol = engineAudio.volume;
+        float nPitch = engineAudio.pitch;
+        float mag = Mathf.InverseLerp(0f, moveSpeed, rb.velocity.magnitude);
+        nPitch = Mathf.Lerp(minPitch, maxPitch, mag);
+        nVol = Mathf.Lerp(minVolume, maxVolume, mag);
+        if (engineAudio.pitch != nPitch) {
+            engineAudio.pitch = nPitch;
+        }
+        if (engineAudio.volume != nVol) {
+            engineAudio.volume = nVol;
         }
     }
     public void SetCurrentWeapon(WeaponSO weapon) {
@@ -101,6 +126,11 @@ public class Player : MonoBehaviour {
         BulletManager.Instance.Shoot(currentWeapon, shootPoints, true);
         lastShootTime = Time.time;
         inputShoot = false;
+        if (shootClip) {
+            AudioManager.Instance.PlaySfx(new AudioManager.AudioSettings() {
+                clip = shootClip, posOffset = transform.position,
+            });
+        }
     }
     private void FixedUpdate() {
         if (Time.timeScale == 0) return;

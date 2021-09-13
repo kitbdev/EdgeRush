@@ -2,6 +2,26 @@
 using UnityEngine;
 
 public class PatternRunner : MonoBehaviour {
+/*
+patterns
+for each phase repetition
+    phase.duration is waited for
+    phase subpatterns is executed 
+
+subpatterns
+    ends with bullet type which creates the bullets
+    all other types are modifiers to the bullet's spawn state - position, angle, speed, ang speed, acceleration, ang accel
+    each modifier operates on every previous spawn state
+        and often creates more spawn states
+    line
+        creates n bullets displaced in a line
+    arc
+        creates n bullets in an arc
+    ring
+        creates a full arc (in a circle)
+
+*/
+
     public PatternSO patternSO;
     [SerializeField, ReadOnly] int index = 0;
     [SerializeField, ReadOnly] int curRepetition = 0;
@@ -13,14 +33,14 @@ public class PatternRunner : MonoBehaviour {
 
     public void ProcessPattern() {
         if (patternSO == null || patternSO.subPatternPhases.Length == 0) return;
-        PatternSO.PatternPhase patternDur = patternSO.subPatternPhases[index];
+        PatternSO.PatternPhase phase = patternSO.subPatternPhases[index];
         // wait until next
-        if (patternDur.duration <= 0 || Time.time > lastTime + patternDur.duration) {
-            CreateSubPattern(patternDur.subPatterns);
+        if (!phase.skip && (phase.duration <= 0 || Time.time > lastTime + phase.duration)) {
+            CreateSubPattern(phase.subPatterns);
             curRepetition++;
             lastTime = Time.time;
         }
-        if (curRepetition >= patternDur.repetitions) {
+        if (phase.skip || curRepetition >= phase.repetitions) {
             // go to next pattern
             index++;
             if (index >= patternSO.subPatternPhases.Length) {

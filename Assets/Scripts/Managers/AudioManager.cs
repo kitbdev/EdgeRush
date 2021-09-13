@@ -69,4 +69,47 @@ public class AudioManager : Singleton<AudioManager> {
     // public void MuteSfxVolume(bool muted) {
     //     MuteVolume(sfxVolParam, muted);
     // }
+    [SerializeField] GameObject audioPrefab;
+    public AudioMixerGroup defaultGroup;
+    [System.Serializable]
+    public class AudioSettings {
+        public AudioClip clip;
+        public Transform follow;
+        public Vector3 posOffset;
+        public AudioMixerGroup group;
+        [Range(0, 1)]
+        public float volume = 1;
+        [Range(-3, 3)]
+        public float pitch = 1;
+        [Range(-1, 1)]
+        public float pan = 0f;
+        [Range(0, 256)]
+        public int priority = 128;
+    }
+    public void PlaySfx(AudioClip clip) {
+        PlaySfx(new AudioSettings() {
+            clip = clip,
+        });
+    }
+    public void PlaySfx(AudioSettings audioSettings) {
+        // todo use pool
+        if (!audioSettings.clip) return;
+        var audioGo = Instantiate(audioPrefab);
+        if (audioSettings.follow) {
+            audioGo.transform.parent = audioSettings.follow;
+        } else {
+            audioGo.transform.parent = transform;
+        }
+        audioGo.transform.localPosition = audioSettings.posOffset;
+        var source = audioGo.GetComponent<AudioSource>();
+        source.clip = audioSettings.clip;
+        source.outputAudioMixerGroup = audioSettings.group ?? defaultGroup ?? source.outputAudioMixerGroup;
+        source.volume = audioSettings.volume;
+        source.pitch = audioSettings.pitch;
+        source.panStereo = audioSettings.pan;
+        source.priority = audioSettings.priority;
+        // todo change over time?
+        source.Play();
+        Destroy(audioGo, audioSettings.clip.length);
+    }
 }
