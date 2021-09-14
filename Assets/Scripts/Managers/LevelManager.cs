@@ -40,11 +40,21 @@ public class LevelManager : Singleton<LevelManager> {
     private void Update() {
         ProcessLevel();
     }
+    public void StartGame() {
+        StartLevel(0);
+    }
+    public void StopGame() {
+        ClearLevel();
+    }
     public void RestartLevel() {
         // Debug.Log("Restarting level " + currentLevelIndex);
         StartLevel(currentLevelIndex);
     }
     public void StartLevel(int levelIndex) {
+        if (levelIndex < 0 || levelIndex >= levels.Length) {
+            Debug.LogWarning("Invalid level " + (levelIndex + 1));
+            return;
+        }
         if (_currentLevelIndex == levelIndex) {
             // restarting level
             Debug.Log("Restarting level " + (levelIndex + 1));
@@ -55,15 +65,11 @@ public class LevelManager : Singleton<LevelManager> {
         // todo level transition
         _currentLevelIndex = levelIndex;
         levelEventIndex = 0;
-        if (currentLevelIndex >= levels.Length) {
-            // something
-        } else {
-            Level level = levels[currentLevelIndex];
-            if (level.backgroundMat && bg) {
-                bg.sharedMaterial = level.backgroundMat;
-            }
-            scrollingBackground.ResetScrolls();
+        Level level = levels[currentLevelIndex];
+        if (level.backgroundMat && bg) {
+            bg.sharedMaterial = level.backgroundMat;
         }
+        scrollingBackground.ResetScrolls();
     }
     void ClearLevel() {
         EnemyManager.Instance.RemoveAllEnemies();
@@ -82,6 +88,7 @@ public class LevelManager : Singleton<LevelManager> {
         }
         if (nextLevelIndex >= levels.Length) {
             Debug.Log("Finished all levels!");
+            GameManager.Instance.PlayerWin();
             return;
         }
         StartLevel(nextLevelIndex);

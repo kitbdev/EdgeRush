@@ -27,9 +27,11 @@ public class MenuScreen : MonoBehaviour {
         anim = GetComponent<Animator>();
         canvasGroup = GetComponent<CanvasGroup>();
     }
-    private void Start() {
+    private void OnEnable() {
         SetVisible(showOnStart, true);
     }
+    // private void Start() {
+    // }
     public void ToggleShow() {
         SetVisible(!isShown);
     }

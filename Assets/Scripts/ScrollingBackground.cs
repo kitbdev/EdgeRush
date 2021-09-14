@@ -5,14 +5,15 @@ using UnityEngine;
 public class ScrollingBackground : MonoBehaviour {
 
     [SerializeField] float speed = 1;
-    [SerializeField] float height = 10;
+    [SerializeField] bool useUnscaledtime = true;
+    // [SerializeField] float height = 10;
     public Material[] scrollMats;
 
     private void Update() {
         foreach (var scrollMat in scrollMats) {
             if (!scrollMat) return;
             var offset = scrollMat.mainTextureOffset;
-            offset.y += speed * Time.unscaledDeltaTime;
+            offset.y += speed * (useUnscaledtime ? Time.unscaledDeltaTime : Time.deltaTime);
             if (offset.y > 1) {
                 offset.y -= 1;
             }

@@ -10,6 +10,10 @@ public class MenuManager : MonoBehaviour {
     [SerializeField] bool hideAllScreensOnStart = true;
     [SerializeField] List<MenuScreen> allScreens = new List<MenuScreen>();
 
+    [SerializeField, ReadOnly] MenuScreen currentScreen;
+    [SerializeField, ReadOnly] MenuScreen lastScreen;
+
+    [Header("Events")]
     public UnityEvent firstShownEvent;
     public UnityEvent allHiddenEvent;
 
@@ -18,12 +22,17 @@ public class MenuManager : MonoBehaviour {
             allScreens = GetComponentsInChildren<MenuScreen>().ToList();
         }
     }
-    private void Start() {
+    private void OnEnable() {
         if (hideAllScreensOnStart) {
             ForceHideAllScreens();
         }
     }
+    // private void Start() {
+    // }
 
+    public void SwitchToLastScreen() {
+        ShowOnlyScreen(lastScreen);
+    }
     public void ShowOnlyScreen(MenuScreen screen) {
         bool isFirst = true;
         allScreens.ForEach(s => {
@@ -32,6 +41,8 @@ public class MenuManager : MonoBehaviour {
                 isFirst = false;
             }
         });
+        lastScreen = currentScreen;
+        currentScreen = screen;
         screen.Show();
         if (isFirst) {
             firstShownEvent.Invoke();

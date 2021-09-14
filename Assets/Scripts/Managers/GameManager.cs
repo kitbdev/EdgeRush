@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager> {
 
@@ -15,10 +16,19 @@ public class GameManager : Singleton<GameManager> {
     }
     const string savekey = "EdgeRushPreferences";
 
+    [SerializeField] MenuManager menuManager;
+    [SerializeField] MenuScreen mainMenuScreen;
+    [SerializeField] MenuScreen winScreen;
+    [SerializeField] MenuScreen loseScreen;
+    [SerializeField] bool mainMenuOnStart = true;
+
     bool isFullScreen = true;
 
     private void Start() {
         TryLoadOptionPrefs();
+        if (mainMenuOnStart) {
+            BackToMainMenu();
+        }
     }
     public void SaveOptionPrefs() {
         var savesettings = new OptionPrefs() {
@@ -56,5 +66,24 @@ public class GameManager : Singleton<GameManager> {
     }
     public void ToggleFullscreen() {
         SetFullScreen(!isFullScreen);
+    }
+
+    [ContextMenu("Main menu")]
+    public void BackToMainMenu() {
+        PauseManager.Instance.Pause();
+        LevelManager.Instance.StopGame();
+        menuManager.ShowOnlyScreen(mainMenuScreen);
+    }
+    [ContextMenu("win")]
+    public void PlayerWin() {
+        PauseManager.Instance.Pause();
+        // LevelManager.Instance.StopGame();
+        menuManager.ShowOnlyScreen(winScreen);
+    }
+    [ContextMenu("lose")]
+    public void PlayerLose() {
+        PauseManager.Instance.Pause();
+        // LevelManager.Instance.StopGame();
+        menuManager.ShowOnlyScreen(loseScreen);
     }
 }
