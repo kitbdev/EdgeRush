@@ -14,6 +14,11 @@ public class AudioManager : Singleton<AudioManager> {
     [SerializeField] AudioMixer mixer;
     [SerializeField] Slider musicSlider;
     [SerializeField] Slider sfxSlider;
+    [Space]
+    public AudioMixerGroup defaultGroup;
+    [SerializeField] GameObject audioPrefab;
+    [SerializeField] ObjectPool objectPool;
+
 
     private void Start() {
         UpdateSliders();
@@ -69,8 +74,7 @@ public class AudioManager : Singleton<AudioManager> {
     // public void MuteSfxVolume(bool muted) {
     //     MuteVolume(sfxVolParam, muted);
     // }
-    [SerializeField] GameObject audioPrefab;
-    public AudioMixerGroup defaultGroup;
+
     [System.Serializable]
     public class AudioSettings {
         public AudioClip clip;
@@ -92,9 +96,19 @@ public class AudioManager : Singleton<AudioManager> {
         });
     }
     public void PlaySfx(AudioSettings audioSettings) {
-        // todo use pool
         if (!audioSettings.clip) return;
-        var audioGo = Instantiate(audioPrefab);
+        GameObject audioGo;
+        if (objectPool != null) {
+            audioGo = objectPool.Get();
+        } else {
+            if (audioPrefab != null) {
+                audioGo = Instantiate(audioPrefab);
+            } else {
+                audioGo = new GameObject();
+                audioGo.AddComponent<AudioSource>();
+            }
+        }
+
         if (audioSettings.follow) {
             audioGo.transform.parent = audioSettings.follow;
         } else {
@@ -110,6 +124,14 @@ public class AudioManager : Singleton<AudioManager> {
         source.priority = audioSettings.priority;
         // todo change over time?
         source.Play();
-        Destroy(audioGo, audioSettings.clip.length);
+        StartCoroutine(RemoveFromPool(audioGo, audioSettings.clip.length));
+    }
+    IEnumerator RemoveFromPool(GameObject go, float dur) {
+        yield return new WaitForSeconds(dur);
+        if (objectPool == null) {
+            Destroy(go);
+        } else {
+            objectPool.Recycle(go);
+        }
     }
 }

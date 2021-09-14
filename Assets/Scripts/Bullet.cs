@@ -24,7 +24,6 @@ public class Bullet : MonoBehaviour {
 
 
     public Rigidbody2D rb;
-    [ReadOnly] public int activeIndex = -1;
     [ReadOnly] public ObjectPoolObject objectPoolObject;
 
     private void Awake() {

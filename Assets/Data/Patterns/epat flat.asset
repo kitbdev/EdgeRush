@@ -12,12 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 193f4d72e9ef5414596d9eaf7e648ca2, type: 3}
   m_Name: epat flat
   m_EditorClassIdentifier: 
+  delayDuration: 0
   subPatternPhases:
-  - duration: 0
+  - title: 0. phase shoot
+    skip: 0
+    delayDuration: 0
+    duration: 0
     repetitions: 1
     subPatterns:
     - {fileID: 11400000, guid: b2873abe8d253de42823b5f423c090d4, type: 2}
     - {fileID: 11400000, guid: 8298503440853f24592a9e23fbff00b8, type: 2}
-  - duration: 100
+    _phaseDuration: 0
+  - title: 1. phase wait 0.8
+    skip: 0
+    delayDuration: 0
+    duration: 0.8
     repetitions: 1
     subPatterns: []
+    _phaseDuration: 0.8
+  totalDuration: 0.8

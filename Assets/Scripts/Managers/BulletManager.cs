@@ -133,7 +133,6 @@ public class BulletManager : Singleton<BulletManager> {
             bullet.angularSpeed = initState.angSpeed;
             bullet.acceleration = initState.acceleration;
             bullet.angularAcceleration = initState.angAcceleration;
-            bullet.activeIndex = activeBullets.Count;
             activeBullets.Add(bullet);
             bullet.Init();
         }

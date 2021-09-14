@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 193f4d72e9ef5414596d9eaf7e648ca2, type: 3}
   m_Name: epat arcring
   m_EditorClassIdentifier: 
+  delayDuration: 0.2
   subPatternPhases:
   - title: 0. phase shoot
     skip: 0
+    delayDuration: 0
     duration: 0
     repetitions: 1
     subPatterns:
@@ -22,10 +24,12 @@ MonoBehaviour:
     - {fileID: 11400000, guid: be27216d4b7c2e644b0617b8084ea1d3, type: 2}
     - {fileID: 11400000, guid: eaeb1bc6f14e2d2408756e403bdf0e71, type: 2}
     - {fileID: 11400000, guid: 8298503440853f24592a9e23fbff00b8, type: 2}
-    totalDuration: 0
-  - title: 1. phase wait 0.2
+    _phaseDuration: 0
+  - title: 1. phase wait 0.4
     skip: 0
-    duration: 0.2
+    delayDuration: 0
+    duration: 0.4
     repetitions: 1
     subPatterns: []
-    totalDuration: 0.2
+    _phaseDuration: 0.4
+  totalDuration: 0.6

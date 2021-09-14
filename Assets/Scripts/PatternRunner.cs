@@ -2,53 +2,25 @@
 using UnityEngine;
 
 public class PatternRunner : MonoBehaviour {
-/*
-patterns
-for each phase repetition
-    phase.duration is waited for
-    phase subpatterns is executed 
+    /*
+    patterns
+    for each phase repetition
+        phase.duration is waited for
+        phase subpatterns is executed 
 
-subpatterns
-    ends with bullet type which creates the bullets
-    all other types are modifiers to the bullet's spawn state - position, angle, speed, ang speed, acceleration, ang accel
-    each modifier operates on every previous spawn state
-        and often creates more spawn states
-    line
-        creates n bullets displaced in a line
-    arc
-        creates n bullets in an arc
-    ring
-        creates a full arc (in a circle)
+    subpatterns
+        ends with bullet type which creates the bullets
+        all other types are modifiers to the bullet's spawn state - position, angle, speed, ang speed, acceleration, ang accel
+        each modifier operates on every previous spawn state
+            and often creates more spawn states
+        line
+            creates n bullets displaced in a line
+        arc
+            creates n bullets in an arc
+        ring
+            creates a full arc (in a circle)
 
-*/
-
-    public PatternSO patternSO;
-    [SerializeField, ReadOnly] int index = 0;
-    [SerializeField, ReadOnly] int curRepetition = 0;
-    [SerializeField, ReadOnly] float lastTime;
-    public Transform[] spawnPoints;
-    public bool isPlayer = false;
-    public Transform player;
-    BulletInitState emitterState = BulletInitState.origin;
-
-    public void ProcessPattern() {
-        if (patternSO == null || patternSO.subPatternPhases.Length == 0) return;
-        PatternSO.PatternPhase phase = patternSO.subPatternPhases[index];
-        // wait until next
-        if (!phase.skip && (phase.duration <= 0 || Time.time > lastTime + phase.duration)) {
-            CreateSubPattern(phase.subPatterns);
-            curRepetition++;
-            lastTime = Time.time;
-        }
-        if (phase.skip || curRepetition >= phase.repetitions) {
-            // go to next pattern
-            index++;
-            if (index >= patternSO.subPatternPhases.Length) {
-                index = 0;
-            }
-            curRepetition = 0;
-        }
-    }
+    */
     public class BulletInitState {
         public Vector2 position = Vector2.zero;
         public float angle = 0;
@@ -71,14 +43,81 @@ subpatterns
             this.angAcceleration = copy.angAcceleration;
         }
 
+        public Vector2 dir => AngToDir(angle);
+
+        public static Vector2 AngToDir(float angle) {
+            return new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+        }
+
         public Vector3 posWorld => position;
         public Quaternion angWorld => Quaternion.Euler(0, 0, Mathf.Rad2Deg * angle);
         public override string ToString() {
             return position + "," + angle;
         }
-
     }
-    void CreateSubPattern(SubPatternSO[] subPatterns) {
+
+    public PatternSO patternSO;
+    public Transform[] spawnPoints;
+    [SerializeField] AudioClip shootClip;
+    public bool isPlayer = false;
+    public Transform player;
+
+    [SerializeField, ReadOnly] int phaseIndex = 0;
+    [SerializeField, ReadOnly] int curRepetition = 0;
+    [SerializeField, ReadOnly] bool didSound = false;
+    [SerializeField, ReadOnly] float lastRepetitionStartTime;
+    [SerializeField, ReadOnly] float lastPhaseStartTime;
+    [SerializeField, ReadOnly] float patternExecuteStartTime = 0;
+    [SerializeField, ReadOnly] bool initialDelayComplete;
+    [SerializeField, ReadOnly] BulletInitState emitterState = BulletInitState.origin;
+
+    BulletManager bulletManager;
+    AudioManager audioManager;
+
+    private void Awake() {
+        bulletManager = BulletManager.Instance;
+        audioManager = AudioManager.Instance;
+        player ??= GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    public void ProcessPattern() {
+        if (patternSO == null || patternSO.subPatternPhases.Length == 0) return;
+        if (patternExecuteStartTime <= 0) patternExecuteStartTime = Time.time;
+        if (!initialDelayComplete) initialDelayComplete = (patternSO.delayDuration <= 0 || Time.time > patternExecuteStartTime + patternSO.delayDuration);
+
+        PatternSO.PatternPhase phase = patternSO.subPatternPhases[phaseIndex];
+        emitterState.position += emitterState.dir * emitterState.speed * Time.deltaTime;
+        emitterState.angle += emitterState.angSpeed * Time.deltaTime;
+        if (phase.skip) {
+            GoToNextPhase();
+            return;
+        }
+        // wait until we can execute
+        bool delayComplete = (phase.delayDuration <= 0 || Time.time > lastPhaseStartTime + phase.delayDuration);
+        bool waitComplete = (phase.duration <= 0 || Time.time > lastRepetitionStartTime + phase.duration);
+        if (initialDelayComplete && delayComplete && waitComplete) {
+            ExecutePhase(phase.subPatterns);
+            curRepetition++;
+            lastRepetitionStartTime = Time.time;
+        }
+        if (curRepetition >= phase.repetitions) {
+            GoToNextPhase();
+        }
+    }
+    void GoToNextPhase() {
+        // go to next pattern phase
+        phaseIndex++;
+        lastPhaseStartTime = Time.time;
+        didSound = false;
+        if (phaseIndex >= patternSO.subPatternPhases.Length) {
+            // completed all phases, reset
+            phaseIndex = 0;
+            // reset emitter state
+            emitterState = BulletInitState.origin;
+        }
+        curRepetition = 0;
+    }
+    void ExecutePhase(SubPatternSO[] subPatterns) {
         List<BulletInitState> offsets = new List<BulletInitState>();
         offsets.Add(BulletInitState.origin);
         for (int i = 0; i < subPatterns.Length; i++) {
@@ -89,7 +128,7 @@ subpatterns
             offsets = noffsets;
         }
     }
-    List<BulletInitState> SpawnSubPattern(SubPatternSO subPattern, BulletInitState place) {
+    List<BulletInitState> SpawnSubPattern(SubPatternSO subPattern, BulletInitState initState) {
         List<BulletInitState> offsets = new List<BulletInitState>();
         if (subPattern == null) {
             return offsets;
@@ -97,21 +136,21 @@ subpatterns
         switch (subPattern.patternType) {
             case SubPatternSO.PatternType.none:
                 // do nothing
-                offsets.Add(place);
+                offsets.Add(initState);
                 return offsets;
             // break;
             case SubPatternSO.PatternType.bullet:
                 if (subPattern.bulletSpawnSettings == null) {
                     break;
                 }
-                BulletManager.Instance.Shoot(subPattern.bulletSpawnSettings, place, spawnPoints, isPlayer);
-                // for (int i = 0; i < subPattern.numSubPatterns; i++) {
-                // float initang = subPattern.bulletInitAngle + place.angle;
-                // Vector2 pos = place.position;
-                // }
+                bulletManager.Shoot(subPattern.bulletSpawnSettings, initState, spawnPoints, isPlayer);
+                if (!didSound && shootClip) {
+                    didSound = true;
+                    audioManager.PlaySfx(shootClip);
+                }
                 break;
             case SubPatternSO.PatternType.target:
-                BulletInitState nplace = new BulletInitState(place);
+                BulletInitState nplace = new BulletInitState(initState);
                 if (player == null) {
                     Debug.LogWarning(name + " has no player!");
                     offsets.Add(nplace);
@@ -123,33 +162,33 @@ subpatterns
                 offsets.Add(nplace);
                 break;
             case SubPatternSO.PatternType.randomize:
-                nplace = new BulletInitState(place);
+                nplace = new BulletInitState(initState);
                 float initrandangoffset = Random.Range(subPattern.initRandomAngleOffsetMin, subPattern.initRandomAngleOffsetMax);
                 nplace.angle += initrandangoffset;
                 offsets.Add(nplace);
                 break;
             case SubPatternSO.PatternType.emitter:
                 // adjust cross subpatterns emitter settings
-                // todo
-                // ?emitterstate speed?
-                // emitterState.position
-                // emitterState.angle
-                offsets.Add(place);
+                // ?emitterState.position
+                emitterState.angle += subPattern.modifier.addAng;
+                emitterState.speed = subPattern.modifier.addSpeed;
+                emitterState.angSpeed = subPattern.modifier.addAngSpeed;
+                offsets.Add(initState);
                 return offsets;
             // break;
             case SubPatternSO.PatternType.single:
                 // make a single subpattern
-                offsets.Add(place);
+                offsets.Add(initState);
                 break;
             case SubPatternSO.PatternType.line:
                 // make a line of subpatterns
                 float half = (subPattern.numSubPatterns - 1) * subPattern.spacing / 2f;
                 for (int i = 0; i < subPattern.numSubPatterns; i++) {
-                    nplace = new BulletInitState(place);
+                    nplace = new BulletInitState(initState);
                     float dist = i * subPattern.spacing - half;
-                    float alignAng = place.angle + Mathf.Deg2Rad * subPattern.alignmentDegree;
+                    float alignAng = initState.angle + Mathf.Deg2Rad * subPattern.alignmentDegree;
                     // todo adjust angle?
-                    nplace.position += dist * new Vector2(Mathf.Cos(alignAng), Mathf.Sin(alignAng));
+                    nplace.position += dist * BulletInitState.AngToDir(alignAng);
                     offsets.Add(nplace);
                 }
                 break;
@@ -161,12 +200,12 @@ subpatterns
                     float angdeg = subPattern.startAngle + i * 1f / (subPattern.numSubPatterns - 1) * subPattern.angleDist;
                     angdeg -= halfang;
                     // angdeg += 180;
-                    float ang = Mathf.Deg2Rad * angdeg + place.angle;
-                    nplace = new BulletInitState(place);
+                    float ang = Mathf.Deg2Rad * angdeg + initState.angle;
+                    nplace = new BulletInitState(initState);
                     if (subPattern.angleOut) {
                         nplace.angle = ang + Mathf.PI / 2f + Mathf.Deg2Rad * subPattern.angleTurn;
                     }
-                    nplace.position += subPattern.radius * new Vector2(Mathf.Cos(ang), Mathf.Sin(ang));
+                    nplace.position += subPattern.radius * BulletInitState.AngToDir(ang);
                     offsets.Add(nplace);
                 }
                 break;
@@ -176,12 +215,12 @@ subpatterns
                 for (int i = 0; i < subPattern.numSubPatterns; i++) {
                     float ang = i * Mathf.PI * 2 / (subPattern.numSubPatterns - 1);
                     ang += subPattern.angleOffset * Mathf.Deg2Rad;
-                    ang += place.angle;
-                    nplace = new BulletInitState(place);
+                    ang += initState.angle;
+                    nplace = new BulletInitState(initState);
                     if (subPattern.angleOut) {
                         nplace.angle = ang + Mathf.PI / 2f + Mathf.Deg2Rad * subPattern.angleTurn;
                     }
-                    nplace.position += subPattern.radius * new Vector2(Mathf.Cos(ang), Mathf.Sin(ang));
+                    nplace.position += subPattern.radius * BulletInitState.AngToDir(ang);
                     offsets.Add(nplace);
                 }
                 break;
@@ -199,10 +238,13 @@ subpatterns
     }
     public void ForEachInitState(System.Action<BulletInitState> action) {
         if (patternSO == null) return;
-        foreach (var subdirs in patternSO.subPatternPhases) {
+        foreach (var phase in patternSO.subPatternPhases) {
+            if (phase.skip) {
+                continue;
+            }
             List<BulletInitState> offsets = new List<BulletInitState>();
             offsets.Add(BulletInitState.origin);
-            foreach (var subpattern in subdirs.subPatterns) {
+            foreach (var subpattern in phase.subPatterns) {
                 List<BulletInitState> noffsets = new List<BulletInitState>();
                 foreach (var offset in offsets) {
                     if (subpattern.patternType == SubPatternSO.PatternType.bullet) {

@@ -6,11 +6,17 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyAI : MonoBehaviour {
 
+    // todo move pattern
     public Path path;
     public Vector3 pathOffset;
     [HideInInspector] public PatternRunner patternRunner;
+    // todo multiple phases based on health
+    public class BossPhase {
+        public Path path;
+        public Vector3 pathOffset;
+        public PatternSO attackPattern;
+    }
 
-    // todo move pattern
     Health health;
     Rigidbody2D rb;
 

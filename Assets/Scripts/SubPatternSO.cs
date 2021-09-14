@@ -62,8 +62,8 @@ public class SubPatternSO : ScriptableObject {
         public bool setAngAccelb = false;
         [ConditionalHide(nameof(setAngAccelb), true)]
         public float setAngAccel = 0;
-        // public bool addAngb = false;
-        // [ConditionalHide(nameof(addAngb), true)]
+        // todo? set ang, pos, directly option
+
         public float addAng = 0;
         [ConditionalHide(nameof(SubPatternSO.patternType), (int)SubPatternSO.PatternType.line,
                                                         (int)SubPatternSO.PatternType.arc,
