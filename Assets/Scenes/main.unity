@@ -7430,7 +7430,6 @@ MonoBehaviour:
   - {fileID: 8271556586339612306, guid: a92c420b82cf9914b8697f34ef4753cb, type: 3}
   - {fileID: 8387662518728749317, guid: 9f02dda827805364cb29c9c6ce3a43e3, type: 3}
   activeEnemies: []
-  epath: {fileID: 1396211953}
 --- !u!1 &855474773
 GameObject:
   m_ObjectHideFlags: 0
@@ -7743,6 +7742,7 @@ MonoBehaviour:
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 0}
       attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -7756,6 +7756,7 @@ MonoBehaviour:
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 906159817}
       attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -7769,6 +7770,7 @@ MonoBehaviour:
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 906159817}
       attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -7782,6 +7784,7 @@ MonoBehaviour:
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 0}
       attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -7795,6 +7798,7 @@ MonoBehaviour:
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 906159817}
       attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -7808,6 +7812,7 @@ MonoBehaviour:
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 0}
       attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -7821,6 +7826,7 @@ MonoBehaviour:
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 0}
       attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -7834,6 +7840,7 @@ MonoBehaviour:
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 0}
       attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -7847,6 +7854,7 @@ MonoBehaviour:
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 906159817}
       attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -7860,6 +7868,7 @@ MonoBehaviour:
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 0}
       attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -7873,6 +7882,7 @@ MonoBehaviour:
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 0}
       attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -7892,6 +7902,7 @@ MonoBehaviour:
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 1396211953}
       attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -7905,6 +7916,7 @@ MonoBehaviour:
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 0}
       attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -7918,6 +7930,7 @@ MonoBehaviour:
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 0}
       attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -7931,6 +7944,7 @@ MonoBehaviour:
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 0}
       attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -7944,6 +7958,7 @@ MonoBehaviour:
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 0}
       attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -7957,6 +7972,7 @@ MonoBehaviour:
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 0}
       attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -7970,6 +7986,7 @@ MonoBehaviour:
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 0}
       attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
@@ -7983,11 +8000,14 @@ MonoBehaviour:
       spawnOffsetByIndex: {x: 1, y: 0}
       pathToFollow: {fileID: 0}
       attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
       clearEnemies: 0
       clearDebris: 0
       clearPowerups: 0
       clearBullets: 0
       waitDur: 0
+  coinprefab: {fileID: 4405299198395667427}
+  weaponpickupPrefab: {fileID: 1673142583}
   bg: {fileID: 417873583}
   scrollingBackground: {fileID: 1476050714}
   player: {fileID: 2127898607}
@@ -10059,6 +10079,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1081671186}
+  - component: {fileID: 1081671188}
+  - component: {fileID: 1081671187}
   m_Layer: 0
   m_Name: Debris
   m_TagString: Untagged
@@ -10082,6 +10104,43 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1081671187
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081671185}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!50 &1081671188
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081671185}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1093491191
 GameObject:
   m_ObjectHideFlags: 0
@@ -10627,10 +10686,10 @@ RectTransform:
   m_Father: {fileID: 1111173820}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -0.0000063180923, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1152486874
 MonoBehaviour:
@@ -10686,8 +10745,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -12374,10 +12433,10 @@ MonoBehaviour:
     delay: 0
     loopType: 0
     easeType: 1
-    distance: 0
-    duration: 0
-    distanceTotal: 0
-    durationTotal: 0
+    distance: 9.173348
+    duration: 0.91733485
+    distanceTotal: 9.173348
+    durationTotal: 0.91733485
   - title: 1. maincurve
     moveToTransform: {fileID: 0}
     moveToOffset: {x: 0, y: 0}
@@ -12386,10 +12445,10 @@ MonoBehaviour:
     delay: 2
     loopType: 2
     easeType: 1
-    distance: 0
-    duration: 0
-    distanceTotal: 0
-    durationTotal: 2
+    distance: 48.489204
+    duration: 4.8489203
+    distanceTotal: 290.93524
+    durationTotal: 31.093521
   - title: 2. exitcurve
     moveToTransform: {fileID: 0}
     moveToOffset: {x: 0, y: 0}
@@ -12398,17 +12457,17 @@ MonoBehaviour:
     delay: 0
     loopType: 0
     easeType: 1
-    distance: 0
-    duration: 0
-    distanceTotal: 0
-    durationTotal: 0
+    distance: 4.0632925
+    duration: 0.40632924
+    distanceTotal: 4.0632925
+    durationTotal: 0.40632924
   moveSpeed: 10
   delay: 0
   loops: 1
   fullSequenceLoopType: 0
   fullSequenceEase: 1
-  totalDistance: 0
-  totalDuration: 2
+  totalDistance: 304.17188
+  totalDuration: 32.417187
 --- !u!1 &1397288686
 GameObject:
   m_ObjectHideFlags: 0
@@ -14399,6 +14458,11 @@ Transform:
   m_Father: {fileID: 1597657302}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!1 &1673142583 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8459970140060339879, guid: d0747ff92d56e4c4390a88a9b6e52dd2, type: 3}
+  m_PrefabInstance: {fileID: 8459970140517912024}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1680345518
 GameObject:
   m_ObjectHideFlags: 0
@@ -17658,7 +17722,10 @@ MonoBehaviour:
   - {fileID: 330855922}
   - {fileID: 662344861}
   - {fileID: 2086022191}
+  weaponDatas: []
+  curSelectedWeapon: 0
   modelMove: {fileID: 1760703403}
+  numCoins: 0
   shootClip: {fileID: 8300000, guid: b7d8032f9fc34914780a215b3b489fa6, type: 3}
   engineAudio: {fileID: 1026907233}
   minVolume: 0.6
@@ -17981,6 +18048,68 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c07bc4614cd7ac44990d88c4789a96b3, type: 3}
+--- !u!1 &4405299198395667427 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8012728878888192844, guid: 6405c887d26a4784e992901ece7e5598, type: 3}
+  m_PrefabInstance: {fileID: 5913272703129409711}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5913272703129409711
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8012728878888192844, guid: 6405c887d26a4784e992901ece7e5598, type: 3}
+      propertyPath: m_Name
+      value: coin
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012728878888192945, guid: 6405c887d26a4784e992901ece7e5598, type: 3}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012728878888192945, guid: 6405c887d26a4784e992901ece7e5598, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012728878888192945, guid: 6405c887d26a4784e992901ece7e5598, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012728878888192945, guid: 6405c887d26a4784e992901ece7e5598, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012728878888192945, guid: 6405c887d26a4784e992901ece7e5598, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012728878888192945, guid: 6405c887d26a4784e992901ece7e5598, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012728878888192945, guid: 6405c887d26a4784e992901ece7e5598, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012728878888192945, guid: 6405c887d26a4784e992901ece7e5598, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012728878888192945, guid: 6405c887d26a4784e992901ece7e5598, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012728878888192945, guid: 6405c887d26a4784e992901ece7e5598, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012728878888192945, guid: 6405c887d26a4784e992901ece7e5598, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6405c887d26a4784e992901ece7e5598, type: 3}
 --- !u!1001 &6356201967777172970
 PrefabInstance:
   m_ObjectHideFlags: 0

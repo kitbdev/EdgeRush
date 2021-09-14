@@ -20,7 +20,6 @@ public class ScrollingBackground : MonoBehaviour {
             scrollMat.mainTextureOffset = offset;
         }
         // transform.position += Vector3.down * speed * Time.deltaTime;
-        // // todo loop
         // if (transform.position.y < -height) {
         //     transform.position = Vector3.zero;
         // }

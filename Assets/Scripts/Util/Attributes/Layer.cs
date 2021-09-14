@@ -28,12 +28,15 @@ public class Layer {
     public void SetLayer(GameObject go) {
         go.layer = layerValue;
     }
-    public void SetLayerAllChildren(GameObject go) {
-        // todo ignore certain layers, like UI
+    public void SetLayerAllChildren(GameObject go, LayerMask? ignoreLayers = null) {
+        // ignore certain layers, like UI
+        if (ignoreLayers != null && ((Layer)go.layer).InLayerMask((LayerMask)ignoreLayers)) {
+            return;
+        }
         go.layer = layerValue;
         int childCount = go.transform.childCount;
         for (int i = 0; i < childCount; i++) {
-            SetLayerAllChildren(go.transform.GetChild(i).gameObject);
+            SetLayerAllChildren(go.transform.GetChild(i).gameObject, ignoreLayers);
         }
     }
 }

@@ -14,7 +14,11 @@ public class Health : MonoBehaviour {
     /// <summary>
     /// Seconds after a hit that future hits will be ignored
     /// </summary>
-    public float hitInvincibleDur = 0.5f;
+    [Tooltip("Seconds after a hit that future hits will be ignored")]
+    public float hitInvincibleDur = 0f;
+    /// <summary>
+    /// force invincibility
+    /// </summary>
     public bool manualInvincible = false;
     public bool destroyOnDie = false;
 

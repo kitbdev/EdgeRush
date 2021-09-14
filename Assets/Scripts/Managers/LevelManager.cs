@@ -8,6 +8,8 @@ public class LevelManager : Singleton<LevelManager> {
     public Level curLevel => currentLevelIndex >= 0 && currentLevelIndex < levels.Length ? levels[currentLevelIndex] : null;
     public string curLevelEventTitle => curLevel?.levelEvents[levelEventIndex].Title;
 
+    [SerializeField] GameObject coinprefab;
+    [SerializeField] GameObject weaponpickupPrefab;
     [SerializeField] MeshRenderer bg;
     [SerializeField] ScrollingBackground scrollingBackground;
     [SerializeField] Player player;
@@ -40,6 +42,21 @@ public class LevelManager : Singleton<LevelManager> {
     private void Update() {
         ProcessLevel();
     }
+
+    public void DropCoins(int amount, Vector3 position) {
+        if (!coinprefab) return;
+        for (int i = 0; i < amount; i++) {
+            var go = Instantiate(coinprefab, transform);
+            go.transform.position = position;
+        }
+    }
+    public void DropWeapon(WeaponSO weaponType, Vector3 position) {
+        if (!weaponpickupPrefab) return;
+        var go = Instantiate(weaponpickupPrefab, transform);
+        go.transform.position = position;
+        go.GetComponent<ItemPickup>().weapon = weaponType;
+    }
+
     public void StartGame() {
         StartLevel(0);
     }
@@ -47,7 +64,6 @@ public class LevelManager : Singleton<LevelManager> {
         ClearLevel();
     }
     public void RestartLevel() {
-        // Debug.Log("Restarting level " + currentLevelIndex);
         StartLevel(currentLevelIndex);
     }
     public void StartLevel(int levelIndex) {
@@ -69,12 +85,11 @@ public class LevelManager : Singleton<LevelManager> {
         if (level.backgroundMat && bg) {
             bg.sharedMaterial = level.backgroundMat;
         }
-        scrollingBackground.ResetScrolls();
     }
     void ClearLevel() {
+        scrollingBackground.ResetScrolls();
         EnemyManager.Instance.RemoveAllEnemies();
         // todo debris and powerups clear
-        // todo reset background?
         BulletManager.Instance.ClearAllActiveBullets();
 
         player.ResetForLevel();
@@ -128,7 +143,6 @@ public class LevelManager : Singleton<LevelManager> {
                 });
                 break;
             case LevelEvent.LevelEventType.spawnBoss:
-                // ?
                 var bossgo = EnemyManager.Instance.SpawnWave(new EnemyManager.WaveSpawnData() {
                     prefab = levelEvent.spawnPrefab,
                     amount = 1,
@@ -140,7 +154,18 @@ public class LevelManager : Singleton<LevelManager> {
                 HUDManager.Instance.SetBoss(bossgo);
                 break;
             case LevelEvent.LevelEventType.spawnMisc:
-                // todo
+                // todo test
+                // give path?
+                for (int i = 0; i < levelEvent.amountToSpawn; i++) {
+                    var miscgo = Instantiate(levelEvent.spawnPrefab, transform);
+                    Vector2 spawnPos = levelEvent.spawnOffset + levelEvent.spawnOffsetByIndex * i;
+                    var rb = miscgo.GetComponent<Rigidbody2D>();
+                    if (levelEvent.pathToFollow && rb) {
+                        levelEvent.pathToFollow.FollowPath(rb, spawnPos, levelEvent.moveSpeedOverride);
+                    } else {
+                        miscgo.transform.position = spawnPos;
+                    }
+                }
                 break;
             case LevelEvent.LevelEventType.clearMap:
                 if (levelEvent.clearEnemies) {

@@ -23,7 +23,7 @@ public class ObjectPool : MonoBehaviour
     /// </summary>
     public Action<GameObject> creationAction;
 
-    // todo get action or remove action necessary?
+    // todo? get action or remove action necessary?
     // just use onenable or disable on the go
     ///// <summary>
     ///// called when GameObject is gotten from the pool
@@ -151,7 +151,7 @@ public class ObjectPool : MonoBehaviour
             DestroyGo(go);
             return;
         }
-        // todo try to maintain certain pool size?
+        // todo? try to maintain certain pool size?
         go.SetActive(false);
         poolGos.Add(go);
     }

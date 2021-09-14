@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class PatternRunner : MonoBehaviour {
     /*
-    patterns
+    bullet attack patterns
+
     for each phase repetition
         phase.duration is waited for
         phase subpatterns is executed 

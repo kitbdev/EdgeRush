@@ -27,8 +27,6 @@ public class MenuManager : MonoBehaviour {
             ForceHideAllScreens();
         }
     }
-    // private void Start() {
-    // }
 
     public void SwitchToLastScreen() {
         ShowOnlyScreen(lastScreen);
@@ -71,7 +69,6 @@ public class MenuManager : MonoBehaviour {
         });
         allHiddenEvent.Invoke();
     }
-
 
     public void ExitGame() {
         // todo save!

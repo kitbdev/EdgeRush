@@ -71,10 +71,6 @@ public class MenuScreen : MonoBehaviour {
             canvasGroup.alpha = isShown ? 1f : 0f;
             canvasGroup.interactable = isShown;
             canvasGroup.blocksRaycasts = isShown;
-            // } else
-            // {
-            //     // todo will this activate when inactive?
-            //     gameObject.SetActive(isShown);
         }
     }
 }

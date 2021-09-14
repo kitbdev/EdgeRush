@@ -6,7 +6,7 @@ public class EnemyManager : Singleton<EnemyManager> {
 
     [SerializeField] List<GameObject> enemyPrefabs = new List<GameObject>();
 
-    [ReadOnly] public List<EnemyAI> activeEnemies = new List<EnemyAI>();
+    [SerializeField, ReadOnly] List<EnemyAI> activeEnemies = new List<EnemyAI>();
 
     public int numActiveEnemies => activeEnemies.Count;
 
@@ -18,10 +18,7 @@ public class EnemyManager : Singleton<EnemyManager> {
         enemyPool.SetPrefabs(enemyPrefabs);
         enemyPool.forceAddPoolObjectComponent = true;
     }
-    public Path epath;
-    private void Start() {
-        // SpawnEnemy(0, epath, Vector2.zero);
-    }
+
     void SpawnEnemy(int typeId, Path path, Vector2 offset, PatternSO patternOverride = null) {
         var ego = enemyPool.Get(typeId);
         var enemyai = ego.GetComponent<EnemyAI>();
@@ -29,7 +26,7 @@ public class EnemyManager : Singleton<EnemyManager> {
         enemyai.path = path;
         enemyai.pathOffset = offset;
         if (patternOverride != null) {
-            enemyai.patternRunner.patternSO = patternOverride;
+            enemyai.SetAttackPattern(patternOverride);
         }
         ego.GetComponent<Health>().RestoreHealth();
         enemyai.OnSpawn();

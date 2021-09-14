@@ -5,6 +5,14 @@ using UnityEngine;
 [SelectionBase]
 public class Player : MonoBehaviour {
 
+    [System.Serializable]
+    public class WeaponData {
+        public WeaponSO weaponType;
+        public int ammoAmount;
+        public GameObject model;
+        public bool isUnlocked = false;
+    }
+
     [Header("Movement")]
     [SerializeField] float moveSpeed = 10;
     [SerializeField] float accelerationRate = 2;
@@ -18,9 +26,14 @@ public class Player : MonoBehaviour {
     [SerializeField] Transform[] shootPoints = new Transform[0];
     [SerializeField] WeaponSO currentWeapon;
     [SerializeField] GameObject[] gunModels = new GameObject[0];
+    [SerializeField] WeaponData[] weaponDatas;
+    [SerializeField] int curSelectedWeapon = 0;
 
     [Header("Anim")]
     [SerializeField] Transform modelMove;
+
+    [Header("Misc")]
+    [SerializeField] int numCoins;
 
     [Header("Audio")]
     [SerializeField] AudioClip shootClip;// todo per weapon
@@ -36,6 +49,9 @@ public class Player : MonoBehaviour {
     [SerializeField, ReadOnly] bool inputShoot;
     [SerializeField, ReadOnly] bool inputShootHold;
     Controls controls;
+
+    public event System.Action weaponAmmoChangeEvent;
+    public event System.Action coinAmountChangeEvent;
 
     Rigidbody2D rb;
     Camera cam;
@@ -114,6 +130,15 @@ public class Player : MonoBehaviour {
         if (weaponIndex >= 0 && weaponIndex < gunModels.Length) {
             gunModels[weaponIndex]?.SetActive(true);
         }
+        weaponAmmoChangeEvent?.Invoke();
+    }
+    public void PickupWeaponAmmo(WeaponSO weaponType, int ammo) {
+        SetCurrentWeapon(weaponType);
+        weaponAmmoChangeEvent?.Invoke();
+    }
+    public void AddCoins(int amount) {
+        numCoins += amount;
+        coinAmountChangeEvent?.Invoke();
     }
     void ShootCurWeapon() {
         // Transform[] curShootPoints = new Transform[currentWeapon.numShootPoints];
@@ -140,6 +165,7 @@ public class Player : MonoBehaviour {
                 clip = shootClip, posOffset = transform.position,
             });
         }
+        weaponAmmoChangeEvent?.Invoke();
     }
     private void FixedUpdate() {
         if (Time.timeScale == 0) return;

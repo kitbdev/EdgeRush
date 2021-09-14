@@ -122,7 +122,7 @@ public class AudioManager : Singleton<AudioManager> {
         source.pitch = audioSettings.pitch;
         source.panStereo = audioSettings.pan;
         source.priority = audioSettings.priority;
-        // todo change over time?
+        // todo? change over time
         source.Play();
         StartCoroutine(RemoveFromPool(audioGo, audioSettings.clip.length));
     }

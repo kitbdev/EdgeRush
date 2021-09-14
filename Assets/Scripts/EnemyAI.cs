@@ -6,10 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyAI : MonoBehaviour {
 
-    // todo move pattern
+    [Header("Movement")]
     public Path path;
     public Vector3 pathOffset;
-    [HideInInspector] public PatternRunner patternRunner;
 
     [System.Serializable]
     public class DropRate {
@@ -17,19 +16,23 @@ public class EnemyAI : MonoBehaviour {
         [Range(0f, 1f)]
         public float chance;
     }
-    [ContextMenuItem("Normalize Drop Rates", nameof(NormalizeDropRates))]
+    [Header("Drop rates")]
+    [Min(0)]
+    public int numCoinsToDrop = 1;
     public DropRate[] dropRates = new DropRate[0];
 
-    // todo multiple phases based on health
     [System.Serializable]
-    public class BossPhase {
+    public class aiPhase {
         [Range(0f, 1f)]
         public float healthPercentTrigger;
-        public Path path;
-        public Vector3 pathOffset;
+        public Path newPath;
+        public Vector3 newPathOffset;
         public PatternSO attackPattern;
     }
+    // todo multiple phases based on health
+    [SerializeField] aiPhase[] phases = new aiPhase[0];
 
+    PatternRunner patternRunner;
     Health health;
     Rigidbody2D rb;
 
@@ -51,9 +54,11 @@ public class EnemyAI : MonoBehaviour {
         health.destroyOnDie = false;
         health.dieEvent.AddListener(OnDie);
     }
+    public void SetAttackPattern(PatternSO attackPattern) {
+        patternRunner.patternSO = attackPattern;
+    }
     [ContextMenu("spawn")]
     public void OnSpawn() {
-        // todo offset
         path?.FollowPath(rb, pathOffset);
     }
     public void OnStop() {
@@ -65,16 +70,16 @@ public class EnemyAI : MonoBehaviour {
         EnemyManager.Instance.RemoveEnemy(this);
     }
     void DropItem() {
-        // todo
+        // drop coins
+        LevelManager.Instance.DropCoins(numCoinsToDrop, transform.position);
+        // chance to drop weapon
         NormalizeDropRates();
-        // use droprates
         float val = Random.value;
         float acc = 0;
         foreach (var droprate in dropRates) {
             if (val >= acc && val < acc + droprate.chance) {
                 // drop this item
-                // todo
-                // droprate.weaponType
+                LevelManager.Instance.DropWeapon(droprate.weaponType, transform.position);
                 break;
             }
             acc += droprate.chance;

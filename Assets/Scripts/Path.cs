@@ -10,8 +10,6 @@ public class Path : MonoBehaviour {
     [System.Serializable]
     public class PathCurve {
         [SerializeField, HideInInspector] string title = "pathcurve";
-        // todo move to from anywhere option
-        // public bool moveTo = false;
         public Transform moveToTransform;
         public Vector2 moveToOffset = Vector2.zero;
         public BezierCurve curve;
@@ -140,10 +138,13 @@ public class Path : MonoBehaviour {
         OnValidate();
     }
 
-    public Sequence FollowPath(Rigidbody2D rb) => FollowPath(rb, Vector2.zero);
-    public Sequence FollowPath(Rigidbody2D rb, Vector2 pathOffset) {
-        // todo paths can be used by multiple users?
+    public Sequence FollowPath(Rigidbody2D rb, float moveSpeed = -1) => FollowPath(rb, Vector2.zero, moveSpeed);
+    public Sequence FollowPath(Rigidbody2D rb, Vector2 pathOffset, float moveSpeed = -1) {
+        // todo? paths can be used by multiple users?
         // StopPath();
+        if (moveSpeed > 0) {
+            this.moveSpeed = moveSpeed;
+        }
         CalcDistances();
         pathseq = DOTween.Sequence();
         Vector2? startPos = null;
@@ -169,7 +170,7 @@ public class Path : MonoBehaviour {
                 float dur = pathCurve.duration;
                 var pathtween = rb.DOPath(points, dur, PathType.CubicBezier, PathMode.Sidescroller2D);
                 if (startPos == null) startPos = points[0];
-                // todo incremental loops ignore first move
+                // todo? incremental loops ignore first move
                 pathtween.SetLoops(pathCurve.loops, pathCurve.loopType);
                 pathtween.SetEase(pathCurve.easeType);
                 pathtween.SetDelay(pathCurve.delay);
