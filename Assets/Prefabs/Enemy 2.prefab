@@ -15,6 +15,18 @@ PrefabInstance:
       propertyPath: patternSO
       value: 
       objectReference: {fileID: 11400000, guid: 607ee709021205245b659a5cf88bc0ce, type: 2}
+    - target: {fileID: 1376320859788207865, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
+      propertyPath: shootClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 03d85936044e03e458cd0d809b365492, type: 3}
+    - target: {fileID: 1376320859788207865, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
+      propertyPath: totalDuration
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376320859788207865, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
+      propertyPath: bulletsPerLoop
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7518873107967232173, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -66,6 +78,10 @@ PrefabInstance:
     - target: {fileID: 9219814045859052589, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
       propertyPath: m_Name
       value: Enemy 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219814047151828050, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}

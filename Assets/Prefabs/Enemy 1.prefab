@@ -106,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path: {fileID: 0}
   pathOffset: {x: 0, y: 0, z: 0}
-  attackPattern: {fileID: 1376320859788207865}
+  patternRunner: {fileID: 0}
 --- !u!114 &1376320859788207865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,13 +120,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patternSO: {fileID: 11400000, guid: ff4259e01837413429d96977c4151c55, type: 2}
-  index: 0
-  curRepetition: 0
-  lastTime: 0
   spawnPoints:
   - {fileID: 9219814047151828050}
+  shootClip: {fileID: 8300000, guid: 474f104e95f53204d8a8061e49711ee1, type: 3}
   isPlayer: 0
   player: {fileID: 0}
+  phaseIndex: 0
+  curRepetition: 0
+  didSound: 0
+  lastRepetitionStartTime: 0
+  lastPhaseStartTime: 0
+  patternExecuteStartTime: 0
+  initialDelayComplete: 0
   totalDuration: 0.4
   bulletsPerLoop: 10
 --- !u!114 &9219814045859052585
@@ -307,7 +312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9219814047151828051}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 0, y: -1.36, z: 0}
+  m_LocalPosition: {x: 0, y: -1.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9219814045859052586}

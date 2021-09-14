@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: levelmat 4
+  m_Name: levelmat 6
   m_Shader: {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -34,9 +34,9 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 465f20ae4ef35284c81d42bc4c23c505, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8b63c382704438c4d8b62f2227a10180, type: 3}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0.5068217}
+        m_Offset: {x: 0, y: 0.9568201}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -58,9 +58,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 465f20ae4ef35284c81d42bc4c23c505, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8b63c382704438c4d8b62f2227a10180, type: 3}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 4.55}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}

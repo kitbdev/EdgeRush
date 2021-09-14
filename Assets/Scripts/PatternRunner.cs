@@ -77,7 +77,7 @@ public class PatternRunner : MonoBehaviour {
     private void Awake() {
         bulletManager = BulletManager.Instance;
         audioManager = AudioManager.Instance;
-        player ??= GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     public void ProcessPattern() {

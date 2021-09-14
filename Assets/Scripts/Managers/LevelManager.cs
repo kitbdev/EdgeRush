@@ -6,6 +6,8 @@ public class LevelManager : Singleton<LevelManager> {
 
     public Level[] levels = new Level[0];
 
+    [SerializeField] MeshRenderer bg;
+    [SerializeField] ScrollingBackground scrollingBackground;
     [SerializeField, ReadOnly] int _currentLevelIndex;
     public int currentLevelIndex => _currentLevelIndex;
     [SerializeField, ReadOnly] int curLevelEventIndex = 0;
@@ -36,6 +38,10 @@ public class LevelManager : Singleton<LevelManager> {
         curLevelEventIndex = 0;
         if (currentLevelIndex >= levels.Length){
             // something
+        }else{
+            Level level = levels[curLevelEventIndex];
+            bg.sharedMaterial = level.backgroundMat;
+            scrollingBackground.ResetScrolls();
         }
     }
     void ClearLevel() {

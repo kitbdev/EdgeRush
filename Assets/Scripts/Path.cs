@@ -12,7 +12,8 @@ public class Path : MonoBehaviour {
         [SerializeField, HideInInspector] string title = "pathcurve";
         // todo move to from anywhere option
         // public bool moveTo = false;
-        // public Transform moveToTransform;
+        public Transform moveToTransform;
+        public Vector2 moveToOffset = Vector2.zero;
         public BezierCurve curve;
         [Min(-1)]
         public int loops = 1;
@@ -28,9 +29,22 @@ public class Path : MonoBehaviour {
         [ReadOnly] public float durationTotal;
 
         public void Validate(string prefix = "") {
-            title = prefix + curve.name;
+            title = prefix;
+            if (moveToTransform != null) {
+                title += $"move to {moveToTransform.name} {GetMoveToPoint()}";
+            } else if (curve != null) {
+                title += curve.name;
+            }
         }
-
+        public Vector2 GetMoveToPoint() {
+            return (Vector2)moveToTransform.position + moveToOffset;
+        }
+        public Vector2 GetLastCurvePoint() {
+            if (curve.pointCount == 0) {
+                return Vector2.zero;
+            }
+            return curve[curve.pointCount - 1].position;
+        }
         public Vector2[] GetPoints() {
             List<Vector2> points = new List<Vector2>();
 
@@ -85,9 +99,22 @@ public class Path : MonoBehaviour {
     void CalcDistances() {
         totalDistance = 0;
         totalDuration = 0;
+        Vector2? lastPoint = null;
         for (int i = 0; i < pathCurves.Count; i++) {
             PathCurve pathCurve = pathCurves[i];
-            pathCurve.distance = pathCurve.curve.length;
+            if (pathCurve.moveToTransform != null) {
+                Vector2 moveToPoint = pathCurve.GetMoveToPoint();
+                if (lastPoint == null) {
+                    lastPoint = moveToPoint;
+                }
+                pathCurve.distance = Vector2.Distance(moveToPoint, (Vector2)lastPoint);
+                lastPoint = moveToPoint;
+            } else if (pathCurve.curve != null) {
+                pathCurve.distance = pathCurve.curve.length;
+                lastPoint = pathCurve.GetLastCurvePoint();
+            } else {
+                pathCurve.distance = 0;
+            }
             pathCurve.duration = pathCurve.distance / moveSpeed;
             pathCurve.distanceTotal = pathCurve.distance * pathCurve.loops;
             pathCurve.durationTotal = pathCurve.duration * pathCurve.loops + pathCurve.delay;
@@ -113,12 +140,14 @@ public class Path : MonoBehaviour {
         OnValidate();
     }
 
+    public Sequence FollowPath(Rigidbody2D rb) => FollowPath(rb, Vector2.zero);
     public Sequence FollowPath(Rigidbody2D rb, Vector2 pathOffset) {
-        StopPath();
+        // todo paths can be used by multiple users?
+        // StopPath();
         CalcDistances();
         pathseq = DOTween.Sequence();
-        Vector3? startPos = null;
-        Vector2 lastEndPoint = Vector2.zero;
+        Vector2? startPos = null;
+        // Vector2 lastEndPoint = Vector2.zero;
         for (int i = 0; i < pathCurves.Count; i++) {
             // if (i > 0) {
             //     // link to prev path
@@ -127,17 +156,25 @@ public class Path : MonoBehaviour {
             //     pathseq.Append(connectTween);
             // }
             PathCurve pathCurve = pathCurves[i];
-            Vector2[] points = pathCurve.GetPoints();
-            points = points.ToList().ConvertAll<Vector2>(v => v + pathOffset).ToArray();
-            lastEndPoint = points[points.Length - 3];
-            float dur = pathCurve.duration;
-            var pathtween = rb.DOPath(points, dur, PathType.CubicBezier, PathMode.Sidescroller2D);
-            if (startPos == null) startPos = points[0];
-            pathtween.SetLoops(pathCurve.loops, pathCurve.loopType);
-            pathtween.SetEase(pathCurve.easeType);
-            pathtween.SetDelay(pathCurve.delay);
-            // pathtween.SetSpeedBased(true);
-            pathseq.Append(pathtween);
+            if (pathCurve.moveToTransform != null) {
+                Vector2 point = pathCurve.GetMoveToPoint() + pathOffset;
+                float dur = pathCurve.duration;
+                var moveTween = rb.DOMove(point, dur);
+                if (startPos == null) startPos = point;
+                pathseq.Append(moveTween);
+            } else {
+                Vector2[] points = pathCurve.GetPoints();
+                points = points.ToList().ConvertAll<Vector2>(v => v + pathOffset).ToArray();
+                // lastEndPoint = points[points.Length - 3];
+                float dur = pathCurve.duration;
+                var pathtween = rb.DOPath(points, dur, PathType.CubicBezier, PathMode.Sidescroller2D);
+                if (startPos == null) startPos = points[0];
+                pathtween.SetLoops(pathCurve.loops, pathCurve.loopType);
+                pathtween.SetEase(pathCurve.easeType);
+                pathtween.SetDelay(pathCurve.delay);
+                // pathtween.SetSpeedBased(true);
+                pathseq.Append(pathtween);
+            }
         }
         pathseq.PrependInterval(delay);
         // loopType = curve.close ? LoopType.Restart : LoopType.Yoyo;

@@ -3,10 +3,10 @@
 [System.Serializable]
 public class Level {
     [SerializeField, HideInInspector] string title = "level";
-    public void Validate(string prefix = "") {
-        title = "Level " + prefix;
+    public void Validate(string index = "") {
+        title = $"Level {index}: {levelEvents.Length} events";
     }
-    public int backgroundIndex;
+    public Material backgroundMat;
     public AudioClip musicTrack;
     public LevelEvent[] levelEvents = new LevelEvent[0];
 }
