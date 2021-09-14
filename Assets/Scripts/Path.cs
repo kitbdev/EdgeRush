@@ -169,6 +169,7 @@ public class Path : MonoBehaviour {
                 float dur = pathCurve.duration;
                 var pathtween = rb.DOPath(points, dur, PathType.CubicBezier, PathMode.Sidescroller2D);
                 if (startPos == null) startPos = points[0];
+                // todo incremental loops ignore first move
                 pathtween.SetLoops(pathCurve.loops, pathCurve.loopType);
                 pathtween.SetEase(pathCurve.easeType);
                 pathtween.SetDelay(pathCurve.delay);
@@ -191,13 +192,42 @@ public class Path : MonoBehaviour {
     public void StopPath() {
         pathseq.Kill();
     }
-
+    Color drawColor = new Color(1, 0.5f, 0);
     private void OnDrawGizmosSelected() {
-        // for (int i = 1; i < pathCurves.Count; i++) {
-        //     var lastcurve = pathCurves[i - 1].curve;
-        //     var curve = pathCurves[i].curve;
-        //     BezierCurve.DrawCurve(lastcurve[lastcurve.pointCount - 1], curve[0], 30);
-        // }
+        Gizmos.color = drawColor * Color.gray;
+        Vector2 lastEndPoint = Vector2.zero;
+        for (int i = 0; i < pathCurves.Count; i++) {
+            PathCurve pathCurve = pathCurves[i];
+            if (pathCurve.moveToTransform != null) {
+                Vector2 point = pathCurve.GetMoveToPoint();
+                if (i != 0) Gizmos.DrawLine(lastEndPoint, point);
+                lastEndPoint = point;
+            } else {
+                Vector2[] points = pathCurve.GetPoints();
+                if (i != 0) Gizmos.DrawLine(lastEndPoint, points[0]);
+                pathCurve.curve.drawColor = drawColor;
+                // lastEndPoint = points[points.Length - 3];
+                // draw curve repetitions
+                BezierCurve curve = pathCurve.curve;
+                Vector3 baseoffset = curve[curve.pointCount - 1].localPosition - curve[0].localPosition;
+                // Vector3 baseoffset = curve[curve.pointCount - 1].position - (Vector3)lastEndPoint;
+                baseoffset += (curve[0].position - (Vector3)lastEndPoint);
+                Vector3 offset = Vector3.zero;
+                for (int l = 0; l < pathCurve.loops - 1; l++) {
+                    Gizmos.DrawLine(curve[curve.pointCount - 1].position + offset, curve[0].position + offset + baseoffset);
+                    offset += baseoffset;
+                    if (curve.pointCount > 1) {
+                        for (int p = 0; p < curve.pointCount - 1; p++) {
+                            BezierCurve.DrawCurve(curve[p], curve[p + 1], curve.resolution, offset);
+                        }
+                        if (curve.close) BezierCurve.DrawCurve(curve[curve.pointCount - 1], curve[0], curve.resolution, offset);
+                    }
+                }
+                lastEndPoint = curve[curve.pointCount - 1].position;
+                lastEndPoint += (Vector2)offset;
+            }
+        }
+        Gizmos.color = Color.white;
     }
 
 }

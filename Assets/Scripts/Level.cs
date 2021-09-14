@@ -30,7 +30,7 @@ public class LevelEvent {
     }
 
     [SerializeField, HideInInspector] string title = "level event";
-    public string GetTitle => title;
+    public string Title => title;
     public void Validate(string prefix = "") {
         title = prefix;
         if (levelEventType == LevelEventType.waitDuration) {
@@ -74,7 +74,8 @@ public class LevelEvent {
     public bool clearBullets = true;
 
     [Tooltip("time to wait in seconds")]
-    [ConditionalHide(nameof(levelEventType), (int)LevelEventType.waitDuration)]
+    [ConditionalHide(nameof(levelEventType), (int)LevelEventType.waitDuration,
+                                            (int)LevelEventType.endLevel)]
     public float waitDur = 0;
 
 }

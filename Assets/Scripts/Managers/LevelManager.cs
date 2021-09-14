@@ -6,7 +6,7 @@ public class LevelManager : Singleton<LevelManager> {
 
     public Level[] levels = new Level[0];
     public Level curLevel => currentLevelIndex >= 0 && currentLevelIndex < levels.Length ? levels[currentLevelIndex] : null;
-    public string curLevelEvent => curLevel?.levelEvents[curLevelEventIndex].GetTitle;
+    public string curLevelEventTitle => curLevel?.levelEvents[levelEventIndex].Title;
 
     [SerializeField] MeshRenderer bg;
     [SerializeField] ScrollingBackground scrollingBackground;
@@ -15,7 +15,7 @@ public class LevelManager : Singleton<LevelManager> {
     [Space]
     [SerializeField, ReadOnly] int _currentLevelIndex;
     public int currentLevelIndex => _currentLevelIndex;
-    [SerializeField, ReadOnly] int curLevelEventIndex = 0;
+    [SerializeField, ReadOnly] int levelEventIndex = 0;
     float lastEventTime = 0;
 
     private void OnValidate() {
@@ -54,11 +54,11 @@ public class LevelManager : Singleton<LevelManager> {
         ClearLevel();
         // todo level transition
         _currentLevelIndex = levelIndex;
-        curLevelEventIndex = 0;
+        levelEventIndex = 0;
         if (currentLevelIndex >= levels.Length) {
             // something
         } else {
-            Level level = levels[curLevelEventIndex];
+            Level level = levels[currentLevelIndex];
             if (level.backgroundMat && bg) {
                 bg.sharedMaterial = level.backgroundMat;
             }
@@ -74,7 +74,7 @@ public class LevelManager : Singleton<LevelManager> {
         player.ResetForLevel();
     }
     void NextLevel() {
-        Debug.Log($"Level {currentLevelIndex} finished!");
+        Debug.Log($"Level {currentLevelIndex + 1} finished!");
         int nextLevelIndex = _currentLevelIndex + 1;
         // skip levels
         while (nextLevelIndex < levels.Length && levels[nextLevelIndex].skip) {
@@ -91,13 +91,18 @@ public class LevelManager : Singleton<LevelManager> {
             return;
         }
         var curLevel = levels[currentLevelIndex];
-        LevelEvent curEvent = curLevel.levelEvents[curLevelEventIndex];
+        int levInd = currentLevelIndex;
+        LevelEvent curEvent = curLevel.levelEvents[levelEventIndex];
         bool finished = HandleLevelEvent(curEvent);
         if (finished) {
             // move to the next event
             lastEventTime = Time.time;
-            curLevelEventIndex++;
-            if (curLevelEventIndex >= curLevel.levelEvents.Length) {
+            if (levInd != currentLevelIndex) {
+                // level was changed
+            } else {
+                levelEventIndex++;
+            }
+            if (levelEventIndex >= curLevel.levelEvents.Length) {
                 // level is finished!
                 NextLevel();
             }
@@ -152,8 +157,12 @@ public class LevelManager : Singleton<LevelManager> {
                 // todo
                 break;
             case LevelEvent.LevelEventType.endLevel:
-                NextLevel();
-                break;
+                if (Time.time >= lastEventTime + levelEvent.waitDur) {
+                    NextLevel();
+                    return true;
+                }
+                return false;
+            // break;
             default:
                 // do nothing
                 break;

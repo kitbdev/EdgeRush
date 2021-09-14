@@ -46,7 +46,7 @@ public class Health : MonoBehaviour {
         currentHealth += amount;
     }
     public void TakeDamage(float amount) {
-        Debug.Log($"{name} is hit for {amount}", this);
+        // Debug.Log($"{name} is hit for {amount}", this);
         if (isDead) {
             Debug.Log($"{name} is already dead", this);
             return;

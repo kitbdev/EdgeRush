@@ -165,6 +165,9 @@ public class BezierPoint : MonoBehaviour{
 			lastPosition = transform.position;
 		}
 	}
+	private void OnDrawGizmosSelected() {
+		curve?.OnDrawGizmosSelected();
+	}
 	
 	#endregion
 }

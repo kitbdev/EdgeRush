@@ -119,7 +119,7 @@ public class BezierCurve : MonoBehaviour {
 
     #region UnityFunctions
 
-    void OnDrawGizmos() {
+    public void OnDrawGizmosSelected() {
         Gizmos.color = drawColor;
 
         if (points.Length > 1) {
@@ -304,13 +304,16 @@ public class BezierCurve : MonoBehaviour {
     /// 	- The number of segments along the curve to draw
     /// </param>
     public static void DrawCurve(BezierPoint p1, BezierPoint p2, int resolution) {
+        DrawCurve(p1, p2, resolution, Vector3.zero);
+    }
+    public static void DrawCurve(BezierPoint p1, BezierPoint p2, int resolution, Vector3 offset) {
         int limit = resolution + 1;
         float _res = resolution;
-        Vector3 lastPoint = p1.position;
+        Vector3 lastPoint = p1.position + offset;
         Vector3 currentPoint = Vector3.zero;
 
         for (int i = 1; i < limit; i++) {
-            currentPoint = GetPoint(p1, p2, i / _res);
+            currentPoint = GetPoint(p1, p2, i / _res) + offset;
             Gizmos.DrawLine(lastPoint, currentPoint);
             lastPoint = currentPoint;
         }
