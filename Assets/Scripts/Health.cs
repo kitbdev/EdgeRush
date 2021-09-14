@@ -25,6 +25,7 @@ public class Health : MonoBehaviour {
     // max health negative means true invincibility
     public bool isDead => currentHealth <= 0 && maxHealth >= 0;
     public bool isHealthFull => currentHealth >= maxHealth;
+    public float healthPercent => currentHealth / maxHealth;
 
     [Header("Events")]
     public UnityEvent dieEvent;

@@ -107,6 +107,11 @@ MonoBehaviour:
   path: {fileID: 0}
   pathOffset: {x: 0, y: 0, z: 0}
   patternRunner: {fileID: 0}
+  dropRates:
+  - weaponType: {fileID: 11400000, guid: be763971e2786464e8dbf91eaee5b932, type: 2}
+    chance: 0.6291291
+  - weaponType: {fileID: 11400000, guid: d4f96c5b02bea944cbba3a0855a7ea19, type: 2}
+    chance: 0.37087086
 --- !u!114 &1376320859788207865
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -57,12 +57,13 @@ public class EnemyManager : Singleton<EnemyManager> {
         public Path followPath;
         public PatternSO attackPatternOverride;
     }
-    public void SpawnWave(WaveSpawnData waveSpawnData) {
+    public GameObject SpawnWave(WaveSpawnData waveSpawnData) {
         int typeIndex = enemyPool.GetTypeId(waveSpawnData.prefab);
         for (int i = 0; i < waveSpawnData.amount; i++) {
             Vector2 offset = waveSpawnData.offset + waveSpawnData.offsetByIndex * i;
             SpawnEnemy(typeIndex, waveSpawnData.followPath, offset, waveSpawnData.attackPatternOverride);
         }
+        return activeEnemies.Count > 0 ? activeEnemies[activeEnemies.Count - 1].gameObject : null;
     }
 
 }

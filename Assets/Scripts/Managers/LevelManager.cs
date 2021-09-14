@@ -129,7 +129,7 @@ public class LevelManager : Singleton<LevelManager> {
                 break;
             case LevelEvent.LevelEventType.spawnBoss:
                 // ?
-                EnemyManager.Instance.SpawnWave(new EnemyManager.WaveSpawnData() {
+                var bossgo = EnemyManager.Instance.SpawnWave(new EnemyManager.WaveSpawnData() {
                     prefab = levelEvent.spawnPrefab,
                     amount = 1,
                     offset = levelEvent.spawnOffset,
@@ -137,6 +137,7 @@ public class LevelManager : Singleton<LevelManager> {
                     followPath = levelEvent.pathToFollow,
                     attackPatternOverride = levelEvent.attackPatternOverride,
                 });
+                HUDManager.Instance.SetBoss(bossgo);
                 break;
             case LevelEvent.LevelEventType.spawnMisc:
                 // todo
