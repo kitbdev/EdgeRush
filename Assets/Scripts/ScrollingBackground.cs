@@ -33,4 +33,7 @@ public class ScrollingBackground : MonoBehaviour {
             scrollMat.mainTextureOffset = offset;
         }
     }
+    private void OnDisable() {
+        ResetScrolls();
+    }
 }

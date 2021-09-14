@@ -20,9 +20,12 @@ public class DevUtil : MonoBehaviour {
     }
     private void OnGUI() {
         if (!devMenuOpen) return;
-        Rect screenRect = new Rect(0, 50, 100, 500);
+        Rect screenRect = new Rect(0, 50, 120, 500);
         GUILayout.BeginArea(screenRect);
         GUILayout.Label("Dev menu");
+        string levellabel = (LevelManager.Instance.curLevel?.title ?? "unknown level") + "\n"
+            + (LevelManager.Instance.curLevelEvent ?? "unknown level event");
+        GUILayout.Label(levellabel);
         playerHealth.manualInvincible = GUILayout.Toggle(playerHealth.manualInvincible, "Invincible");
         for (int i = 0; i < 6; i++) {
             if (GUILayout.Button("Level " + i)) {

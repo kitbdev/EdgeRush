@@ -5,9 +5,14 @@ using UnityEngine;
 public class LevelManager : Singleton<LevelManager> {
 
     public Level[] levels = new Level[0];
+    public Level curLevel => currentLevelIndex >= 0 && currentLevelIndex < levels.Length ? levels[currentLevelIndex] : null;
+    public string curLevelEvent => curLevel?.levelEvents[curLevelEventIndex].GetTitle;
 
     [SerializeField] MeshRenderer bg;
     [SerializeField] ScrollingBackground scrollingBackground;
+    [SerializeField] Player player;
+
+    [Space]
     [SerializeField, ReadOnly] int _currentLevelIndex;
     public int currentLevelIndex => _currentLevelIndex;
     [SerializeField, ReadOnly] int curLevelEventIndex = 0;
@@ -23,6 +28,14 @@ public class LevelManager : Singleton<LevelManager> {
             }
         }
     }
+    protected override void Awake() {
+        base.Awake();
+        _currentLevelIndex = -1;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+    }
+    private void Start() {
+        StartLevel(0);
+    }
 
     private void Update() {
         ProcessLevel();
@@ -32,15 +45,23 @@ public class LevelManager : Singleton<LevelManager> {
         StartLevel(currentLevelIndex);
     }
     public void StartLevel(int levelIndex) {
-        Debug.Log("Starting level " + levelIndex);
+        if (_currentLevelIndex == levelIndex) {
+            // restarting level
+            Debug.Log("Restarting level " + (levelIndex + 1));
+        } else {
+            Debug.Log("Starting level " + (levelIndex + 1));
+        }
         ClearLevel();
+        // todo level transition
         _currentLevelIndex = levelIndex;
         curLevelEventIndex = 0;
-        if (currentLevelIndex >= levels.Length){
+        if (currentLevelIndex >= levels.Length) {
             // something
-        }else{
+        } else {
             Level level = levels[curLevelEventIndex];
-            bg.sharedMaterial = level.backgroundMat;
+            if (level.backgroundMat && bg) {
+                bg.sharedMaterial = level.backgroundMat;
+            }
             scrollingBackground.ResetScrolls();
         }
     }
@@ -49,17 +70,24 @@ public class LevelManager : Singleton<LevelManager> {
         // todo debris and powerups clear
         // todo reset background?
         BulletManager.Instance.ClearAllActiveBullets();
-        // todo player position reset?
+
+        player.ResetForLevel();
     }
     void NextLevel() {
         Debug.Log($"Level {currentLevelIndex} finished!");
-        StartLevel(_currentLevelIndex + 1);
-        if (currentLevelIndex >= levels.Length) {
-            Debug.Log("Finished all levels!");
+        int nextLevelIndex = _currentLevelIndex + 1;
+        // skip levels
+        while (nextLevelIndex < levels.Length && levels[nextLevelIndex].skip) {
+            nextLevelIndex++;
         }
+        if (nextLevelIndex >= levels.Length) {
+            Debug.Log("Finished all levels!");
+            return;
+        }
+        StartLevel(nextLevelIndex);
     }
     void ProcessLevel() {
-        if (currentLevelIndex >= levels.Length) {
+        if (currentLevelIndex < 0 || currentLevelIndex >= levels.Length) {
             return;
         }
         var curLevel = levels[currentLevelIndex];

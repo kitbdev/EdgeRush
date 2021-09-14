@@ -20,10 +20,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 2e77e3d99ea01844cab5a67aad7e38f7, type: 2}
     - target: {fileID: 1376320859788207865, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
-      propertyPath: shootClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 815d579c37024fd4485c6affd2aee38b, type: 3}
-    - target: {fileID: 1376320859788207865, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
       propertyPath: bulletsPerLoop
       value: 17
       objectReference: {fileID: 0}

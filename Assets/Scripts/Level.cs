@@ -2,10 +2,15 @@
 
 [System.Serializable]
 public class Level {
-    [SerializeField, HideInInspector] string title = "level";
+    [SerializeField, HideInInspector] public string title = "level";
     public void Validate(string index = "") {
-        title = $"Level {index}: {levelEvents.Length} events";
+        title = $"Level {index}: {levelName} ({levelEvents.Length} events)";
+        if (skip) {
+            title += " (skipped)";
+        }
     }
+    public string levelName;
+    public bool skip = false;
     public Material backgroundMat;
     public AudioClip musicTrack;
     public LevelEvent[] levelEvents = new LevelEvent[0];
@@ -25,8 +30,14 @@ public class LevelEvent {
     }
 
     [SerializeField, HideInInspector] string title = "level event";
+    public string GetTitle => title;
     public void Validate(string prefix = "") {
-        title = prefix + levelEventType.ToString();
+        title = prefix;
+        if (levelEventType == LevelEventType.waitDuration) {
+            title += "wait " + waitDur + "s";
+        } else {
+            title += levelEventType.ToString();
+        }
     }
 
     public LevelEventType levelEventType;

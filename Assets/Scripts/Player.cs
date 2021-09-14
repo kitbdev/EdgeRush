@@ -10,6 +10,7 @@ public class Player : MonoBehaviour {
     [SerializeField] float accelerationRate = 2;
     [SerializeField] Transform moveTo;
 
+    [SerializeField, ReadOnly] Transform resetPos;
     [SerializeField, ReadOnly] Vector2 velocity = Vector2.zero;
     [SerializeField, ReadOnly] float lastShootTime = 0;
 
@@ -39,11 +40,15 @@ public class Player : MonoBehaviour {
     Rigidbody2D rb;
     Camera cam;
     Plane interactionPlane = new Plane(Vector3.back, Vector3.zero);
+    Health health;
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
+        health = GetComponent<Health>();
         cam = Camera.main;
         SetCurrentWeapon(currentWeapon);
+        resetPos = new GameObject("Player reset pos").transform;
+        resetPos.position = transform.position;
     }
     private void OnEnable() {
         controls = new Controls();
@@ -65,9 +70,13 @@ public class Player : MonoBehaviour {
         controls.Player.MoveToPoint.canceled += c => inputMoveTo = false;
         controls.Player.Fire.performed += c => { inputShootHold = true; inputShoot = true; };
         controls.Player.Fire.canceled += c => { inputShootHold = false; };
+
+
+        health.dieEvent.AddListener(OnDie);
     }
     private void OnDisable() {
         controls?.Disable();
+        health.dieEvent.RemoveListener(OnDie);
     }
     private void Update() {
         if (Time.timeScale == 0) return;
@@ -147,6 +156,25 @@ public class Player : MonoBehaviour {
         // if (velocity.sqrMagnitude > 0.001f) {
         // }
         rb.velocity = velocity;
-
+    }
+    void OnDie() {
+        // wait
+        // reset level?
+        // todo checkpoint
+        // LevelManager.Instance.RestartLevel();
+        // health.RestoreHealth();
+    }
+    public void ResetForLevel() {
+        // todo ?
+        transform.position = resetPos.position;
+        rb.velocity = Vector2.zero;
+        velocity = Vector2.zero;
+    }
+    public void ResetAll() {
+        // reset position and ammo counts
+        ResetForLevel();
+        lastShootTime = 0;
+        // todo ammo
+        // todo checkpoint
     }
 }
