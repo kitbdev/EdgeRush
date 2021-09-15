@@ -67,6 +67,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""SelectWeaponScroll"",
+                    ""type"": ""Value"",
+                    ""id"": ""c88b8ca7-f16d-4ed8-a7d7-2f9542161aae"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""SelectWeaponPrev"",
                     ""type"": ""Button"",
                     ""id"": ""dd4d42c0-221f-4ed9-835a-3c7ee309a490"",
@@ -600,6 +608,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""SelectWeapon4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""979903bc-cf77-402b-9828-a3538a5f60d7"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""SelectWeaponScroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1183,6 +1202,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_MoveToPoint = m_Player.FindAction("MoveToPoint", throwIfNotFound: true);
         m_Player_SelectWeaponNext = m_Player.FindAction("SelectWeaponNext", throwIfNotFound: true);
+        m_Player_SelectWeaponScroll = m_Player.FindAction("SelectWeaponScroll", throwIfNotFound: true);
         m_Player_SelectWeaponPrev = m_Player.FindAction("SelectWeaponPrev", throwIfNotFound: true);
         m_Player_SelectWeapon1 = m_Player.FindAction("SelectWeapon1", throwIfNotFound: true);
         m_Player_SelectWeapon2 = m_Player.FindAction("SelectWeapon2", throwIfNotFound: true);
@@ -1255,6 +1275,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_MoveToPoint;
     private readonly InputAction m_Player_SelectWeaponNext;
+    private readonly InputAction m_Player_SelectWeaponScroll;
     private readonly InputAction m_Player_SelectWeaponPrev;
     private readonly InputAction m_Player_SelectWeapon1;
     private readonly InputAction m_Player_SelectWeapon2;
@@ -1270,6 +1291,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @MoveToPoint => m_Wrapper.m_Player_MoveToPoint;
         public InputAction @SelectWeaponNext => m_Wrapper.m_Player_SelectWeaponNext;
+        public InputAction @SelectWeaponScroll => m_Wrapper.m_Player_SelectWeaponScroll;
         public InputAction @SelectWeaponPrev => m_Wrapper.m_Player_SelectWeaponPrev;
         public InputAction @SelectWeapon1 => m_Wrapper.m_Player_SelectWeapon1;
         public InputAction @SelectWeapon2 => m_Wrapper.m_Player_SelectWeapon2;
@@ -1302,6 +1324,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @SelectWeaponNext.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponNext;
                 @SelectWeaponNext.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponNext;
                 @SelectWeaponNext.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponNext;
+                @SelectWeaponScroll.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponScroll;
+                @SelectWeaponScroll.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponScroll;
+                @SelectWeaponScroll.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponScroll;
                 @SelectWeaponPrev.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponPrev;
                 @SelectWeaponPrev.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponPrev;
                 @SelectWeaponPrev.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponPrev;
@@ -1339,6 +1364,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @SelectWeaponNext.started += instance.OnSelectWeaponNext;
                 @SelectWeaponNext.performed += instance.OnSelectWeaponNext;
                 @SelectWeaponNext.canceled += instance.OnSelectWeaponNext;
+                @SelectWeaponScroll.started += instance.OnSelectWeaponScroll;
+                @SelectWeaponScroll.performed += instance.OnSelectWeaponScroll;
+                @SelectWeaponScroll.canceled += instance.OnSelectWeaponScroll;
                 @SelectWeaponPrev.started += instance.OnSelectWeaponPrev;
                 @SelectWeaponPrev.performed += instance.OnSelectWeaponPrev;
                 @SelectWeaponPrev.canceled += instance.OnSelectWeaponPrev;
@@ -1516,6 +1544,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnMoveToPoint(InputAction.CallbackContext context);
         void OnSelectWeaponNext(InputAction.CallbackContext context);
+        void OnSelectWeaponScroll(InputAction.CallbackContext context);
         void OnSelectWeaponPrev(InputAction.CallbackContext context);
         void OnSelectWeapon1(InputAction.CallbackContext context);
         void OnSelectWeapon2(InputAction.CallbackContext context);

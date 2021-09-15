@@ -6,6 +6,9 @@ public class SubPatternSO : ScriptableObject {
     [SerializeField, HideInInspector] string title = "subpattern";
     public void Validate(string prefix = "") {
         title = prefix + patternType.ToString();
+        if (patternType != PatternType.single && patternType != PatternType.bullet) {
+            title += " " + numSubPatterns;
+        }
     }
 
     public enum PatternType {

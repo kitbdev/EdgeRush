@@ -54,6 +54,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "SelectWeaponScroll",
+                    "type": "Value",
+                    "id": "c88b8ca7-f16d-4ed8-a7d7-2f9542161aae",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "SelectWeaponPrev",
                     "type": "Button",
                     "id": "dd4d42c0-221f-4ed9-835a-3c7ee309a490",
@@ -587,6 +595,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "SelectWeapon4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "979903bc-cf77-402b-9828-a3538a5f60d7",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "SelectWeaponScroll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

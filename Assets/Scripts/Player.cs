@@ -26,7 +26,7 @@ public class Player : MonoBehaviour {
     [SerializeField] Transform[] shootPoints = new Transform[0];
     [SerializeField] GameObject[] gunModels = new GameObject[0];
     [SerializeField] WeaponSO initialWeapon;
-    [SerializeField, ReadOnly] public List<WeaponData> weaponDatas = new List<WeaponData>();
+    [SerializeField] public List<WeaponData> weaponDatas = new List<WeaponData>();
     [SerializeField, ReadOnly] int curSelectedWeapon = 0;
     public WeaponData currentWeaponData =>
         (curSelectedWeapon >= 0 && curSelectedWeapon < weaponDatas.Count) ? weaponDatas[curSelectedWeapon] : null;
@@ -65,9 +65,6 @@ public class Player : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         health = GetComponent<Health>();
         cam = Camera.main;
-        if (initialWeapon) {
-            SetCurrentWeapon(initialWeapon);
-        }
         resetPos = new GameObject("Player reset pos").transform;
         resetPos.position = transform.position;
     }
@@ -97,17 +94,29 @@ public class Player : MonoBehaviour {
         controls.Player.Fire.canceled += c => { inputShootHold = false; };
         controls.Player.SelectWeaponNext.performed += c => { SelectWeaponNext(); };
         controls.Player.SelectWeaponPrev.performed += c => { SelectWeaponPrev(); };
+        controls.Player.SelectWeaponScroll.performed += c => {
+            if (c.ReadValue<float>() < 0) {
+                SelectWeaponNext();
+            } else {
+                SelectWeaponPrev();
+            }
+        };
         controls.Player.SelectWeapon1.performed += c => { SelectWeapon(0); };
         controls.Player.SelectWeapon2.performed += c => { SelectWeapon(1); };
         controls.Player.SelectWeapon3.performed += c => { SelectWeapon(2); };
         controls.Player.SelectWeapon4.performed += c => { SelectWeapon(3); };
-
 
         health.dieEvent.AddListener(OnDie);
     }
     private void OnDisable() {
         controls?.Disable();
         health.dieEvent.RemoveListener(OnDie);
+    }
+    private void Start() {
+        if (initialWeapon) {
+            SetCurrentWeapon(initialWeapon);
+        }
+        // weaponAmmoChangeEvent?.Invoke();
     }
     private void Update() {
         if (Time.timeScale == 0) return;
@@ -193,8 +202,8 @@ public class Player : MonoBehaviour {
         }
     }
     public void PickupWeaponAmmo(WeaponSO weaponType, int ammo) {
-        var weapon = SetCurrentWeapon(weaponType, ammo);
-        weaponAmmoChangeEvent?.Invoke();
+        SetCurrentWeapon(weaponType, ammo);
+        // weaponAmmoChangeEvent?.Invoke();
     }
     public void AddCoins(int amount) {
         numCoins += amount;
@@ -244,6 +253,7 @@ public class Player : MonoBehaviour {
         transform.position = resetPos.position;
         rb.velocity = Vector2.zero;
         velocity = Vector2.zero;
+        health.RestoreHealth();
     }
     public void ResetAll() {
         // reset position and ammo counts
@@ -251,5 +261,7 @@ public class Player : MonoBehaviour {
         lastShootTime = 0;
         // todo ammo
         // todo checkpoint
+        weaponAmmoChangeEvent?.Invoke();
+        coinAmountChangeEvent?.Invoke();
     }
 }

@@ -55,6 +55,7 @@ public class HUDManager : Singleton<HUDManager> {
         curBossHealth.dieEvent.AddListener(BossDie);
         UpdateBossPopup();
     }
+    [ContextMenu("Update UI")]
     void UpdateAll() {
         UpdatePlayerHealth();
         UpdateCoinCount();
@@ -70,8 +71,10 @@ public class HUDManager : Singleton<HUDManager> {
     }
     void UpdateWeaponAmmoCount() {
         int numWeaponUis = weaponUIParent.childCount;
-        int wantedWeapons = player.weaponDatas.Count;
-        if (numWeaponUis != wantedWeapons) {
+        int wantedWeaponNum = player.weaponDatas.Count;
+        Debug.Log("updating weaponui " + numWeaponUis + " " + wantedWeaponNum);
+        List<WeaponUI> weaponUIs = new List<WeaponUI>();
+        if (numWeaponUis != wantedWeaponNum) {
             // erase all and remake
             for (int i = 0; i < numWeaponUis; i++) {
                 // erase
@@ -82,15 +85,21 @@ public class HUDManager : Singleton<HUDManager> {
                     DestroyImmediate(wUi);
                 }
             }
-            for (int i = 0; i < wantedWeapons; i++) {
+            for (int i = 0; i < wantedWeaponNum; i++) {
+                var wUi = Instantiate(weaponUIPrefab, weaponUIParent);
+                weaponUIs.Add(wUi.GetComponent<WeaponUI>());
                 // position happens autmatically
-                Instantiate(weaponUIPrefab, weaponUIParent);
+            }
+            // ! need to wait a frame for transform to update
+        } else {
+            for (int i = 0; i < wantedWeaponNum; i++) {
+                Transform wUi = weaponUIParent.GetChild(i);
+                weaponUIs.Add(wUi.GetComponent<WeaponUI>());
             }
         }
         // update texts
-        for (int i = 0; i < wantedWeapons; i++) {
-            Transform wUi = weaponUIParent.GetChild(i);
-            WeaponUI weaponUI = wUi.GetComponent<WeaponUI>();
+        for (int i = 0; i < weaponUIs.Count; i++) {
+            WeaponUI weaponUI = weaponUIs[i];
             Player.WeaponData weaponData = player.weaponDatas[i];
             if (weaponData.weaponType.hasUnlimitedAmmo) {
                 weaponUI.ammoCountText.text = "infinite";
@@ -103,7 +112,6 @@ public class HUDManager : Singleton<HUDManager> {
             } else {
                 weaponUI.weaponSelectedGo.SetActive(false);
             }
-
         }
     }
     void UpdateCoinCount() {
