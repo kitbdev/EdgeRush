@@ -90,10 +90,25 @@ public class LevelManager : Singleton<LevelManager> {
     void ClearLevel() {
         scrollingBackground.ResetScrolls();
         EnemyManager.Instance.RemoveAllEnemies();
-        // todo debris and powerups clear
+        ClearLevelDebris();
         BulletManager.Instance.ClearAllActiveBullets();
 
         player.ResetForLevel();
+    }
+    void ClearLevelDebris() {
+        // clears debris, powerups, and coins
+        ClearChildren();
+    }
+    void ClearChildren() {
+        int numChildren = transform.childCount;
+        for (int i = numChildren - 1; i >= 0; i--) {
+            var go = transform.GetChild(i).gameObject;
+            if (Application.isPlaying) {
+                Destroy(go);
+            } else {
+                DestroyImmediate(go);
+            }
+        }
     }
     void NextLevel() {
         Debug.Log($"Level {currentLevelIndex + 1} finished!");
@@ -173,15 +188,15 @@ public class LevelManager : Singleton<LevelManager> {
                 break;
             case LevelEvent.LevelEventType.clearMap:
                 if (levelEvent.clearEnemies) {
+                    // note this includes bosses
                     EnemyManager.Instance.RemoveAllEnemies();
-                    // todo including bosses?
                 }
                 if (levelEvent.clearDebris) {
-                    // todo
+                    ClearLevelDebris();
                 }
-                if (levelEvent.clearPowerups) {
-                    // todo
-                }
+                // if (levelEvent.clearPowerups) {
+                //     // todo
+                // }
                 if (levelEvent.clearBullets) {
                     BulletManager.Instance.ClearAllActiveBullets();
                 }
