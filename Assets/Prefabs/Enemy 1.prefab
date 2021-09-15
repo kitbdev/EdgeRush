@@ -106,12 +106,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path: {fileID: 0}
   pathOffset: {x: 0, y: 0, z: 0}
-  patternRunner: {fileID: 0}
+  numCoinsToDrop: 1
   dropRates:
   - weaponType: {fileID: 11400000, guid: be763971e2786464e8dbf91eaee5b932, type: 2}
     chance: 0.6291291
   - weaponType: {fileID: 11400000, guid: d4f96c5b02bea944cbba3a0855a7ea19, type: 2}
     chance: 0.37087086
+  phases: []
 --- !u!114 &1376320859788207865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +128,7 @@ MonoBehaviour:
   patternSO: {fileID: 11400000, guid: ff4259e01837413429d96977c4151c55, type: 2}
   spawnPoints:
   - {fileID: 9219814047151828050}
-  shootClip: {fileID: 0}
+  shootClip: {fileID: 8300000, guid: b2e22279275ad1c45bf509b25e46bf08, type: 3}
   isPlayer: 0
   player: {fileID: 0}
   phaseIndex: 0
