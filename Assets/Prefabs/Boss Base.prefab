@@ -248,7 +248,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path: {fileID: 0}
   pathOffset: {x: 0, y: 0, z: 0}
-  patternRunner: {fileID: 0}
+  numCoinsToDrop: 1
+  dropRates: []
+  phases: []
 --- !u!66 &6896039920381432310
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -286,8 +288,7 @@ MonoBehaviour:
   patternSO: {fileID: 0}
   spawnPoints:
   - {fileID: 5424515853065347555}
-  - {fileID: 0}
-  shootClip: {fileID: 0}
+  shootClip: {fileID: 8300000, guid: b2e22279275ad1c45bf509b25e46bf08, type: 3}
   isPlayer: 0
   player: {fileID: 0}
   phaseIndex: 0
@@ -297,6 +298,14 @@ MonoBehaviour:
   lastPhaseStartTime: 0
   patternExecuteStartTime: 0
   initialDelayComplete: 0
+  emitterState:
+    position: {x: 0, y: 0}
+    angle: 0
+    speed: 0
+    angSpeed: 0
+    acceleration: 0
+    angAcceleration: 0
+  initStates: []
   totalDuration: 0
   bulletsPerLoop: 0
 --- !u!114 &4103724378864960721

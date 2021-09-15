@@ -39,7 +39,7 @@ public class Bullet : MonoBehaviour {
 [System.Serializable]
 public class BulletSpawnSettings {
     public GameObject prefab;
-    public float initSpeed = 5;
+    public float initSpeed = 2;
     public float initAngle = 0;
     public float acceleration = 0;
     public float maxSpeed = 10;

@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 193f4d72e9ef5414596d9eaf7e648ca2, type: 3}
+  m_Name: b1 dual gun
+  m_EditorClassIdentifier: 
+  defaultBulletPrefab: {fileID: 6110090707465297226, guid: 0d5847e6210b6b54eb112f198b5afe3b, type: 3}
+  delayDuration: 0.2
+  patternPhases:
+  - title: 0. phase shoot
+    initialized: 1
+    skip: 0
+    delayDuration: 0.8
+    duration: 0
+    repetitions: 1
+    spawnBullet: 1
+    bulletSpawnSettings:
+      prefab: {fileID: 6110090707465297226, guid: 0d5847e6210b6b54eb112f198b5afe3b, type: 3}
+      initSpeed: 4
+      initAngle: 0
+      acceleration: 0
+      maxSpeed: 10
+      angularAcceleration: 0
+      maxAngularSpeed: 10
+      initScale: 0.5
+      spawnPointIndices: 0000000001000000
+    bulletPatterns:
+    - title: 0. arc 3
+      initialized: 1
+      patternType: 3
+      spawnAmount: 3
+      spacing: 0.5
+      alignmentDegree: 0
+      radius: 0.2
+      startAngle: -90
+      angleDist: 45
+      angleOffset: 0
+      angleTurn: 0
+      angleOut: 1
+      initRandomAngleOffsetMin: 0
+      initRandomAngleOffsetMax: 0
+      modifier:
+        setAccelb: 0
+        setAccel: 0
+        setAngAccelb: 0
+        setAngAccel: 0
+        addAng: 0
+        addAngByIndex: 0
+        addSpeed: 0
+        addSpeedByIndex: 0
+        addAngSpeed: 0
+        addAngSpeedByIndex: 0
+    - title: 1. line 3
+      initialized: 1
+      patternType: 2
+      spawnAmount: 3
+      spacing: 0.2
+      alignmentDegree: 90
+      radius: 0.2
+      startAngle: -90
+      angleDist: 45
+      angleOffset: 0
+      angleTurn: 0
+      angleOut: 1
+      initRandomAngleOffsetMin: 0
+      initRandomAngleOffsetMax: 0
+      modifier:
+        setAccelb: 0
+        setAccel: 0
+        setAngAccelb: 0
+        setAngAccel: 0
+        addAng: 0
+        addAngByIndex: 0
+        addSpeed: 0
+        addSpeedByIndex: 0
+        addAngSpeed: 0
+        addAngSpeedByIndex: 0
+    _phaseDuration: 0.8
+  totalDuration: 1

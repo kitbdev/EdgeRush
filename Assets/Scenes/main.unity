@@ -4142,11 +4142,6 @@ Transform:
   m_Father: {fileID: 406492337}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &440583876 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8237768056567006793, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
-  m_PrefabInstance: {fileID: 6356201967777172970}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &442135141
 GameObject:
   m_ObjectHideFlags: 0
@@ -6412,6 +6407,79 @@ Transform:
   m_Father: {fileID: 1055939315}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &705000142
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 852461462}
+    m_Modifications:
+    - target: {fileID: 2069795963949724448, guid: db65d69cb3f391b4e93232d2374f28be, type: 3}
+      propertyPath: patternSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 45ac4dd83d5f1f44aadf066826606fde, type: 2}
+    - target: {fileID: 2069795963949724448, guid: db65d69cb3f391b4e93232d2374f28be, type: 3}
+      propertyPath: totalDuration
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2069795963949724448, guid: db65d69cb3f391b4e93232d2374f28be, type: 3}
+      propertyPath: bulletsPerLoop
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5805545058002136081, guid: db65d69cb3f391b4e93232d2374f28be, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5805545058002136081, guid: db65d69cb3f391b4e93232d2374f28be, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5805545058002136081, guid: db65d69cb3f391b4e93232d2374f28be, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5805545058002136081, guid: db65d69cb3f391b4e93232d2374f28be, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5805545058002136081, guid: db65d69cb3f391b4e93232d2374f28be, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5805545058002136081, guid: db65d69cb3f391b4e93232d2374f28be, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5805545058002136081, guid: db65d69cb3f391b4e93232d2374f28be, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5805545058002136081, guid: db65d69cb3f391b4e93232d2374f28be, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5805545058002136081, guid: db65d69cb3f391b4e93232d2374f28be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5805545058002136081, guid: db65d69cb3f391b4e93232d2374f28be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5805545058002136081, guid: db65d69cb3f391b4e93232d2374f28be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824094972317598906, guid: db65d69cb3f391b4e93232d2374f28be, type: 3}
+      propertyPath: m_Name
+      value: Boss 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824094972317598906, guid: db65d69cb3f391b4e93232d2374f28be, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: db65d69cb3f391b4e93232d2374f28be, type: 3}
 --- !u!1 &706359532
 GameObject:
   m_ObjectHideFlags: 0
@@ -7279,7 +7347,7 @@ Transform:
   - {fileID: 1019112789}
   - {fileID: 159293179}
   - {fileID: 1317324738}
-  - {fileID: 440583876}
+  - {fileID: 856674804}
   - {fileID: 411354005}
   - {fileID: 868641609}
   - {fileID: 1005930621}
@@ -7326,6 +7394,11 @@ MonoBehaviour:
   - {fileID: 8271556586339612306, guid: a92c420b82cf9914b8697f34ef4753cb, type: 3}
   - {fileID: 8387662518728749317, guid: 9f02dda827805364cb29c9c6ce3a43e3, type: 3}
   activeEnemies: []
+--- !u!4 &856674804 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5805545058002136081, guid: db65d69cb3f391b4e93232d2374f28be, type: 3}
+  m_PrefabInstance: {fileID: 705000142}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &857687827
 GameObject:
   m_ObjectHideFlags: 0
@@ -7490,8 +7563,182 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
-  - title: 'Level 1: test enemies (11 events)'
+  - title: 'Level 1: test enemies (12 events)'
     levelName: test enemies
+    skip: 0
+    backgroundMat: {fileID: 2100000, guid: 32cb70ab147e0324da748acc1cd60229, type: 2}
+    musicTrack: {fileID: 0}
+    levelEvents:
+    - title: 1. spawnEnemyWave
+      levelEventType: 1
+      spawnPrefab: {fileID: 9219814045859052589, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
+      amountToSpawn: 1
+      spawnOffset: {x: 0, y: 0}
+      spawnOffsetByIndex: {x: 1, y: 0}
+      pathToFollow: {fileID: 906159817}
+      attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
+      clearEnemies: 0
+      clearDebris: 0
+      clearPowerups: 0
+      clearBullets: 0
+      waitDur: 0
+    - title: 2. waitEnemiesDefeated
+      levelEventType: 6
+      spawnPrefab: {fileID: 0}
+      amountToSpawn: 0
+      spawnOffset: {x: 1, y: 0}
+      spawnOffsetByIndex: {x: 1, y: 0}
+      pathToFollow: {fileID: 0}
+      attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
+      clearEnemies: 0
+      clearDebris: 0
+      clearPowerups: 0
+      clearBullets: 0
+      waitDur: 0
+    - title: 3. spawnEnemyWave
+      levelEventType: 1
+      spawnPrefab: {fileID: 8271556586339612306, guid: a92c420b82cf9914b8697f34ef4753cb, type: 3}
+      amountToSpawn: 1
+      spawnOffset: {x: 0, y: 0}
+      spawnOffsetByIndex: {x: 1, y: 0}
+      pathToFollow: {fileID: 906159817}
+      attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
+      clearEnemies: 0
+      clearDebris: 0
+      clearPowerups: 0
+      clearBullets: 0
+      waitDur: 0
+    - title: 4. waitEnemiesDefeated
+      levelEventType: 6
+      spawnPrefab: {fileID: 0}
+      amountToSpawn: 0
+      spawnOffset: {x: 1, y: 0}
+      spawnOffsetByIndex: {x: 1, y: 0}
+      pathToFollow: {fileID: 0}
+      attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
+      clearEnemies: 0
+      clearDebris: 0
+      clearPowerups: 0
+      clearBullets: 0
+      waitDur: 0
+    - title: 5. spawnEnemyWave
+      levelEventType: 1
+      spawnPrefab: {fileID: 8387662518728749317, guid: 9f02dda827805364cb29c9c6ce3a43e3, type: 3}
+      amountToSpawn: 1
+      spawnOffset: {x: 0, y: 0}
+      spawnOffsetByIndex: {x: 1, y: 0}
+      pathToFollow: {fileID: 906159817}
+      attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
+      clearEnemies: 0
+      clearDebris: 0
+      clearPowerups: 0
+      clearBullets: 0
+      waitDur: 0
+    - title: 6. waitEnemiesDefeated
+      levelEventType: 6
+      spawnPrefab: {fileID: 0}
+      amountToSpawn: 0
+      spawnOffset: {x: 1, y: 0}
+      spawnOffsetByIndex: {x: 1, y: 0}
+      pathToFollow: {fileID: 0}
+      attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
+      clearEnemies: 0
+      clearDebris: 0
+      clearPowerups: 0
+      clearBullets: 0
+      waitDur: 0
+    - title: 7. checkpoint
+      levelEventType: 7
+      spawnPrefab: {fileID: 0}
+      amountToSpawn: 0
+      spawnOffset: {x: 1, y: 0}
+      spawnOffsetByIndex: {x: 1, y: 0}
+      pathToFollow: {fileID: 0}
+      attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
+      clearEnemies: 0
+      clearDebris: 0
+      clearPowerups: 0
+      clearBullets: 0
+      waitDur: 0
+    - title: 8. spawnBoss
+      levelEventType: 2
+      spawnPrefab: {fileID: 6824094972317598906, guid: db65d69cb3f391b4e93232d2374f28be, type: 3}
+      amountToSpawn: 0
+      spawnOffset: {x: 0, y: 0}
+      spawnOffsetByIndex: {x: 1, y: 0}
+      pathToFollow: {fileID: 906159817}
+      attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
+      clearEnemies: 0
+      clearDebris: 0
+      clearPowerups: 0
+      clearBullets: 0
+      waitDur: 0
+    - title: 9. waitEnemiesDefeated
+      levelEventType: 6
+      spawnPrefab: {fileID: 0}
+      amountToSpawn: 0
+      spawnOffset: {x: 1, y: 0}
+      spawnOffsetByIndex: {x: 1, y: 0}
+      pathToFollow: {fileID: 0}
+      attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
+      clearEnemies: 0
+      clearDebris: 0
+      clearPowerups: 0
+      clearBullets: 0
+      waitDur: 0
+    - title: 10. spawnBoss
+      levelEventType: 2
+      spawnPrefab: {fileID: 6824094972317598906, guid: d15f5d31a4a4905458958a7abdbd91a4, type: 3}
+      amountToSpawn: 0
+      spawnOffset: {x: 0, y: 0}
+      spawnOffsetByIndex: {x: 1, y: 0}
+      pathToFollow: {fileID: 906159817}
+      attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
+      clearEnemies: 0
+      clearDebris: 0
+      clearPowerups: 0
+      clearBullets: 0
+      waitDur: 0
+    - title: 11. waitEnemiesDefeated
+      levelEventType: 6
+      spawnPrefab: {fileID: 0}
+      amountToSpawn: 0
+      spawnOffset: {x: 1, y: 0}
+      spawnOffsetByIndex: {x: 1, y: 0}
+      pathToFollow: {fileID: 0}
+      attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
+      clearEnemies: 0
+      clearDebris: 0
+      clearPowerups: 0
+      clearBullets: 0
+      waitDur: 0
+    - title: 12. endLevel
+      levelEventType: 8
+      spawnPrefab: {fileID: 8968654941522783970, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+      amountToSpawn: 0
+      spawnOffset: {x: 1, y: 0}
+      spawnOffsetByIndex: {x: 1, y: 0}
+      pathToFollow: {fileID: 0}
+      attackPatternOverride: {fileID: 0}
+      moveSpeedOverride: -1
+      clearEnemies: 0
+      clearDebris: 0
+      clearPowerups: 0
+      clearBullets: 0
+      waitDur: 0
+  - title: 'Level 2: test (11 events)'
+    levelName: test
     skip: 0
     backgroundMat: {fileID: 2100000, guid: 13869c0a42ac8cc4eb2bc90d95116af4, type: 2}
     musicTrack: {fileID: 0}
@@ -7650,7 +7897,7 @@ MonoBehaviour:
       clearPowerups: 0
       clearBullets: 0
       waitDur: 0
-  - title: 'Level 2:  (8 events)'
+  - title: 'Level 3:  (8 events)'
     levelName: 
     skip: 0
     backgroundMat: {fileID: 2100000, guid: b5211b3f51885a04cadccf975fa4c4d4, type: 2}
@@ -8917,7 +9164,7 @@ PrefabInstance:
       objectReference: {fileID: 2127898606}
     - target: {fileID: 1768795488134917073, guid: 9f02dda827805364cb29c9c6ce3a43e3, type: 3}
       propertyPath: bulletsPerLoop
-      value: 17
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1768795488134917073, guid: 9f02dda827805364cb29c9c6ce3a43e3, type: 3}
       propertyPath: totalNumBullets
@@ -12195,10 +12442,10 @@ MonoBehaviour:
     delay: 0
     loopType: 0
     easeType: 1
-    distance: 0
-    duration: 0
-    distanceTotal: 0
-    durationTotal: 0
+    distance: 9.173348
+    duration: 0.91733485
+    distanceTotal: 9.173348
+    durationTotal: 0.91733485
   - title: 1. maincurve
     moveToTransform: {fileID: 0}
     moveToOffset: {x: 0, y: 0}
@@ -12207,10 +12454,10 @@ MonoBehaviour:
     delay: 2
     loopType: 2
     easeType: 1
-    distance: 0
-    duration: 0
-    distanceTotal: 0
-    durationTotal: 2
+    distance: 48.489204
+    duration: 4.8489203
+    distanceTotal: 290.93524
+    durationTotal: 31.093521
   - title: 2. exitcurve
     moveToTransform: {fileID: 0}
     moveToOffset: {x: 0, y: 0}
@@ -12219,17 +12466,17 @@ MonoBehaviour:
     delay: 0
     loopType: 0
     easeType: 1
-    distance: 0
-    duration: 0
-    distanceTotal: 0
-    durationTotal: 0
+    distance: 4.0632925
+    duration: 0.40632924
+    distanceTotal: 4.0632925
+    durationTotal: 0.40632924
   moveSpeed: 10
   delay: 0
   loops: 1
   fullSequenceLoopType: 0
   fullSequenceEase: 1
-  totalDistance: 0
-  totalDuration: 2
+  totalDistance: 304.17188
+  totalDuration: 32.417187
 --- !u!1 &1397288686
 GameObject:
   m_ObjectHideFlags: 0
@@ -17947,79 +18194,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6405c887d26a4784e992901ece7e5598, type: 3}
---- !u!1001 &6356201967777172970
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 852461462}
-    m_Modifications:
-    - target: {fileID: 4502045368779004280, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
-      propertyPath: patternSO
-      value: 
-      objectReference: {fileID: 11400000, guid: 691868b5255338545befbc538e357d98, type: 2}
-    - target: {fileID: 4502045368779004280, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
-      propertyPath: totalDuration
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4502045368779004280, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
-      propertyPath: bulletsPerLoop
-      value: 56
-      objectReference: {fileID: 0}
-    - target: {fileID: 8237768056567006793, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8237768056567006793, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -9
-      objectReference: {fileID: 0}
-    - target: {fileID: 8237768056567006793, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8237768056567006793, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8237768056567006793, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8237768056567006793, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8237768056567006793, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8237768056567006793, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8237768056567006793, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8237768056567006793, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8237768056567006793, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8968654941522783970, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
-      propertyPath: m_Name
-      value: Boss
-      objectReference: {fileID: 0}
-    - target: {fileID: 8968654941522783970, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
 --- !u!1001 &7245898727606537642
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18027,17 +18201,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 852461462}
     m_Modifications:
+    - target: {fileID: 2069795963949724448, guid: d15f5d31a4a4905458958a7abdbd91a4, type: 3}
+      propertyPath: patternSO
+      value: 
+      objectReference: {fileID: 11400000, guid: a66984d08b7230c4f9dcce3a2cca81c7, type: 2}
+    - target: {fileID: 2069795963949724448, guid: d15f5d31a4a4905458958a7abdbd91a4, type: 3}
+      propertyPath: bulletsPerLoop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5805545058002136081, guid: d15f5d31a4a4905458958a7abdbd91a4, type: 3}
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5805545058002136081, guid: d15f5d31a4a4905458958a7abdbd91a4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.17
+      value: -0.28
       objectReference: {fileID: 0}
     - target: {fileID: 5805545058002136081, guid: d15f5d31a4a4905458958a7abdbd91a4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.26
+      value: 2.84
       objectReference: {fileID: 0}
     - target: {fileID: 5805545058002136081, guid: d15f5d31a4a4905458958a7abdbd91a4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -18285,7 +18467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1376320859788207865, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
       propertyPath: bulletsPerLoop
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9219814045859052586, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
       propertyPath: m_RootOrder

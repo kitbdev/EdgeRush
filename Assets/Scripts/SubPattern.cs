@@ -1,19 +1,30 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "SubPatternSO", menuName = "EdgeRush/SubPatternSO", order = 0)]
-public class SubPatternSO : ScriptableObject {
-
+[System.Serializable]
+public class SubPattern {
     [SerializeField, HideInInspector] string title = "subpattern";
+    [HideInInspector, SerializeField] bool initialized = false;
     public void Validate(string prefix = "") {
         title = prefix + patternType.ToString();
-        if (patternType != PatternType.single && patternType != PatternType.bullet) {
-            title += " " + numSubPatterns;
+        if (patternType != PatternType.single) {
+            title += " " + spawnAmount;
+        }
+        if (radius < 0) radius = 0;
+        if (spacing < 0) spacing = 0;
+        if (!initialized) {
+            Initialize();
         }
     }
-
+    void Initialize() {
+        spawnAmount = 1;
+        spacing = 0.5f;
+        radius = 0.2f;
+        startAngle = -90;
+        angleDist = 30;
+        initialized = true;
+    }
     public enum PatternType {
         none,
-        bullet,
         single,
         line,
         arc,
@@ -23,18 +34,19 @@ public class SubPatternSO : ScriptableObject {
         emitter,
     }
     public PatternType patternType;
-    [ConditionalHide(nameof(patternType), false, (int)PatternType.single, (int)PatternType.bullet)]
-    public int numSubPatterns = 1;
+    // [ConditionalHide(nameof(patternType), false, (int)PatternType.single)]
+    [Min(1)]
+    public int spawnAmount = 1;
 
+    // [Min(0)]
     [ConditionalHide(nameof(patternType), (int)PatternType.line)]
-    [Min(0)]
-    public float spacing = 5;
+    public float spacing = 0.5f;
     [ConditionalHide(nameof(patternType), (int)PatternType.line)]
     public float alignmentDegree = 0;
 
     [ConditionalHide(nameof(patternType), (int)PatternType.ring, (int)PatternType.arc)]
-    [Min(0)]
-    public float radius = 1;
+    // [Min(0)]
+    public float radius = 0.2f;
 
     [ConditionalHide(nameof(patternType), (int)PatternType.arc)]
     // [Range(-360, 360)]
@@ -50,12 +62,12 @@ public class SubPatternSO : ScriptableObject {
     public bool angleOut = false;
 
     [ConditionalHide(nameof(patternType), (int)PatternType.randomize)]
-    public float initRandomAngleOffsetMin = 0;
+    public float initRandomAngleOffsetMin = -10;
     [ConditionalHide(nameof(patternType), (int)PatternType.randomize)]
-    public float initRandomAngleOffsetMax = 0;
+    public float initRandomAngleOffsetMax = 10;
 
-    [Space]
-    [ConditionalHide(nameof(patternType), false, (int)PatternType.bullet, (int)PatternType.none)]
+    // [Space]
+    // [ConditionalHide(nameof(patternType), false, (int)PatternType.none)]
     public InitStateMod modifier = new InitStateMod();
     [System.Serializable]
     public class InitStateMod {
@@ -68,25 +80,25 @@ public class SubPatternSO : ScriptableObject {
         // todo? set ang, pos, directly option
 
         public float addAng = 0;
-        [ConditionalHide(nameof(SubPatternSO.patternType), (int)SubPatternSO.PatternType.line,
-                                                        (int)SubPatternSO.PatternType.arc,
-                                                        (int)SubPatternSO.PatternType.ring)]
+        [ConditionalHide(nameof(SubPattern.patternType), (int)SubPattern.PatternType.line,
+                                                        (int)SubPattern.PatternType.arc,
+                                                        (int)SubPattern.PatternType.ring)]
         public float addAngByIndex = 0;
         public float addSpeed = 0;
-        [ConditionalHide(nameof(SubPatternSO.patternType), (int)SubPatternSO.PatternType.line,
-                                                        (int)SubPatternSO.PatternType.arc,
-                                                        (int)SubPatternSO.PatternType.ring)]
+        [ConditionalHide(nameof(SubPattern.patternType), (int)SubPattern.PatternType.line,
+                                                        (int)SubPattern.PatternType.arc,
+                                                        (int)SubPattern.PatternType.ring)]
         public float addSpeedByIndex = 0;
         public float addAngSpeed = 0;
-        [ConditionalHide(nameof(SubPatternSO.patternType), (int)SubPatternSO.PatternType.line,
-                                                        (int)SubPatternSO.PatternType.arc,
-                                                        (int)SubPatternSO.PatternType.ring)]
+        [ConditionalHide(nameof(SubPattern.patternType), (int)SubPattern.PatternType.line,
+                                                        (int)SubPattern.PatternType.arc,
+                                                        (int)SubPattern.PatternType.ring)]
         public float addAngSpeedByIndex = 0;
     }
     // [ConditionalHide(nameof(patternType), (int)PatternType.bullet)]
     // public bool followPlayer = false;
-    [ConditionalHide(nameof(patternType), (int)PatternType.bullet)]
-    public BulletSpawnSettings bulletSpawnSettings;
+    // [ConditionalHide(nameof(patternType), (int)PatternType.bullet)]
+    // public BulletSpawnSettings bulletSpawnSettings;
 
     // public SubPatternSO subpattern;
 }
