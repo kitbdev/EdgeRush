@@ -6,7 +6,8 @@ public class LevelManager : Singleton<LevelManager> {
 
     public Level[] levels = new Level[0];
     public Level curLevel => currentLevelIndex >= 0 && currentLevelIndex < levels.Length ? levels[currentLevelIndex] : null;
-    public string curLevelEventTitle => curLevel?.levelEvents[levelEventIndex].Title;
+    public string curLevelEventTitle => (curLevel != null && levelEventIndex < curLevel.levelEvents.Length) ?
+        curLevel.levelEvents[levelEventIndex].Title : null;
 
     [SerializeField] GameObject coinprefab;
     [SerializeField] GameObject weaponpickupPrefab;
@@ -113,6 +114,9 @@ public class LevelManager : Singleton<LevelManager> {
             return;
         }
         var curLevel = levels[currentLevelIndex];
+        if (levelEventIndex < 0 || levelEventIndex >= curLevel.levelEvents.Length) {
+            return;
+        }
         int levInd = currentLevelIndex;
         LevelEvent curEvent = curLevel.levelEvents[levelEventIndex];
         bool finished = HandleLevelEvent(curEvent);

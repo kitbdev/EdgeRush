@@ -72,13 +72,16 @@ public class HUDManager : Singleton<HUDManager> {
     void UpdateWeaponAmmoCount() {
         int numWeaponUis = weaponUIParent.childCount;
         int wantedWeaponNum = player.weaponDatas.Count;
-        Debug.Log("updating weaponui " + numWeaponUis + " " + wantedWeaponNum);
+        // Debug.Log("updating weaponui " + numWeaponUis + " " + wantedWeaponNum);
         List<WeaponUI> weaponUIs = new List<WeaponUI>();
         if (numWeaponUis != wantedWeaponNum) {
             // erase all and remake
             for (int i = 0; i < numWeaponUis; i++) {
                 // erase
                 GameObject wUi = weaponUIParent.GetChild(i).gameObject;
+                if (wUi.TryGetComponent<WeaponUI>(out var weaponUI)) {
+                    weaponUI.button?.onClick.RemoveAllListeners();
+                }
                 if (Application.isPlaying) {
                     Destroy(wUi);
                 } else {
@@ -112,7 +115,15 @@ public class HUDManager : Singleton<HUDManager> {
             } else {
                 weaponUI.weaponSelectedGo.SetActive(false);
             }
+            {
+                int weaponIndex = i;
+                weaponUI.button.onClick.AddListener(() => ClickWeapon(weaponIndex));
+            }
         }
+    }
+    void ClickWeapon(int index) {
+        Debug.Log("weapon " + index + " clicked");
+        player.SelectWeapon(index);
     }
     void UpdateCoinCount() {
         coinCountText.text = player.numCoins + "";

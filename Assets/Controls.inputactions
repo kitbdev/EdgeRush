@@ -15,7 +15,7 @@
                 },
                 {
                     "name": "MoveTo",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "e69a76e6-286f-42e9-bd36-69db1d49e1a9",
                     "expectedControlType": "Vector2",
                     "processors": "",
@@ -25,6 +25,14 @@
                     "name": "Fire",
                     "type": "Button",
                     "id": "c7fd8776-2785-4268-a8ad-69063811b832",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "FireMoveTo",
+                    "type": "Button",
+                    "id": "f5fe13d9-0acb-4b8c-8c16-e198f208ddc7",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -275,28 +283,6 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "05f6913d-c316-48b2-a6bb-e225f14c7960",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "886e731e-7071-4ae4-95c0-e61739dad6fd",
-                    "path": "<Touchscreen>/primaryTouch/tap",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Touch",
                     "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -606,6 +592,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "SelectWeaponScroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "53ad5706-367f-4005-b3ff-5959256da7a7",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "FireMoveTo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b2a20f87-537c-4155-9cfc-c8447ed3cd07",
+                    "path": "<Touchscreen>/primaryTouch/tap",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Touch",
+                    "action": "FireMoveTo",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

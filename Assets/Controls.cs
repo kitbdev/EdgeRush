@@ -28,7 +28,7 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""MoveTo"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Value"",
                     ""id"": ""e69a76e6-286f-42e9-bd36-69db1d49e1a9"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
@@ -38,6 +38,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""name"": ""Fire"",
                     ""type"": ""Button"",
                     ""id"": ""c7fd8776-2785-4268-a8ad-69063811b832"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""FireMoveTo"",
+                    ""type"": ""Button"",
+                    ""id"": ""f5fe13d9-0acb-4b8c-8c16-e198f208ddc7"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -288,28 +296,6 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""05f6913d-c316-48b2-a6bb-e225f14c7960"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""886e731e-7071-4ae4-95c0-e61739dad6fd"",
-                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Touch"",
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -619,6 +605,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""SelectWeaponScroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""53ad5706-367f-4005-b3ff-5959256da7a7"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""FireMoveTo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b2a20f87-537c-4155-9cfc-c8447ed3cd07"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
+                    ""action"": ""FireMoveTo"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1199,6 +1207,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_MoveTo = m_Player.FindAction("MoveTo", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+        m_Player_FireMoveTo = m_Player.FindAction("FireMoveTo", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_MoveToPoint = m_Player.FindAction("MoveToPoint", throwIfNotFound: true);
         m_Player_SelectWeaponNext = m_Player.FindAction("SelectWeaponNext", throwIfNotFound: true);
@@ -1272,6 +1281,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_MoveTo;
     private readonly InputAction m_Player_Fire;
+    private readonly InputAction m_Player_FireMoveTo;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_MoveToPoint;
     private readonly InputAction m_Player_SelectWeaponNext;
@@ -1288,6 +1298,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @MoveTo => m_Wrapper.m_Player_MoveTo;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
+        public InputAction @FireMoveTo => m_Wrapper.m_Player_FireMoveTo;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @MoveToPoint => m_Wrapper.m_Player_MoveToPoint;
         public InputAction @SelectWeaponNext => m_Wrapper.m_Player_SelectWeaponNext;
@@ -1315,6 +1326,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                @FireMoveTo.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireMoveTo;
+                @FireMoveTo.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireMoveTo;
+                @FireMoveTo.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireMoveTo;
                 @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
@@ -1355,6 +1369,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
+                @FireMoveTo.started += instance.OnFireMoveTo;
+                @FireMoveTo.performed += instance.OnFireMoveTo;
+                @FireMoveTo.canceled += instance.OnFireMoveTo;
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
@@ -1541,6 +1558,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnMoveTo(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnFireMoveTo(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnMoveToPoint(InputAction.CallbackContext context);
         void OnSelectWeaponNext(InputAction.CallbackContext context);

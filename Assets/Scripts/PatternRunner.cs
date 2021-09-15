@@ -153,7 +153,9 @@ public class PatternRunner : MonoBehaviour {
             case SubPatternSO.PatternType.target:
                 BulletInitState nplace = new BulletInitState(initState);
                 if (player == null) {
-                    Debug.LogWarning(name + " has no player!");
+                    if (Application.isPlaying) {
+                        Debug.LogWarning(name + " has no player!");
+                    }
                     offsets.Add(nplace);
                     break;
                 }

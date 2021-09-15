@@ -17,6 +17,7 @@ public class Player : MonoBehaviour {
     [SerializeField] float moveSpeed = 10;
     [SerializeField] float accelerationRate = 2;
     [SerializeField] Transform moveTo;
+    [SerializeField] float playAreaWidth = 10;
 
     [SerializeField, ReadOnly] Transform resetPos;
     [SerializeField, ReadOnly] Vector2 velocity = Vector2.zero;
@@ -51,6 +52,7 @@ public class Player : MonoBehaviour {
     [SerializeField, ReadOnly] bool inputMoveTo;
     [SerializeField, ReadOnly] bool inputShoot;
     [SerializeField, ReadOnly] bool inputShootHold;
+    [SerializeField, ReadOnly] bool mouseInBounds;
     Controls controls;
 
     public event System.Action weaponAmmoChangeEvent;
@@ -77,14 +79,21 @@ public class Player : MonoBehaviour {
             var pos = c.ReadValue<Vector2>();
             Ray screenRay = cam.ScreenPointToRay(pos);
             if (interactionPlane.Raycast(screenRay, out float enter)) {
+                mouseInBounds = false;
                 Vector3 point = screenRay.origin + screenRay.direction * enter;
-                moveTo.transform.position = point;
+                if (point.x >= -playAreaWidth && point.x <= playAreaWidth
+                    && point.y >= -playAreaWidth && point.y <= playAreaWidth) {
+                    // is inbounds 
+                    mouseInBounds = true;
+                    moveTo.transform.position = point;
+                }
+                // if (!mouseInBounds) {
+                //     inputMoveTo = false;
+                // }
             }
-            // todo switch to moveto mode vs delta mode
-            // moveTo.transform.position = cam.ScreenToWorldPoint(new Vector3(pos.x, pos.y, -cam.transform.position.z));
-            // inputMoveTo = true;
+            // todo switch between moveto mode vs delta mode
         };
-        controls.Player.MoveToPoint.performed += c => inputMoveTo = true;
+        controls.Player.MoveToPoint.performed += c => { if (mouseInBounds) { inputMoveTo = true; } };
         controls.Player.MoveToPoint.canceled += c => inputMoveTo = false;
         controls.Player.Fire.performed += c => {
             if (Time.timeScale == 0) return;
@@ -92,7 +101,22 @@ public class Player : MonoBehaviour {
             inputShoot = true;
         };
         controls.Player.Fire.canceled += c => { inputShootHold = false; };
-        controls.Player.SelectWeaponNext.performed += c => { SelectWeaponNext(); };
+        controls.Player.FireMoveTo.performed += c => {
+            if (Time.timeScale == 0) return;
+            // test click pos
+            if (mouseInBounds) {
+                inputShoot = true;
+                inputShootHold = true;
+            }
+        };
+        controls.Player.FireMoveTo.canceled += c => {
+            // if (mouseInBounds) {
+            inputShootHold = false;
+            // }
+        };
+        controls.Player.SelectWeaponNext.performed += c => {
+            SelectWeaponNext();
+        };
         controls.Player.SelectWeaponPrev.performed += c => { SelectWeaponPrev(); };
         controls.Player.SelectWeaponScroll.performed += c => {
             if (c.ReadValue<float>() < 0) {
@@ -116,7 +140,7 @@ public class Player : MonoBehaviour {
         if (initialWeapon) {
             SetCurrentWeapon(initialWeapon);
         }
-        // weaponAmmoChangeEvent?.Invoke();
+        weaponAmmoChangeEvent?.Invoke();
     }
     private void Update() {
         if (Time.timeScale == 0) return;
@@ -159,7 +183,8 @@ public class Player : MonoBehaviour {
         }
         SelectWeapon(index);
     }
-    void SelectWeapon(int index) {
+    public void SelectWeapon(int index) {
+        if (Time.timeScale == 0) return;
         if (index < 0 || index >= weaponDatas.Count) {
             // invalid index
             return;

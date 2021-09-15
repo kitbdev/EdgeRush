@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: machinegun
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6110090707465297226, guid: 0d5847e6210b6b54eb112f198b5afe3b, type: 3}
+  shootClip: {fileID: 8300000, guid: 01d8facd82af1854d9ee2ffa7ea6405e, type: 3}
   modelIndex: 2
+  hasUnlimitedAmmo: 0
   shootCooldownDur: 0.1
   shootHoldCooldownDur: 0.1
   damage: 1
