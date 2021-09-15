@@ -7,7 +7,9 @@
 public class WeaponSO : ScriptableObject {
 
     public GameObject bulletPrefab;
+    public AudioClip shootClip;
     public int modelIndex = 0;
+    public bool hasUnlimitedAmmo = false;
     [Min(0f)]
     public float shootCooldownDur = 0.2f;
     [Min(0f)]

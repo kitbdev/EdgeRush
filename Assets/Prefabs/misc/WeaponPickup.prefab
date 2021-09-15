@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5845223749113000101}
   - component: {fileID: 8459970140060339801}
   - component: {fileID: 8459970140060339800}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WeaponPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,6 +85,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupType: 0
   weapon: {fileID: 11400000, guid: 83d33cbb121da474fafc77b8d963e0ef, type: 2}
+  ammoAmount: 1
   numCoins: 0
   vel: {x: 0, y: -2}
 --- !u!1 &8459970140231292248
@@ -99,7 +100,7 @@ GameObject:
   - component: {fileID: 8459970140231292252}
   - component: {fileID: 8459970140231292251}
   - component: {fileID: 8459970140231292250}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

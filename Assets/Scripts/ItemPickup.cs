@@ -33,6 +33,7 @@ public class ItemPickup : MonoBehaviour {
             } else if (pickupType == PickupType.COIN) {
                 player.AddCoins(numCoins);
             }
+            Destroy(gameObject);
         }
     }
 }

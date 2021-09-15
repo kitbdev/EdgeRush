@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [SelectionBase]
@@ -9,7 +10,6 @@ public class Player : MonoBehaviour {
     public class WeaponData {
         public WeaponSO weaponType;
         public int ammoAmount;
-        public GameObject model;
         public bool isUnlocked = false;
     }
 
@@ -24,19 +24,22 @@ public class Player : MonoBehaviour {
 
     [Header("Weapons")]
     [SerializeField] Transform[] shootPoints = new Transform[0];
-    [SerializeField] WeaponSO currentWeapon;
     [SerializeField] GameObject[] gunModels = new GameObject[0];
-    [SerializeField] WeaponData[] weaponDatas;
-    [SerializeField] int curSelectedWeapon = 0;
+    [SerializeField] WeaponSO initialWeapon;
+    [SerializeField, ReadOnly] public List<WeaponData> weaponDatas = new List<WeaponData>();
+    [SerializeField, ReadOnly] int curSelectedWeapon = 0;
+    public WeaponData currentWeaponData =>
+        (curSelectedWeapon >= 0 && curSelectedWeapon < weaponDatas.Count) ? weaponDatas[curSelectedWeapon] : null;
+    public WeaponSO currentWeapon => currentWeaponData?.weaponType ?? null;
 
     [Header("Anim")]
     [SerializeField] Transform modelMove;
 
     [Header("Misc")]
-    [SerializeField] int numCoins;
+    [SerializeField] public int numCoins;
 
     [Header("Audio")]
-    [SerializeField] AudioClip shootClip;// todo per weapon
+    [SerializeField] AudioClip defShootClip;// todo per weapon
     [SerializeField] AudioSource engineAudio;
     [SerializeField] [Range(0, 1)] float minVolume = 0.6f;
     [SerializeField] [Range(0, 1)] float maxVolume = 0.8f;
@@ -62,7 +65,9 @@ public class Player : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         health = GetComponent<Health>();
         cam = Camera.main;
-        SetCurrentWeapon(currentWeapon);
+        if (initialWeapon) {
+            SetCurrentWeapon(initialWeapon);
+        }
         resetPos = new GameObject("Player reset pos").transform;
         resetPos.position = transform.position;
     }
@@ -84,8 +89,18 @@ public class Player : MonoBehaviour {
         };
         controls.Player.MoveToPoint.performed += c => inputMoveTo = true;
         controls.Player.MoveToPoint.canceled += c => inputMoveTo = false;
-        controls.Player.Fire.performed += c => { inputShootHold = true; inputShoot = true; };
+        controls.Player.Fire.performed += c => {
+            if (Time.timeScale == 0) return;
+            inputShootHold = true;
+            inputShoot = true;
+        };
         controls.Player.Fire.canceled += c => { inputShootHold = false; };
+        controls.Player.SelectWeaponNext.performed += c => { SelectWeaponNext(); };
+        controls.Player.SelectWeaponPrev.performed += c => { SelectWeaponPrev(); };
+        controls.Player.SelectWeapon1.performed += c => { SelectWeapon(0); };
+        controls.Player.SelectWeapon2.performed += c => { SelectWeapon(1); };
+        controls.Player.SelectWeapon3.performed += c => { SelectWeapon(2); };
+        controls.Player.SelectWeapon4.performed += c => { SelectWeapon(3); };
 
 
         health.dieEvent.AddListener(OnDie);
@@ -97,13 +112,15 @@ public class Player : MonoBehaviour {
     private void Update() {
         if (Time.timeScale == 0) return;
         // input
-        if (inputShootHold) {
-            if (Time.time > lastShootTime + currentWeapon.shootHoldCooldownDur) {
-                ShootCurWeapon();
-            }
-        } else if (inputShoot) {
-            if (Time.time > lastShootTime + currentWeapon.shootCooldownDur) {
-                ShootCurWeapon();
+        if (currentWeapon != null) {
+            if (inputShootHold) {
+                if (Time.time > lastShootTime + currentWeapon.shootHoldCooldownDur) {
+                    ShootCurWeapon();
+                }
+            } else if (inputShoot) {
+                if (Time.time > lastShootTime + currentWeapon.shootCooldownDur) {
+                    ShootCurWeapon();
+                }
             }
         }
         // audio
@@ -119,9 +136,28 @@ public class Player : MonoBehaviour {
             engineAudio.volume = nVol;
         }
     }
-    public void SetCurrentWeapon(WeaponSO weapon) {
-        Debug.Log($"Switching player weapon to {weapon.name}");
-        currentWeapon = weapon;
+    void SelectWeaponNext() {
+        int index = curSelectedWeapon + 1;
+        if (index >= weaponDatas.Count) {
+            index = 0;
+        }
+        SelectWeapon(index);
+    }
+    void SelectWeaponPrev() {
+        int index = curSelectedWeapon - 1;
+        if (index < 0) {
+            index = weaponDatas.Count - 1;
+        }
+        SelectWeapon(index);
+    }
+    void SelectWeapon(int index) {
+        if (index < 0 || index >= weaponDatas.Count) {
+            // invalid index
+            return;
+        }
+        curSelectedWeapon = index;
+        Debug.Log($"Switching player weapon to {currentWeapon.name}");
+        // update model
         for (int i = 0; i < gunModels.Length; i++) {
             GameObject gunModel = gunModels[i];
             if (gunModel != null) gunModel.SetActive(false);
@@ -132,8 +168,32 @@ public class Player : MonoBehaviour {
         }
         weaponAmmoChangeEvent?.Invoke();
     }
+    WeaponData SetCurrentWeapon(WeaponSO weapon, int ammoToAdd = 0) {
+        // adds if not found
+        int index = -1;
+        for (int i = 0; i < weaponDatas.Count; i++) {
+            if (weaponDatas[i].weaponType == weapon) {
+                index = i;
+                break;
+            }
+        }
+        if (index >= 0) {
+            SelectWeapon(index);
+            weaponDatas[index].ammoAmount += ammoToAdd;
+            weaponAmmoChangeEvent?.Invoke();
+            return weaponDatas[index];
+        } else {
+            // make new weapon data
+            WeaponData weaponData = new WeaponData();
+            weaponData.weaponType = weapon;
+            weaponData.ammoAmount = ammoToAdd;
+            weaponDatas.Add(weaponData);
+            weaponAmmoChangeEvent?.Invoke();
+            return weaponData;
+        }
+    }
     public void PickupWeaponAmmo(WeaponSO weaponType, int ammo) {
-        SetCurrentWeapon(weaponType);
+        var weapon = SetCurrentWeapon(weaponType, ammo);
         weaponAmmoChangeEvent?.Invoke();
     }
     public void AddCoins(int amount) {
@@ -141,30 +201,19 @@ public class Player : MonoBehaviour {
         coinAmountChangeEvent?.Invoke();
     }
     void ShootCurWeapon() {
-        // Transform[] curShootPoints = new Transform[currentWeapon.numShootPoints];
-        // // todo check
-        // switch (curShootPoints.Length) {
-        //     case 1:
-        //         curShootPoints[0] = shootPoints[0];
-        //         break;
-        //     case 2:
-        //         curShootPoints[0] = shootPoints[1];
-        //         curShootPoints[1] = shootPoints[2];
-        //         break;
-        //     case 3:
-        //         curShootPoints[0] = shootPoints[0];
-        //         curShootPoints[1] = shootPoints[1];
-        //         curShootPoints[2] = shootPoints[2];
-        //         break;
-        // }
+        if (!currentWeapon) {
+            return;
+        }
         BulletManager.Instance.Shoot(currentWeapon, shootPoints, true);
         lastShootTime = Time.time;
         inputShoot = false;
-        if (shootClip) {
+        var audioClip = currentWeapon.shootClip ?? defShootClip;
+        if (audioClip) {
             AudioManager.Instance.PlaySfx(new AudioManager.AudioSettings() {
-                clip = shootClip, posOffset = transform.position,
+                clip = audioClip, posOffset = transform.position,
             });
         }
+        currentWeaponData.ammoAmount -= 1;
         weaponAmmoChangeEvent?.Invoke();
     }
     private void FixedUpdate() {

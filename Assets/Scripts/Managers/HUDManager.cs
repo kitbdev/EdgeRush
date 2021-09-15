@@ -9,11 +9,15 @@ public class HUDManager : Singleton<HUDManager> {
     [SerializeField] Slider playerHealthSlider;
     [SerializeField] TMP_Text coinCountText;
     [SerializeField] TMP_Text weaponAmmoCountText;
+    [SerializeField] GameObject weaponUIPrefab;
+    [SerializeField] Transform weaponUIParent;
 
     [SerializeField] GameObject bossPopupGo;
     [SerializeField] TMP_Text bossNameText;
     [SerializeField] Slider bossHealthSlider;
 
+    [Space]
+    [SerializeField] Player player;
     [SerializeField] Health playerHealth;
 
     [SerializeField] float healthLerpRate = 10;
@@ -26,11 +30,15 @@ public class HUDManager : Singleton<HUDManager> {
         base.Awake();
     }
     private void OnEnable() {
+        if (player) player.coinAmountChangeEvent += UpdateCoinCount;
+        if (player) player.weaponAmmoChangeEvent += UpdateWeaponAmmoCount;
         playerHealth?.healthUpdateEvent.AddListener(UpdatePlayerHealth);
 
         UpdateAll();
     }
     private void OnDisable() {
+        if (player) player.coinAmountChangeEvent -= UpdateCoinCount;
+        if (player) player.weaponAmmoChangeEvent -= UpdateWeaponAmmoCount;
         playerHealth?.healthUpdateEvent.RemoveListener(UpdatePlayerHealth);
     }
     private void Update() {
@@ -61,10 +69,45 @@ public class HUDManager : Singleton<HUDManager> {
         updatingPlayerHealth = val != nval;
     }
     void UpdateWeaponAmmoCount() {
+        int numWeaponUis = weaponUIParent.childCount;
+        int wantedWeapons = player.weaponDatas.Count;
+        if (numWeaponUis != wantedWeapons) {
+            // erase all and remake
+            for (int i = 0; i < numWeaponUis; i++) {
+                // erase
+                GameObject wUi = weaponUIParent.GetChild(i).gameObject;
+                if (Application.isPlaying) {
+                    Destroy(wUi);
+                } else {
+                    DestroyImmediate(wUi);
+                }
+            }
+            for (int i = 0; i < wantedWeapons; i++) {
+                // position happens autmatically
+                Instantiate(weaponUIPrefab, weaponUIParent);
+            }
+        }
+        // update texts
+        for (int i = 0; i < wantedWeapons; i++) {
+            Transform wUi = weaponUIParent.GetChild(i);
+            WeaponUI weaponUI = wUi.GetComponent<WeaponUI>();
+            Player.WeaponData weaponData = player.weaponDatas[i];
+            if (weaponData.weaponType.hasUnlimitedAmmo) {
+                weaponUI.ammoCountText.text = "infinite";
+            } else {
+                weaponUI.ammoCountText.text = weaponData.ammoAmount + "";
+            }
+            weaponUI.weaponNameText.text = weaponData.weaponType.name;
+            if (weaponData == player.currentWeaponData) {
+                weaponUI.weaponSelectedGo.SetActive(true);
+            } else {
+                weaponUI.weaponSelectedGo.SetActive(false);
+            }
 
+        }
     }
     void UpdateCoinCount() {
-        // coinCountText.text = 
+        coinCountText.text = player.numCoins + "";
     }
     void UpdateBossPopup() {
         if (curBossHealth) {
