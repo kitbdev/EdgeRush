@@ -13,13 +13,20 @@ MonoBehaviour:
   m_Name: singleshot
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6110090707465297226, guid: 0d5847e6210b6b54eb112f198b5afe3b, type: 3}
-  shootClip: {fileID: 8300000, guid: 380c752fcf26afd46891a83c496a400b, type: 3}
+  shootAudio:
+    clip: {fileID: 8300000, guid: 380c752fcf26afd46891a83c496a400b, type: 3}
+    follow: {fileID: 0}
+    position: {x: -1.8529646, y: -3.4491584, z: -0.43}
+    groupOverride: {fileID: 0}
+    volume: 0.509
+    pitch: 1
+    pan: 0
+    priority: 128
   modelIndex: 1
   hasUnlimitedAmmo: 1
   shootCooldownDur: 0.4
   shootHoldCooldownDur: 0.4
   damage: 1
-  aimAtPlayer: 0
   bulletSpawnSettings:
     prefab: {fileID: 6110090707465297226, guid: 0d5847e6210b6b54eb112f198b5afe3b, type: 3}
     initSpeed: 5

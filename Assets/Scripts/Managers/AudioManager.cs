@@ -79,8 +79,8 @@ public class AudioManager : Singleton<AudioManager> {
     public class AudioSettings {
         public AudioClip clip;
         public Transform follow;
-        public Vector3 posOffset;
-        public AudioMixerGroup group;
+        public Vector3 position;
+        public AudioMixerGroup groupOverride;
         [Range(0, 1)]
         public float volume = 1;
         [Range(-3, 3)]
@@ -114,10 +114,10 @@ public class AudioManager : Singleton<AudioManager> {
         } else {
             audioGo.transform.parent = transform;
         }
-        audioGo.transform.localPosition = audioSettings.posOffset;
+        audioGo.transform.localPosition = audioSettings.position;
         var source = audioGo.GetComponent<AudioSource>();
         source.clip = audioSettings.clip;
-        source.outputAudioMixerGroup = audioSettings.group ?? defaultGroup ?? source.outputAudioMixerGroup;
+        source.outputAudioMixerGroup = audioSettings.groupOverride ?? defaultGroup ?? source.outputAudioMixerGroup;
         source.volume = audioSettings.volume;
         source.pitch = audioSettings.pitch;
         source.panStereo = audioSettings.pan;

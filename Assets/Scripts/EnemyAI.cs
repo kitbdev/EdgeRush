@@ -6,10 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyAI : MonoBehaviour {
 
-    [Header("Movement")]
-    public Path path;
-    public Vector3 pathOffset;
-
     [System.Serializable]
     public class DropRate {
         public WeaponSO weaponType;
@@ -17,10 +13,6 @@ public class EnemyAI : MonoBehaviour {
         public float chance;
         public int ammo;
     }
-    [Header("Drop rates")]
-    [Min(0)]
-    public int numCoinsToDrop = 1;
-    public DropRate[] dropRates = new DropRate[0];
 
     [System.Serializable]
     public class aiPhase {
@@ -30,6 +22,17 @@ public class EnemyAI : MonoBehaviour {
         public Vector3 newPathOffset;
         public PatternSO attackPattern;
     }
+
+    [Header("Movement")]
+    public Path path;
+    public Vector3 pathOffset;
+
+    [Header("Drop rates")]
+    [Min(0)]
+    public int numCoinsToDrop = 1;
+    public DropRate[] dropRates = new DropRate[0];
+    public AudioManager.AudioSettings deathAudio;
+
     // todo multiple phases based on health
     [SerializeField] aiPhase[] phases = new aiPhase[0];
 
@@ -69,6 +72,10 @@ public class EnemyAI : MonoBehaviour {
     void OnDie() {
         DropItem();
         EnemyManager.Instance.RemoveEnemy(this);
+        deathAudio.position = transform.position;
+        if (deathAudio != null) {
+            AudioManager.Instance.PlaySfx(deathAudio);
+        }
     }
     void DropItem() {
         // drop coins

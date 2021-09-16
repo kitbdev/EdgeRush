@@ -117,6 +117,15 @@ MonoBehaviour:
   - weaponType: {fileID: 11400000, guid: d4f96c5b02bea944cbba3a0855a7ea19, type: 2}
     chance: 0.259
     ammo: 20
+  deathAudio:
+    clip: {fileID: 8300000, guid: 8c901ff35b643fe4eb201138c41057e4, type: 3}
+    follow: {fileID: 0}
+    position: {x: 0, y: 0, z: 0}
+    groupOverride: {fileID: 0}
+    volume: 0.852
+    pitch: 1
+    pan: 0
+    priority: 128
   phases: []
 --- !u!114 &1376320859788207865
 MonoBehaviour:
@@ -133,7 +142,15 @@ MonoBehaviour:
   patternSO: {fileID: 11400000, guid: ff4259e01837413429d96977c4151c55, type: 2}
   spawnPoints:
   - {fileID: 9219814047151828050}
-  shootClip: {fileID: 8300000, guid: b2e22279275ad1c45bf509b25e46bf08, type: 3}
+  shootAudio:
+    clip: {fileID: 8300000, guid: b2e22279275ad1c45bf509b25e46bf08, type: 3}
+    follow: {fileID: 0}
+    position: {x: 0, y: 0, z: 0}
+    groupOverride: {fileID: 0}
+    volume: 0.156
+    pitch: 1
+    pan: 0
+    priority: 128
   isPlayer: 0
   player: {fileID: 0}
   phaseIndex: 0

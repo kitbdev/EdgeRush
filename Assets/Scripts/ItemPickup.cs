@@ -16,7 +16,7 @@ public class ItemPickup : MonoBehaviour {
     [ConditionalHide(nameof(pickupType), (int)PickupType.COIN)]
     public int numCoins = 1;
     public Vector2 vel = Vector2.down;
-    public AudioClip pickupSfx;
+    public AudioManager.AudioSettings pickupAudio;
     Rigidbody2D rb;
 
     private void Awake() {
@@ -34,8 +34,9 @@ public class ItemPickup : MonoBehaviour {
             } else if (pickupType == PickupType.COIN) {
                 player.AddCoins(numCoins);
             }
-            if (pickupSfx) {
-                AudioManager.Instance.PlaySfx(new AudioManager.AudioSettings() { clip = pickupSfx, posOffset = transform.position });
+            if (pickupAudio != null) {
+                pickupAudio.position = transform.position;
+                AudioManager.Instance.PlaySfx(pickupAudio);
             }
         }
         Destroy(gameObject);

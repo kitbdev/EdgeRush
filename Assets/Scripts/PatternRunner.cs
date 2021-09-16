@@ -61,7 +61,7 @@ public class PatternRunner : MonoBehaviour {
 
     public PatternSO patternSO;
     public Transform[] spawnPoints;
-    [SerializeField] AudioClip shootClip;
+    [SerializeField] AudioManager.AudioSettings shootAudio;
     public bool isPlayer = false;
     public Transform player;
 
@@ -147,9 +147,10 @@ public class PatternRunner : MonoBehaviour {
         }
         // Debug.Log("spawning at " + initState.position);
         bulletManager.Shoot(bulletSpawnSettings, initState, spawnPoints, isPlayer);
-        if (!didSound && shootClip) {
+        if (!didSound && shootAudio != null) {
             didSound = true;
-            audioManager.PlaySfx(shootClip);
+            shootAudio.position = transform.position;
+            audioManager.PlaySfx(shootAudio);
         }
     }
     List<BulletInitState> ApplyPattern(SubPattern subPattern, BulletInitState initState) {
@@ -215,7 +216,7 @@ public class PatternRunner : MonoBehaviour {
                 float halfang = subPattern.angleDist / 2f;
                 if (subPattern.spawnAmount > 1) {
                     for (int i = 0; i < subPattern.spawnAmount; i++) {
-                        float angdeg = subPattern.startAngle + i * 1f / (subPattern.spawnAmount-1) * subPattern.angleDist;
+                        float angdeg = subPattern.startAngle + i * 1f / (subPattern.spawnAmount - 1) * subPattern.angleDist;
                         angdeg -= halfang;
                         // angdeg += 180;
                         float ang = Mathf.Deg2Rad * angdeg + initState.angle;

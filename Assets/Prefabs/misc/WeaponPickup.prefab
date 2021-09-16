@@ -88,7 +88,15 @@ MonoBehaviour:
   ammoAmount: 1
   numCoins: 0
   vel: {x: 0, y: -2}
-  pickupSfx: {fileID: 8300000, guid: 8cab180fcb08d1e448189dd4fd3c10e4, type: 3}
+  pickupAudio:
+    clip: {fileID: 8300000, guid: 8cab180fcb08d1e448189dd4fd3c10e4, type: 3}
+    follow: {fileID: 0}
+    position: {x: 0, y: 0, z: 0}
+    groupOverride: {fileID: 0}
+    volume: 0.882
+    pitch: 1
+    pan: 0
+    priority: 128
 --- !u!1 &8459970140231292248
 GameObject:
   m_ObjectHideFlags: 0

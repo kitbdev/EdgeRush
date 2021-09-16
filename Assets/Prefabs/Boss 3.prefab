@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: efe57ecabbe6f884196884b2c8912028, type: 2}
+    - target: {fileID: 4103724378864960721, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+      propertyPath: manualInvincible
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8203633198450180724, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: m_Radius
       value: 1.94

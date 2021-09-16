@@ -27,6 +27,7 @@ public class Player : MonoBehaviour {
     [SerializeField] Transform[] shootPoints = new Transform[0];
     [SerializeField] GameObject[] gunModels = new GameObject[0];
     [SerializeField] WeaponSO initialWeapon;
+    public bool debugUnlimitedShots = false;
     [SerializeField] public List<WeaponData> weaponDatas = new List<WeaponData>();
     [SerializeField, ReadOnly] int curSelectedWeapon = 0;
     public WeaponData currentWeaponData =>
@@ -254,19 +255,18 @@ public class Player : MonoBehaviour {
         if (!currentWeapon) {
             return;
         }
-        if (!currentWeapon.hasUnlimitedAmmo || currentWeaponData.ammoAmount <= 0) {
-            // not enough ammo!
-            return;
+        if (!debugUnlimitedShots) {
+            if (!(currentWeapon.hasUnlimitedAmmo || currentWeaponData.ammoAmount > 0)) {
+                // not enough ammo!
+                return;
+            }
         }
         BulletManager.Instance.Shoot(currentWeapon, shootPoints, true);
         lastShootTime = Time.time;
         inputShoot = false;
-        var audioClip = currentWeapon.shootClip ?? defShootClip;
-        if (audioClip) {
-            AudioManager.Instance.PlaySfx(new AudioManager.AudioSettings() {
-                clip = audioClip, posOffset = transform.position,
-            });
-        }
+        currentWeapon.shootAudio.clip ??= defShootClip;
+        currentWeapon.shootAudio.position = transform.position;
+        AudioManager.Instance.PlaySfx(currentWeapon.shootAudio);
         currentWeaponData.ammoAmount -= 1;
         weaponAmmoChangeEvent?.Invoke();
     }
