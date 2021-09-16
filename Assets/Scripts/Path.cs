@@ -166,6 +166,9 @@ public class Path : MonoBehaviour {
                 float dur = pathCurve.duration;
                 var moveTween = rb.DOMove(point, dur);
                 if (startPos == null) startPos = point;
+                moveTween.SetLoops(pathCurve.loops, pathCurve.loopType);
+                moveTween.SetEase(pathCurve.easeType);
+                moveTween.SetDelay(pathCurve.delay);
                 pathseq.Append(moveTween);
             } else {
                 Vector2[] points = pathCurve.GetPoints();
