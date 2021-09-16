@@ -206,7 +206,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 77662615}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -9.39, z: 0}
+  m_LocalPosition: {x: 0, y: -8.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 802973923}
@@ -274,6 +274,7 @@ MonoBehaviour:
   winScreen: {fileID: 1645229456}
   loseScreen: {fileID: 688339559}
   mainMenuOnStart: 1
+  editorMainMenuOnStart: 1
 --- !u!4 &113407133
 Transform:
   m_ObjectHideFlags: 0
@@ -1080,7 +1081,7 @@ GameObject:
   - component: {fileID: 418239113}
   - component: {fileID: 418239115}
   - component: {fileID: 418239114}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1456,7 +1457,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 695662563}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: bullet box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1941,6 +1942,9 @@ MonoBehaviour:
   bg: {fileID: 417873583}
   scrollingBackground: {fileID: 1476050714}
   player: {fileID: 2127898607}
+  debugLoggingEditor: 1
+  startLevelEditor: 0
+  startLevelEventEditor: 7
   _currentLevelIndex: 0
   levelEventIndex: 0
 --- !u!4 &864106290
@@ -2469,7 +2473,7 @@ GameObject:
   - component: {fileID: 1094443911}
   - component: {fileID: 1094443913}
   - component: {fileID: 1094443912}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2592,7 +2596,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1135254225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.05, y: -0.73, z: 0}
+  m_LocalPosition: {x: 8.31, y: -0.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 802973923}
@@ -3202,7 +3206,7 @@ GameObject:
   - component: {fileID: 1440179414}
   - component: {fileID: 1440179416}
   - component: {fileID: 1440179415}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3747,7 +3751,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1691280516}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.18, y: -0.73, z: 0}
+  m_LocalPosition: {x: -8.3, y: -0.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 802973923}
@@ -4248,7 +4252,7 @@ GameObject:
   - component: {fileID: 1921547893}
   - component: {fileID: 1921547895}
   - component: {fileID: 1921547894}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5226,6 +5230,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6918699667249066915, guid: 65b98c561375819449dee9810ec74b27, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8544450282750751289, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

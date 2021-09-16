@@ -140,8 +140,8 @@ public class HUDManager : Singleton<HUDManager> {
         }
     }
     void BossDie() {
-        curBossHealth.healthUpdateEvent.RemoveListener(UpdateBossHealth);
-        curBossHealth.dieEvent.RemoveListener(BossDie);
+        curBossHealth?.healthUpdateEvent.RemoveListener(UpdateBossHealth);
+        curBossHealth?.dieEvent.RemoveListener(BossDie);
         curBossHealth = null;
         // todo delay?
         UpdateBossPopup();

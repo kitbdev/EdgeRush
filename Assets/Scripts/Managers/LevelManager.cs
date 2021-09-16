@@ -15,6 +15,11 @@ public class LevelManager : Singleton<LevelManager> {
     [SerializeField] ScrollingBackground scrollingBackground;
     [SerializeField] Player player;
 
+    [Header("Debug")]
+    [SerializeField] bool debugLoggingEditor = false;
+    [SerializeField] int startLevelEditor = 0;
+    [SerializeField] int startLevelEventEditor = 0;
+
     [Space]
     [SerializeField, ReadOnly] int _currentLevelIndex;
     public int currentLevelIndex => _currentLevelIndex;
@@ -38,7 +43,7 @@ public class LevelManager : Singleton<LevelManager> {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
     private void Start() {
-        StartLevel(0);
+        // StartLevel(0);
     }
 
     private void Update() {
@@ -61,6 +66,10 @@ public class LevelManager : Singleton<LevelManager> {
 
     public void StartGame() {
         StartLevel(0);
+#if UNITY_EDITOR
+        StartLevel(startLevelEditor);
+        levelEventIndex = startLevelEventEditor;
+#endif
     }
     public void StopGame() {
         ClearLevel();
@@ -135,6 +144,9 @@ public class LevelManager : Singleton<LevelManager> {
         }
         int levInd = currentLevelIndex;
         LevelEvent curEvent = curLevel.levelEvents[levelEventIndex];
+        if (debugLoggingEditor) {
+            Debug.Log($"starting event {levelEventIndex} {curLevelEventTitle}");
+        }
         bool finished = HandleLevelEvent(curEvent);
         if (finished) {
             // move to the next event

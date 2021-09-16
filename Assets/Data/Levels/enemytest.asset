@@ -24,7 +24,7 @@ MonoBehaviour:
     amountToSpawn: 1
     spawnOffset: {x: 0, y: 0}
     spawnOffsetByIndex: {x: 1, y: 0}
-    pathToFollowSO: {fileID: 11400000, guid: e2328b993e05c1c4b9cb0d15afc45113, type: 2}
+    pathToFollowSO: {fileID: 11400000, guid: 279c74b0854867b47b7435702cf99f87, type: 2}
     attackPatternOverride: {fileID: 0}
     moveSpeedOverride: -1
     clearEnemies: 0

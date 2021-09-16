@@ -21,12 +21,17 @@ public class GameManager : Singleton<GameManager> {
     [SerializeField] MenuScreen winScreen;
     [SerializeField] MenuScreen loseScreen;
     [SerializeField] bool mainMenuOnStart = true;
+    [SerializeField] bool editorMainMenuOnStart = true;
 
     bool isFullScreen = true;
 
     private void Start() {
         TryLoadOptionPrefs();
+#if UNITY_EDITOR
+        if (editorMainMenuOnStart) {
+#else
         if (mainMenuOnStart) {
+#endif
             BackToMainMenu();
         }
     }

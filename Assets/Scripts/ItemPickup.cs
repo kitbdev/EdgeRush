@@ -37,7 +37,7 @@ public class ItemPickup : MonoBehaviour {
             if (pickupSfx) {
                 AudioManager.Instance.PlaySfx(new AudioManager.AudioSettings() { clip = pickupSfx, posOffset = transform.position });
             }
-            Destroy(gameObject);
         }
+        Destroy(gameObject);
     }
 }
