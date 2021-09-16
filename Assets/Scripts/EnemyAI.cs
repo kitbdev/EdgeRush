@@ -28,6 +28,8 @@ public class EnemyAI : MonoBehaviour {
     public float moveSpeedOverride = -1;
     public Path path;
     public Vector3 pathOffset;
+    [SerializeField, ReadOnly] bool pathFollowingPlayer = false;
+    Sequence pathSequence;
 
     [Header("Drop rates")]
     [Min(0)]
@@ -37,8 +39,6 @@ public class EnemyAI : MonoBehaviour {
 
     // todo multiple phases based on health
     [SerializeField] aiPhase[] phases = new aiPhase[0];
-
-    Sequence pathSequence;
 
     PatternRunner patternRunner;
     Health health;
@@ -82,9 +82,8 @@ public class EnemyAI : MonoBehaviour {
     public void OnStop() {
         pathSequence.Kill();
     }
-    bool pathFollowingPlayer = false;
     public void StopFollowing() {
-        if (pathSequence.active && !pathSequence.IsPlaying()) {
+        if (pathSequence != null && pathSequence.active && !pathSequence.IsPlaying()) {
             // resumes
             pathFollowingPlayer = false;
             pathSequence.Play();

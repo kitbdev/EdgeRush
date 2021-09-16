@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad2321aa536f8e4ba82ae618a2c719a, type: 3}
   m_Name: level1
   m_EditorClassIdentifier: 
-  title: 'Level 1: level1 (8 events)'
+  title: 'Level 2: level1 (8 events)'
   levelName: level1
   skip: 0
   backgroundMat: {fileID: 2100000, guid: a746d6938c8a923459a90a90aa88d944, type: 2}
@@ -94,7 +94,7 @@ MonoBehaviour:
     amountToSpawn: 0
     spawnOffset: {x: 0, y: 0}
     spawnOffsetByIndex: {x: 1, y: 0}
-    pathToFollowSO: {fileID: 0}
+    pathToFollowSO: {fileID: 11400000, guid: e2328b993e05c1c4b9cb0d15afc45113, type: 2}
     attackPatternOverride: {fileID: 0}
     moveSpeedOverride: -1
     clearEnemies: 0

@@ -97,8 +97,6 @@ public class Path : MonoBehaviour {
     [SerializeField, ReadOnly] float totalDistance;
     [SerializeField, ReadOnly] float totalDuration;
 
-    Sequence pathseq;
-
     [Header("Events")]
     UnityEvent sequenceCompleteEvent;
     UnityEvent sequenceLoopEvent;
@@ -175,7 +173,7 @@ public class Path : MonoBehaviour {
             this.moveSpeed = moveSpeed;
         }
         CalcDistances();
-        pathseq = DOTween.Sequence();
+        Sequence pathseq = DOTween.Sequence();
         Vector2? startPos = null;
         // Vector2 lastEndPoint = Vector2.zero;
         for (int i = 0; i < pathCurves.Count; i++) {

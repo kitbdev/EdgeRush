@@ -42,8 +42,8 @@ public class EnemyManager : Singleton<EnemyManager> {
     /// </summary>
     /// <param name="enemy"></param>
     public void RemoveEnemy(EnemyAI enemy) {
-        enemy.GetComponent<ObjectPoolObject>().RecycleFromPool();
         enemy.OnStop();
+        enemy.GetComponent<ObjectPoolObject>().RecycleFromPool();
         activeEnemies.Remove(enemy);
     }
     public struct WaveSpawnData {

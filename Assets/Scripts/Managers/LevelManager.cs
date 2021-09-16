@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : Singleton<LevelManager> {
 
@@ -68,6 +69,8 @@ public class LevelManager : Singleton<LevelManager> {
     }
 
     public void StartGame() {
+        // DG.Tweening.DOTween.KillAll();
+        player.ResetAll();
 #if UNITY_EDITOR
         StartLevel(startLevelEditor);
         levelEventIndex = startLevelEventEditor;

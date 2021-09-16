@@ -246,9 +246,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba66fc4d6b0129c4b9e5180141b2c6c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeedOverride: -1
   path: {fileID: 0}
   pathOffset: {x: 0, y: 0, z: 0}
-  numCoinsToDrop: 1
+  numCoinsToDrop: 10
   dropRates: []
   deathAudio:
     clip: {fileID: 8300000, guid: 4ecbb17949cedde40915c3c56021284e, type: 3}

@@ -141,9 +141,6 @@ public class Player : MonoBehaviour {
         controls?.Disable();
         health.dieEvent.RemoveListener(OnDie);
     }
-    private void Start() {
-        ResetAll();
-    }
     private void Update() {
         if (Time.timeScale == 0) {
             if (engineAudio.isPlaying) {
@@ -212,7 +209,7 @@ public class Player : MonoBehaviour {
         }
         weaponAmmoChangeEvent?.Invoke();
     }
-    WeaponData SetCurrentWeapon(WeaponSO weapon, int ammoToAdd = 0) {
+    WeaponData SetCurrentWeapon(WeaponSO weapon, int ammoToAdd = 0, bool andSelect = true) {
         // adds if not found
         int index = -1;
         for (int i = 0; i < weaponDatas.Count; i++) {
@@ -222,8 +219,8 @@ public class Player : MonoBehaviour {
             }
         }
         if (index >= 0) {
-            SelectWeapon(index);
             weaponDatas[index].ammoAmount += ammoToAdd;
+            if (andSelect) { SelectWeapon(index); }
             weaponAmmoChangeEvent?.Invoke();
             return weaponDatas[index];
         } else {
@@ -232,13 +229,13 @@ public class Player : MonoBehaviour {
             weaponData.weaponType = weapon;
             weaponData.ammoAmount = ammoToAdd;
             weaponDatas.Add(weaponData);
+            if (andSelect) { SelectWeapon(weaponDatas.Count - 1); }
             weaponAmmoChangeEvent?.Invoke();
             return weaponData;
         }
     }
     public void PickupWeaponAmmo(WeaponSO weaponType, int ammo) {
-        SetCurrentWeapon(weaponType, ammo);
-        // weaponAmmoChangeEvent?.Invoke();
+        SetCurrentWeapon(weaponType, ammo, false);
     }
     public void AddCoins(int amount) {
         numCoins += amount;
@@ -306,6 +303,7 @@ public class Player : MonoBehaviour {
         ResetForLevel();
         lastShootTime = 0;
         numCoins = startCoinAmount;
+        weaponDatas.Clear();
         if (initialWeapon) {
             SetCurrentWeapon(initialWeapon);
         }

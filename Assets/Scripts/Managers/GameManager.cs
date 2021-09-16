@@ -23,11 +23,13 @@ public class GameManager : Singleton<GameManager> {
     [SerializeField] bool mainMenuOnStart = true;
 
     bool isFullScreen = true;
-
+    protected override void Awake() {
+        base.Awake();
+    }
     private void Start() {
         TryLoadOptionPrefs();
         if (mainMenuOnStart) {
-            BackToMainMenu();
+            ShowMainMenu();
         }
     }
     public void SaveOptionPrefs() {
@@ -68,11 +70,20 @@ public class GameManager : Singleton<GameManager> {
         SetFullScreen(!isFullScreen);
     }
 
+    public void HideMenu() {
+        PauseManager.Instance.UnPause();
+        menuManager.HideAllScreens();
+    }
     [ContextMenu("Main menu")]
-    public void BackToMainMenu() {
+    void ShowMainMenu() {
         PauseManager.Instance.Pause();
         LevelManager.Instance.StopGame();
         menuManager.ShowOnlyScreen(mainMenuScreen);
+    }
+    public void BackToMainMenu() {
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
+        // GameManager.Instance.HideMenu();
+        // ShowMainMenu();
     }
     [ContextMenu("win")]
     public void PlayerWin() {
