@@ -58,11 +58,13 @@ public class LevelManager : Singleton<LevelManager> {
             go.transform.position = position + rpos;
         }
     }
-    public void DropWeapon(WeaponSO weaponType, Vector3 position) {
+    public void DropWeapon(WeaponSO weaponType, Vector3 position, int ammoamount) {
         if (!weaponpickupPrefab) return;
         var go = Instantiate(weaponpickupPrefab, transform);
         go.transform.position = position;
-        go.GetComponent<ItemPickup>().weapon = weaponType;
+        ItemPickup itemPickup = go.GetComponent<ItemPickup>();
+        itemPickup.weapon = weaponType;
+        itemPickup.ammoAmount = ammoamount;
     }
 
     public void StartGame() {

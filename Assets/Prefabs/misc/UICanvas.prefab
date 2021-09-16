@@ -1312,7 +1312,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28.85
+  m_fontSize: 28.8
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2780,7 +2780,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.4251521, y: 0.25800002}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00012207031, y: 4.734665}
+  m_AnchoredPosition: {x: -0.00012207031, y: 4.73468}
   m_SizeDelta: {x: 0, y: 4.7346}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &890027057118002703
@@ -4181,14 +4181,12 @@ MonoBehaviour:
   playerHealthSlider: {fileID: 8544450283429373232}
   coinCountText: {fileID: 8544450282996790652}
   winCoinCountText: {fileID: 4263641641646294713}
-  weaponAmmoCountText: {fileID: 0}
   weaponUIPrefab: {fileID: 365591534916830838, guid: e941e6f202934274fbfd1bbf0e272ac6, type: 3}
   weaponUIParent: {fileID: 8544450283410363800}
   bossPopupGo: {fileID: 8544450284493412902}
   bossNameText: {fileID: 8544450284602899783}
   bossHealthSlider: {fileID: 8544450284392131035}
   player: {fileID: 0}
-  playerHealth: {fileID: 0}
   healthLerpRate: 10
   curBossHealth: {fileID: 0}
 --- !u!1 &8544450282984321388

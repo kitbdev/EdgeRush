@@ -8,6 +8,7 @@ public class HealZones : MonoBehaviour {
     [SerializeField] float healRate = 1;
     [SerializeField] float activeDuration = 5;
     [SerializeField] GameObject[] gameObjects = new GameObject[0];
+    [SerializeField] Animator[] animators = new Animator[0];
     [SerializeField, ReadOnly] bool isActive;
     float activateTime = 0;
     Health playerHealth;
@@ -32,15 +33,19 @@ public class HealZones : MonoBehaviour {
         }
         activateTime = Time.time;
         isActive = true;
-        foreach (var go in gameObjects) {
-            go.SetActive(true);
-        }
+        SetActive(true);
     }
     public void Deactivate() {
         isActive = false;
-        // todo animation
+        SetActive(false);
+    }
+    void SetActive(bool enabled) {
+        isActive = true;
         foreach (var go in gameObjects) {
-            go.SetActive(false);
+            go.SetActive(enabled);
+        }
+        foreach (var anim in animators) {
+            anim.SetBool("Play", enabled);
         }
     }
     public void Heal() {

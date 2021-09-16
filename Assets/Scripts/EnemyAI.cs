@@ -15,6 +15,7 @@ public class EnemyAI : MonoBehaviour {
         public WeaponSO weaponType;
         [Range(0f, 1f)]
         public float chance;
+        public int ammo;
     }
     [Header("Drop rates")]
     [Min(0)]
@@ -81,7 +82,7 @@ public class EnemyAI : MonoBehaviour {
                 if (droprate.weaponType != null) {
                     // is null for nothing
                     // drop this item
-                    LevelManager.Instance.DropWeapon(droprate.weaponType, transform.position);
+                    LevelManager.Instance.DropWeapon(droprate.weaponType, transform.position, droprate.ammo);
                 }
                 break;
             }
