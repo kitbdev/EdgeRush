@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-[System.Serializable]
-public class Level {
+[CreateAssetMenu(fileName = "LevelSO", menuName = "EdgeRush/LevelSO", order = 0)]
+public class LevelSO : ScriptableObject {    
     [SerializeField, HideInInspector] public string title = "level";
     public void Validate(string index = "") {
         title = $"Level {index}: {levelName} ({levelEvents.Length} events)";
@@ -60,7 +60,8 @@ public class LevelEvent {
     [ConditionalHide(nameof(levelEventType), (int)LevelEventType.spawnEnemyWave,
                                             (int)LevelEventType.spawnBoss,
                                             (int)LevelEventType.spawnMisc)]
-    public Path pathToFollow;
+    public PathSO pathToFollowSO;
+    public Path pathToFollow => pathToFollowSO?.path;
     [ConditionalHide(nameof(levelEventType), (int)LevelEventType.spawnEnemyWave,
                                             (int)LevelEventType.spawnBoss)]
     public PatternSO attackPatternOverride = null;

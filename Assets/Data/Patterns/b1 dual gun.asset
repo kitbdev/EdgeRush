@@ -18,8 +18,8 @@ MonoBehaviour:
   - title: 0. phase shoot
     initialized: 1
     skip: 0
-    delayDuration: 0.8
-    duration: 0
+    delayDuration: 0
+    duration: 0.8
     repetitions: 1
     spawnBullet: 1
     bulletSpawnSettings:

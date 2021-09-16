@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager> {
 
-    public Level[] levels = new Level[0];
-    public Level curLevel => currentLevelIndex >= 0 && currentLevelIndex < levels.Length ? levels[currentLevelIndex] : null;
+    public LevelSO[] levels = new LevelSO[0];
+    public LevelSO curLevel => currentLevelIndex >= 0 && currentLevelIndex < levels.Length ? levels[currentLevelIndex] : null;
     public string curLevelEventTitle => (curLevel != null && levelEventIndex < curLevel.levelEvents.Length) ?
         curLevel.levelEvents[levelEventIndex].Title : null;
 
@@ -23,7 +23,8 @@ public class LevelManager : Singleton<LevelManager> {
 
     private void OnValidate() {
         for (int i1 = 0; i1 < levels.Length; i1++) {
-            Level level = levels[i1];
+            LevelSO level = levels[i1];
+            if (level == null) continue;
             level.Validate((i1 + 1) + "");
             for (int i = 0; i < level.levelEvents.Length; i++) {
                 LevelEvent levelEvent = level.levelEvents[i];
@@ -82,7 +83,7 @@ public class LevelManager : Singleton<LevelManager> {
         // todo level transition
         _currentLevelIndex = levelIndex;
         levelEventIndex = 0;
-        Level level = levels[currentLevelIndex];
+        LevelSO level = levels[currentLevelIndex];
         if (level.backgroundMat && bg) {
             bg.sharedMaterial = level.backgroundMat;
         }

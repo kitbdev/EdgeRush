@@ -66,6 +66,7 @@ public class Path : MonoBehaviour {
         }
     }
 
+    [SerializeField] PathSO pathSO;
     [SerializeField] List<PathCurve> pathCurves = new List<PathCurve>();
     [Min(0f)]
     public float moveSpeed = 5;
@@ -92,6 +93,9 @@ public class Path : MonoBehaviour {
     }
     private void Awake() {
         CalcDistances();
+    }
+    private void OnEnable() {
+        pathSO.path = this;
     }
     [ContextMenu("Recalc distances")]
     void CalcDistances() {

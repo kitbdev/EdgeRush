@@ -19,9 +19,9 @@ public class Damager : MonoBehaviour {
         if (health) {
             health.TakeDamage(damageAmount);
             onHitEvent?.Invoke();
-            if (bullet) {
-                BulletManager.Instance.RemoveBullet(bullet);
-            }
+        }
+        if (bullet) {
+            BulletManager.Instance.RemoveBullet(bullet);
         }
     }
 }
