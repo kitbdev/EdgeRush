@@ -70,12 +70,4 @@ public class MenuManager : MonoBehaviour {
         allHiddenEvent.Invoke();
     }
 
-    public void ExitGame() {
-        // todo save!
-        Debug.LogWarning("todo save");
-        ExitGameNoSave();
-    }
-    public void ExitGameNoSave() {
-        Application.Quit();
-    }
 }

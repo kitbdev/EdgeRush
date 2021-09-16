@@ -18,8 +18,11 @@ public class LevelManager : Singleton<LevelManager> {
 
     [Header("Debug")]
     [SerializeField] bool debugLoggingEditor = false;
+
+#pragma warning disable 0219
     [SerializeField] int startLevelEditor = 0;
     [SerializeField] int startLevelEventEditor = 0;
+#pragma warning restore 0219
 
     [Space]
     [SerializeField, ReadOnly] int _currentLevelIndex;

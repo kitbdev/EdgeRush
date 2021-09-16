@@ -21,10 +21,19 @@ public class GameManager : Singleton<GameManager> {
     [SerializeField] MenuScreen winScreen;
     [SerializeField] MenuScreen loseScreen;
     [SerializeField] bool mainMenuOnStart = true;
+#pragma warning disable 0219
+    [SerializeField] GameObject[] buildWEBRemoveGos = new GameObject[0];
+#pragma warning restore 0219
 
     bool isFullScreen = true;
+
     protected override void Awake() {
         base.Awake();
+#if UNITY_WEBGL
+        foreach (var item in buildWEBRemoveGos) {
+            item.SetActive(false);
+        }
+#endif
     }
     private void Start() {
         TryLoadOptionPrefs();
@@ -96,5 +105,12 @@ public class GameManager : Singleton<GameManager> {
         PauseManager.Instance.Pause();
         // LevelManager.Instance.StopGame();
         menuManager.ShowOnlyScreen(loseScreen);
+    }
+
+    public void ExitGame() {
+        // todo save?
+#if !UNITY_WEBGL
+        ExitGameNoSave();
+#endif
     }
 }
