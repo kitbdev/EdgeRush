@@ -1362,6 +1362,7 @@ Transform:
   - {fileID: 906159816}
   - {fileID: 1914186992}
   - {fileID: 1559510899}
+  - {fileID: 1925287558}
   m_Father: {fileID: 1639731001}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2187,8 +2188,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
-  - {fileID: 11400000, guid: 7078be413d25f3e40a04a42742012543, type: 2}
   - {fileID: 11400000, guid: 724a44fa2086c554d94fb19e8396c5d4, type: 2}
+  - {fileID: 11400000, guid: 7078be413d25f3e40a04a42742012543, type: 2}
   coinprefab: {fileID: 4405299198395667427}
   weaponpickupPrefab: {fileID: 8459970140060339879, guid: d0747ff92d56e4c4390a88a9b6e52dd2, type: 3}
   bg: {fileID: 417873583}
@@ -2264,36 +2265,40 @@ MonoBehaviour:
   pathSO: {fileID: 11400000, guid: e2328b993e05c1c4b9cb0d15afc45113, type: 2}
   pathCurves:
   - title: 0. move to p_0 (0.0, 10.1)
+    initialized: 1
+    pathCurveType: 1
     moveToTransform: {fileID: 1680345519}
     moveToOffset: {x: 0, y: 0}
     curve: {fileID: 0}
-    loops: 0
+    loops: 1
     delay: 0
     loopType: 0
-    easeType: 0
+    easeType: 1
     distance: 0
     duration: 0
     distanceTotal: 0
     durationTotal: 0
   - title: 1. move to p_0 (0.0, 5.2)
+    initialized: 1
+    pathCurveType: 1
     moveToTransform: {fileID: 1620616943}
     moveToOffset: {x: 0, y: 0}
     curve: {fileID: 0}
-    loops: 0
+    loops: 1
     delay: 0
     loopType: 0
-    easeType: 0
+    easeType: 1
     distance: 4.84
     duration: 0.96800005
-    distanceTotal: 0
-    durationTotal: 0
+    distanceTotal: 4.84
+    durationTotal: 0.96800005
   moveSpeed: 5
   delay: 0
   loops: 1
   fullSequenceLoopType: 0
   fullSequenceEase: 1
-  totalDistance: 0
-  totalDuration: 0
+  totalDistance: 4.84
+  totalDuration: 0.96800005
 --- !u!114 &906577067 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8544450283215090742, guid: 65b98c561375819449dee9810ec74b27, type: 3}
@@ -3574,6 +3579,8 @@ MonoBehaviour:
   pathSO: {fileID: 11400000, guid: 279c74b0854867b47b7435702cf99f87, type: 2}
   pathCurves:
   - title: 0. entrycurve
+    initialized: 1
+    pathCurveType: 0
     moveToTransform: {fileID: 0}
     moveToOffset: {x: 0, y: 0}
     curve: {fileID: 144804039}
@@ -3581,23 +3588,27 @@ MonoBehaviour:
     delay: 0
     loopType: 0
     easeType: 1
-    distance: 0
-    duration: 0
-    distanceTotal: 0
-    durationTotal: 0
+    distance: 9.173348
+    duration: 0.91733485
+    distanceTotal: 9.173348
+    durationTotal: 0.91733485
   - title: 1. maincurve
+    initialized: 1
+    pathCurveType: 0
     moveToTransform: {fileID: 0}
     moveToOffset: {x: 0, y: 0}
     curve: {fileID: 1380748399}
-    loops: 6
+    loops: 1
     delay: 2
-    loopType: 2
+    loopType: 0
     easeType: 1
-    distance: 0
-    duration: 0
-    distanceTotal: 0
-    durationTotal: 2
+    distance: 48.489204
+    duration: 4.8489203
+    distanceTotal: 48.489204
+    durationTotal: 6.8489203
   - title: 2. exitcurve
+    initialized: 1
+    pathCurveType: 0
     moveToTransform: {fileID: 0}
     moveToOffset: {x: 0, y: 0}
     curve: {fileID: 269880396}
@@ -3605,17 +3616,17 @@ MonoBehaviour:
     delay: 0
     loopType: 0
     easeType: 1
-    distance: 0
-    duration: 0
-    distanceTotal: 0
-    durationTotal: 0
+    distance: 4.0632925
+    duration: 0.40632924
+    distanceTotal: 4.0632925
+    durationTotal: 0.40632924
   moveSpeed: 10
   delay: 0
   loops: 1
   fullSequenceLoopType: 0
   fullSequenceEase: 1
-  totalDistance: 0
-  totalDuration: 2
+  totalDistance: 61.725845
+  totalDuration: 8.172585
 --- !u!1 &1399359703
 GameObject:
   m_ObjectHideFlags: 0
@@ -3805,7 +3816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7eeee1a366033448b903e62c7171022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 1
   useUnscaledtime: 0
   scrollMats:
   - {fileID: 2100000, guid: a746d6938c8a923459a90a90aa88d944, type: 2}
@@ -4976,36 +4987,40 @@ MonoBehaviour:
   pathSO: {fileID: 11400000, guid: fbd8a43c70c1ae448939a7d2c9560f02, type: 2}
   pathCurves:
   - title: 0. move to p_9 (-5.7, 2.1)
+    initialized: 1
+    pathCurveType: 1
     moveToTransform: {fileID: 2099953511}
     moveToOffset: {x: 0, y: 0}
     curve: {fileID: 0}
-    loops: 0
+    loops: 1
     delay: 0
     loopType: 0
-    easeType: 0
+    easeType: 1
     distance: 0
     duration: 0
     distanceTotal: 0
     durationTotal: 0
   - title: 1. move to p_10 (4.8, 2.1)
+    initialized: 1
+    pathCurveType: 1
     moveToTransform: {fileID: 1453391174}
     moveToOffset: {x: 0, y: 0}
     curve: {fileID: 0}
-    loops: 0
+    loops: 1
     delay: 0
     loopType: 0
-    easeType: 0
+    easeType: 1
     distance: 10.480042
     duration: 2.0960085
-    distanceTotal: 0
-    durationTotal: 0
+    distanceTotal: 10.480042
+    durationTotal: 2.0960085
   moveSpeed: 5
   delay: 0
   loops: -1
   fullSequenceLoopType: 1
   fullSequenceEase: 1
-  totalDistance: 0
-  totalDuration: 0
+  totalDistance: 10.480042
+  totalDuration: 2.0960085
 --- !u!1 &1921547892
 GameObject:
   m_ObjectHideFlags: 0
@@ -5085,6 +5100,100 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &1925287557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1925287558}
+  - component: {fileID: 1925287559}
+  m_Layer: 0
+  m_Name: followPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1925287558
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925287557}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 442135142}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1925287559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925287557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a837d8e9a52a6f848a0ae3f84becdb21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathSO: {fileID: 11400000, guid: a16fb0da8c0b0ef4cade1a18bb17bf21, type: 2}
+  pathCurves:
+  - title: 0. move to p_0 (0.0, 10.1)
+    initialized: 1
+    pathCurveType: 1
+    moveToTransform: {fileID: 1680345519}
+    moveToOffset: {x: 0, y: 0}
+    curve: {fileID: 0}
+    loops: 1
+    delay: 0
+    loopType: 0
+    easeType: 1
+    distance: 0
+    duration: 0
+    distanceTotal: 0
+    durationTotal: 0
+  - title: 1. move to p_0 (0.0, 5.2)
+    initialized: 1
+    pathCurveType: 1
+    moveToTransform: {fileID: 1620616943}
+    moveToOffset: {x: 0, y: 0}
+    curve: {fileID: 0}
+    loops: 1
+    delay: 0
+    loopType: 0
+    easeType: 1
+    distance: 4.84
+    duration: 0.96800005
+    distanceTotal: 4.84
+    durationTotal: 0.96800005
+  - title: 2. move to p_0 (0.0, 5.2)
+    initialized: 1
+    pathCurveType: 2
+    moveToTransform: {fileID: 1620616943}
+    moveToOffset: {x: 0, y: 0}
+    curve: {fileID: 0}
+    loops: 1
+    delay: 0
+    loopType: 0
+    easeType: 1
+    distance: 0
+    duration: 0
+    distanceTotal: 0
+    durationTotal: 0
+  moveSpeed: 5
+  delay: 0
+  loops: 1
+  fullSequenceLoopType: 0
+  fullSequenceEase: 1
+  totalDistance: 4.84
+  totalDuration: 0.96800005
 --- !u!1 &1997378464
 GameObject:
   m_ObjectHideFlags: 0
@@ -6238,6 +6347,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4206318768929785144, guid: 65b98c561375819449dee9810ec74b27, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 4.7346954
+      objectReference: {fileID: 0}
     - target: {fileID: 4266844541439716316, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -6518,6 +6631,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8544450283619667358, guid: 65b98c561375819449dee9810ec74b27, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5.0049973
+      objectReference: {fileID: 0}
     - target: {fileID: 8544450283619667359, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -6658,6 +6775,10 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 113407135}
+    - target: {fileID: 8544450284391110341, guid: 65b98c561375819449dee9810ec74b27, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5.0049973
+      objectReference: {fileID: 0}
     - target: {fileID: 8544450284511979131, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

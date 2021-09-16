@@ -197,7 +197,7 @@ public class LevelManager : Singleton<LevelManager> {
                     Vector2 spawnPos = levelEvent.spawnOffset + levelEvent.spawnOffsetByIndex * i;
                     var rb = miscgo.GetComponent<Rigidbody2D>();
                     if (levelEvent.pathToFollow && rb) {
-                        levelEvent.pathToFollow.FollowPath(rb, spawnPos, levelEvent.moveSpeedOverride);
+                        levelEvent.pathToFollow.FollowPath(rb, spawnPos, levelEvent.moveSpeedOverride, null);
                     } else {
                         miscgo.transform.position = spawnPos;
                     }

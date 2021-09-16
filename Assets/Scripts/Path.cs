@@ -10,11 +10,16 @@ public class Path : MonoBehaviour {
     [System.Serializable]
     public class PathCurve {
         [SerializeField, HideInInspector] string title = "pathcurve";
+        [HideInInspector, SerializeField] bool initialized = false;
+        public enum PathCurveType {
+            curve, moveToPoint, followPlayer
+        }
+        public PathCurveType pathCurveType;
+        [ConditionalHide(nameof(pathCurveType), (int)PathCurveType.moveToPoint)]
         public Transform moveToTransform;
+        [ConditionalHide(nameof(pathCurveType), (int)PathCurveType.moveToPoint)]
         public Vector2 moveToOffset = Vector2.zero;
-        // todo option to follow player instead
-        // todo conditional hide
-        // todo set defaults properly
+        [ConditionalHide(nameof(pathCurveType), (int)PathCurveType.curve)]
         public BezierCurve curve;
         [Min(-1)]
         public int loops = 1;
@@ -36,6 +41,16 @@ public class Path : MonoBehaviour {
             } else if (curve != null) {
                 title += curve.name;
             }
+            if (!initialized) {
+                Initialize();
+            }
+        }
+        void Initialize() {
+            initialized = true;
+            pathCurveType = PathCurveType.moveToPoint;
+            loops = 1;
+            loopType = LoopType.Restart;
+            easeType = Ease.Linear;
         }
         public Vector2 GetMoveToPoint() {
             return (Vector2)moveToTransform.position + moveToOffset;
@@ -107,14 +122,20 @@ public class Path : MonoBehaviour {
         Vector2? lastPoint = null;
         for (int i = 0; i < pathCurves.Count; i++) {
             PathCurve pathCurve = pathCurves[i];
-            if (pathCurve.moveToTransform != null) {
+            if (pathCurve.pathCurveType == PathCurve.PathCurveType.moveToPoint) {
+                if (pathCurve.moveToTransform == null) {
+                    continue;
+                }
                 Vector2 moveToPoint = pathCurve.GetMoveToPoint();
                 if (lastPoint == null) {
                     lastPoint = moveToPoint;
                 }
                 pathCurve.distance = Vector2.Distance(moveToPoint, (Vector2)lastPoint);
                 lastPoint = moveToPoint;
-            } else if (pathCurve.curve != null) {
+            } else if (pathCurve.pathCurveType == PathCurve.PathCurveType.curve) {
+                if (pathCurve.curve == null) {
+                    continue;
+                }
                 pathCurve.distance = pathCurve.curve.length;
                 lastPoint = pathCurve.GetLastCurvePoint();
             } else {
@@ -145,8 +166,9 @@ public class Path : MonoBehaviour {
         OnValidate();
     }
 
-    public Sequence FollowPath(Rigidbody2D rb, float moveSpeed = -1) => FollowPath(rb, Vector2.zero, moveSpeed);
-    public Sequence FollowPath(Rigidbody2D rb, Vector2 pathOffset, float moveSpeed = -1) {
+    public Sequence FollowPath(Rigidbody2D rb, float moveSpeed = -1, System.Action followAction = null) =>
+        FollowPath(rb, Vector2.zero, moveSpeed, followAction);
+    public Sequence FollowPath(Rigidbody2D rb, Vector2 pathOffset, float moveSpeed = -1, System.Action followAction = null) {
         // todo? paths can be used by multiple users?
         // StopPath();
         if (moveSpeed > 0) {
@@ -164,28 +186,37 @@ public class Path : MonoBehaviour {
             //     pathseq.Append(connectTween);
             // }
             PathCurve pathCurve = pathCurves[i];
-            if (pathCurve.moveToTransform != null) {
-                Vector2 point = pathCurve.GetMoveToPoint() + pathOffset;
-                float dur = pathCurve.duration;
-                var moveTween = rb.DOMove(point, dur);
-                if (startPos == null) startPos = point;
-                moveTween.SetLoops(pathCurve.loops, pathCurve.loopType);
-                moveTween.SetEase(pathCurve.easeType);
-                moveTween.SetDelay(pathCurve.delay);
-                pathseq.Append(moveTween);
+
+            if (pathCurve.pathCurveType == PathCurve.PathCurveType.moveToPoint) {
+                if (pathCurve.moveToTransform != null) {
+                    Vector2 point = pathCurve.GetMoveToPoint() + pathOffset;
+                    float dur = pathCurve.duration;
+                    var moveTween = rb.DOMove(point, dur);
+                    if (startPos == null) startPos = point;
+                    moveTween.SetLoops(pathCurve.loops, pathCurve.loopType);
+                    moveTween.SetEase(pathCurve.easeType);
+                    moveTween.SetDelay(pathCurve.delay);
+                    pathseq.Append(moveTween);
+                }
+            } else if (pathCurve.pathCurveType == PathCurve.PathCurveType.curve) {
+                if (pathCurve.curve != null) {
+                    Vector2[] points = pathCurve.GetPoints();
+                    points = points.ToList().ConvertAll<Vector2>(v => v + pathOffset).ToArray();
+                    // lastEndPoint = points[points.Length - 3];
+                    float dur = pathCurve.duration;
+                    var pathtween = rb.DOPath(points, dur, PathType.CubicBezier, PathMode.Sidescroller2D);
+                    if (startPos == null) startPos = points[0];
+                    // todo? incremental loops ignore first move
+                    pathtween.SetLoops(pathCurve.loops, pathCurve.loopType);
+                    pathtween.SetEase(pathCurve.easeType);
+                    pathtween.SetDelay(pathCurve.delay);
+                    // pathtween.SetSpeedBased(true);
+                    pathseq.Append(pathtween);
+                }
             } else {
-                Vector2[] points = pathCurve.GetPoints();
-                points = points.ToList().ConvertAll<Vector2>(v => v + pathOffset).ToArray();
-                // lastEndPoint = points[points.Length - 3];
-                float dur = pathCurve.duration;
-                var pathtween = rb.DOPath(points, dur, PathType.CubicBezier, PathMode.Sidescroller2D);
-                if (startPos == null) startPos = points[0];
-                // todo? incremental loops ignore first move
-                pathtween.SetLoops(pathCurve.loops, pathCurve.loopType);
-                pathtween.SetEase(pathCurve.easeType);
-                pathtween.SetDelay(pathCurve.delay);
-                // pathtween.SetSpeedBased(true);
-                pathseq.Append(pathtween);
+                // follow player...
+                var curSeq = pathseq;
+                pathseq.AppendCallback(() => { curSeq.Pause(); followAction?.Invoke(); });
             }
         }
         pathseq.PrependInterval(delay);
@@ -195,47 +226,50 @@ public class Path : MonoBehaviour {
         pathseq.SetEase(fullSequenceEase);
         pathseq.onStepComplete = () => { sequenceLoopEvent?.Invoke(); };
         pathseq.onComplete = () => { sequenceCompleteEvent?.Invoke(); };
-        rb.position = (Vector2)startPos;
+        if (startPos != null) {
+            rb.position = (Vector2)startPos;
+        }
         pathseq.Play();
         return pathseq;
     }
 
-    public void StopPath() {
-        pathseq.Kill();
-    }
     Color drawColor = new Color(1, 0.5f, 0);
     private void OnDrawGizmosSelected() {
         Gizmos.color = drawColor * Color.gray;
         Vector2 lastEndPoint = Vector2.zero;
         for (int i = 0; i < pathCurves.Count; i++) {
             PathCurve pathCurve = pathCurves[i];
-            if (pathCurve.moveToTransform != null) {
-                Vector2 point = pathCurve.GetMoveToPoint();
-                if (i != 0) Gizmos.DrawLine(lastEndPoint, point);
-                lastEndPoint = point;
-            } else {
-                Vector2[] points = pathCurve.GetPoints();
-                if (i != 0) Gizmos.DrawLine(lastEndPoint, points[0]);
-                pathCurve.curve.drawColor = drawColor;
-                // lastEndPoint = points[points.Length - 3];
-                // draw curve repetitions
-                BezierCurve curve = pathCurve.curve;
-                Vector3 baseoffset = curve[curve.pointCount - 1].localPosition - curve[0].localPosition;
-                // Vector3 baseoffset = curve[curve.pointCount - 1].position - (Vector3)lastEndPoint;
-                baseoffset += (curve[0].position - (Vector3)lastEndPoint);
-                Vector3 offset = Vector3.zero;
-                for (int l = 0; l < pathCurve.loops - 1; l++) {
-                    Gizmos.DrawLine(curve[curve.pointCount - 1].position + offset, curve[0].position + offset + baseoffset);
-                    offset += baseoffset;
-                    if (curve.pointCount > 1) {
-                        for (int p = 0; p < curve.pointCount - 1; p++) {
-                            BezierCurve.DrawCurve(curve[p], curve[p + 1], curve.resolution, offset);
-                        }
-                        if (curve.close) BezierCurve.DrawCurve(curve[curve.pointCount - 1], curve[0], curve.resolution, offset);
-                    }
+            if (pathCurve.pathCurveType == PathCurve.PathCurveType.moveToPoint) {
+                if (pathCurve.moveToTransform != null) {
+                    Vector2 point = pathCurve.GetMoveToPoint();
+                    if (i != 0) Gizmos.DrawLine(lastEndPoint, point);
+                    lastEndPoint = point;
                 }
-                lastEndPoint = curve[curve.pointCount - 1].position;
-                lastEndPoint += (Vector2)offset;
+            } else if (pathCurve.pathCurveType == PathCurve.PathCurveType.curve) {
+                if (pathCurve.curve != null) {
+                    Vector2[] points = pathCurve.GetPoints();
+                    if (i != 0) Gizmos.DrawLine(lastEndPoint, points[0]);
+                    pathCurve.curve.drawColor = drawColor;
+                    // lastEndPoint = points[points.Length - 3];
+                    // draw curve repetitions
+                    BezierCurve curve = pathCurve.curve;
+                    Vector3 baseoffset = curve[curve.pointCount - 1].localPosition - curve[0].localPosition;
+                    // Vector3 baseoffset = curve[curve.pointCount - 1].position - (Vector3)lastEndPoint;
+                    baseoffset += (curve[0].position - (Vector3)lastEndPoint);
+                    Vector3 offset = Vector3.zero;
+                    for (int l = 0; l < pathCurve.loops - 1; l++) {
+                        Gizmos.DrawLine(curve[curve.pointCount - 1].position + offset, curve[0].position + offset + baseoffset);
+                        offset += baseoffset;
+                        if (curve.pointCount > 1) {
+                            for (int p = 0; p < curve.pointCount - 1; p++) {
+                                BezierCurve.DrawCurve(curve[p], curve[p + 1], curve.resolution, offset);
+                            }
+                            if (curve.close) BezierCurve.DrawCurve(curve[curve.pointCount - 1], curve[0], curve.resolution, offset);
+                        }
+                    }
+                    lastEndPoint = curve[curve.pointCount - 1].position;
+                    lastEndPoint += (Vector2)offset;
+                }
             }
         }
         Gizmos.color = Color.white;

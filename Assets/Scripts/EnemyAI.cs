@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 [SelectionBase]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -24,6 +25,7 @@ public class EnemyAI : MonoBehaviour {
     }
 
     [Header("Movement")]
+    public float moveSpeedOverride = -1;
     public Path path;
     public Vector3 pathOffset;
 
@@ -36,9 +38,12 @@ public class EnemyAI : MonoBehaviour {
     // todo multiple phases based on health
     [SerializeField] aiPhase[] phases = new aiPhase[0];
 
+    Sequence pathSequence;
+
     PatternRunner patternRunner;
     Health health;
     Rigidbody2D rb;
+    Rigidbody2D player;
 
     [ContextMenu("NormalizeDropRates")]
     void NormalizeDropRates() {
@@ -57,16 +62,33 @@ public class EnemyAI : MonoBehaviour {
         health = GetComponent<Health>();
         health.destroyOnDie = false;
         health.dieEvent.AddListener(OnDie);
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
+    }
+    private void Update() {
+        patternRunner?.ProcessPattern();
+        if (pathFollowingPlayer) {
+            Vector2 npos = rb.position;
+            npos.x = Mathf.Lerp(npos.x, player.position.x, 10 * Time.deltaTime);
+            rb.position = npos;
+        }
     }
     public void SetAttackPattern(PatternSO attackPattern) {
         patternRunner.patternSO = attackPattern;
     }
     [ContextMenu("spawn")]
     public void OnSpawn() {
-        path?.FollowPath(rb, pathOffset);
+        pathSequence = path?.FollowPath(rb, pathOffset, moveSpeedOverride, () => { pathFollowingPlayer = true; });
     }
     public void OnStop() {
-        path?.StopPath();
+        pathSequence.Kill();
+    }
+    bool pathFollowingPlayer = false;
+    public void StopFollowing() {
+        if (pathSequence.active && !pathSequence.IsPlaying()) {
+            // resumes
+            pathFollowingPlayer = false;
+            pathSequence.Play();
+        }
     }
     [ContextMenu("Kill")]
     void OnDie() {
@@ -97,7 +119,4 @@ public class EnemyAI : MonoBehaviour {
         }
     }
 
-    private void Update() {
-        patternRunner?.ProcessPattern();
-    }
 }
