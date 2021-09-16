@@ -3588,10 +3588,10 @@ MonoBehaviour:
     delay: 0
     loopType: 0
     easeType: 1
-    distance: 9.173348
-    duration: 0.91733485
-    distanceTotal: 9.173348
-    durationTotal: 0.91733485
+    distance: 0
+    duration: 0
+    distanceTotal: 0
+    durationTotal: 0
   - title: 1. maincurve
     initialized: 1
     pathCurveType: 0
@@ -3602,10 +3602,10 @@ MonoBehaviour:
     delay: 2
     loopType: 0
     easeType: 1
-    distance: 48.489204
-    duration: 4.8489203
-    distanceTotal: 48.489204
-    durationTotal: 6.8489203
+    distance: 0
+    duration: 0
+    distanceTotal: 0
+    durationTotal: 2
   - title: 2. exitcurve
     initialized: 1
     pathCurveType: 0
@@ -3616,17 +3616,17 @@ MonoBehaviour:
     delay: 0
     loopType: 0
     easeType: 1
-    distance: 4.0632925
-    duration: 0.40632924
-    distanceTotal: 4.0632925
-    durationTotal: 0.40632924
+    distance: 0
+    duration: 0
+    distanceTotal: 0
+    durationTotal: 0
   moveSpeed: 10
   delay: 0
   loops: 1
   fullSequenceLoopType: 0
   fullSequenceEase: 1
-  totalDistance: 61.725845
-  totalDuration: 8.172585
+  totalDistance: 0
+  totalDuration: 2
 --- !u!1 &1399359703
 GameObject:
   m_ObjectHideFlags: 0
@@ -6279,10 +6279,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 15039855828525092, guid: 65b98c561375819449dee9810ec74b27, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1340709434512789292, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -6349,7 +6345,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4206318768929785144, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 4.7346954
+      value: 4.7346497
       objectReference: {fileID: 0}
     - target: {fileID: 4266844541439716316, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_AnchorMax.y
@@ -6631,10 +6627,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8544450283619667358, guid: 65b98c561375819449dee9810ec74b27, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 5.0049973
-      objectReference: {fileID: 0}
     - target: {fileID: 8544450283619667359, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -6775,10 +6767,6 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 113407135}
-    - target: {fileID: 8544450284391110341, guid: 65b98c561375819449dee9810ec74b27, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 5.0049973
-      objectReference: {fileID: 0}
     - target: {fileID: 8544450284511979131, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

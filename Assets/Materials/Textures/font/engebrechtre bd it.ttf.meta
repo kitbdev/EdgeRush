@@ -1,0 +1,28 @@
+fileFormatVersion: 2
+guid: 5ebe9ac106083244db326c0c4e923d0b
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Engebrechtre
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 20caf197ecd7b9b42be2e39e90c97f90, type: 3}
+  - {fileID: 12800000, guid: c4e5f8bcb34ad1a4d976c882a884fc07, type: 3}
+  - {fileID: 12800000, guid: 9b1e67dbb5296174a8caf75f4f570c3a, type: 3}
+  - {fileID: 12800000, guid: 5c383022cc9808042aa8dde4f5af38c8, type: 3}
+  - {fileID: 12800000, guid: 44268befbd5484a42b64923a035de92f, type: 3}
+  - {fileID: 12800000, guid: 67b6759fd31855f41927cd05e7ce31b8, type: 3}
+  - {fileID: 12800000, guid: 268544eda7118f44aa5d225ecf9b0162, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
