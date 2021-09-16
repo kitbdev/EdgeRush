@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad2321aa536f8e4ba82ae618a2c719a, type: 3}
   m_Name: enemytest
   m_EditorClassIdentifier: 
-  title: 'Level 1: enemy test (12 events)'
+  title: 'Level 2: enemy test (12 events)'
   levelName: enemy test
   skip: 0
   backgroundMat: {fileID: 2100000, guid: 32cb70ab147e0324da748acc1cd60229, type: 2}

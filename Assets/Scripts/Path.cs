@@ -12,6 +12,9 @@ public class Path : MonoBehaviour {
         [SerializeField, HideInInspector] string title = "pathcurve";
         public Transform moveToTransform;
         public Vector2 moveToOffset = Vector2.zero;
+        // todo option to follow player instead
+        // todo conditional hide
+        // todo set defaults properly
         public BezierCurve curve;
         [Min(-1)]
         public int loops = 1;

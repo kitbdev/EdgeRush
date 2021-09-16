@@ -126,7 +126,7 @@ public class BulletManager : Singleton<BulletManager> {
             // go.GetComponent<Rigidbody2D>().AddForce(forw * initSpeed, ForceMode2D.Impulse);
             go.GetComponent<Damager>().damageAmount = 1;
             Bullet bullet = go.GetComponent<Bullet>();
-            bullet.acceleration = bulletPattern.acceleration;
+            bullet.acceleration = bulletPattern.acceleration;// todo add to initstate
             bullet.angularAcceleration = bulletPattern.angularAcceleration;
             bullet.maxspeed = bulletPattern.maxSpeed;
             bullet.initSpeed = initSpeed;
