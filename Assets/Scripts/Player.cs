@@ -37,7 +37,10 @@ public class Player : MonoBehaviour {
     [SerializeField] Transform modelMove;
 
     [Header("Misc")]
-    [SerializeField] public int numCoins;
+    [SerializeField] int healthZoneCoinCost = 10;
+    [SerializeField] int startCoinAmount = 0;
+    [SerializeField] HealZones healZone;
+    [SerializeField, ReadOnly] public int numCoins;
 
     [Header("Audio")]
     [SerializeField] AudioClip defShootClip;// todo per weapon
@@ -129,6 +132,7 @@ public class Player : MonoBehaviour {
         controls.Player.SelectWeapon2.performed += c => { SelectWeapon(1); };
         controls.Player.SelectWeapon3.performed += c => { SelectWeapon(2); };
         controls.Player.SelectWeapon4.performed += c => { SelectWeapon(3); };
+        controls.Player.EnableHealZones.performed += c => { TryActivateHealthZones(); };
 
         health.dieEvent.AddListener(OnDie);
     }
@@ -137,10 +141,7 @@ public class Player : MonoBehaviour {
         health.dieEvent.RemoveListener(OnDie);
     }
     private void Start() {
-        if (initialWeapon) {
-            SetCurrentWeapon(initialWeapon);
-        }
-        weaponAmmoChangeEvent?.Invoke();
+        ResetAll();
     }
     private void Update() {
         if (Time.timeScale == 0) return;
@@ -234,6 +235,13 @@ public class Player : MonoBehaviour {
         numCoins += amount;
         coinAmountChangeEvent?.Invoke();
     }
+    public void TryActivateHealthZones() {
+        if (numCoins >= healthZoneCoinCost && healZone.CanActivate()) {
+            healZone.Activate();
+            numCoins -= healthZoneCoinCost;
+            coinAmountChangeEvent?.Invoke();
+        }
+    }
     void ShootCurWeapon() {
         if (!currentWeapon) {
             return;
@@ -279,11 +287,16 @@ public class Player : MonoBehaviour {
         rb.velocity = Vector2.zero;
         velocity = Vector2.zero;
         health.RestoreHealth();
+        weaponAmmoChangeEvent?.Invoke();
     }
     public void ResetAll() {
         // reset position and ammo counts
         ResetForLevel();
         lastShootTime = 0;
+        numCoins = startCoinAmount;
+        if (initialWeapon) {
+            SetCurrentWeapon(initialWeapon);
+        }
         // todo ammo
         // todo checkpoint
         weaponAmmoChangeEvent?.Invoke();

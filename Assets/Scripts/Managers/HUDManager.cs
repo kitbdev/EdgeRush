@@ -34,6 +34,8 @@ public class HUDManager : Singleton<HUDManager> {
         if (player) player.weaponAmmoChangeEvent += UpdateWeaponAmmoCount;
         playerHealth?.healthUpdateEvent.AddListener(UpdatePlayerHealth);
 
+    }
+    private void Start() {
         UpdateAll();
     }
     private void OnDisable() {

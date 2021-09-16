@@ -121,6 +121,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""EnableHealZones"",
+                    ""type"": ""Button"",
+                    ""id"": ""e35ee76c-5fb3-44e8-8c82-9fbac6ee0089"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -627,6 +635,39 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": "";Touch"",
                     ""action"": ""FireMoveTo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f0a60789-498d-4f81-a952-567b32bf06e2"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""EnableHealZones"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""af0004a8-334a-4238-ad93-c9035fc8c22c"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""EnableHealZones"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""217df277-7769-4c55-ac29-a6ba9864f665"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""EnableHealZones"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1217,6 +1258,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Player_SelectWeapon2 = m_Player.FindAction("SelectWeapon2", throwIfNotFound: true);
         m_Player_SelectWeapon3 = m_Player.FindAction("SelectWeapon3", throwIfNotFound: true);
         m_Player_SelectWeapon4 = m_Player.FindAction("SelectWeapon4", throwIfNotFound: true);
+        m_Player_EnableHealZones = m_Player.FindAction("EnableHealZones", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1291,6 +1333,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_SelectWeapon2;
     private readonly InputAction m_Player_SelectWeapon3;
     private readonly InputAction m_Player_SelectWeapon4;
+    private readonly InputAction m_Player_EnableHealZones;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -1308,6 +1351,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @SelectWeapon2 => m_Wrapper.m_Player_SelectWeapon2;
         public InputAction @SelectWeapon3 => m_Wrapper.m_Player_SelectWeapon3;
         public InputAction @SelectWeapon4 => m_Wrapper.m_Player_SelectWeapon4;
+        public InputAction @EnableHealZones => m_Wrapper.m_Player_EnableHealZones;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1356,6 +1400,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @SelectWeapon4.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeapon4;
                 @SelectWeapon4.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeapon4;
                 @SelectWeapon4.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeapon4;
+                @EnableHealZones.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnableHealZones;
+                @EnableHealZones.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnableHealZones;
+                @EnableHealZones.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnableHealZones;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1399,6 +1446,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @SelectWeapon4.started += instance.OnSelectWeapon4;
                 @SelectWeapon4.performed += instance.OnSelectWeapon4;
                 @SelectWeapon4.canceled += instance.OnSelectWeapon4;
+                @EnableHealZones.started += instance.OnEnableHealZones;
+                @EnableHealZones.performed += instance.OnEnableHealZones;
+                @EnableHealZones.canceled += instance.OnEnableHealZones;
             }
         }
     }
@@ -1568,6 +1618,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnSelectWeapon2(InputAction.CallbackContext context);
         void OnSelectWeapon3(InputAction.CallbackContext context);
         void OnSelectWeapon4(InputAction.CallbackContext context);
+        void OnEnableHealZones(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

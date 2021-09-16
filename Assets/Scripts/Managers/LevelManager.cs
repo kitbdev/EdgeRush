@@ -54,7 +54,8 @@ public class LevelManager : Singleton<LevelManager> {
         if (!coinprefab) return;
         for (int i = 0; i < amount; i++) {
             var go = Instantiate(coinprefab, transform);
-            go.transform.position = position;
+            Vector3 rpos = (amount > 0) ? (Vector3)Random.insideUnitCircle : Vector3.zero;
+            go.transform.position = position + rpos;
         }
     }
     public void DropWeapon(WeaponSO weaponType, Vector3 position) {
@@ -65,10 +66,11 @@ public class LevelManager : Singleton<LevelManager> {
     }
 
     public void StartGame() {
-        StartLevel(0);
 #if UNITY_EDITOR
         StartLevel(startLevelEditor);
         levelEventIndex = startLevelEventEditor;
+#else
+        StartLevel(0);
 #endif
     }
     public void StopGame() {

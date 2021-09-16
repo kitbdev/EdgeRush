@@ -78,8 +78,11 @@ public class EnemyAI : MonoBehaviour {
         float acc = 0;
         foreach (var droprate in dropRates) {
             if (val >= acc && val < acc + droprate.chance) {
-                // drop this item
-                LevelManager.Instance.DropWeapon(droprate.weaponType, transform.position);
+                if (droprate.weaponType != null) {
+                    // is null for nothing
+                    // drop this item
+                    LevelManager.Instance.DropWeapon(droprate.weaponType, transform.position);
+                }
                 break;
             }
             acc += droprate.chance;

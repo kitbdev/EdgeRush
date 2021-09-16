@@ -27,6 +27,9 @@ public class DevUtil : MonoBehaviour {
             + (LevelManager.Instance.curLevelEventTitle ?? "unknown level event");
         GUILayout.Label(levellabel);
         playerHealth.manualInvincible = GUILayout.Toggle(playerHealth.manualInvincible, "Invincible");
+        if (GUILayout.Button("Give coins (20)")) {
+            player.GetComponent<Player>().AddCoins(20);
+        }
         for (int i = 0; i < 6; i++) {
             if (GUILayout.Button("Level " + i)) {
                 LevelManager.Instance.StartLevel(i);
