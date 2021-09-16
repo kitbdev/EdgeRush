@@ -9,6 +9,8 @@ public class HealZones : MonoBehaviour {
     [SerializeField] float activeDuration = 5;
     [SerializeField] GameObject[] gameObjects = new GameObject[0];
     [SerializeField] Animator[] animators = new Animator[0];
+    [SerializeField] AudioSource healingAudio;
+    [SerializeField] AudioSource jetsAudio;
     [SerializeField, ReadOnly] bool isActive;
     float activateTime = 0;
     Health playerHealth;
@@ -38,9 +40,17 @@ public class HealZones : MonoBehaviour {
     public void Deactivate() {
         isActive = false;
         SetActive(false);
+        StopHeal();
     }
     void SetActive(bool enabled) {
         isActive = true;
+        if (jetsAudio) {
+            if (enabled) {
+                jetsAudio.Play();
+            } else {
+                jetsAudio.Stop();
+            }
+        }
         foreach (var go in gameObjects) {
             go.SetActive(enabled);
         }
@@ -51,5 +61,13 @@ public class HealZones : MonoBehaviour {
     public void Heal() {
         // Debug.Log("healing player");
         playerHealth.Heal(healRate * Time.deltaTime);
+        if (healingAudio && !healingAudio.isPlaying) {
+            healingAudio.Play();
+        }
+    }
+    public void StopHeal() {
+        if (healingAudio && healingAudio.isPlaying) {
+            healingAudio.Stop();
+        }
     }
 }

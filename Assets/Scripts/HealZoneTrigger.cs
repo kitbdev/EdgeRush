@@ -13,4 +13,9 @@ public class HealZoneTrigger : MonoBehaviour {
             zones.Heal();
         }
     }
+    private void OnTriggerExit2D(Collider2D other) {
+        if (other.attachedRigidbody.CompareTag("Player")) {
+            zones.StopHeal();
+        }
+    }
 }

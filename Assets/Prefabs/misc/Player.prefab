@@ -161,8 +161,8 @@ MonoBehaviour:
   numCoins: 0
   defShootClip: {fileID: 0}
   engineAudio: {fileID: 7735760250786162927}
-  minVolume: 0.6
-  maxVolume: 0.8
+  minVolume: 0.25
+  maxVolume: 0.5
   minPitch: 0.9
   maxPitch: 1.2
   inputMove: {x: 0, y: 0}
@@ -443,9 +443,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7734454436071481346, guid: 3c27ab2c14a89e849854b7762d4f5442, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 152f0d641b052bb46a0a252e16d338fd, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_audioClip: {fileID: 8300000, guid: 0446504392452fc47aeb80467b9f5d49, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.37
   m_Pitch: 1
   Loop: 1
   Mute: 0

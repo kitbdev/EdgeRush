@@ -43,7 +43,7 @@ public class Player : MonoBehaviour {
     [SerializeField, ReadOnly] public int numCoins;
 
     [Header("Audio")]
-    [SerializeField] AudioClip defShootClip;// todo per weapon
+    [SerializeField] AudioClip defShootClip;
     [SerializeField] AudioSource engineAudio;
     [SerializeField] [Range(0, 1)] float minVolume = 0.6f;
     [SerializeField] [Range(0, 1)] float maxVolume = 0.8f;
@@ -144,7 +144,12 @@ public class Player : MonoBehaviour {
         ResetAll();
     }
     private void Update() {
-        if (Time.timeScale == 0) return;
+        if (Time.timeScale == 0) {
+            if (engineAudio.isPlaying) {
+                engineAudio.Stop();
+            }
+            return;
+        }
         // input
         if (currentWeapon != null) {
             if (inputShootHold) {
@@ -158,6 +163,9 @@ public class Player : MonoBehaviour {
             }
         }
         // audio
+        if (!engineAudio.isPlaying) {
+            engineAudio.Play();
+        }
         float nVol = engineAudio.volume;
         float nPitch = engineAudio.pitch;
         float mag = Mathf.InverseLerp(0f, moveSpeed, rb.velocity.magnitude);
@@ -244,6 +252,10 @@ public class Player : MonoBehaviour {
     }
     void ShootCurWeapon() {
         if (!currentWeapon) {
+            return;
+        }
+        if (!currentWeapon.hasUnlimitedAmmo || currentWeaponData.ammoAmount <= 0) {
+            // not enough ammo!
             return;
         }
         BulletManager.Instance.Shoot(currentWeapon, shootPoints, true);
