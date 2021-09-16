@@ -8,7 +8,7 @@ public class HUDManager : Singleton<HUDManager> {
 
     [SerializeField] Slider playerHealthSlider;
     [SerializeField] TMP_Text coinCountText;
-    [SerializeField] TMP_Text weaponAmmoCountText;
+    [SerializeField] TMP_Text winCoinCountText;
     [SerializeField] GameObject weaponUIPrefab;
     [SerializeField] Transform weaponUIParent;
 
@@ -18,7 +18,7 @@ public class HUDManager : Singleton<HUDManager> {
 
     [Space]
     [SerializeField] Player player;
-    [SerializeField] Health playerHealth;
+    Health playerHealth;
 
     [SerializeField] float healthLerpRate = 10;
 
@@ -28,6 +28,10 @@ public class HUDManager : Singleton<HUDManager> {
 
     protected override void Awake() {
         base.Awake();
+        if (player == null) {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        }
+        playerHealth = player.GetComponent<Health>();
     }
     private void OnEnable() {
         if (player) player.coinAmountChangeEvent += UpdateCoinCount;
@@ -129,6 +133,7 @@ public class HUDManager : Singleton<HUDManager> {
     }
     void UpdateCoinCount() {
         coinCountText.text = player.numCoins + "";
+        winCoinCountText.text = player.numCoins + "";
     }
     void UpdateBossPopup() {
         if (curBossHealth) {
