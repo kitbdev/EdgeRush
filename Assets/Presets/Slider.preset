@@ -260,4 +260,14 @@ Preset:
     propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
     value: 2
     objectReference: {fileID: 0}
-  m_ExcludedProperties: []
+  m_ExcludedProperties:
+  - m_TargetGraphic
+  - m_Navigation.m_Mode
+  - m_FillRect
+  - m_HandleRect
+  - m_Value
+  - m_OnValueChanged.m_PersistentCalls.m_Calls
+  - m_Navigation.m_SelectOnUp
+  - m_Navigation.m_SelectOnDown
+  - m_Navigation.m_SelectOnLeft
+  - m_Navigation.m_SelectOnRight

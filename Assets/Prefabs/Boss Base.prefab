@@ -249,6 +249,7 @@ MonoBehaviour:
   moveSpeedOverride: -1
   path: {fileID: 0}
   pathOffset: {x: 0, y: 0, z: 0}
+  pathFollowingPlayer: 0
   numCoinsToDrop: 10
   dropRates: []
   deathAudio:
@@ -411,6 +412,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 8a789d6d4dd6b68418d912512805990c, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: f7989a61c5878ce42bf7baaeb6f3e808, type: 2}
     - target: {fileID: 919132149155446097, guid: 8a789d6d4dd6b68418d912512805990c, type: 3}
       propertyPath: m_Name
       value: Boss3
@@ -481,6 +486,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 56e0eb361c2ccec4abe2e01cf673addb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f7989a61c5878ce42bf7baaeb6f3e808, type: 2}
     - target: {fileID: -7511558181221131132, guid: 56e0eb361c2ccec4abe2e01cf673addb, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
@@ -564,6 +573,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: b24e2a6b6e9a0a84590d1ed660b4dbc1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f7989a61c5878ce42bf7baaeb6f3e808, type: 2}
+    - target: {fileID: -7511558181221131132, guid: b24e2a6b6e9a0a84590d1ed660b4dbc1, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 0}
@@ -641,6 +654,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 7cfb35d4c2b859048a27a086356d0021, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: f7989a61c5878ce42bf7baaeb6f3e808, type: 2}
     - target: {fileID: 919132149155446097, guid: 7cfb35d4c2b859048a27a086356d0021, type: 3}
       propertyPath: m_Name
       value: Boss6
@@ -715,6 +732,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 8571cde81a98ee74c9de4bb509cfa554, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: f7989a61c5878ce42bf7baaeb6f3e808, type: 2}
     - target: {fileID: 919132149155446097, guid: 8571cde81a98ee74c9de4bb509cfa554, type: 3}
       propertyPath: m_Name
       value: Boss4
@@ -789,6 +810,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 7c43b198a5beed049bf583ce9007574f, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 4fb2cde88eba7c541b4d7f202df35687, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: f7989a61c5878ce42bf7baaeb6f3e808, type: 2}
     - target: {fileID: 919132149155446097, guid: 4fb2cde88eba7c541b4d7f202df35687, type: 3}
       propertyPath: m_Name
       value: Boss1

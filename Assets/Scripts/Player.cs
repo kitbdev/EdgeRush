@@ -36,6 +36,8 @@ public class Player : MonoBehaviour {
 
     [Header("Anim")]
     [SerializeField] Transform modelMove;
+    [SerializeField] float modelTiltX = 20;
+    [SerializeField] float modelTiltY = 10;
 
     [Header("Misc")]
     [SerializeField] int healthZoneCoinCost = 10;
@@ -279,6 +281,10 @@ public class Player : MonoBehaviour {
         }
         nvel = Vector2.ClampMagnitude(nvel, 1f) * moveSpeed;
         velocity = Vector2.Lerp(velocity, nvel, accelerationRate * Time.deltaTime);
+        float tiltx = -velocity.x / moveSpeed * modelTiltX;
+        float tilty = velocity.y / moveSpeed * modelTiltY;
+        Quaternion modelTilt = Quaternion.Euler(tilty, tiltx, 0);
+        modelMove.rotation = modelTilt;
         // if (velocity.sqrMagnitude > 0.001f) {
         // }
         rb.velocity = velocity;
