@@ -117,7 +117,13 @@ public class AudioManager : Singleton<AudioManager> {
         audioGo.transform.localPosition = audioSettings.position;
         var source = audioGo.GetComponent<AudioSource>();
         source.clip = audioSettings.clip;
-        source.outputAudioMixerGroup = audioSettings.groupOverride ?? defaultGroup ?? source.outputAudioMixerGroup;
+        var group = audioSettings.groupOverride;
+        if (!group) {
+            group = defaultGroup;
+        }
+        if (group) {
+            source.outputAudioMixerGroup = group;
+        }
         source.volume = audioSettings.volume;
         source.pitch = audioSettings.pitch;
         source.panStereo = audioSettings.pan;
