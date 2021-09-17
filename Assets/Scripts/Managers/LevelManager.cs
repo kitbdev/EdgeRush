@@ -85,6 +85,7 @@ public class LevelManager : Singleton<LevelManager> {
         ClearLevel();
     }
     public void RestartLevel() {
+        DG.Tweening.DOTween.KillAll();
         StartLevel(currentLevelIndex);
     }
     public void StartLevel(int levelIndex) {

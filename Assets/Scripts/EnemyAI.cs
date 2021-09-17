@@ -77,6 +77,8 @@ public class EnemyAI : MonoBehaviour {
     }
     [ContextMenu("spawn")]
     public void OnSpawn() {
+        pathFollowingPlayer = false;
+        health.RestoreHealth();
         pathSequence = path?.FollowPath(rb, pathOffset, moveSpeedOverride, () => { pathFollowingPlayer = true; });
     }
     public void OnStop() {

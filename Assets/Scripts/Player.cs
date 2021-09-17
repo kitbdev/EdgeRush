@@ -295,12 +295,12 @@ public class Player : MonoBehaviour {
         transform.position = resetPos.position;
         rb.velocity = Vector2.zero;
         velocity = Vector2.zero;
-        health.RestoreHealth();
         weaponAmmoChangeEvent?.Invoke();
     }
     public void ResetAll() {
         // reset position and ammo counts
         ResetForLevel();
+        health.RestoreHealth();
         lastShootTime = 0;
         numCoins = startCoinAmount;
         weaponDatas.Clear();

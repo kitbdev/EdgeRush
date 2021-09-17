@@ -110,7 +110,7 @@ public class GameManager : Singleton<GameManager> {
     public void ExitGame() {
         // todo save?
 #if !UNITY_WEBGL
-        ExitGameNoSave();
+        Application.Quit();
 #endif
     }
 }
