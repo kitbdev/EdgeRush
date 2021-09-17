@@ -15,10 +15,10 @@ MonoBehaviour:
   title: 'Level 1: short  (1 events)'
   levelName: 'short '
   skip: 0
-  backgroundMat: {fileID: 0}
+  backgroundMat: {fileID: 2100000, guid: f685047b01b5d6240ac1294be0bbc483, type: 2}
   musicTrack: {fileID: 0}
   levelEvents:
-  - title: 1. wait 2s
+  - title: 1. wait 1s
     levelEventType: 5
     spawnPrefab: {fileID: 0}
     amountToSpawn: 0
@@ -31,4 +31,4 @@ MonoBehaviour:
     clearDebris: 0
     clearPowerups: 0
     clearBullets: 0
-    waitDur: 2
+    waitDur: 1

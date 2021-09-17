@@ -1266,7 +1266,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dfe48d68c2b74da4cb19f62ab450664c, type: 2}
+  - {fileID: 2100000, guid: c133b7ecfd8de0a48bb9be499090ffc1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4228,6 +4228,7 @@ GameObject:
   - component: {fileID: 1707947822}
   - component: {fileID: 1707947821}
   - component: {fileID: 1707947823}
+  - component: {fileID: 1707947824}
   m_Layer: 0
   m_Name: LevelTransition
   m_TagString: Untagged
@@ -4282,6 +4283,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boolName: Play
+--- !u!114 &1707947824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707947820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7eeee1a366033448b903e62c7171022, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  useUnscaledtime: 1
+  scrollMats:
+  - {fileID: 2100000, guid: c133b7ecfd8de0a48bb9be499090ffc1, type: 2}
 --- !u!1 &1726517695
 GameObject:
   m_ObjectHideFlags: 0
@@ -6403,6 +6420,10 @@ PrefabInstance:
     - target: {fileID: 8544450284511979131, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8544450284602899780, guid: 65b98c561375819449dee9810ec74b27, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -3.9999695
       objectReference: {fileID: 0}
     - target: {fileID: 8544450284681937585, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
