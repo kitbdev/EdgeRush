@@ -290,13 +290,11 @@ public class Player : MonoBehaviour {
         rb.velocity = velocity;
     }
     void OnDie() {
-        // wait
-        // reset level?
-        // todo checkpoint
-        // LevelManager.Instance.RestartLevel();
-        // health.RestoreHealth();
+        // todo wait?
+        GameManager.Instance.PlayerLose();
     }
     public void ResetForLevel() {
+        // todo checkpoint
         // todo ?
         transform.position = resetPos.position;
         rb.velocity = Vector2.zero;

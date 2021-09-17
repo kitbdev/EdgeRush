@@ -91,20 +91,27 @@ public class GameManager : Singleton<GameManager> {
     }
     public void BackToMainMenu() {
         SceneManager.LoadScene(0, LoadSceneMode.Single);
+        PauseManager.Instance.blockPause = false;
         // GameManager.Instance.HideMenu();
         // ShowMainMenu();
     }
     [ContextMenu("win")]
     public void PlayerWin() {
         PauseManager.Instance.Pause();
-        // LevelManager.Instance.StopGame();
+        PauseManager.Instance.blockPause = true;
         menuManager.ShowOnlyScreen(winScreen);
     }
     [ContextMenu("lose")]
     public void PlayerLose() {
         PauseManager.Instance.Pause();
-        // LevelManager.Instance.StopGame();
+        PauseManager.Instance.blockPause = true;
         menuManager.ShowOnlyScreen(loseScreen);
+    }
+    public void RetryLastLevel() {
+        PauseManager.Instance.blockPause = false;
+        PauseManager.Instance.UnPause();
+        LevelManager.Instance.RetryLevel();
+        menuManager.HideAllScreens();
     }
 
     public void ExitGame() {

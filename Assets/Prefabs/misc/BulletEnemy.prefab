@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: deb0ca277bd46354caec34eb779684d4, type: 2}
+  - {fileID: 2100000, guid: a3d7227cd61a250428413682e5c7d7b3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 8972034596729345798}
   - component: {fileID: 9078273727914020115}
   m_Layer: 7
-  m_Name: Bullet
+  m_Name: BulletEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71c0cf1504bd5f4da14c1ea24600de1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 0
+  damageAmount: 5
   onHitEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -178,20 +178,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76fba192e7dc7ef4b97d962d441b23aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initAngle: 0
-  initSpeed: 0
   angularSpeed: 0
   acceleration: 0
   angularAcceleration: 0
-  initRot: {x: 0, y: 0, z: 0, w: 0}
   maxspeed: 0
+  initAngle: 0
+  initSpeed: 0
+  initRot: {x: 0, y: 0, z: 0, w: 0}
   speed: 0
   angle: 0
   velocity: {x: 0, y: 0}
   timeoutDur: 5
   enableTime: 0
   rb: {fileID: 0}
-  activeIndex: -1
   objectPoolObject: {fileID: 0}
 --- !u!58 &9078273727914020115
 CircleCollider2D:

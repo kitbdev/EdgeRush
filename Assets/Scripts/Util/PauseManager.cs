@@ -15,6 +15,7 @@ public class PauseManager : Singleton<PauseManager> {
     [SerializeField] float timeLerpDur = 0;
     [SerializeField] float minTimeScale = 0f;
     [SerializeField] bool pauseOnStart = false;
+    public bool blockPause = false;
 
 #if ENABLE_INPUT_SYSTEM
     [SerializeField] InputActionReference togglePauseButton;
@@ -24,7 +25,7 @@ public class PauseManager : Singleton<PauseManager> {
     public UnityEvent pauseEvent;
     public UnityEvent unpauseEvent;
 
-    protected void OnEnable() { 
+    protected void OnEnable() {
 #if ENABLE_INPUT_SYSTEM
         if (togglePauseButton) {
             togglePauseButton.action.Enable();
@@ -49,6 +50,9 @@ public class PauseManager : Singleton<PauseManager> {
         SetPaused(false);
     }
     public void SetPaused(bool pause = true) {
+        if (blockPause) {
+            return;
+        }
         isPaused = pause;
         float targetScale = isPaused ? minTimeScale : 1;
         if (timeLerpDur > 0) {

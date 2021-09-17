@@ -13,18 +13,27 @@ MonoBehaviour:
   m_Name: testgun
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6110090707465297226, guid: 0d5847e6210b6b54eb112f198b5afe3b, type: 3}
+  shootAudio:
+    clip: {fileID: 0}
+    follow: {fileID: 0}
+    position: {x: 0, y: 0, z: 0}
+    groupOverride: {fileID: 0}
+    volume: 1
+    pitch: 1
+    pan: 0
+    priority: 128
   modelIndex: 0
+  hasUnlimitedAmmo: 0
   shootCooldownDur: 0.25
   shootHoldCooldownDur: 0.5
   damage: 1
-  aimAtPlayer: 0
   bulletSpawnSettings:
-    prefab: {fileID: 6110090707465297226, guid: 0d5847e6210b6b54eb112f198b5afe3b, type: 3}
+    prefab: {fileID: 6110090707465297226, guid: b6810b3db4433204ebd71e364f3f6738, type: 3}
     initSpeed: 5
     initAngle: 0
     acceleration: 0
     maxSpeed: 10
     angularAcceleration: 0
     maxAngularSpeed: 10
-    initScale: 1
+    initScale: 0.5
     spawnPointIndices: 

@@ -84,6 +84,12 @@ public class LevelManager : Singleton<LevelManager> {
     public void StopGame() {
         ClearLevel();
     }
+    public void RetryLevel() {
+        // todo checkpoint?
+        player.GetComponent<Health>().RestoreHealth();
+        // ? go back to original bullet and coin counts
+        RestartLevel();
+    }
     public void RestartLevel() {
         DG.Tweening.DOTween.KillAll();
         StartLevel(currentLevelIndex);
