@@ -431,6 +431,17 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""8a55321b-b45c-43ad-b0cf-a46d8ab08958"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""MoveToPoint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""bace53c4-1776-4aa1-84c7-efb20bb274c8"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",

@@ -77,9 +77,13 @@ public class Player : MonoBehaviour {
         resetPos.position = transform.position;
     }
     private void OnEnable() {
+        inputMoveTo = false;
         controls = new Controls();
         controls.Enable();
-        controls.Player.Move.performed += c => inputMove = c.ReadValue<Vector2>();
+        controls.Player.Move.performed += c => {
+            inputMove = c.ReadValue<Vector2>();
+            inputMoveTo = false;
+        };
         controls.Player.Move.canceled += c => inputMove = Vector2.zero;
         controls.Player.MoveTo.performed += c => {
             var pos = c.ReadValue<Vector2>();
@@ -99,8 +103,15 @@ public class Player : MonoBehaviour {
             }
             // todo switch between moveto mode vs delta mode
         };
-        controls.Player.MoveToPoint.performed += c => { if (mouseInBounds) { inputMoveTo = true; } };
-        controls.Player.MoveToPoint.canceled += c => inputMoveTo = false;
+        controls.Player.MoveToPoint.performed += c => {
+            // touch down
+            if (mouseInBounds) {
+                inputMoveTo = true;
+            }
+        };
+        controls.Player.MoveToPoint.canceled += c => {
+            // inputMoveTo = false;
+        };
         controls.Player.Fire.performed += c => {
             if (Time.timeScale == 0) return;
             inputShootHold = true;
@@ -244,6 +255,7 @@ public class Player : MonoBehaviour {
         coinAmountChangeEvent?.Invoke();
     }
     public void TryActivateHealthZones() {
+        if (Time.timeScale == 0) return;
         if (numCoins >= healthZoneCoinCost && healZone.CanActivate()) {
             healZone.Activate();
             numCoins -= healthZoneCoinCost;
