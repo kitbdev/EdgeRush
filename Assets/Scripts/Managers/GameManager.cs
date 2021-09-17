@@ -21,6 +21,7 @@ public class GameManager : Singleton<GameManager> {
     [SerializeField] MenuScreen winScreen;
     [SerializeField] MenuScreen loseScreen;
     [SerializeField] bool mainMenuOnStart = true;
+    [SerializeField] AudioPlayer[] pauseAudioPlayers = new AudioPlayer[0];
 #pragma warning disable 0219
     [SerializeField] GameObject[] buildWEBRemoveGos = new GameObject[0];
 #pragma warning restore 0219
@@ -82,14 +83,23 @@ public class GameManager : Singleton<GameManager> {
     public void HideMenu() {
         PauseManager.Instance.UnPause();
         menuManager.HideAllScreens();
+        SetAudioPlayers(false);
     }
     [ContextMenu("Main menu")]
     void ShowMainMenu() {
+        SetAudioPlayers(true);
         PauseManager.Instance.Pause();
         LevelManager.Instance.StopGame();
         menuManager.ShowOnlyScreen(mainMenuScreen);
         PauseManager.Instance.blockPause = true;
     }
+
+    private void SetAudioPlayers(bool stop) {
+        foreach (AudioPlayer audioPlayer in pauseAudioPlayers) {
+            audioPlayer.ignoreIfPaused = stop;
+        }
+    }
+
     public void BackToMainMenu() {
         SceneManager.LoadScene(0, LoadSceneMode.Single);
         PauseManager.Instance.blockPause = false;
@@ -98,12 +108,14 @@ public class GameManager : Singleton<GameManager> {
     }
     [ContextMenu("win")]
     public void PlayerWin() {
+        SetAudioPlayers(true);
         PauseManager.Instance.Pause();
         PauseManager.Instance.blockPause = true;
         menuManager.ShowOnlyScreen(winScreen);
     }
     [ContextMenu("lose")]
     public void PlayerLose() {
+        SetAudioPlayers(true);
         PauseManager.Instance.Pause();
         PauseManager.Instance.blockPause = true;
         menuManager.ShowOnlyScreen(loseScreen);
@@ -111,6 +123,7 @@ public class GameManager : Singleton<GameManager> {
     public void RetryLastLevel() {
         PauseManager.Instance.blockPause = false;
         PauseManager.Instance.UnPause();
+        SetAudioPlayers(false);
         LevelManager.Instance.RetryLevel();
         menuManager.HideAllScreens();
     }

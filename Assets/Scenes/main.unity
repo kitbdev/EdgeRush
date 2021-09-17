@@ -274,6 +274,9 @@ MonoBehaviour:
   winScreen: {fileID: 1645229456}
   loseScreen: {fileID: 688339559}
   mainMenuOnStart: 1
+  pauseAudioPlayers:
+  - {fileID: 1295476360}
+  - {fileID: 1659212436}
   buildWEBRemoveGos:
   - {fileID: 1314017716}
   - {fileID: 163891817}
@@ -3109,6 +3112,17 @@ Transform:
   m_Father: {fileID: 269880395}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1295476360 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8628578382595692988, guid: 65b98c561375819449dee9810ec74b27, type: 3}
+  m_PrefabInstance: {fileID: 8544450283450413213}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09776b12f9452ab4e9403d196dc4f201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1307951220
 GameObject:
   m_ObjectHideFlags: 0
@@ -3528,10 +3542,10 @@ MonoBehaviour:
     delay: 0
     loopType: 0
     easeType: 1
-    distance: 9.173348
-    duration: 0.91733485
-    distanceTotal: 9.173348
-    durationTotal: 0.91733485
+    distance: 0
+    duration: 0
+    distanceTotal: 0
+    durationTotal: 0
   - title: 1. maincurve
     initialized: 1
     pathCurveType: 0
@@ -3542,10 +3556,10 @@ MonoBehaviour:
     delay: 2
     loopType: 0
     easeType: 1
-    distance: 48.489204
-    duration: 4.8489203
-    distanceTotal: 48.489204
-    durationTotal: 6.8489203
+    distance: 0
+    duration: 0
+    distanceTotal: 0
+    durationTotal: 2
   - title: 2. exitcurve
     initialized: 1
     pathCurveType: 0
@@ -3556,17 +3570,17 @@ MonoBehaviour:
     delay: 0
     loopType: 0
     easeType: 1
-    distance: 4.0632925
-    duration: 0.40632924
-    distanceTotal: 4.0632925
-    durationTotal: 0.40632924
+    distance: 0
+    duration: 0
+    distanceTotal: 0
+    durationTotal: 0
   moveSpeed: 10
   delay: 0
   loops: 1
   fullSequenceLoopType: 0
   fullSequenceEase: 1
-  totalDistance: 61.725845
-  totalDuration: 8.172585
+  totalDistance: 0
+  totalDuration: 2
 --- !u!1 &1399359703
 GameObject:
   m_ObjectHideFlags: 0
@@ -4047,6 +4061,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fe22e6ac0fb53e4e964911f94f31f3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1659212436 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7346773647063792876, guid: 65b98c561375819449dee9810ec74b27, type: 3}
+  m_PrefabInstance: {fileID: 8544450283450413213}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09776b12f9452ab4e9403d196dc4f201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1662721319
@@ -5990,7 +6015,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4206318768929785144, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 4.734604
+      value: 4.7345734
       objectReference: {fileID: 0}
     - target: {fileID: 4266844541439716316, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_AnchorMax.y
