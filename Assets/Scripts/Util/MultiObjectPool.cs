@@ -83,7 +83,7 @@ public class MultiObjectPool : MonoBehaviour {
             CreateAmount(i + 1, initpoolSizeEach);
         }
     }
-    public void SetPrefabs(List<GameObject> prefabs){
+    public void SetPrefabs(List<GameObject> prefabs) {
         this._prefabs = prefabs;
         Initialize();
     }
@@ -204,7 +204,7 @@ public class MultiObjectPool : MonoBehaviour {
     /// New GameObjects will use prefab if available or make an empty one. 
     /// </summary>
     /// <returns>your new active GameObject</returns>
-    public GameObject Get(int typeId) {
+    public GameObject Get(int typeId, bool setActive = true) {
         GameObject ngo;
         if (typeId < 0 || typeId > poolGos.Count) {
             // invalid ID!
@@ -218,7 +218,7 @@ public class MultiObjectPool : MonoBehaviour {
             ngo = golist[golist.Count - 1];
             golist.RemoveAt(golist.Count - 1);
         }
-        ngo.SetActive(true);
+        if (setActive) ngo.SetActive(true);
         outCount++;
         return ngo;
     }
