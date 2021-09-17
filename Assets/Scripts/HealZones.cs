@@ -11,8 +11,11 @@ public class HealZones : MonoBehaviour {
     [SerializeField] Animator[] animators = new Animator[0];
     [SerializeField] AudioSource healingAudio;
     [SerializeField] AudioSource jetsAudio;
+    [SerializeField] float leaveTime = 3f;
+    [SerializeField] AudioManager.AudioSettings jetsLeaveAudio;
     [SerializeField, ReadOnly] bool isActive;
-    float activateTime = 0;
+    [SerializeField, ReadOnly] bool playedLeaveSfx;
+    [SerializeField, ReadOnly] float activateTime = 0;
     Health playerHealth;
 
     private void Awake() {
@@ -21,6 +24,10 @@ public class HealZones : MonoBehaviour {
     }
     private void Update() {
         if (isActive) {
+            if (!playedLeaveSfx && Time.time > activateTime + leaveTime) {
+                AudioManager.Instance.PlaySfx(jetsLeaveAudio);
+                playedLeaveSfx = true;
+            }
             if (Time.time > activateTime + activeDuration) {
                 Deactivate();
             }
@@ -36,6 +43,7 @@ public class HealZones : MonoBehaviour {
         activateTime = Time.time;
         isActive = true;
         SetActive(true);
+        playedLeaveSfx = false;
     }
     public void Deactivate() {
         isActive = false;
@@ -43,7 +51,7 @@ public class HealZones : MonoBehaviour {
         StopHeal();
     }
     void SetActive(bool enabled) {
-        isActive = true;
+        isActive = enabled;
         if (jetsAudio) {
             if (enabled) {
                 jetsAudio.Play();

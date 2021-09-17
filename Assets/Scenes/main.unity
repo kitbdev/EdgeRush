@@ -3237,7 +3237,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 108
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -4295,7 +4295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7eeee1a366033448b903e62c7171022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 1.5
   useUnscaledtime: 1
   scrollMats:
   - {fileID: 2100000, guid: c133b7ecfd8de0a48bb9be499090ffc1, type: 2}
@@ -4372,13 +4372,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -7734454436071481346, guid: 3c27ab2c14a89e849854b7762d4f5442, type: 2}
   m_audioClip: {fileID: 8300000, guid: 8b8d07df6f3136a46b26844493a82aea, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.791
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 161
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -4606,7 +4606,19 @@ MonoBehaviour:
   - {fileID: 388036601}
   healingAudio: {fileID: 1327359020}
   jetsAudio: {fileID: 1730853941}
+  leaveTime: 4
+  jetsLeaveAudio:
+    clip: {fileID: 8300000, guid: ba4bf0b7f823cc5469bbcd62ef64152e, type: 3}
+    follow: {fileID: 0}
+    position: {x: 0, y: 0, z: 0}
+    groupOverride: {fileID: 0}
+    volume: 1
+    pitch: 1
+    pan: 0
+    priority: 105
   isActive: 0
+  playedLeaveSfx: 0
+  activateTime: 0
 --- !u!1 &1760354872
 GameObject:
   m_ObjectHideFlags: 0
@@ -5992,6 +6004,10 @@ PrefabInstance:
     - target: {fileID: 3985016293231638365, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4206318768929785144, guid: 65b98c561375819449dee9810ec74b27, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 4.7345886
       objectReference: {fileID: 0}
     - target: {fileID: 4266844541439716316, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_AnchorMax.y
