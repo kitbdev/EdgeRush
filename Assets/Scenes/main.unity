@@ -3528,10 +3528,10 @@ MonoBehaviour:
     delay: 0
     loopType: 0
     easeType: 1
-    distance: 0
-    duration: 0
-    distanceTotal: 0
-    durationTotal: 0
+    distance: 9.173348
+    duration: 0.91733485
+    distanceTotal: 9.173348
+    durationTotal: 0.91733485
   - title: 1. maincurve
     initialized: 1
     pathCurveType: 0
@@ -3542,10 +3542,10 @@ MonoBehaviour:
     delay: 2
     loopType: 0
     easeType: 1
-    distance: 0
-    duration: 0
-    distanceTotal: 0
-    durationTotal: 2
+    distance: 48.489204
+    duration: 4.8489203
+    distanceTotal: 48.489204
+    durationTotal: 6.8489203
   - title: 2. exitcurve
     initialized: 1
     pathCurveType: 0
@@ -3556,17 +3556,17 @@ MonoBehaviour:
     delay: 0
     loopType: 0
     easeType: 1
-    distance: 0
-    duration: 0
-    distanceTotal: 0
-    durationTotal: 0
+    distance: 4.0632925
+    duration: 0.40632924
+    distanceTotal: 4.0632925
+    durationTotal: 0.40632924
   moveSpeed: 10
   delay: 0
   loops: 1
   fullSequenceLoopType: 0
   fullSequenceEase: 1
-  totalDistance: 0
-  totalDuration: 2
+  totalDistance: 61.725845
+  totalDuration: 8.172585
 --- !u!1 &1399359703
 GameObject:
   m_ObjectHideFlags: 0
@@ -5990,7 +5990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4206318768929785144, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 4.7345886
+      value: 4.734604
       objectReference: {fileID: 0}
     - target: {fileID: 4266844541439716316, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_AnchorMax.y

@@ -50,6 +50,7 @@ public class Player : MonoBehaviour {
     [Header("Audio")]
     [SerializeField] AudioManager.AudioSettings noAmmoSfx;
     [SerializeField] AudioManager.AudioSettings damageSfx;
+    [SerializeField] AudioManager.AudioSettings[] deadSfx = new AudioManager.AudioSettings[0];
     [SerializeField] AudioSource engineAudio;
     [SerializeField] [Range(0, 1)] float minVolume = 0.6f;
     [SerializeField] [Range(0, 1)] float maxVolume = 0.8f;
@@ -320,6 +321,9 @@ public class Player : MonoBehaviour {
     }
     void OnDie() {
         // todo wait?
+        int rindex = Random.Range(0,deadSfx.Length);
+        deadSfx[rindex].position = transform.position;
+        AudioManager.Instance.PlaySfx(deadSfx[rindex]);
         GameManager.Instance.PlayerLose();
     }
     public void ResetForLevel() {
@@ -331,7 +335,7 @@ public class Player : MonoBehaviour {
         transform.position = resetPos.position;
         rb.velocity = Vector2.zero;
         velocity = Vector2.zero;
-        
+
         health.RestoreHealth();
         lastShootTime = 0;
         numCoins = startCoinAmount;

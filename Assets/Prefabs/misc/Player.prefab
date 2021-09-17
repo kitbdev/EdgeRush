@@ -191,7 +191,7 @@ MonoBehaviour:
     volume: 0.818
     pitch: 1
     pan: 0
-    priority: 128
+    priority: 92
   damageSfx:
     clip: {fileID: 8300000, guid: 4ecbb17949cedde40915c3c56021284e, type: 3}
     follow: {fileID: 0}
@@ -200,7 +200,32 @@ MonoBehaviour:
     volume: 0.704
     pitch: 1.46
     pan: 0
-    priority: 177
+    priority: 105
+  deadSfx:
+  - clip: {fileID: 8300000, guid: d23ae773bca7b2a418b92b2a4bcd43b8, type: 3}
+    follow: {fileID: 0}
+    position: {x: 0, y: 0, z: 0}
+    groupOverride: {fileID: 0}
+    volume: 1
+    pitch: 1
+    pan: 0
+    priority: 94
+  - clip: {fileID: 8300000, guid: ead54ceb85c13144abd5ff5c93fcc52c, type: 3}
+    follow: {fileID: 0}
+    position: {x: 0, y: 0, z: 0}
+    groupOverride: {fileID: 0}
+    volume: 1
+    pitch: 1
+    pan: 0
+    priority: 94
+  - clip: {fileID: 8300000, guid: ae0c62595049b36438a4b80f6b85da84, type: 3}
+    follow: {fileID: 0}
+    position: {x: 0, y: 0, z: 0}
+    groupOverride: {fileID: 0}
+    volume: 1
+    pitch: 1
+    pan: 0
+    priority: 94
   engineAudio: {fileID: 7735760250786162927}
   minVolume: 0.25
   maxVolume: 0.5

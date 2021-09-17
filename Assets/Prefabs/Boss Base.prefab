@@ -364,14 +364,14 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 5424515853065347555}
   shootAudio:
-    clip: {fileID: 8300000, guid: b2e22279275ad1c45bf509b25e46bf08, type: 3}
+    clip: {fileID: 8300000, guid: 23bdb7cffb558f7479b76d982a4f56cc, type: 3}
     follow: {fileID: 0}
     position: {x: 0, y: 0, z: 0}
     groupOverride: {fileID: 0}
     volume: 0.248
     pitch: 1
     pan: 0
-    priority: 128
+    priority: 141
   isPlayer: 0
   player: {fileID: 0}
   phaseIndex: 0
@@ -435,6 +435,7 @@ MonoBehaviour:
   changeDuration: 0.1
   health: {fileID: 4103724378864960721}
   isChanged: 0
+  defMat: {fileID: 0}
 --- !u!1001 &2530669062575883897
 PrefabInstance:
   m_ObjectHideFlags: 0
