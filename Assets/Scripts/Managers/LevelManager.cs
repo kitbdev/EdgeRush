@@ -276,14 +276,16 @@ public class LevelManager : Singleton<LevelManager> {
                 HUDManager.Instance.SetBoss(bossgo);
                 break;
             case LevelEvent.LevelEventType.spawnMisc:
-                // todo test
                 // give path?
                 for (int i = 0; i < levelEvent.amountToSpawn; i++) {
                     var miscgo = Instantiate(levelEvent.spawnPrefab, transform);
                     Vector2 spawnPos = levelEvent.spawnOffset + levelEvent.spawnOffsetByIndex * i;
                     var rb = miscgo.GetComponent<Rigidbody2D>();
                     if (levelEvent.pathToFollow && rb) {
-                        levelEvent.pathToFollow.FollowPath(rb, spawnPos, levelEvent.moveSpeedOverride, null);
+                        var seq = levelEvent.pathToFollow.FollowPath(rb, spawnPos, levelEvent.moveSpeedOverride, null);
+                        if (miscgo.TryGetComponent<PathRunHandler>(out var pathRunHandler)) {
+                            pathRunHandler.sequence = seq;
+                        }
                     } else {
                         miscgo.transform.position = spawnPos;
                     }

@@ -12,13 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad2321aa536f8e4ba82ae618a2c719a, type: 3}
   m_Name: testlevel
   m_EditorClassIdentifier: 
-  title: 'Level 1: short  (1 events)'
+  title: 'Level 1: short  (2 events)'
   levelName: 'short '
   skip: 0
   backgroundMat: {fileID: 2100000, guid: f685047b01b5d6240ac1294be0bbc483, type: 2}
   musicTrack: {fileID: 0}
   levelEvents:
-  - title: 1. wait 1s
+  - title: 1. spawnMisc
+    levelEventType: 3
+    spawnPrefab: {fileID: 4739607829735346965, guid: 6efa4b3fe2dd7ae458e28c4ab45577c4, type: 3}
+    amountToSpawn: 1
+    spawnOffset: {x: 0, y: 0}
+    spawnOffsetByIndex: {x: 0, y: 0}
+    pathToFollowSO: {fileID: 11400000, guid: e373354661bc7ea4ca5b0a6ec0a81500, type: 2}
+    attackPatternOverride: {fileID: 0}
+    moveSpeedOverride: 0
+    clearEnemies: 0
+    clearDebris: 0
+    clearPowerups: 0
+    clearBullets: 0
+    waitDur: 1
+  - title: 2. wait 1s
     levelEventType: 5
     spawnPrefab: {fileID: 0}
     amountToSpawn: 0
@@ -31,4 +45,4 @@ MonoBehaviour:
     clearDebris: 0
     clearPowerups: 0
     clearBullets: 0
-    waitDur: 1
+    waitDur: 4
