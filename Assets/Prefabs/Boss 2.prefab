@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: a66984d08b7230c4f9dcce3a2cca81c7, type: 2}
     - target: {fileID: 4502045368779004280, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: totalDuration
-      value: 0.6
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4502045368779004280, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: bulletsPerLoop
@@ -39,6 +39,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: b8f91eb3f71b48849880b78a8d787b00, type: 2}
+    - target: {fileID: 7938829049136555712, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+      propertyPath: m_Radius
+      value: 0.98
+      objectReference: {fileID: 0}
     - target: {fileID: 8203633198450180724, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: m_Radius
       value: 0.83

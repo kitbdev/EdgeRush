@@ -307,6 +307,9 @@ public class Player : MonoBehaviour {
         // }
         rb.velocity = velocity;
     }
+    public void AddKnockback(Vector2 amount) {
+        velocity += amount;
+    }
     void OnDie() {
         // todo wait?
         GameManager.Instance.PlayerLose();

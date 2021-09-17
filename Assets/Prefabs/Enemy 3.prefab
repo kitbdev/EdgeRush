@@ -27,6 +27,10 @@ PrefabInstance:
       propertyPath: bulletsPerLoop
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1633482585675782824, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
+      propertyPath: m_Radius
+      value: 0.68
+      objectReference: {fileID: 0}
     - target: {fileID: 2005818597748344002, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.343
