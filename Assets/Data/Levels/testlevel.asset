@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ad2321aa536f8e4ba82ae618a2c719a, type: 3}
+  m_Name: testlevel
+  m_EditorClassIdentifier: 
+  title: 'Level 1: short  (1 events)'
+  levelName: 'short '
+  skip: 0
+  backgroundMat: {fileID: 0}
+  musicTrack: {fileID: 0}
+  levelEvents:
+  - title: 1. wait 2s
+    levelEventType: 5
+    spawnPrefab: {fileID: 0}
+    amountToSpawn: 0
+    spawnOffset: {x: 0, y: 0}
+    spawnOffsetByIndex: {x: 0, y: 0}
+    pathToFollowSO: {fileID: 0}
+    attackPatternOverride: {fileID: 0}
+    moveSpeedOverride: 0
+    clearEnemies: 0
+    clearDebris: 0
+    clearPowerups: 0
+    clearBullets: 0
+    waitDur: 2

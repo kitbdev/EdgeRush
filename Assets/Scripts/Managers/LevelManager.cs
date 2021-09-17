@@ -37,6 +37,14 @@ public class LevelManager : Singleton<LevelManager> {
     [SerializeField] MeshRenderer bg;
     [SerializeField] ScrollingBackground scrollingBackground;
     [SerializeField] Player player;
+    [SerializeField] AnimPlayer levelTransitionAnimPlayer;
+    [SerializeField] float levelTransitionDuration = 5f;
+    [SerializeField] float levelTransitionHappenTime = 2f;
+    [SerializeField, ReadOnly] bool isChangingLevels = false;
+    [SerializeField, ReadOnly] float changeLevelStartTime = 0;
+    [SerializeField, ReadOnly] bool changedLevels = false;
+
+
     [SerializeField, ReadOnly] LevelCheckpointData lastCheckPoint;
 
     [Header("Debug")]
@@ -74,6 +82,21 @@ public class LevelManager : Singleton<LevelManager> {
     }
 
     private void Update() {
+        if (isChangingLevels) {
+            if (changedLevels && Time.time > changeLevelStartTime + levelTransitionDuration) {
+                // we are done
+                isChangingLevels = false;
+                levelTransitionAnimPlayer.Stop();
+            } else if (!changedLevels && Time.time > changeLevelStartTime + levelTransitionHappenTime) {
+                // actually change the level
+                // Debug.Break();
+                changedLevels = true;
+                NextLevelSet();
+                return;
+            } else {
+                return;
+            }
+        }
         ProcessLevel();
     }
 
@@ -127,7 +150,6 @@ public class LevelManager : Singleton<LevelManager> {
         ClearLevel();
     }
     public void RetryLevel() {
-        // todo checkpoint?
         bool checkpoint = LoadCheckPoint();
         if (!checkpoint) {
             // ? go back to original bullet and coin counts
@@ -151,7 +173,6 @@ public class LevelManager : Singleton<LevelManager> {
             Debug.Log("Starting level " + (levelIndex + 1));
         }
         ClearLevel();
-        // todo level transition
         _currentLevelIndex = levelIndex;
         levelEventIndex = 0;
         LevelSO level = levels[currentLevelIndex];
@@ -185,6 +206,12 @@ public class LevelManager : Singleton<LevelManager> {
     }
     void NextLevel() {
         Debug.Log($"Level {currentLevelIndex + 1} finished!");
+        changedLevels = false;
+        isChangingLevels = true;
+        changeLevelStartTime = Time.time;
+        levelTransitionAnimPlayer.Play();
+    }
+    void NextLevelSet() {
         int nextLevelIndex = _currentLevelIndex + 1;
         // skip levels
         while (nextLevelIndex < levels.Length && levels[nextLevelIndex].skip) {
@@ -211,7 +238,7 @@ public class LevelManager : Singleton<LevelManager> {
             Debug.Log($"starting event {levelEventIndex} {curLevelEventTitle}");
         }
         bool finished = HandleLevelEvent(curEvent);
-        if (finished) {
+        if (finished && !isChangingLevels) {
             // move to the next event
             lastEventTime = Time.time;
             if (levInd != currentLevelIndex) {

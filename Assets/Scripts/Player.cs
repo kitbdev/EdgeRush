@@ -104,7 +104,6 @@ public class Player : MonoBehaviour {
                 //     inputMoveTo = false;
                 // }
             }
-            // todo switch between moveto mode vs delta mode
         };
         controls.Player.MoveToPoint.performed += c => {
             // touch down
@@ -324,16 +323,15 @@ public class Player : MonoBehaviour {
         GameManager.Instance.PlayerLose();
     }
     public void ResetForLevel() {
-        // todo checkpoint
-        // todo ?
-        transform.position = resetPos.position;
-        rb.velocity = Vector2.zero;
-        velocity = Vector2.zero;
-        weaponAmmoChangeEvent?.Invoke();
+        // weaponAmmoChangeEvent?.Invoke();
     }
     public void ResetAll() {
         // reset position and ammo counts
         ResetForLevel();
+        transform.position = resetPos.position;
+        rb.velocity = Vector2.zero;
+        velocity = Vector2.zero;
+        
         health.RestoreHealth();
         lastShootTime = 0;
         numCoins = startCoinAmount;
@@ -341,8 +339,6 @@ public class Player : MonoBehaviour {
         if (initialWeapon) {
             SetCurrentWeapon(initialWeapon);
         }
-        // todo ammo
-        // todo checkpoint
         weaponAmmoChangeEvent?.Invoke();
         coinAmountChangeEvent?.Invoke();
     }
