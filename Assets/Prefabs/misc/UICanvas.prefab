@@ -536,6 +536,7 @@ MonoBehaviour:
     priority: 128
   minTimeBetween: 0.2
   ignoreIfPaused: 0
+  dontPlay: 0
 --- !u!1 &2624683760823988890
 GameObject:
   m_ObjectHideFlags: 0
@@ -1413,6 +1414,7 @@ MonoBehaviour:
     priority: 128
   minTimeBetween: 0.1
   ignoreIfPaused: 0
+  dontPlay: 0
 --- !u!1 &4385671645289762289
 GameObject:
   m_ObjectHideFlags: 0
@@ -1794,6 +1796,7 @@ MonoBehaviour:
     priority: 128
   minTimeBetween: 0.1
   ignoreIfPaused: 0
+  dontPlay: 0
 --- !u!1 &5127628597522946836
 GameObject:
   m_ObjectHideFlags: 0
@@ -2657,6 +2660,7 @@ MonoBehaviour:
     priority: 128
   minTimeBetween: 0.1
   ignoreIfPaused: 0
+  dontPlay: 0
 --- !u!1 &7053118259233854069
 GameObject:
   m_ObjectHideFlags: 0
@@ -3130,7 +3134,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.4251521, y: 0.25800002}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00012207031, y: 4.7345123}
+  m_AnchoredPosition: {x: -0.00012207031, y: 4.7345276}
   m_SizeDelta: {x: 0, y: 4.7346}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &890027057118002703
@@ -4119,6 +4123,7 @@ MonoBehaviour:
   showOnStart: 0
   resetPosOnAwake: 1
   animTag: Shown
+  deselectAllOnHide: 1
   isShown: 0
 --- !u!1 &8544450282822494112
 GameObject:
@@ -5296,7 +5301,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.72590667, g: 0.70514417, b: 0.8962264, a: 1}
+    m_NormalColor: {r: 0.43848854, g: 0.42399433, b: 0.5660378, a: 1}
     m_HighlightedColor: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
     m_PressedColor: {r: 0.575342, g: 0.5718761, b: 0.6037736, a: 1}
     m_SelectedColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
@@ -5875,6 +5880,7 @@ MonoBehaviour:
   showOnStart: 0
   resetPosOnAwake: 1
   animTag: Shown
+  deselectAllOnHide: 1
   isShown: 0
 --- !u!1 &8544450283104874338
 GameObject:
@@ -6258,7 +6264,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.72590667, g: 0.70514417, b: 0.8962264, a: 1}
+    m_NormalColor: {r: 0.43848854, g: 0.42399433, b: 0.5660378, a: 1}
     m_HighlightedColor: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
     m_PressedColor: {r: 0.575342, g: 0.5718761, b: 0.6037736, a: 1}
     m_SelectedColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
@@ -6856,7 +6862,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.72590667, g: 0.70514417, b: 0.8962264, a: 1}
+    m_NormalColor: {r: 0.43848854, g: 0.42399433, b: 0.5660378, a: 1}
     m_HighlightedColor: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
     m_PressedColor: {r: 0.575342, g: 0.5718761, b: 0.6037736, a: 1}
     m_SelectedColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
@@ -8173,6 +8179,7 @@ MonoBehaviour:
   showOnStart: 1
   resetPosOnAwake: 1
   animTag: Shown
+  deselectAllOnHide: 1
   isShown: 0
 --- !u!1 &8544450283443893644
 GameObject:
@@ -8273,7 +8280,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.72590667, g: 0.70514417, b: 0.8962264, a: 1}
+    m_NormalColor: {r: 0.43848854, g: 0.42399433, b: 0.5660378, a: 1}
     m_HighlightedColor: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
     m_PressedColor: {r: 0.575342, g: 0.5718761, b: 0.6037736, a: 1}
     m_SelectedColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
@@ -8568,6 +8575,7 @@ MonoBehaviour:
   showOnStart: 0
   resetPosOnAwake: 1
   animTag: Shown
+  deselectAllOnHide: 1
   isShown: 0
 --- !u!1 &8544450283468180507
 GameObject:
@@ -9542,7 +9550,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.72590667, g: 0.70514417, b: 0.8962264, a: 1}
+    m_NormalColor: {r: 0.43848854, g: 0.42399433, b: 0.5660378, a: 1}
     m_HighlightedColor: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
     m_PressedColor: {r: 0.575342, g: 0.5718761, b: 0.6037736, a: 1}
     m_SelectedColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
@@ -9808,7 +9816,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.72590667, g: 0.70514417, b: 0.8962264, a: 1}
+    m_NormalColor: {r: 0.43848854, g: 0.42399433, b: 0.5660378, a: 1}
     m_HighlightedColor: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
     m_PressedColor: {r: 0.575342, g: 0.5718761, b: 0.6037736, a: 1}
     m_SelectedColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
@@ -10011,7 +10019,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.72590667, g: 0.70514417, b: 0.8962264, a: 1}
+    m_NormalColor: {r: 0.43848854, g: 0.42399433, b: 0.5660378, a: 1}
     m_HighlightedColor: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
     m_PressedColor: {r: 0.575342, g: 0.5718761, b: 0.6037736, a: 1}
     m_SelectedColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
@@ -11270,7 +11278,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.72590667, g: 0.70514417, b: 0.8962264, a: 1}
+    m_NormalColor: {r: 0.43848854, g: 0.42399433, b: 0.5660378, a: 1}
     m_HighlightedColor: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
     m_PressedColor: {r: 0.575342, g: 0.5718761, b: 0.6037736, a: 1}
     m_SelectedColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
@@ -11431,6 +11439,7 @@ MonoBehaviour:
   showOnStart: 0
   resetPosOnAwake: 1
   animTag: Shown
+  deselectAllOnHide: 1
   isShown: 0
 --- !u!1 &8544450283956443396
 GameObject:
@@ -13058,7 +13067,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.72590667, g: 0.70514417, b: 0.8962264, a: 1}
+    m_NormalColor: {r: 0.43848854, g: 0.42399433, b: 0.5660378, a: 1}
     m_HighlightedColor: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
     m_PressedColor: {r: 0.575342, g: 0.5718761, b: 0.6037736, a: 1}
     m_SelectedColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
@@ -13771,7 +13780,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.72590667, g: 0.70514417, b: 0.8962264, a: 1}
+    m_NormalColor: {r: 0.43848854, g: 0.42399433, b: 0.5660378, a: 1}
     m_HighlightedColor: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
     m_PressedColor: {r: 0.575342, g: 0.5718761, b: 0.6037736, a: 1}
     m_SelectedColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
@@ -14387,7 +14396,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.72590667, g: 0.70514417, b: 0.8962264, a: 1}
+    m_NormalColor: {r: 0.43848854, g: 0.42399433, b: 0.5660378, a: 1}
     m_HighlightedColor: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
     m_PressedColor: {r: 0.575342, g: 0.5718761, b: 0.6037736, a: 1}
     m_SelectedColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
@@ -15123,7 +15132,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.72590667, g: 0.70514417, b: 0.8962264, a: 1}
+    m_NormalColor: {r: 0.43848854, g: 0.42399433, b: 0.5660378, a: 1}
     m_HighlightedColor: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
     m_PressedColor: {r: 0.575342, g: 0.5718761, b: 0.6037736, a: 1}
     m_SelectedColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
@@ -15994,6 +16003,7 @@ MonoBehaviour:
   showOnStart: 0
   resetPosOnAwake: 1
   animTag: Shown
+  deselectAllOnHide: 1
   isShown: 0
 --- !u!1 &8544450284662928437
 GameObject:
@@ -16228,7 +16238,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.72590667, g: 0.70514417, b: 0.8962264, a: 1}
+    m_NormalColor: {r: 0.43848854, g: 0.42399433, b: 0.5660378, a: 1}
     m_HighlightedColor: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
     m_PressedColor: {r: 0.575342, g: 0.5718761, b: 0.6037736, a: 1}
     m_SelectedColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}

@@ -197,6 +197,9 @@ public class LevelManager : Singleton<LevelManager> {
         int numChildren = transform.childCount;
         for (int i = numChildren - 1; i >= 0; i--) {
             var go = transform.GetChild(i).gameObject;
+            if (go.TryGetComponent<PathRunHandler>(out var pathRunHandler)) {
+                pathRunHandler.KillSequence();
+            }
             if (Application.isPlaying) {
                 Destroy(go);
             } else {

@@ -7,6 +7,6 @@ public class PathRunHandler : MonoBehaviour {
     public Sequence sequence;
 
     public void KillSequence() {
-        sequence.Kill();
+        sequence?.Kill();
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [SelectionBase]
@@ -11,6 +12,7 @@ public class MenuScreen : MonoBehaviour {
     [SerializeField] bool showOnStart = false;
     [SerializeField] bool resetPosOnAwake = true;
     [SerializeField] string animTag = "Shown";
+    [SerializeField] bool deselectAllOnHide = true;
 
     [ReadOnly] public bool isShown = false;
 
@@ -59,6 +61,10 @@ public class MenuScreen : MonoBehaviour {
         if (isShown) {
             transform.SetAsLastSibling();
             selectOnShow?.Select();
+        } else {
+            if (deselectAllOnHide) {
+                EventSystem.current.SetSelectedGameObject(null);
+            }
         }
         if (!Application.isPlaying) {
             Setup();
