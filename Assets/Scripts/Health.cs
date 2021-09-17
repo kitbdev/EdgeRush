@@ -47,6 +47,9 @@ public class Health : MonoBehaviour {
         healthUpdateEvent.Invoke();
     }
 
+    public void SetHealth(float amount) {
+        currentHealth = amount;
+    }
     public void Heal(float amount) {
         currentHealth += amount;
     }

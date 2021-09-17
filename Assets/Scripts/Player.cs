@@ -28,8 +28,8 @@ public class Player : MonoBehaviour {
     [SerializeField] GameObject[] gunModels = new GameObject[0];
     [SerializeField] WeaponSO initialWeapon;
     public bool debugUnlimitedShots = false;
-    [SerializeField] public List<WeaponData> weaponDatas = new List<WeaponData>();
-    [SerializeField, ReadOnly] int curSelectedWeapon = 0;
+    [SerializeField, ReadOnly] public List<WeaponData> weaponDatas = new List<WeaponData>();
+    [SerializeField, ReadOnly] public int curSelectedWeapon = 0;
     public WeaponData currentWeaponData =>
         (curSelectedWeapon >= 0 && curSelectedWeapon < weaponDatas.Count) ? weaponDatas[curSelectedWeapon] : null;
     public WeaponSO currentWeapon => currentWeaponData?.weaponType ?? null;

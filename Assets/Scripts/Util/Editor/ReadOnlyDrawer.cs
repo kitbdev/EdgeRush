@@ -25,7 +25,7 @@ public class ReadOnlyDrawer : PropertyDrawer
         // RangeAttribute range = attribute as RangeAttribute;
         // EditorGUILayout.PropertyField(property,label, GUILayout)
         EditorGUI.BeginDisabledGroup(true);
-        EditorGUI.PropertyField(position, property, label);
+        EditorGUI.PropertyField(position, property, label, true);
         EditorGUI.EndDisabledGroup();
         // EditorGUI.LabelField(position, label.text, "Use Range with float or int.");
     }

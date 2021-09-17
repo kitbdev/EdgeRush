@@ -5,6 +5,28 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : Singleton<LevelManager> {
 
+    [System.Serializable]
+    class LevelCheckpointData {
+        // no enemies
+        // no items or bullets on screen
+        public int level;
+        public int levelEvent;
+        public float playerHealth;
+        public Player.WeaponData[] weaponDatas;
+        public int coinAmount;
+        public int playerSelectedWeapon;
+        public static LevelCheckpointData Save(int level, int levelEvent, Player player) {
+            LevelCheckpointData cpdata = new LevelCheckpointData();
+            cpdata.level = level;
+            cpdata.levelEvent = levelEvent;
+            cpdata.coinAmount = player.numCoins;
+            cpdata.playerSelectedWeapon = player.curSelectedWeapon;
+            cpdata.playerHealth = player.GetComponent<Health>().currentHealth;
+            cpdata.weaponDatas = player.weaponDatas.ToArray();
+            return cpdata;
+        }
+    }
+
     public LevelSO[] levels = new LevelSO[0];
     public LevelSO curLevel => currentLevelIndex >= 0 && currentLevelIndex < levels.Length ? levels[currentLevelIndex] : null;
     public string curLevelEventTitle => (curLevel != null && levelEventIndex < curLevel.levelEvents.Length) ?
@@ -15,6 +37,7 @@ public class LevelManager : Singleton<LevelManager> {
     [SerializeField] MeshRenderer bg;
     [SerializeField] ScrollingBackground scrollingBackground;
     [SerializeField] Player player;
+    [SerializeField, ReadOnly] LevelCheckpointData lastCheckPoint;
 
     [Header("Debug")]
     [SerializeField] bool debugLoggingEditor = false;
@@ -54,6 +77,24 @@ public class LevelManager : Singleton<LevelManager> {
         ProcessLevel();
     }
 
+    public void SaveCheckPoint() {
+        lastCheckPoint = LevelCheckpointData.Save(currentLevelIndex, levelEventIndex, player);
+    }
+    public bool LoadCheckPoint() {
+        if (lastCheckPoint == null) {
+            return false;
+        }
+        ClearLevel();
+        player.ResetAll();
+        player.AddCoins(lastCheckPoint.coinAmount);
+        player.GetComponent<Health>().SetHealth(lastCheckPoint.playerHealth);
+        player.weaponDatas = new List<Player.WeaponData>(lastCheckPoint.weaponDatas);
+        player.curSelectedWeapon = lastCheckPoint.playerSelectedWeapon;
+        _currentLevelIndex = lastCheckPoint.level;
+        levelEventIndex = lastCheckPoint.levelEvent;
+        HUDManager.Instance.UpdateAll();
+        return true;
+    }
     public void DropCoins(int amount, Vector3 position) {
         if (!coinprefab) return;
         for (int i = 0; i < amount; i++) {
@@ -80,15 +121,19 @@ public class LevelManager : Singleton<LevelManager> {
 #else
         StartLevel(0);
 #endif
+        PauseManager.Instance.blockPause = false;
     }
     public void StopGame() {
         ClearLevel();
     }
     public void RetryLevel() {
         // todo checkpoint?
-        player.GetComponent<Health>().RestoreHealth();
-        // ? go back to original bullet and coin counts
-        RestartLevel();
+        bool checkpoint = LoadCheckPoint();
+        if (!checkpoint) {
+            // ? go back to original bullet and coin counts
+            player.GetComponent<Health>().RestoreHealth();
+            RestartLevel();
+        }
     }
     public void RestartLevel() {
         DG.Tweening.DOTween.KillAll();
@@ -113,6 +158,7 @@ public class LevelManager : Singleton<LevelManager> {
         if (level.backgroundMat && bg) {
             bg.sharedMaterial = level.backgroundMat;
         }
+        SaveCheckPoint();
     }
     void ClearLevel() {
         scrollingBackground.ResetScrolls();
@@ -236,7 +282,7 @@ public class LevelManager : Singleton<LevelManager> {
             case LevelEvent.LevelEventType.waitEnemiesDefeated:
                 return EnemyManager.Instance.numActiveEnemies == 0;
             case LevelEvent.LevelEventType.checkpoint:
-                // todo
+                SaveCheckPoint();
                 break;
             case LevelEvent.LevelEventType.endLevel:
                 if (Time.time >= lastEventTime + levelEvent.waitDur) {

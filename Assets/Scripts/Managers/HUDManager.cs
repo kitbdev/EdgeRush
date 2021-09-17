@@ -62,7 +62,7 @@ public class HUDManager : Singleton<HUDManager> {
         UpdateBossPopup();
     }
     [ContextMenu("Update UI")]
-    void UpdateAll() {
+    public void UpdateAll() {
         UpdatePlayerHealth();
         UpdateCoinCount();
         UpdateWeaponAmmoCount();

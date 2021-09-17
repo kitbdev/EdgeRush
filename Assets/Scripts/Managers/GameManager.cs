@@ -34,6 +34,7 @@ public class GameManager : Singleton<GameManager> {
             item.SetActive(false);
         }
 #endif
+        PauseManager.Instance.blockPause = true;
     }
     private void Start() {
         TryLoadOptionPrefs();
