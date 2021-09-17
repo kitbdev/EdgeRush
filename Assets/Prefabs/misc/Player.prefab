@@ -139,7 +139,6 @@ MonoBehaviour:
   playAreaWidth: 8
   resetPos: {fileID: 0}
   velocity: {x: 0, y: 0}
-  lastShootTime: 0
   shootPoints:
   - {fileID: 7735760251155029592}
   - {fileID: 7735760249434174819}
@@ -155,6 +154,8 @@ MonoBehaviour:
   debugUnlimitedShots: 0
   weaponDatas: []
   curSelectedWeapon: 0
+  lastShootTime: 0
+  lastTryShootTime: 0
   modelMove: {fileID: 7735760249356109605}
   modelTiltX: 20
   modelTiltY: 10
@@ -162,7 +163,15 @@ MonoBehaviour:
   startCoinAmount: 0
   healZone: {fileID: 0}
   numCoins: 0
-  defShootClip: {fileID: 0}
+  noAmmoSfx:
+    clip: {fileID: 8300000, guid: f047cda693c13bf4d9810f4e336cdcb2, type: 3}
+    follow: {fileID: 0}
+    position: {x: 0, y: 0, z: 0}
+    groupOverride: {fileID: 0}
+    volume: 0.818
+    pitch: 1
+    pan: 0
+    priority: 128
   engineAudio: {fileID: 7735760250786162927}
   minVolume: 0.25
   maxVolume: 0.5
@@ -492,7 +501,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.526
       inSlope: 0
       outSlope: 0
       tangentMode: 0

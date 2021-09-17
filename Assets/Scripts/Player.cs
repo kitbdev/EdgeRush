@@ -21,7 +21,6 @@ public class Player : MonoBehaviour {
 
     [SerializeField, ReadOnly] Transform resetPos;
     [SerializeField, ReadOnly] Vector2 velocity = Vector2.zero;
-    [SerializeField, ReadOnly] float lastShootTime = 0;
 
     [Header("Weapons")]
     [SerializeField] Transform[] shootPoints = new Transform[0];
@@ -30,6 +29,9 @@ public class Player : MonoBehaviour {
     public bool debugUnlimitedShots = false;
     [SerializeField, ReadOnly] public List<WeaponData> weaponDatas = new List<WeaponData>();
     [SerializeField, ReadOnly] public int curSelectedWeapon = 0;
+    [SerializeField, ReadOnly] float lastShootTime = 0;
+    [SerializeField, ReadOnly] float lastTryShootTime = 0;
+
     public WeaponData currentWeaponData =>
         (curSelectedWeapon >= 0 && curSelectedWeapon < weaponDatas.Count) ? weaponDatas[curSelectedWeapon] : null;
     public WeaponSO currentWeapon => currentWeaponData?.weaponType ?? null;
@@ -46,7 +48,7 @@ public class Player : MonoBehaviour {
     [SerializeField, ReadOnly] public int numCoins;
 
     [Header("Audio")]
-    [SerializeField] AudioClip defShootClip;
+    [SerializeField] AudioManager.AudioSettings noAmmoSfx;
     [SerializeField] AudioSource engineAudio;
     [SerializeField] [Range(0, 1)] float minVolume = 0.6f;
     [SerializeField] [Range(0, 1)] float maxVolume = 0.8f;
@@ -266,16 +268,20 @@ public class Player : MonoBehaviour {
         if (!currentWeapon) {
             return;
         }
+        inputShoot = false;
         if (!debugUnlimitedShots) {
             if (!(currentWeapon.hasUnlimitedAmmo || currentWeaponData.ammoAmount > 0)) {
                 // not enough ammo!
+                if (Time.time > lastTryShootTime + currentWeapon.shootHoldCooldownDur) {
+                    noAmmoSfx.position = transform.position;
+                    AudioManager.Instance.PlaySfx(noAmmoSfx);
+                    lastTryShootTime = Time.time;
+                }
                 return;
             }
         }
         BulletManager.Instance.Shoot(currentWeapon, shootPoints, true);
         lastShootTime = Time.time;
-        inputShoot = false;
-        currentWeapon.shootAudio.clip ??= defShootClip;
         currentWeapon.shootAudio.position = transform.position;
         AudioManager.Instance.PlaySfx(currentWeapon.shootAudio);
         currentWeaponData.ammoAmount -= 1;

@@ -34,7 +34,6 @@ public class GameManager : Singleton<GameManager> {
             item.SetActive(false);
         }
 #endif
-        PauseManager.Instance.blockPause = true;
     }
     private void Start() {
         TryLoadOptionPrefs();
@@ -89,6 +88,7 @@ public class GameManager : Singleton<GameManager> {
         PauseManager.Instance.Pause();
         LevelManager.Instance.StopGame();
         menuManager.ShowOnlyScreen(mainMenuScreen);
+        PauseManager.Instance.blockPause = true;
     }
     public void BackToMainMenu() {
         SceneManager.LoadScene(0, LoadSceneMode.Single);
