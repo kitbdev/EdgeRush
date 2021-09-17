@@ -49,6 +49,7 @@ public class Player : MonoBehaviour {
 
     [Header("Audio")]
     [SerializeField] AudioManager.AudioSettings noAmmoSfx;
+    [SerializeField] AudioManager.AudioSettings damageSfx;
     [SerializeField] AudioSource engineAudio;
     [SerializeField] [Range(0, 1)] float minVolume = 0.6f;
     [SerializeField] [Range(0, 1)] float maxVolume = 0.8f;
@@ -151,10 +152,12 @@ public class Player : MonoBehaviour {
         controls.Player.EnableHealZones.performed += c => { TryActivateHealthZones(); };
 
         health.dieEvent.AddListener(OnDie);
+        health.damageEvent.AddListener(OnDamaged);
     }
     private void OnDisable() {
         controls?.Disable();
         health.dieEvent.RemoveListener(OnDie);
+        health.damageEvent.RemoveListener(OnDamaged);
     }
     private void Update() {
         if (Time.timeScale == 0) {
@@ -189,6 +192,12 @@ public class Player : MonoBehaviour {
         }
         if (engineAudio.volume != nVol) {
             engineAudio.volume = nVol;
+        }
+    }
+    void OnDamaged() {
+        if (damageSfx != null) {
+            damageSfx.position = transform.position;
+            AudioManager.Instance.PlaySfx(damageSfx);
         }
     }
     void SelectWeaponNext() {

@@ -31,6 +31,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7868247591319863519, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
+      propertyPath: render
+      value: 
+      objectReference: {fileID: 9106770838236242887}
     - target: {fileID: 9219814045859052586, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -101,3 +105,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
+--- !u!23 &9106770838236242887 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8311563748966951288, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
+  m_PrefabInstance: {fileID: 952833352178944703}
+  m_PrefabAsset: {fileID: 0}

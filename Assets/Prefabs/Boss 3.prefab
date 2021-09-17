@@ -19,6 +19,10 @@ PrefabInstance:
       propertyPath: manualInvincible
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5190151523855161804, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+      propertyPath: render
+      value: 
+      objectReference: {fileID: 6970416375910711869}
     - target: {fileID: 7938829049136555712, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: m_Radius
       value: 2.15
@@ -81,3 +85,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+--- !u!23 &6970416375910711869 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3809811893620218621, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+  m_PrefabInstance: {fileID: 6081213512014878912}
+  m_PrefabAsset: {fileID: 0}

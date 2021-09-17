@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.86
       objectReference: {fileID: 0}
+    - target: {fileID: 7868247591319863519, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
+      propertyPath: matIndex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9219814045859052585, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
       propertyPath: hitInvincibleDur
       value: 0
