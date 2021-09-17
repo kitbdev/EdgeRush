@@ -145,6 +145,7 @@ public class LevelManager : Singleton<LevelManager> {
         StartLevel(0);
 #endif
         PauseManager.Instance.blockPause = false;
+        GameManager.Instance.SetAudioPlayers(false);
     }
     public void StopGame() {
         ClearLevel();

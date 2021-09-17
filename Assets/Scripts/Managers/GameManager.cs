@@ -94,7 +94,7 @@ public class GameManager : Singleton<GameManager> {
         PauseManager.Instance.blockPause = true;
     }
 
-    private void SetAudioPlayers(bool stop) {
+    public void SetAudioPlayers(bool stop) {
         foreach (AudioPlayer audioPlayer in pauseAudioPlayers) {
             audioPlayer.ignoreIfPaused = stop;
         }

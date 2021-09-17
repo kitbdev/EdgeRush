@@ -7,6 +7,7 @@ public class AudioPlayer : MonoBehaviour {
     public AudioManager.AudioSettings sound;
     public float minTimeBetween = 0.1f;
     float lastPlayTime;
+    public bool setPosition = true;
     public bool ignoreIfPaused = false;
     public bool dontPlay = false;
 
@@ -19,7 +20,9 @@ public class AudioPlayer : MonoBehaviour {
         }
         if (Time.unscaledTime > lastPlayTime + minTimeBetween) {
             lastPlayTime = Time.unscaledTime;
-            sound.position = transform.position;
+            if (setPosition) {
+                sound.position = transform.position;
+            }
             AudioManager.Instance.PlaySfx(sound);
         }
     }

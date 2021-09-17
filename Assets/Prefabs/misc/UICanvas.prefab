@@ -528,13 +528,14 @@ MonoBehaviour:
   sound:
     clip: {fileID: 8300000, guid: 58d5d03354cd51349a7b8a86be836741, type: 3}
     follow: {fileID: 0}
-    position: {x: 0, y: 0, z: 0}
+    position: {x: 309.875, y: 174.5, z: 0}
     groupOverride: {fileID: 0}
     volume: 1
     pitch: 1
     pan: 0
     priority: 128
   minTimeBetween: 0.2
+  setPosition: 0
   ignoreIfPaused: 0
   dontPlay: 0
 --- !u!1 &2624683760823988890
@@ -1413,6 +1414,7 @@ MonoBehaviour:
     pan: 0
     priority: 128
   minTimeBetween: 0.1
+  setPosition: 0
   ignoreIfPaused: 0
   dontPlay: 0
 --- !u!1 &4385671645289762289
@@ -1507,7 +1509,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26.8
+  m_fontSize: 26.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1795,6 +1797,7 @@ MonoBehaviour:
     pan: 0
     priority: 128
   minTimeBetween: 0.1
+  setPosition: 0
   ignoreIfPaused: 0
   dontPlay: 0
 --- !u!1 &5127628597522946836
@@ -2654,11 +2657,12 @@ MonoBehaviour:
     follow: {fileID: 0}
     position: {x: 0, y: 0, z: 0}
     groupOverride: {fileID: 0}
-    volume: 1
+    volume: 0.448
     pitch: 1
     pan: 0
-    priority: 128
+    priority: 185
   minTimeBetween: 0.1
+  setPosition: 0
   ignoreIfPaused: 0
   dontPlay: 0
 --- !u!1 &7053118259233854069
@@ -3134,7 +3138,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.4251521, y: 0.25800002}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00012207031, y: 4.7345276}
+  m_AnchoredPosition: {x: -0.00012207031, y: 4.734543}
   m_SizeDelta: {x: 0, y: 4.7346}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &890027057118002703
@@ -9466,7 +9470,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8544450283619209464}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
