@@ -5,6 +5,7 @@ using UnityEngine;
 [SelectionBase]
 public class Bullet : MonoBehaviour {
 
+    public float timeoutDur = 10f;
     public float angularSpeed;
     public float acceleration;
     public float angularAcceleration;
@@ -18,7 +19,6 @@ public class Bullet : MonoBehaviour {
     [ReadOnly] public float angle = 0;
     [ReadOnly] public Vector2 velocity;
 
-    [ReadOnly] public float timeoutDur = 0.5f;
     [ReadOnly] public float enableTime = 0;
 
     [HideInInspector] public Rigidbody2D rb;
