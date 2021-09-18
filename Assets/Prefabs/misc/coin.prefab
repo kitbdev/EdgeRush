@@ -315,14 +315,15 @@ MonoBehaviour:
   models: []
   vel: {x: 0, y: -2}
   pickupAudio:
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 816d1de6a61637c4ea95d087235cda18, type: 3}
     follow: {fileID: 0}
     position: {x: 0, y: 0, z: 0}
-    groupOverride: {fileID: 0}
+    groupOverride: {fileID: -4499577289343753342, guid: 3c27ab2c14a89e849854b7762d4f5442, type: 2}
     volume: 1
     pitch: 1
     pan: 0
     priority: 128
+    no3d: 0
 --- !u!1001 &5506789286748099702
 PrefabInstance:
   m_ObjectHideFlags: 0
