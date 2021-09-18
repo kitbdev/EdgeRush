@@ -35,6 +35,14 @@ PrefabInstance:
       propertyPath: render
       value: 
       objectReference: {fileID: 9106770838236242887}
+    - target: {fileID: 9219814045859052585, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
+      propertyPath: maxHealth
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219814045859052585, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
+      propertyPath: hitInvincibleDur
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 9219814045859052586, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -81,7 +89,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9219814045859052588, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
       propertyPath: numCoinsToDrop
-      value: 4
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219814045859052588, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
+      propertyPath: dropRates.Array.data[1].ammo
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219814045859052588, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
+      propertyPath: dropRates.Array.data[2].ammo
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219814045859052588, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
+      propertyPath: dropRates.Array.data[1].chance
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219814045859052588, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
+      propertyPath: dropRates.Array.data[2].chance
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 9219814045859052589, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
       propertyPath: m_Name

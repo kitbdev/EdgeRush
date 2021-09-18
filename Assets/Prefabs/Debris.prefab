@@ -114,6 +114,10 @@ MonoBehaviour:
     pitch: 1
     pan: 0
     priority: 128
+  minTimeBetween: 0.1
+  setPosition: 1
+  ignoreIfPaused: 0
+  dontPlay: 0
 --- !u!1 &4739607829735346965
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,7 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentHealth: 0
-  maxHealth: 3
+  maxHealth: 4
   hitInvincibleDur: 0
   manualInvincible: 0
   destroyOnDie: 1
@@ -401,6 +405,10 @@ MonoBehaviour:
     pitch: 1
     pan: 0
     priority: 128
+  minTimeBetween: 0.1
+  setPosition: 1
+  ignoreIfPaused: 0
+  dontPlay: 0
 --- !u!1001 &4739607829098504354
 PrefabInstance:
   m_ObjectHideFlags: 0

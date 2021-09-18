@@ -474,6 +474,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1847968827299102398, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+      propertyPath: dropRates.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1847968827299102398, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+      propertyPath: dropRates.Array.data[1].ammo
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 1847968827299102398, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+      propertyPath: dropRates.Array.data[2].ammo
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1847968827299102398, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+      propertyPath: dropRates.Array.data[0].chance
+      value: 0.276
+      objectReference: {fileID: 0}
+    - target: {fileID: 1847968827299102398, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+      propertyPath: dropRates.Array.data[1].chance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1847968827299102398, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+      propertyPath: dropRates.Array.data[2].chance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1847968827299102398, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+      propertyPath: dropRates.Array.data[1].weaponType
+      value: 
+      objectReference: {fileID: 11400000, guid: be763971e2786464e8dbf91eaee5b932, type: 2}
+    - target: {fileID: 1847968827299102398, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+      propertyPath: dropRates.Array.data[2].weaponType
+      value: 
+      objectReference: {fileID: 11400000, guid: d4f96c5b02bea944cbba3a0855a7ea19, type: 2}
+    - target: {fileID: 4103724378864960721, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+      propertyPath: maxHealth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103724378864960721, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+      propertyPath: hitInvincibleDur
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5190151523855161804, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: render
       value: 
