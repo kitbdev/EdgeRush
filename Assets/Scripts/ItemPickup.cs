@@ -15,12 +15,23 @@ public class ItemPickup : MonoBehaviour {
     public int ammoAmount = 1;
     [ConditionalHide(nameof(pickupType), (int)PickupType.COIN)]
     public int numCoins = 1;
+    public GameObject[] models = new GameObject[0];
     public Vector2 vel = Vector2.down;
     public AudioManager.AudioSettings pickupAudio;
     Rigidbody2D rb;
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
+    }
+    private void Start() {
+        if (pickupType == PickupType.WEAPON && weapon != null) {
+            if (models.Length - 1 >= weapon.modelIndex) {
+                foreach (var model in models) {
+                    model?.SetActive(false);
+                }
+                models[weapon.modelIndex]?.SetActive(true);
+            }
+        }
     }
     private void FixedUpdate() {
         rb.velocity = vel;
