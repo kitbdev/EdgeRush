@@ -3962,7 +3962,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -6154737569916070331, guid: 3c27ab2c14a89e849854b7762d4f5442, type: 2}
   m_audioClip: {fileID: 8300000, guid: 6e307708daa24394192dc4d8cc3290a4, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 0.562
   m_Pitch: 1
   Loop: 1
@@ -6862,7 +6862,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 8544450283641655231}
+    m_SelectOnUp: {fileID: 6803471977974094303}
     m_SelectOnDown: {fileID: 8544450284200745481}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
