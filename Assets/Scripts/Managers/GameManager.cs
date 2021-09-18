@@ -127,6 +127,13 @@ public class GameManager : Singleton<GameManager> {
         LevelManager.Instance.RetryLevel();
         menuManager.HideAllScreens();
     }
+    public void RestartLastLevel() {
+        PauseManager.Instance.blockPause = false;
+        PauseManager.Instance.UnPause();
+        SetAudioPlayers(false);
+        LevelManager.Instance.RestartLevel();
+        menuManager.HideAllScreens();
+    }
 
     public void ExitGame() {
         // todo save?

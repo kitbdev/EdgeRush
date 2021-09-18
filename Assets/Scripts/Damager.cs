@@ -26,7 +26,7 @@ public class Damager : MonoBehaviour {
         }
         if (knockbackStrength > 0 && other.attachedRigidbody && other.attachedRigidbody.TryGetComponent<Player>(out var player)) {
             Vector2 dir = (other.attachedRigidbody.position - (Vector2)transform.position).normalized;
-            Debug.Log("knockback!" + dir*knockbackStrength);
+            // Debug.Log("knockback!" + dir*knockbackStrength);
             player.AddKnockback(dir * knockbackStrength);
         }
     }

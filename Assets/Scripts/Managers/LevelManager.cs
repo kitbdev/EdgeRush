@@ -160,6 +160,7 @@ public class LevelManager : Singleton<LevelManager> {
     }
     public void RestartLevel() {
         DG.Tweening.DOTween.KillAll();
+        player.ResetAll();
         StartLevel(currentLevelIndex);
     }
     public void StartLevel(int levelIndex) {
@@ -189,6 +190,7 @@ public class LevelManager : Singleton<LevelManager> {
         BulletManager.Instance.ClearAllActiveBullets();
 
         player.ResetForLevel();
+        HUDManager.Instance.UpdateBossPopup();
     }
     void ClearLevelDebris() {
         // clears debris, powerups, and coins
