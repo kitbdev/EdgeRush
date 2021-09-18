@@ -28,10 +28,15 @@ public class AudioManager : Singleton<AudioManager> {
         if (sfxSlider) sfxSlider.SetValueWithoutNotify(GetVolume(sfxVolParam));
     }
     float NormalizeVolume(float value) {
-        return (value - minVol) / (maxVol - minVol);
+        // from -80 20 to 0 1
+        // return (value - minVol) / (maxVol - minVol);
+        return Mathf.Pow(10, value / 20f);
     }
     float DenormalizeVolume(float value) {
-        return value * (maxVol - minVol) + minVol;
+        // from 0 1 to -80 20
+        // return value * (maxVol - minVol) + minVol;
+        value = Mathf.Max(value, 0.001f);
+        return Mathf.Log10(value) * 20;
     }
     void SetVolume(string paramName, float volumeNorm, bool save = true) {
         volumeNorm = DenormalizeVolume(volumeNorm);
