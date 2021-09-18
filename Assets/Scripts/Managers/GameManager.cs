@@ -101,8 +101,9 @@ public class GameManager : Singleton<GameManager> {
     }
 
     public void BackToMainMenu() {
+        DG.Tweening.DOTween.KillAll();
         SceneManager.LoadScene(0, LoadSceneMode.Single);
-        PauseManager.Instance.blockPause = false;
+        // PauseManager.Instance.blockPause = false;
         // GameManager.Instance.HideMenu();
         // ShowMainMenu();
     }

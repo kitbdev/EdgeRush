@@ -159,7 +159,7 @@ public class LevelManager : Singleton<LevelManager> {
         }
     }
     public void RestartLevel() {
-        DG.Tweening.DOTween.KillAll();
+        // DG.Tweening.DOTween.KillAll();
         player.ResetAll();
         StartLevel(currentLevelIndex);
     }

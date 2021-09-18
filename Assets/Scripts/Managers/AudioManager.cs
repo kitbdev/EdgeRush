@@ -94,6 +94,7 @@ public class AudioManager : Singleton<AudioManager> {
         public float pan = 0f;
         [Range(0, 256)]
         public int priority = 128;
+        public bool no3d = false;
     }
     public void PlaySfx(AudioClip clip) {
         PlaySfx(new AudioSettings() {
@@ -133,6 +134,9 @@ public class AudioManager : Singleton<AudioManager> {
         source.pitch = audioSettings.pitch;
         source.panStereo = audioSettings.pan;
         source.priority = audioSettings.priority;
+        if (audioSettings.no3d) {
+            source.spatialBlend = 0f;
+        }
         // todo? change over time
         source.Play();
         StartCoroutine(RemoveFromPool(audioGo, audioSettings.clip.length));
