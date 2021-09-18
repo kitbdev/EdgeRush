@@ -33,6 +33,11 @@ public class PauseManager : Singleton<PauseManager> {
         }
 #endif  
     }
+    private void OnDisable() {
+        if (togglePauseButton) {
+            togglePauseButton.action.Dispose();
+        }
+    }
     private void Start() {
         if (pauseOnStart) {
             Pause();
@@ -50,6 +55,7 @@ public class PauseManager : Singleton<PauseManager> {
         SetPaused(false);
     }
     public void SetPaused(bool pause = true) {
+        // Debug.Log($"received pause {pause} blocked:{blockPause}", this);
         if (blockPause) {
             return;
         }

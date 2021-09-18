@@ -128,7 +128,7 @@ public class HUDManager : Singleton<HUDManager> {
         }
     }
     void ClickWeapon(int index) {
-        Debug.Log("weapon " + index + " clicked");
+        // Debug.Log("weapon " + index + " clicked");
         player.SelectWeapon(index);
     }
     void UpdateCoinCount() {
