@@ -2559,6 +2559,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 380427244262044582, guid: 65b98c561375819449dee9810ec74b27, type: 3}
+      propertyPath: m_text
+      value: "Tab\r\nLeft Mouse Click\r"
+      objectReference: {fileID: 0}
     - target: {fileID: 456082371588396952, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2679,6 +2683,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5827515965934982723, guid: 65b98c561375819449dee9810ec74b27, type: 3}
+      propertyPath: m_text
+      value: 'WASD
+
+        Mouse'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5989100251649808238, guid: 65b98c561375819449dee9810ec74b27, type: 3}
+      propertyPath: m_text
+      value: "E/Q\nMouse Scroll Wheel\r"
+      objectReference: {fileID: 0}
     - target: {fileID: 6047051282505025568, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2698,6 +2712,12 @@ PrefabInstance:
     - target: {fileID: 6047051282505025568, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6062398385933605086, guid: 65b98c561375819449dee9810ec74b27, type: 3}
+      propertyPath: m_text
+      value: 'Space
+
+        Right Mouse Click'
       objectReference: {fileID: 0}
     - target: {fileID: 6803471977974094303, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
