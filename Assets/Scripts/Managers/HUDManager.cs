@@ -135,8 +135,8 @@ public class HUDManager : Singleton<HUDManager> {
         coinCountText.text = player.numCoins + "";
         winCoinCountText.text = player.numCoins + "";
     }
-    void UpdateBossPopup() {
-        if (curBossHealth) {
+    public void UpdateBossPopup() {
+        if (curBossHealth && curBossHealth.gameObject.activeSelf) {
             // show
             if (bossNameText) bossNameText.text = curBossHealth.gameObject.name;
             UpdateBossHealth();

@@ -16,8 +16,8 @@ MonoBehaviour:
   shootAudio:
     clip: {fileID: 8300000, guid: 01d8facd82af1854d9ee2ffa7ea6405e, type: 3}
     follow: {fileID: 0}
-    position: {x: -0.27190843, y: -0.91631293, z: -0.43}
-    groupOverride: {fileID: 0}
+    position: {x: 0.16275422, y: 0.10094654, z: -0.43}
+    groupOverride: {fileID: -5423820934372742247, guid: 3c27ab2c14a89e849854b7762d4f5442, type: 2}
     volume: 0.514
     pitch: 1
     pan: 0
@@ -26,12 +26,12 @@ MonoBehaviour:
   hasUnlimitedAmmo: 0
   shootCooldownDur: 0.1
   shootHoldCooldownDur: 0.1
-  damage: 0.5
+  damage: 1
   bulletSpawnSettings:
     prefab: {fileID: 6110090707465297226, guid: b6810b3db4433204ebd71e364f3f6738, type: 3}
-    initSpeed: 3
+    initSpeed: 5
     initAngle: 0
-    acceleration: 2
+    acceleration: 0
     maxSpeed: 10
     angularAcceleration: 0
     maxAngularSpeed: 10

@@ -187,7 +187,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 8c901ff35b643fe4eb201138c41057e4, type: 3}
     follow: {fileID: 0}
     position: {x: 0, y: 0, z: 0}
-    groupOverride: {fileID: 0}
+    groupOverride: {fileID: 48248909715900846, guid: 3c27ab2c14a89e849854b7762d4f5442, type: 2}
     volume: 0.852
     pitch: 1
     pan: 0
@@ -212,7 +212,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: b2e22279275ad1c45bf509b25e46bf08, type: 3}
     follow: {fileID: 0}
     position: {x: 0, y: 0, z: 0}
-    groupOverride: {fileID: 0}
+    groupOverride: {fileID: 2158324833694111307, guid: 3c27ab2c14a89e849854b7762d4f5442, type: 2}
     volume: 0.156
     pitch: 1
     pan: 0
@@ -280,6 +280,7 @@ MonoBehaviour:
   changeDuration: 0.1
   health: {fileID: 9219814045859052585}
   isChanged: 0
+  defMat: {fileID: 0}
 --- !u!1 &9219814046916468526
 GameObject:
   m_ObjectHideFlags: 0

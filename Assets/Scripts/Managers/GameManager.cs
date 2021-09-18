@@ -101,8 +101,9 @@ public class GameManager : Singleton<GameManager> {
     }
 
     public void BackToMainMenu() {
+        DG.Tweening.DOTween.KillAll();
         SceneManager.LoadScene(0, LoadSceneMode.Single);
-        PauseManager.Instance.blockPause = false;
+        // PauseManager.Instance.blockPause = false;
         // GameManager.Instance.HideMenu();
         // ShowMainMenu();
     }
@@ -125,6 +126,13 @@ public class GameManager : Singleton<GameManager> {
         PauseManager.Instance.UnPause();
         SetAudioPlayers(false);
         LevelManager.Instance.RetryLevel();
+        menuManager.HideAllScreens();
+    }
+    public void RestartLastLevel() {
+        PauseManager.Instance.blockPause = false;
+        PauseManager.Instance.UnPause();
+        SetAudioPlayers(false);
+        LevelManager.Instance.RestartLevel();
         menuManager.HideAllScreens();
     }
 

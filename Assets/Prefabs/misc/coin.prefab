@@ -39,14 +39,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5151751332160400774}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5469255418527183773}
   m_Father: {fileID: 8012728878888192945}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
 --- !u!1 &7513723819434045883
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,7 +250,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8012728878888192844}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.33999968, y: -6, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 3639501094577478292}
@@ -312,16 +312,18 @@ MonoBehaviour:
   weapon: {fileID: 0}
   ammoAmount: 1
   numCoins: 1
+  models: []
   vel: {x: 0, y: -2}
   pickupAudio:
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 816d1de6a61637c4ea95d087235cda18, type: 3}
     follow: {fileID: 0}
     position: {x: 0, y: 0, z: 0}
-    groupOverride: {fileID: 0}
+    groupOverride: {fileID: -4499577289343753342, guid: 3c27ab2c14a89e849854b7762d4f5442, type: 2}
     volume: 1
     pitch: 1
     pan: 0
     priority: 128
+    no3d: 0
 --- !u!1001 &5506789286748099702
 PrefabInstance:
   m_ObjectHideFlags: 0

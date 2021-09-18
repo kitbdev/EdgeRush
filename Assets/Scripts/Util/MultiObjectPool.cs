@@ -11,8 +11,11 @@ public class MultiObjectPool : MonoBehaviour {
 
     [Min(0)]
     public int initpoolSizeEach = 0;
+    public int[] initPoolSizes = new int[0];
     [Min(0)]
     public int maxPoolSizeEach = 100;
+    public bool useDelayedInit = false;
+    public int delayedInitGroupSize = 100;
     // [Min(0)]
     // public int maxGos = 5000;
     public bool forceAddPoolObjectComponent = false;
@@ -61,7 +64,7 @@ public class MultiObjectPool : MonoBehaviour {
     }
     [Space]
     // 0 is for no type, 1-numprefabs for prefab
-    [SerializeField]
+    [SerializeField, ReadOnly]
     List<GoList> poolGos = new List<GoList>();
     // Dictionary<int, List<GameObject>> poolGos = new Dictionary<int, List<GameObject>>();// not serialized
 
@@ -80,7 +83,15 @@ public class MultiObjectPool : MonoBehaviour {
         poolGos.Add(new List<GameObject>());
         for (int i = 0; i < prefabs.Count; i++) {
             poolGos.Add(new List<GameObject>());
-            CreateAmount(i + 1, initpoolSizeEach);
+            int psize = initpoolSizeEach;
+            if (i < initPoolSizes.Length) {
+                psize += initPoolSizes[i];
+            }
+            if (useDelayedInit && psize > delayedInitGroupSize) {
+                CreateAmountDelayed(i + 1, psize);
+            } else {
+                CreateAmount(i + 1, psize);
+            }
         }
     }
     public void SetPrefabs(List<GameObject> prefabs) {
@@ -115,7 +126,27 @@ public class MultiObjectPool : MonoBehaviour {
         if (amount <= 0) return;
         for (int i = 0; i < amount; i++) {
             var go = MakeGo(typeId);
+            outCount++;
             Recycle(typeId, go);
+        }
+    }
+    void CreateAmountDelayed(int typeId, int amount) {
+        if (amount <= 0) return;
+        amount = Mathf.Min(amount, maxPoolSizeEach - poolGos[typeId].poolGos.Count);
+        StartCoroutine(CreateAmountDelayedCo(typeId, amount));
+    }
+    IEnumerator CreateAmountDelayedCo(int typeId, int amount) {
+        int groupcounter = 0;
+        yield return null;
+        for (int i = 0; i < amount; i++) {
+            var go = MakeGo(typeId);
+            Recycle(typeId, go);
+            outCount++;
+            groupcounter++;
+            if (groupcounter >= delayedInitGroupSize) {
+                groupcounter = 0;
+                yield return null;
+            }
         }
     }
     public int GetPoolSize(int typeId) {

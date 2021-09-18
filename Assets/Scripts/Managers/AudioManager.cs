@@ -28,10 +28,15 @@ public class AudioManager : Singleton<AudioManager> {
         if (sfxSlider) sfxSlider.SetValueWithoutNotify(GetVolume(sfxVolParam));
     }
     float NormalizeVolume(float value) {
-        return (value - minVol) / (maxVol - minVol);
+        // from -80 20 to 0 1
+        // return (value - minVol) / (maxVol - minVol);
+        return Mathf.Pow(10, value / 20f);
     }
     float DenormalizeVolume(float value) {
-        return value * (maxVol - minVol) + minVol;
+        // from 0 1 to -80 20
+        // return value * (maxVol - minVol) + minVol;
+        value = Mathf.Max(value, 0.001f);
+        return Mathf.Log10(value) * 20;
     }
     void SetVolume(string paramName, float volumeNorm, bool save = true) {
         volumeNorm = DenormalizeVolume(volumeNorm);
@@ -89,6 +94,7 @@ public class AudioManager : Singleton<AudioManager> {
         public float pan = 0f;
         [Range(0, 256)]
         public int priority = 128;
+        public bool no3d = false;
     }
     public void PlaySfx(AudioClip clip) {
         PlaySfx(new AudioSettings() {
@@ -128,6 +134,9 @@ public class AudioManager : Singleton<AudioManager> {
         source.pitch = audioSettings.pitch;
         source.panStereo = audioSettings.pan;
         source.priority = audioSettings.priority;
+        if (audioSettings.no3d) {
+            source.spatialBlend = 0f;
+        }
         // todo? change over time
         source.Play();
         StartCoroutine(RemoveFromPool(audioGo, audioSettings.clip.length));

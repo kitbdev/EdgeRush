@@ -340,6 +340,7 @@ public class Player : MonoBehaviour {
         lastShootTime = 0;
         numCoins = startCoinAmount;
         weaponDatas.Clear();
+        curSelectedWeapon = 0;
         if (initialWeapon) {
             SetCurrentWeapon(initialWeapon);
         }
