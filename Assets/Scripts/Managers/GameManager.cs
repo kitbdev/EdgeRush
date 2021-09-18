@@ -21,6 +21,7 @@ public class GameManager : Singleton<GameManager> {
     [SerializeField] MenuScreen winScreen;
     [SerializeField] MenuScreen loseScreen;
     [SerializeField] bool mainMenuOnStart = true;
+    [SerializeField] bool loadPrefs = true;
     [SerializeField] AudioPlayer[] pauseAudioPlayers = new AudioPlayer[0];
 #pragma warning disable 0219
     [SerializeField] GameObject[] buildWEBRemoveGos = new GameObject[0];
@@ -37,7 +38,9 @@ public class GameManager : Singleton<GameManager> {
 #endif
     }
     private void Start() {
-        TryLoadOptionPrefs();
+        if (loadPrefs) {
+            TryLoadOptionPrefs();
+        }
         if (mainMenuOnStart) {
             ShowMainMenu();
         }

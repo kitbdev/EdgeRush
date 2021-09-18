@@ -225,6 +225,7 @@ public class Path : MonoBehaviour {
         pathseq.onStepComplete = () => { sequenceLoopEvent?.Invoke(); };
         pathseq.onComplete = () => { sequenceCompleteEvent?.Invoke(); };
         if (startPos != null) {
+            rb.transform.position = (Vector3)startPos;
             rb.position = (Vector2)startPos;
         }
         pathseq.Play();

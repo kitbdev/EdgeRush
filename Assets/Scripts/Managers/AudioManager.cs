@@ -30,13 +30,23 @@ public class AudioManager : Singleton<AudioManager> {
     float NormalizeVolume(float value) {
         // from -80 20 to 0 1
         // return (value - minVol) / (maxVol - minVol);
-        return Mathf.Pow(10, value / 20f);
+        value = Remap(value, minVol, maxVol, -4, 0f);
+        value = Mathf.Pow(10, value);
+        return value;
     }
     float DenormalizeVolume(float value) {
         // from 0 1 to -80 20
         // return value * (maxVol - minVol) + minVol;
-        value = Mathf.Max(value, 0.001f);
-        return Mathf.Log10(value) * 20;
+        value = Mathf.Max(value, 0.0001f);
+        value = Mathf.Log10(value);
+        // -4 to 0 is the range of log10
+        value = Remap(value, -4, 0f, minVol, maxVol);
+        return value;
+    }
+    float Remap(float value, float oldMin, float oldMax, float newMin, float newMax) {
+        float oldRange = oldMax - oldMin;
+        float newRange = newMax - newMin;
+        return ((value - oldMin) / oldRange) * newRange + newMin;
     }
     void SetVolume(string paramName, float volumeNorm, bool save = true) {
         volumeNorm = DenormalizeVolume(volumeNorm);
@@ -142,7 +152,7 @@ public class AudioManager : Singleton<AudioManager> {
         StartCoroutine(RemoveFromPool(audioGo, audioSettings.clip.length));
     }
     IEnumerator RemoveFromPool(GameObject go, float dur) {
-        yield return new WaitForSeconds(dur);
+        yield return new WaitForSecondsRealtime(dur);
         if (objectPool == null) {
             Destroy(go);
         } else {

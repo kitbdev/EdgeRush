@@ -79,6 +79,9 @@ public class EnemyAI : MonoBehaviour {
     public void OnSpawn() {
         pathFollowingPlayer = false;
         health.RestoreHealth();
+        if (!path) {
+            Debug.LogWarning(name + " missing path!");
+        }
         pathSequence = path?.FollowPath(rb, pathOffset, moveSpeedOverride, () => { pathFollowingPlayer = true; });
     }
     public void OnStop() {
