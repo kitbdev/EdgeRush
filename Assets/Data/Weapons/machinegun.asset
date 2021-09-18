@@ -17,7 +17,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 01d8facd82af1854d9ee2ffa7ea6405e, type: 3}
     follow: {fileID: 0}
     position: {x: 0.16275422, y: 0.10094654, z: -0.43}
-    groupOverride: {fileID: 0}
+    groupOverride: {fileID: -5423820934372742247, guid: 3c27ab2c14a89e849854b7762d4f5442, type: 2}
     volume: 0.514
     pitch: 1
     pan: 0

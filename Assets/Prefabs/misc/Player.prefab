@@ -187,7 +187,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: f047cda693c13bf4d9810f4e336cdcb2, type: 3}
     follow: {fileID: 0}
     position: {x: 0, y: 0, z: 0}
-    groupOverride: {fileID: 0}
+    groupOverride: {fileID: -5423820934372742247, guid: 3c27ab2c14a89e849854b7762d4f5442, type: 2}
     volume: 0.818
     pitch: 1
     pan: 0
@@ -196,7 +196,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 4ecbb17949cedde40915c3c56021284e, type: 3}
     follow: {fileID: 0}
     position: {x: 0, y: 0, z: 0}
-    groupOverride: {fileID: 0}
+    groupOverride: {fileID: -1218788641911545808, guid: 3c27ab2c14a89e849854b7762d4f5442, type: 2}
     volume: 0.704
     pitch: 1.46
     pan: 0
@@ -205,7 +205,7 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: d23ae773bca7b2a418b92b2a4bcd43b8, type: 3}
     follow: {fileID: 0}
     position: {x: 0, y: 0, z: 0}
-    groupOverride: {fileID: 0}
+    groupOverride: {fileID: -5226562493400274032, guid: 3c27ab2c14a89e849854b7762d4f5442, type: 2}
     volume: 1
     pitch: 1
     pan: 0
@@ -213,7 +213,7 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: ead54ceb85c13144abd5ff5c93fcc52c, type: 3}
     follow: {fileID: 0}
     position: {x: 0, y: 0, z: 0}
-    groupOverride: {fileID: 0}
+    groupOverride: {fileID: -5226562493400274032, guid: 3c27ab2c14a89e849854b7762d4f5442, type: 2}
     volume: 1
     pitch: 1
     pan: 0
@@ -221,7 +221,7 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: ae0c62595049b36438a4b80f6b85da84, type: 3}
     follow: {fileID: 0}
     position: {x: 0, y: 0, z: 0}
-    groupOverride: {fileID: 0}
+    groupOverride: {fileID: -5226562493400274032, guid: 3c27ab2c14a89e849854b7762d4f5442, type: 2}
     volume: 1
     pitch: 1
     pan: 0
@@ -508,7 +508,7 @@ AudioSource:
   m_GameObject: {fileID: 7735760250786162926}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -7734454436071481346, guid: 3c27ab2c14a89e849854b7762d4f5442, type: 2}
+  OutputAudioMixerGroup: {fileID: 4934797471747964827, guid: 3c27ab2c14a89e849854b7762d4f5442, type: 2}
   m_audioClip: {fileID: 8300000, guid: 0446504392452fc47aeb80467b9f5d49, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.37

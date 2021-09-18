@@ -286,6 +286,7 @@ public class LevelManager : Singleton<LevelManager> {
                     Vector2 spawnPos = levelEvent.spawnOffset + levelEvent.spawnOffsetByIndex * i;
                     var rb = miscgo.GetComponent<Rigidbody2D>();
                     if (levelEvent.pathToFollow && rb) {
+                        miscgo.transform.position = Vector3.up * 20;
                         var seq = levelEvent.pathToFollow.FollowPath(rb, spawnPos, levelEvent.moveSpeedOverride, null);
                         if (miscgo.TryGetComponent<PathRunHandler>(out var pathRunHandler)) {
                             pathRunHandler.sequence = seq;
