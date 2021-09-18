@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -996,8 +996,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels:
   - {fileID: 11400000, guid: 7078be413d25f3e40a04a42742012543, type: 2}
-  - {fileID: 11400000, guid: 724a44fa2086c554d94fb19e8396c5d4, type: 2}
-  - {fileID: 11400000, guid: c02ddfcf513867f47bddfb3000d828bc, type: 2}
+  - {fileID: 11400000, guid: 7f26c11f0c4e0e246ab2f45c2c37bda1, type: 2}
+  - {fileID: 11400000, guid: 808e4b9fe6be90e438ccd518e7dee20f, type: 2}
+  - {fileID: 11400000, guid: 1e848d5e3e877444aa7dc453a0d893d6, type: 2}
+  - {fileID: 11400000, guid: 7e9c71ab0996c814ab924b2f886f85a1, type: 2}
+  - {fileID: 11400000, guid: 7891ce96bca11d2499ab11297de04d4c, type: 2}
   coinprefab: {fileID: 8012728878888192844, guid: 6405c887d26a4784e992901ece7e5598, type: 3}
   weaponpickupPrefab: {fileID: 8459970140060339879, guid: d0747ff92d56e4c4390a88a9b6e52dd2, type: 3}
   bg: {fileID: 417873583}
@@ -2672,6 +2675,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4295572441059767131, guid: 65b98c561375819449dee9810ec74b27, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6047051282505025568, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2996,6 +3003,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8544450283619667358, guid: 65b98c561375819449dee9810ec74b27, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5.0049896
+      objectReference: {fileID: 0}
     - target: {fileID: 8544450283619667359, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3140,6 +3151,10 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 113407135}
+    - target: {fileID: 8544450284391110341, guid: 65b98c561375819449dee9810ec74b27, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5.005005
+      objectReference: {fileID: 0}
     - target: {fileID: 8544450284511979131, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
