@@ -61,8 +61,15 @@ public class EnemyAI : MonoBehaviour {
         patternRunner = GetComponent<PatternRunner>();
         health = GetComponent<Health>();
         health.destroyOnDie = false;
-        health.dieEvent.AddListener(OnDie);
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
+    }
+    private void OnEnable() {
+        health.dieEvent.AddListener(OnDie);
+        // health.damageEvent.AddListener(OnDamaged);
+    }
+    private void OnDisable() {
+        health?.dieEvent.RemoveListener(OnDie);
+        // health?.damageEvent.RemoveListener(OnDamaged);
     }
     private void Update() {
         patternRunner?.ProcessPattern();
@@ -93,6 +100,9 @@ public class EnemyAI : MonoBehaviour {
             pathFollowingPlayer = false;
             pathSequence.Play();
         }
+    }
+    public void OnDamaged() {
+        // Debug.Log("damaged!");
     }
     [ContextMenu("Kill")]
     void OnDie() {

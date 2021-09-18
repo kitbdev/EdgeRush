@@ -207,6 +207,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageAmount: 5
   knockbackStrength: 50
+  onlyAffectLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &7745436623320163264
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,6 +328,7 @@ MonoBehaviour:
     pitch: 1
     pan: 0
     priority: 128
+    no3d: 0
   phases: []
 --- !u!66 &6896039920381432310
 CompositeCollider2D:
@@ -372,6 +376,7 @@ MonoBehaviour:
     pitch: 1
     pan: 0
     priority: 141
+    no3d: 0
   isPlayer: 0
   player: {fileID: 0}
   phaseIndex: 0
