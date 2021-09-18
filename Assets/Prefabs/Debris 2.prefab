@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 254381451150670750}
   - component: {fileID: 8797012514951199500}
   m_Layer: 9
-  m_Name: Debris
+  m_Name: Debris 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,9 +148,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4739607829735346965}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.25262052, y: 0.21688284, z: 0.058215283, w: 0.94114596}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 877874419916143799}
   - {fileID: 6595933147132986439}
@@ -158,7 +158,7 @@ Transform:
   - {fileID: 7032879561547195303}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -30.05, y: 25.954, z: 0}
 --- !u!50 &4739607829735346960
 Rigidbody2D:
   serializedVersion: 4
@@ -315,8 +315,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d61bc78417047f45b6bb54f5a7c22e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numCoinsToDrop: 3
-  dropRates: []
+  numCoinsToDrop: 0
+  dropRates:
+  - weaponType: {fileID: 0}
+    chance: 0.276
+    ammo: 0
+  - weaponType: {fileID: 11400000, guid: be763971e2786464e8dbf91eaee5b932, type: 2}
+    chance: 0.25
+    ammo: 50
+  - weaponType: {fileID: 11400000, guid: d4f96c5b02bea944cbba3a0855a7ea19, type: 2}
+    chance: 0.25
+    ammo: 10
 --- !u!114 &8797012514951199500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,44 +529,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6f4bc8e837f7c114199b3881bd6e7894, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6f4bc8e837f7c114199b3881bd6e7894, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6f4bc8e837f7c114199b3881bd6e7894, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6f4bc8e837f7c114199b3881bd6e7894, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071067
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6f4bc8e837f7c114199b3881bd6e7894, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6f4bc8e837f7c114199b3881bd6e7894, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6f4bc8e837f7c114199b3881bd6e7894, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6f4bc8e837f7c114199b3881bd6e7894, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -120.798996
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6f4bc8e837f7c114199b3881bd6e7894, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 41.132996
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6f4bc8e837f7c114199b3881bd6e7894, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 6f4bc8e837f7c114199b3881bd6e7894, type: 3}
       propertyPath: m_Materials.Array.data[0]
