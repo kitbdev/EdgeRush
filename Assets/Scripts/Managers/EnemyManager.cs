@@ -21,6 +21,9 @@ public class EnemyManager : Singleton<EnemyManager> {
 
     void SpawnEnemy(int typeId, Path path, Vector2 offset, PatternSO patternOverride = null) {
         var ego = enemyPool.Get(typeId);
+        if (ego.TryGetComponent<BossName>(out var bossname)) {
+            ego.name = bossname.bossName;
+        }
         // spawn out of frame
         ego.transform.position = Vector3.up * 20;
         var enemyai = ego.GetComponent<EnemyAI>();
