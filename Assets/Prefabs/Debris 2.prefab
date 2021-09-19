@@ -62,6 +62,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageAmount: 5
   knockbackStrength: 40
+  onlyAffectLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1481448893596184537
 GameObject:
   m_ObjectHideFlags: 0
