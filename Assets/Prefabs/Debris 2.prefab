@@ -463,12 +463,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sound:
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 4ecbb17949cedde40915c3c56021284e, type: 3}
     follow: {fileID: 0}
     position: {x: 0, y: 0, z: 0}
-    groupOverride: {fileID: 0}
-    volume: 1
-    pitch: 1
+    groupOverride: {fileID: 48248909715900846, guid: 3c27ab2c14a89e849854b7762d4f5442, type: 2}
+    volume: 0.327
+    pitch: 0.66
     pan: 0
     priority: 128
     no3d: 0

@@ -16,12 +16,13 @@ MonoBehaviour:
   shootAudio:
     clip: {fileID: 8300000, guid: 380c752fcf26afd46891a83c496a400b, type: 3}
     follow: {fileID: 0}
-    position: {x: 1.5625095, y: -3.403356, z: -0.43}
+    position: {x: -0.6754242, y: -4.2987237, z: -0.43}
     groupOverride: {fileID: -5423820934372742247, guid: 3c27ab2c14a89e849854b7762d4f5442, type: 2}
     volume: 0.509
     pitch: 1
     pan: 0
     priority: 128
+    no3d: 0
   modelIndex: 1
   hasUnlimitedAmmo: 1
   shootCooldownDur: 0.4
@@ -35,5 +36,5 @@ MonoBehaviour:
     maxSpeed: 10
     angularAcceleration: 0
     maxAngularSpeed: 10
-    initScale: 1
+    initScale: 0.6
     spawnPointIndices: 

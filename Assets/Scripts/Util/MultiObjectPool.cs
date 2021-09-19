@@ -248,8 +248,14 @@ public class MultiObjectPool : MonoBehaviour {
             List<GameObject> golist = poolGos[typeId];
             ngo = golist[golist.Count - 1];
             golist.RemoveAt(golist.Count - 1);
+            if (ngo == null) {
+                Debug.LogWarning("Please don't destroy objects from pool!");
+                return Get(typeId, setActive);
+            }
         }
-        if (setActive) ngo.SetActive(true);
+        if (setActive) {
+            ngo.SetActive(true);
+        }
         outCount++;
         return ngo;
     }
@@ -289,6 +295,10 @@ public class MultiObjectPool : MonoBehaviour {
     /// </summary>
     /// <param name="go">GameObject to remove</param>
     public void Recycle(int typeId, GameObject go) {
+        if (go == null) {
+            Debug.LogWarning("Please don't destroy objects from pool!");
+            return;
+        }
         outCount--;
         if (poolGos[typeId].poolGos.Count >= maxPoolSizeEach) {
             DestroyGo(go);
