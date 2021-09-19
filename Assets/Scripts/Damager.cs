@@ -17,7 +17,7 @@ public class Damager : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other) {
         // Debug.Log($"{name} hit {other.gameObject.name} for {damageAmount}");
-        if (((Layer)gameObject.layer).InLayerMask(onlyAffectLayer)) {
+        if (((Layer)other.gameObject.layer).InLayerMask(onlyAffectLayer)) {
             var health = other.gameObject.GetComponentInParent<Health>();
             if (health) {
                 health.TakeDamage(damageAmount);
