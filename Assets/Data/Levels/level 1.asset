@@ -241,4 +241,4 @@ MonoBehaviour:
     clearDebris: 0
     clearPowerups: 0
     clearBullets: 1
-    waitDur: 5
+    waitDur: 4

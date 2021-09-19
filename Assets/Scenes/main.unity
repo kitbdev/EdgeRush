@@ -2075,6 +2075,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1683862601785825334, guid: c89fa28e2c3a7df4cabd29ef384808d5, type: 3}
+      propertyPath: fullSequenceLoopType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2603770201921426702, guid: c89fa28e2c3a7df4cabd29ef384808d5, type: 3}
+      propertyPath: pathSO
+      value: 
+      objectReference: {fileID: 11400000, guid: dcfee19e20403ee4cbe1f6bc15f389d9, type: 2}
+    - target: {fileID: 2603770201921426702, guid: c89fa28e2c3a7df4cabd29ef384808d5, type: 3}
+      propertyPath: moveSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2603770201921426702, guid: c89fa28e2c3a7df4cabd29ef384808d5, type: 3}
+      propertyPath: totalDuration
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2603770201921426702, guid: c89fa28e2c3a7df4cabd29ef384808d5, type: 3}
+      propertyPath: pathCurves.Array.data[1].duration
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2603770201921426702, guid: c89fa28e2c3a7df4cabd29ef384808d5, type: 3}
+      propertyPath: pathCurves.Array.data[1].durationTotal
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594535238730375361, guid: c89fa28e2c3a7df4cabd29ef384808d5, type: 3}
+      propertyPath: moveSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594535238730375361, guid: c89fa28e2c3a7df4cabd29ef384808d5, type: 3}
+      propertyPath: totalDuration
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594535238730375361, guid: c89fa28e2c3a7df4cabd29ef384808d5, type: 3}
+      propertyPath: pathCurves.Array.data[1].duration
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594535238730375361, guid: c89fa28e2c3a7df4cabd29ef384808d5, type: 3}
+      propertyPath: pathCurves.Array.data[1].durationTotal
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4010890853744228134, guid: c89fa28e2c3a7df4cabd29ef384808d5, type: 3}
       propertyPath: m_Name
       value: Paths

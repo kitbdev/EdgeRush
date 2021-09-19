@@ -55,6 +55,14 @@ PrefabInstance:
       propertyPath: manualInvincible
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4502045368779004280, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+      propertyPath: totalDuration
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502045368779004280, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+      propertyPath: bulletsPerLoop
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5190151523855161804, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: render
       value: 

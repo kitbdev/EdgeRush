@@ -165,6 +165,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageAmount: 5
   knockbackStrength: 0
+  onlyAffectLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &8972034596729345798
 MonoBehaviour:
   m_ObjectHideFlags: 0

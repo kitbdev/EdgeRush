@@ -75,7 +75,7 @@ MonoBehaviour:
     clearBullets: 0
     waitDur: 5
   - title: 5. wait 0.5s
-    levelEventType: 5
+    levelEventType: 6
     spawnPrefab: {fileID: 8968654941522783970, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
     amountToSpawn: 0
     spawnOffset: {x: 1, y: 0}
@@ -104,7 +104,7 @@ MonoBehaviour:
     waitDur: 0
   - title: 7. spawnBoss
     levelEventType: 2
-    spawnPrefab: {fileID: 6824094972317598906, guid: db65d69cb3f391b4e93232d2374f28be, type: 3}
+    spawnPrefab: {fileID: 2887897383251195426, guid: c07bc4614cd7ac44990d88c4789a96b3, type: 3}
     amountToSpawn: 0
     spawnOffset: {x: 0, y: 0}
     spawnOffsetByIndex: {x: 1, y: 0}
@@ -131,7 +131,7 @@ MonoBehaviour:
     clearBullets: 0
     waitDur: 0
   - title: 9. endLevel
-    levelEventType: 8
+    levelEventType: 4
     spawnPrefab: {fileID: 8968654941522783970, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
     amountToSpawn: 0
     spawnOffset: {x: 1, y: 0}
@@ -142,7 +142,7 @@ MonoBehaviour:
     clearEnemies: 0
     clearDebris: 0
     clearPowerups: 0
-    clearBullets: 0
+    clearBullets: 1
     waitDur: 5
   - title: 10. endLevel
     levelEventType: 8
@@ -157,4 +157,4 @@ MonoBehaviour:
     clearDebris: 0
     clearPowerups: 0
     clearBullets: 0
-    waitDur: 5
+    waitDur: 4

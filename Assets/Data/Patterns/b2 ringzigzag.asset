@@ -15,9 +15,9 @@ MonoBehaviour:
   defaultBulletPrefab: {fileID: 6110090707465297226, guid: 0d5847e6210b6b54eb112f198b5afe3b, type: 3}
   delayDuration: 0
   patternPhases:
-  - title: 0. phase*2 shoot
+  - title: 0. phase*2 shoot (skipped)
     initialized: 1
-    skip: 0
+    skip: 1
     delayDuration: 0.8
     duration: 0.1
     repetitions: 2
@@ -87,7 +87,7 @@ MonoBehaviour:
   - title: 1. phase*2 shoot
     initialized: 1
     skip: 0
-    delayDuration: 0.2
+    delayDuration: 0.8
     duration: 0.1
     repetitions: 2
     spawnBullet: 1
@@ -152,5 +152,5 @@ MonoBehaviour:
         addSpeedByIndex: 0
         addAngSpeed: 0
         addAngSpeedByIndex: 0
-    _phaseDuration: 0.4
-  totalDuration: 1.4
+    _phaseDuration: 1
+  totalDuration: 2
