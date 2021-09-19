@@ -37,6 +37,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 372712432755025538, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+      propertyPath: bossName
+      value: The Reckoning
+      objectReference: {fileID: 0}
     - target: {fileID: 1847968827299102398, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: numCoinsToDrop
       value: 3
@@ -51,7 +55,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1847968827299102398, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: dropRates.Array.data[2].ammo
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1847968827299102398, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: dropRates.Array.data[0].chance
@@ -79,7 +83,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4103724378864960721, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: maxHealth
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4103724378864960721, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: hitInvincibleDur

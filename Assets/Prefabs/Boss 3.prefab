@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 372712432755025538, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+      propertyPath: bossName
+      value: Disc of Doom
+      objectReference: {fileID: 0}
     - target: {fileID: 1847968827299102398, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: numCoinsToDrop
       value: 3
@@ -21,7 +25,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1847968827299102398, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: dropRates.Array.data[2].ammo
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1847968827299102398, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: dropRates.Array.data[0].chance
@@ -52,16 +56,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: efe57ecabbe6f884196884b2c8912028, type: 2}
     - target: {fileID: 4103724378864960721, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+      propertyPath: maxHealth
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103724378864960721, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+      propertyPath: hitInvincibleDur
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103724378864960721, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: manualInvincible
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4502045368779004280, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+      propertyPath: patternSO
+      value: 
+      objectReference: {fileID: 11400000, guid: a66984d08b7230c4f9dcce3a2cca81c7, type: 2}
+    - target: {fileID: 4502045368779004280, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: totalDuration
-      value: 0
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4502045368779004280, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: bulletsPerLoop
-      value: 0
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 5190151523855161804, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: render

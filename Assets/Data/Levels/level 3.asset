@@ -353,7 +353,7 @@ MonoBehaviour:
     clearDebris: 0
     clearPowerups: 0
     clearBullets: 0
-    waitDur: 6
+    waitDur: 7
   - title: 25. spawnMisc
     levelEventType: 3
     spawnPrefab: {fileID: 4739607829735346965, guid: af10c138ae029e64580f7810f8619995, type: 3}
@@ -395,7 +395,7 @@ MonoBehaviour:
     clearDebris: 0
     clearPowerups: 0
     clearBullets: 0
-    waitDur: 3
+    waitDur: 6
   - title: 28. spawnMisc
     levelEventType: 3
     spawnPrefab: {fileID: 4739607829735346965, guid: 6efa4b3fe2dd7ae458e28c4ab45577c4, type: 3}

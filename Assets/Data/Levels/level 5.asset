@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad2321aa536f8e4ba82ae618a2c719a, type: 3}
   m_Name: level 5
   m_EditorClassIdentifier: 
-  title: 'Level 5: Level 5 (10 events)'
+  title: 'Level 5: Level 5 (19 events)'
   levelName: Level 5
   skip: 0
   backgroundMat: {fileID: 2100000, guid: 32cb70ab147e0324da748acc1cd60229, type: 2}
@@ -22,9 +22,9 @@ MonoBehaviour:
     levelEventType: 1
     spawnPrefab: {fileID: 6081929935738540787, guid: 7a4af1c58d48774499dc451db20c2c4b, type: 3}
     amountToSpawn: 3
-    spawnOffset: {x: 2, y: 3}
-    spawnOffsetByIndex: {x: 1, y: 0}
-    pathToFollowSO: {fileID: 11400000, guid: a35c1abf798bbd14192fcc7b4135d0f5, type: 2}
+    spawnOffset: {x: -3, y: 0}
+    spawnOffsetByIndex: {x: 3, y: 3}
+    pathToFollowSO: {fileID: 11400000, guid: 6f71e10dec0fb514ab2b838ea7ad22cc, type: 2}
     attackPatternOverride: {fileID: 0}
     moveSpeedOverride: -1
     clearEnemies: 0
@@ -32,22 +32,8 @@ MonoBehaviour:
     clearPowerups: 0
     clearBullets: 0
     waitDur: 0
-  - title: 2. spawnEnemyWave
-    levelEventType: 1
-    spawnPrefab: {fileID: 6081929935738540787, guid: 7a4af1c58d48774499dc451db20c2c4b, type: 3}
-    amountToSpawn: 3
-    spawnOffset: {x: 7.5, y: 3}
-    spawnOffsetByIndex: {x: 1, y: 0}
-    pathToFollowSO: {fileID: 11400000, guid: a35c1abf798bbd14192fcc7b4135d0f5, type: 2}
-    attackPatternOverride: {fileID: 0}
-    moveSpeedOverride: -1
-    clearEnemies: 0
-    clearDebris: 0
-    clearPowerups: 0
-    clearBullets: 0
-    waitDur: 5
-  - title: 3. waitEnemiesDefeated
-    levelEventType: 6
+  - title: 2. wait 5s
+    levelEventType: 5
     spawnPrefab: {fileID: 0}
     amountToSpawn: 0
     spawnOffset: {x: 1, y: 0}
@@ -59,14 +45,28 @@ MonoBehaviour:
     clearDebris: 0
     clearPowerups: 0
     clearBullets: 0
-    waitDur: 0
+    waitDur: 5
+  - title: 3. clearMap
+    levelEventType: 4
+    spawnPrefab: {fileID: 6081929935738540787, guid: 7a4af1c58d48774499dc451db20c2c4b, type: 3}
+    amountToSpawn: 3
+    spawnOffset: {x: 7.5, y: 3}
+    spawnOffsetByIndex: {x: 1, y: 0}
+    pathToFollowSO: {fileID: 11400000, guid: a35c1abf798bbd14192fcc7b4135d0f5, type: 2}
+    attackPatternOverride: {fileID: 0}
+    moveSpeedOverride: -1
+    clearEnemies: 1
+    clearDebris: 0
+    clearPowerups: 0
+    clearBullets: 0
+    waitDur: 5
   - title: 4. spawnEnemyWave
     levelEventType: 1
     spawnPrefab: {fileID: 6081929935738540787, guid: 7a4af1c58d48774499dc451db20c2c4b, type: 3}
     amountToSpawn: 3
-    spawnOffset: {x: 0, y: 0}
-    spawnOffsetByIndex: {x: 1, y: 0}
-    pathToFollowSO: {fileID: 11400000, guid: a35c1abf798bbd14192fcc7b4135d0f5, type: 2}
+    spawnOffset: {x: -3, y: 0}
+    spawnOffsetByIndex: {x: 3, y: -3}
+    pathToFollowSO: {fileID: 11400000, guid: 6f71e10dec0fb514ab2b838ea7ad22cc, type: 2}
     attackPatternOverride: {fileID: 0}
     moveSpeedOverride: -1
     clearEnemies: 0
@@ -74,7 +74,63 @@ MonoBehaviour:
     clearPowerups: 0
     clearBullets: 0
     waitDur: 5
-  - title: 5. wait 0.5s
+  - title: 5. wait 5s
+    levelEventType: 5
+    spawnPrefab: {fileID: 8968654941522783970, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+    amountToSpawn: 0
+    spawnOffset: {x: 1, y: 0}
+    spawnOffsetByIndex: {x: 1, y: 0}
+    pathToFollowSO: {fileID: 0}
+    attackPatternOverride: {fileID: 0}
+    moveSpeedOverride: -1
+    clearEnemies: 0
+    clearDebris: 0
+    clearPowerups: 0
+    clearBullets: 0
+    waitDur: 5
+  - title: 6. clearMap
+    levelEventType: 4
+    spawnPrefab: {fileID: 8968654941522783970, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+    amountToSpawn: 0
+    spawnOffset: {x: 1, y: 0}
+    spawnOffsetByIndex: {x: 1, y: 0}
+    pathToFollowSO: {fileID: 0}
+    attackPatternOverride: {fileID: 0}
+    moveSpeedOverride: -1
+    clearEnemies: 1
+    clearDebris: 0
+    clearPowerups: 0
+    clearBullets: 0
+    waitDur: 4
+  - title: 7. spawnEnemyWave
+    levelEventType: 1
+    spawnPrefab: {fileID: 8271556586339612306, guid: a92c420b82cf9914b8697f34ef4753cb, type: 3}
+    amountToSpawn: 2
+    spawnOffset: {x: -3, y: 5}
+    spawnOffsetByIndex: {x: 6, y: 0}
+    pathToFollowSO: {fileID: 11400000, guid: d1e57d257d5b9f44991d6b25c5cabe0a, type: 2}
+    attackPatternOverride: {fileID: 0}
+    moveSpeedOverride: -1
+    clearEnemies: 0
+    clearDebris: 0
+    clearPowerups: 0
+    clearBullets: 0
+    waitDur: 4
+  - title: 8. spawnEnemyWave
+    levelEventType: 1
+    spawnPrefab: {fileID: 6081929935738540787, guid: 7a4af1c58d48774499dc451db20c2c4b, type: 3}
+    amountToSpawn: 1
+    spawnOffset: {x: 0, y: 0}
+    spawnOffsetByIndex: {x: 0, y: 0}
+    pathToFollowSO: {fileID: 11400000, guid: a16fb0da8c0b0ef4cade1a18bb17bf21, type: 2}
+    attackPatternOverride: {fileID: 0}
+    moveSpeedOverride: -1
+    clearEnemies: 0
+    clearDebris: 0
+    clearPowerups: 0
+    clearBullets: 0
+    waitDur: 4
+  - title: 9. waitEnemiesDefeated
     levelEventType: 6
     spawnPrefab: {fileID: 8968654941522783970, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
     amountToSpawn: 0
@@ -87,8 +143,50 @@ MonoBehaviour:
     clearDebris: 0
     clearPowerups: 0
     clearBullets: 0
-    waitDur: 0.5
-  - title: 6. checkpoint
+    waitDur: 4
+  - title: 10. spawnMisc
+    levelEventType: 3
+    spawnPrefab: {fileID: 4739607829735346965, guid: af10c138ae029e64580f7810f8619995, type: 3}
+    amountToSpawn: 3
+    spawnOffset: {x: 0, y: 0}
+    spawnOffsetByIndex: {x: 3, y: 3}
+    pathToFollowSO: {fileID: 11400000, guid: 6f71e10dec0fb514ab2b838ea7ad22cc, type: 2}
+    attackPatternOverride: {fileID: 0}
+    moveSpeedOverride: -1
+    clearEnemies: 0
+    clearDebris: 0
+    clearPowerups: 0
+    clearBullets: 0
+    waitDur: 4
+  - title: 11. wait 5s
+    levelEventType: 5
+    spawnPrefab: {fileID: 8968654941522783970, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+    amountToSpawn: 0
+    spawnOffset: {x: 1, y: 0}
+    spawnOffsetByIndex: {x: 1, y: 0}
+    pathToFollowSO: {fileID: 0}
+    attackPatternOverride: {fileID: 0}
+    moveSpeedOverride: -1
+    clearEnemies: 0
+    clearDebris: 0
+    clearPowerups: 0
+    clearBullets: 0
+    waitDur: 5
+  - title: 12. clearMap
+    levelEventType: 4
+    spawnPrefab: {fileID: 8968654941522783970, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+    amountToSpawn: 0
+    spawnOffset: {x: 1, y: 0}
+    spawnOffsetByIndex: {x: 1, y: 0}
+    pathToFollowSO: {fileID: 0}
+    attackPatternOverride: {fileID: 0}
+    moveSpeedOverride: -1
+    clearEnemies: 0
+    clearDebris: 1
+    clearPowerups: 0
+    clearBullets: 0
+    waitDur: 4
+  - title: 13. checkpoint
     levelEventType: 7
     spawnPrefab: {fileID: 0}
     amountToSpawn: 0
@@ -102,13 +200,13 @@ MonoBehaviour:
     clearPowerups: 0
     clearBullets: 0
     waitDur: 0
-  - title: 7. spawnBoss
+  - title: 14. spawnBoss
     levelEventType: 2
     spawnPrefab: {fileID: 2887897383251195426, guid: c07bc4614cd7ac44990d88c4789a96b3, type: 3}
     amountToSpawn: 0
-    spawnOffset: {x: 0, y: 0}
+    spawnOffset: {x: 0, y: 3}
     spawnOffsetByIndex: {x: 1, y: 0}
-    pathToFollowSO: {fileID: 11400000, guid: e2328b993e05c1c4b9cb0d15afc45113, type: 2}
+    pathToFollowSO: {fileID: 11400000, guid: 1b2568b501c800748a91d8c742cbef22, type: 2}
     attackPatternOverride: {fileID: 0}
     moveSpeedOverride: -1
     clearEnemies: 0
@@ -116,7 +214,35 @@ MonoBehaviour:
     clearPowerups: 0
     clearBullets: 0
     waitDur: 0
-  - title: 8. waitEnemiesDefeated
+  - title: 15. spawnEnemyWave
+    levelEventType: 1
+    spawnPrefab: {fileID: 6081929935738540787, guid: 7a4af1c58d48774499dc451db20c2c4b, type: 3}
+    amountToSpawn: 1
+    spawnOffset: {x: 2, y: 2}
+    spawnOffsetByIndex: {x: 0, y: 0}
+    pathToFollowSO: {fileID: 11400000, guid: dcfee19e20403ee4cbe1f6bc15f389d9, type: 2}
+    attackPatternOverride: {fileID: 0}
+    moveSpeedOverride: -1
+    clearEnemies: 0
+    clearDebris: 0
+    clearPowerups: 0
+    clearBullets: 0
+    waitDur: 4
+  - title: 16. spawnEnemyWave
+    levelEventType: 1
+    spawnPrefab: {fileID: 6081929935738540787, guid: 7a4af1c58d48774499dc451db20c2c4b, type: 3}
+    amountToSpawn: 1
+    spawnOffset: {x: 1, y: 3}
+    spawnOffsetByIndex: {x: 0, y: 0}
+    pathToFollowSO: {fileID: 11400000, guid: 8d857cfb7dd0351458e74980e3f4a26a, type: 2}
+    attackPatternOverride: {fileID: 0}
+    moveSpeedOverride: -1
+    clearEnemies: 0
+    clearDebris: 0
+    clearPowerups: 0
+    clearBullets: 0
+    waitDur: 4
+  - title: 17. waitEnemiesDefeated
     levelEventType: 6
     spawnPrefab: {fileID: 0}
     amountToSpawn: 0
@@ -130,7 +256,7 @@ MonoBehaviour:
     clearPowerups: 0
     clearBullets: 0
     waitDur: 0
-  - title: 9. endLevel
+  - title: 18. clearMap
     levelEventType: 4
     spawnPrefab: {fileID: 8968654941522783970, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
     amountToSpawn: 0
@@ -144,7 +270,7 @@ MonoBehaviour:
     clearPowerups: 0
     clearBullets: 1
     waitDur: 5
-  - title: 10. endLevel
+  - title: 19. endLevel
     levelEventType: 8
     spawnPrefab: {fileID: 8968654941522783970, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
     amountToSpawn: 0
