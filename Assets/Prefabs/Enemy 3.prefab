@@ -45,11 +45,11 @@ PrefabInstance:
       objectReference: {fileID: 2426793165124229}
     - target: {fileID: 9219814045859052585, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
       propertyPath: maxHealth
-      value: 9
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9219814045859052585, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
       propertyPath: hitInvincibleDur
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9219814045859052586, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
       propertyPath: m_RootOrder
@@ -97,7 +97,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9219814045859052588, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
       propertyPath: numCoinsToDrop
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9219814045859052588, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
       propertyPath: dropRates.Array.data[1].ammo
@@ -105,7 +105,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9219814045859052588, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
       propertyPath: dropRates.Array.data[2].ammo
-      value: 40
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 9219814045859052588, guid: cf6c44d3ee9a1ec4e99d4ee178969952, type: 3}
       propertyPath: dropRates.Array.data[1].chance

@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentHealth: 0
-  maxHealth: 3
+  maxHealth: 1
   hitInvincibleDur: 0
   manualInvincible: 0
   destroyOnDie: 1
@@ -324,11 +324,11 @@ MonoBehaviour:
     chance: 0.276
     ammo: 0
   - weaponType: {fileID: 11400000, guid: be763971e2786464e8dbf91eaee5b932, type: 2}
-    chance: 0.25
-    ammo: 50
+    chance: 0.5
+    ammo: 100
   - weaponType: {fileID: 11400000, guid: d4f96c5b02bea944cbba3a0855a7ea19, type: 2}
-    chance: 0.25
-    ammo: 10
+    chance: 0.5
+    ammo: 30
 --- !u!114 &8797012514951199500
 MonoBehaviour:
   m_ObjectHideFlags: 0
