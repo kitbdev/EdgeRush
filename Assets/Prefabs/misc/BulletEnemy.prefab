@@ -207,9 +207,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.0702762}
   serializedVersion: 2
-  m_Radius: 0.44
+  m_Radius: 0.38611597
 --- !u!1001 &4912133275250672052
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -223,15 +223,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a364f5a1b6edb2745a1d01cae7202ee4, type: 3}
       propertyPath: m_LocalScale.x
-      value: 29.727736
+      value: 49.49918
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a364f5a1b6edb2745a1d01cae7202ee4, type: 3}
       propertyPath: m_LocalScale.y
-      value: 29.727736
+      value: 49.49918
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a364f5a1b6edb2745a1d01cae7202ee4, type: 3}
       propertyPath: m_LocalScale.z
-      value: 29.72774
+      value: 49.49919
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a364f5a1b6edb2745a1d01cae7202ee4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -239,7 +239,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a364f5a1b6edb2745a1d01cae7202ee4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.212
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a364f5a1b6edb2745a1d01cae7202ee4, type: 3}
       propertyPath: m_LocalPosition.z

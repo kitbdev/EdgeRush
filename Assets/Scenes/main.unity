@@ -1021,7 +1021,7 @@ MonoBehaviour:
     playerSelectedWeapon: 0
   debugLoggingEditor: 0
   startLevelEditor: 5
-  startLevelEventEditor: 16
+  startLevelEventEditor: 15
   _currentLevelIndex: 0
   levelEventIndex: 0
 --- !u!4 &864106290
