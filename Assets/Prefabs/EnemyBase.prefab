@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 1376320859788207865}
   - component: {fileID: 9219814045859052585}
   - component: {fileID: 7868247591319863519}
+  - component: {fileID: 6173082793145474636}
   m_Layer: 9
   m_Name: EnemyBase
   m_TagString: Untagged
@@ -260,7 +261,19 @@ MonoBehaviour:
   destroyOnDie: 1
   dieEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6173082793145474636}
+        m_TargetAssemblyTypeName: PrefabSpawner, Assembly-CSharp
+        m_MethodName: SpawnPrefab
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   damageEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -286,6 +299,19 @@ MonoBehaviour:
   health: {fileID: 9219814045859052585}
   isChanged: 0
   defMat: {fileID: 0}
+--- !u!114 &6173082793145474636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9219814045859052589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2933dd188ffd9194c808a5fe654df0de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 2411602788172496848, guid: d52c322b4f34a7d41ad2ab75fadce0de, type: 3}
 --- !u!1 &9219814046916468526
 GameObject:
   m_ObjectHideFlags: 0
