@@ -6,6 +6,7 @@ using UnityEngine;
 public class HealZones : MonoBehaviour {
 
     [SerializeField] float healRate = 1;
+    [SerializeField] float healRateLowModifier = 5;
     [SerializeField] float activeDuration = 5;
     [SerializeField] GameObject[] gameObjects = new GameObject[0];
     [SerializeField] Animator[] animators = new Animator[0];
@@ -68,7 +69,9 @@ public class HealZones : MonoBehaviour {
     }
     public void Heal() {
         // Debug.Log("healing player");
-        playerHealth.Heal(healRate * Time.deltaTime);
+        float chp = (1f - playerHealth.healthPercent);
+        float cHealRate = healRate + healRateLowModifier * chp * chp;
+        playerHealth.Heal(cHealRate * Time.deltaTime);
         if (healingAudio && !healingAudio.isPlaying) {
             healingAudio.Play();
         }
