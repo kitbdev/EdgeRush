@@ -50,13 +50,13 @@ public class BulletSpawnSettings {
 
     public override string ToString() {
         return base.ToString() + " " +
-        initSpeed + ", " +
-        initAngle + ", " +
-        acceleration + ", " +
-        maxSpeed + ", " +
-        angularAcceleration + ", " +
-        maxAngularSpeed + ", " +
-        initScale + ", " +
-        spawnPointIndices.Length + ", ";
+        "initSpeed:" + initSpeed + ", " +
+        "initAngle:" + initAngle + ", " +
+        "acceleration:" + acceleration + ", " +
+        "maxSpeed:" + maxSpeed + ", " +
+        "angularAcceleration:" + angularAcceleration + ", " +
+        "maxAngularSpeed:" + maxAngularSpeed + ", " +
+        "initScale:" + initScale + ", " +
+        "spawnPointIndices:" + spawnPointIndices.Length + ", ";
     }
 }

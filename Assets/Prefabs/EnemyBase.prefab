@@ -211,6 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patternSO: {fileID: 11400000, guid: ff4259e01837413429d96977c4151c55, type: 2}
+  inheritSpeed: 0
   spawnPoints:
   - {fileID: 9219814047151828050}
   shootAudio:

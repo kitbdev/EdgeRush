@@ -527,7 +527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initpoolSizeEach: 0
-  initPoolSizes: dc050000c8000000
+  initPoolSizes: dc05000064000000
   maxPoolSizeEach: 1500
   useDelayedInit: 1
   delayedInitGroupSize: 100
@@ -1020,7 +1020,7 @@ MonoBehaviour:
     coinAmount: 0
     playerSelectedWeapon: 0
   debugLoggingEditor: 0
-  startLevelEditor: 1
+  startLevelEditor: 2
   startLevelEventEditor: 0
   _currentLevelIndex: 0
   levelEventIndex: 0

@@ -29,11 +29,11 @@ public class BulletManager : Singleton<BulletManager> {
     private void FixedUpdate() {
         foreach (var bullet in activeBullets) {
             // physics
-            if (bullet.acceleration != 0) {
-                bullet.speed += bullet.acceleration * Time.fixedDeltaTime * Time.fixedDeltaTime;
-            }
+            // if (bullet.acceleration != 0) {
+            //     bullet.speed += bullet.acceleration * Time.fixedDeltaTime * Time.fixedDeltaTime;
+            // }
             if (bullet.angularSpeed != 0) {
-                bullet.angularSpeed += bullet.angularAcceleration * Time.fixedDeltaTime * Time.fixedDeltaTime;
+                // bullet.angularSpeed += bullet.angularAcceleration * Time.fixedDeltaTime * Time.fixedDeltaTime;
                 bullet.angle += bullet.angularSpeed * Time.fixedDeltaTime;
                 // bullet.transform.up = new Vector2(Mathf.Cos(ang), Mathf.Sin(ang));
             }
@@ -77,26 +77,13 @@ public class BulletManager : Singleton<BulletManager> {
         Shoot(weapon, shootPoints, isPlayer);
     }
     public void Shoot(WeaponSO weapon, Transform[] shootPoints, bool isPlayer = false) {
-        Shoot(weapon.bulletSpawnSettings, PatternRunner.BulletInitState.origin, shootPoints, isPlayer);
-        // if (shootPoints.Length < weapon.numShootPoints) {
-        //     Debug.LogWarning("invalid number of shootpoints for " + name);
-        //     return;
-        // }
-
-        // // Debug.Log("Shooting " + name);
-        // GameObject[] gos = pool.Get(weapon.bulletId, weapon.numShootPoints);
-        // for (int i = 0; i < weapon.numShootPoints; i++) {
-        //     GameObject go = gos[i];
-        //     int shootPointIndex = weapon.shotPointIndexes.Length > 0 ? weapon.shotPointIndexes[i] : i;
-        //     go.transform.position = shootPoints[shootPointIndex].position;
-        //     go.transform.rotation = shootPoints[shootPointIndex].rotation;
-        //     go.transform.localScale = weapon.bulletScale * Vector3.one;
-        //     Vector2 forw = go.transform.up;
-        //     Layer curLayer = isPlayer ? playerBulletLayer : enemyBulletLayer;
-        //     curLayer.SetLayerAllChildren(go);
-        //     go.GetComponent<Rigidbody2D>().AddForce(forw * weapon.launchForce, ForceMode2D.Impulse);
-        //     go.GetComponentsInChildren<Damager>().ToList().ForEach(d => d.damageAmount = weapon.damage);
-        // }
+        PatternRunner.BulletInitState initState = new PatternRunner.BulletInitState();
+        Shoot(weapon.bulletSpawnSettings, initState, shootPoints, isPlayer);
+    }
+    public void Shoot(WeaponSO weapon, Transform[] shootPoints, Vector2 addVel, bool isPlayer = false) {
+        PatternRunner.BulletInitState initState = new PatternRunner.BulletInitState();
+        initState.AddVel(addVel);
+        Shoot(weapon.bulletSpawnSettings, initState, shootPoints, isPlayer);
     }
     public void Shoot(BulletSpawnSettings bulletPattern, PatternRunner.BulletInitState initState, Transform[] shootPoints, bool isPlayer = false) {
         int numBullets = bulletPattern.spawnPointIndices.Length > 0 ? bulletPattern.spawnPointIndices.Length : 1;
@@ -105,7 +92,7 @@ public class BulletManager : Singleton<BulletManager> {
             return;
         }
 
-        // Debug.Log($"Shooting {bulletPattern} {offset}");
+        // Debug.Log($"Shooting {bulletPattern} {initState}");
         if (activeBullets.Count + numBullets >= maxTotalBullets) {
             ClearOldestBullets(numBullets);
         }
@@ -134,6 +121,7 @@ public class BulletManager : Singleton<BulletManager> {
             bullet.acceleration = initState.acceleration;
             bullet.angularAcceleration = initState.angAcceleration;
             activeBullets.Add(bullet);
+            // Debug.Log($"Spawning bullet with sp{bullet.initSpeed} angspeed{bullet.angularSpeed}", go);
             bullet.Init();
         }
     }

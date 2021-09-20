@@ -27,6 +27,7 @@ public class Player : MonoBehaviour {
     [SerializeField] GameObject[] gunModels = new GameObject[0];
     [SerializeField] WeaponSO initialWeapon;
     public bool debugUnlimitedShots = false;
+    [SerializeField] bool addVelocity = true;
     [SerializeField, ReadOnly] public List<WeaponData> weaponDatas = new List<WeaponData>();
     [SerializeField, ReadOnly] public int curSelectedWeapon = 0;
     [SerializeField, ReadOnly] float lastShootTime = 0;
@@ -289,7 +290,12 @@ public class Player : MonoBehaviour {
                 return;
             }
         }
-        BulletManager.Instance.Shoot(currentWeapon, shootPoints, true);
+        if (addVelocity && velocity.y > 0) {
+            Vector2 addVel = Vector2.up * (velocity.y / moveSpeed);
+            BulletManager.Instance.Shoot(currentWeapon, shootPoints, addVel, true);
+        } else {
+            BulletManager.Instance.Shoot(currentWeapon, shootPoints, true);
+        }
         lastShootTime = Time.time;
         currentWeapon.shootAudio.position = transform.position;
         AudioManager.Instance.PlaySfx(currentWeapon.shootAudio);
@@ -321,7 +327,7 @@ public class Player : MonoBehaviour {
     }
     void OnDie() {
         // todo wait?
-        int rindex = Random.Range(0,deadSfx.Length);
+        int rindex = Random.Range(0, deadSfx.Length);
         deadSfx[rindex].position = transform.position;
         AudioManager.Instance.PlaySfx(deadSfx[rindex]);
         GameManager.Instance.PlayerLose();

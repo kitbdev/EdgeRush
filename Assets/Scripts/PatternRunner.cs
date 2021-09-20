@@ -32,11 +32,18 @@ public class PatternRunner : MonoBehaviour {
         public float acceleration = 0;
         public float angAcceleration = 0;
 
-        public static BulletInitState origin = new BulletInitState() {
-            position = Vector2.zero, angle = 0,
-        };
+        // public static BulletInitState origin = new BulletInitState(Vector2.zero, 0, 0, 0, 0, 0);
 
-        private BulletInitState() { }
+        public BulletInitState(Vector2 position, float angle, float speed, float angSpeed, float acceleration, float angAcceleration) {
+            this.position = position;
+            this.angle = angle;
+            this.speed = speed;
+            this.angSpeed = angSpeed;
+            this.acceleration = acceleration;
+            this.angAcceleration = angAcceleration;
+        }
+
+        public BulletInitState() { }
         public BulletInitState(BulletInitState copy) {
             this.position = copy.position;
             this.angle = copy.angle;
@@ -46,24 +53,43 @@ public class PatternRunner : MonoBehaviour {
             this.angAcceleration = copy.angAcceleration;
         }
 
+        public void AddVel(Vector2 vel) {
+            if (vel.sqrMagnitude < 0.001f) {
+                return;
+            }
+            Vector2 initVel = AngToDir(angle) * speed;
+            float nang = DirToAng(initVel);
+
+            // Debug.Log($"ang{angle} sp{speed} ivel{initVel} nang{nang} nsp{initVel.magnitude}");
+            initVel += vel;
+            // Debug.Log($"adding {angle * Mathf.Rad2Deg}*{AngToDir(angle) * speed} {vel} = {initVel} {DirToAng(initVel) * Mathf.Rad2Deg}*");
+            speed = initVel.magnitude;
+            angle = DirToAng(initVel);
+        }
+
         public Vector2 dir => AngToDir(angle);
 
         public static Vector2 AngToDir(float angle) {
             return new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
         }
+        public static float DirToAng(Vector2 dir) {
+            // dir = dir.normalized;
+            return Mathf.Atan2(dir.y, dir.x) - Mathf.PI / 2;
+        }
 
         public Vector3 posWorld => position;
         public Quaternion angWorld => Quaternion.Euler(0, 0, Mathf.Rad2Deg * angle);
         public override string ToString() {
-            return $"{position} {angle}deg sp{speed} {angSpeed}deg";
+            return $"{position} {angle}rad sp{speed} {angSpeed}rad";
         }
     }
 
     public PatternSO patternSO;
+    public bool inheritSpeed = true;
     public Transform[] spawnPoints;
     [SerializeField] AudioManager.AudioSettings shootAudio;
     public bool isPlayer = false;
-    public Transform player;
+    [ReadOnly] public Transform player;
 
     [SerializeField, ReadOnly] int phaseIndex = 0;
     [SerializeField, ReadOnly] int curRepetition = 0;
@@ -72,14 +98,16 @@ public class PatternRunner : MonoBehaviour {
     [SerializeField, ReadOnly] float lastPhaseStartTime;
     [SerializeField, ReadOnly] float patternExecuteStartTime = 0;
     [SerializeField, ReadOnly] bool initialDelayComplete;
-    [SerializeField] BulletInitState emitterState = BulletInitState.origin;
+    [SerializeField] BulletInitState emitterState = new BulletInitState();
 
     BulletManager bulletManager;
     AudioManager audioManager;
+    EffectiveVelocity efvel;
 
     private void Awake() {
         bulletManager = BulletManager.Instance;
         audioManager = AudioManager.Instance;
+        efvel = GetComponent<EffectiveVelocity>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
@@ -116,14 +144,14 @@ public class PatternRunner : MonoBehaviour {
             // completed all phases, reset
             phaseIndex = 0;
             // reset emitter state
-            emitterState = BulletInitState.origin;
+            emitterState = new BulletInitState();
         }
         curRepetition = 0;
     }
     public List<BulletInitState> initStates = new List<BulletInitState>();
     void ExecutePhase(PatternPhase phase) {
         initStates.Clear();
-        initStates.Add(BulletInitState.origin);
+        initStates.Add(new BulletInitState());
         for (int i = 0; i < phase.bulletPatterns.Length; i++) {
             List<BulletInitState> newStates = new List<BulletInitState>();
             foreach (var initState in initStates) {
@@ -146,6 +174,12 @@ public class PatternRunner : MonoBehaviour {
             return;
         }
         // Debug.Log("spawning at " + initState.position);
+        if (inheritSpeed && efvel != null && efvel.effectiveVelocity.sqrMagnitude > 0.001f) {
+            Debug.Log("using vel");
+            if (efvel.effectiveVelocity.y > 0) {
+                initState.AddVel(Vector2.up * efvel.effectiveVelocity.y);
+            }
+        }
         bulletManager.Shoot(bulletSpawnSettings, initState, spawnPoints, isPlayer);
         if (!didSound && shootAudio != null) {
             didSound = true;
@@ -266,7 +300,7 @@ public class PatternRunner : MonoBehaviour {
                 continue;
             }
             List<BulletInitState> offsets = new List<BulletInitState>();
-            offsets.Add(BulletInitState.origin);
+            offsets.Add(new BulletInitState());
             foreach (var subpattern in phase.bulletPatterns) {
                 List<BulletInitState> noffsets = new List<BulletInitState>();
                 foreach (var offset in offsets) {
@@ -307,7 +341,7 @@ public class PatternRunner : MonoBehaviour {
         if (patternSO == null) return;
         foreach (var phase in patternSO.patternPhases) {
             List<BulletInitState> offsets = new List<BulletInitState>();
-            offsets.Add(BulletInitState.origin);
+            offsets.Add(new BulletInitState());
             foreach (var subpattern in phase.bulletPatterns) {
                 List<BulletInitState> noffsets = new List<BulletInitState>();
                 foreach (var offset in offsets) {
