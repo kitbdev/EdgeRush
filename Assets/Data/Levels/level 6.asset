@@ -325,7 +325,7 @@ MonoBehaviour:
     clearDebris: 0
     clearPowerups: 0
     clearBullets: 0
-    waitDur: 4
+    waitDur: 10
   - title: 23. wait 20s
     levelEventType: 5
     spawnPrefab: {fileID: 8968654941522783970, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
