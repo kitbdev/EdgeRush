@@ -521,14 +521,14 @@ PrefabInstance:
     - target: {fileID: 4502045368779004280, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: patternSO
       value: 
-      objectReference: {fileID: 11400000, guid: 45ac4dd83d5f1f44aadf066826606fde, type: 2}
+      objectReference: {fileID: 11400000, guid: a3f4f765e9406224fb34ca695edb36e4, type: 2}
     - target: {fileID: 4502045368779004280, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: totalDuration
-      value: 0.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4502045368779004280, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: bulletsPerLoop
-      value: 9
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4502045368779004280, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: spawnPoints.Array.size
