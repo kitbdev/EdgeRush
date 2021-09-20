@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 193f4d72e9ef5414596d9eaf7e648ca2, type: 3}
-  m_Name: b6 test
+  m_Name: b6 boss
   m_EditorClassIdentifier: 
   defaultBulletPrefab: {fileID: 6110090707465297226, guid: 0d5847e6210b6b54eb112f198b5afe3b, type: 3}
   delayDuration: 0.2
@@ -18,7 +18,7 @@ MonoBehaviour:
   - title: 0. phase shoot
     initialized: 1
     skip: 0
-    delayDuration: 0.2
+    delayDuration: 1
     duration: 0
     repetitions: 1
     spawnBullet: 1
@@ -30,7 +30,7 @@ MonoBehaviour:
       maxSpeed: 10
       angularAcceleration: 0
       maxAngularSpeed: 10
-      initScale: 0.8
+      initScale: 0.6
       spawnPointIndices: 0100000008000000
     bulletPatterns:
     - title: 0. line 2
@@ -58,7 +58,7 @@ MonoBehaviour:
         addSpeedByIndex: 0
         addAngSpeed: 0
         addAngSpeedByIndex: 0
-    _phaseDuration: 0.2
+    _phaseDuration: 1
   - title: 1. phase shoot
     initialized: 1
     skip: 0
@@ -74,7 +74,7 @@ MonoBehaviour:
       maxSpeed: 10
       angularAcceleration: 0
       maxAngularSpeed: 10
-      initScale: 0.8
+      initScale: 0.6
       spawnPointIndices: 0100000008000000
     bulletPatterns:
     - title: 0. line 2
@@ -118,7 +118,7 @@ MonoBehaviour:
       maxSpeed: 10
       angularAcceleration: 0
       maxAngularSpeed: 10
-      initScale: 0.8
+      initScale: 0.6
       spawnPointIndices: 0200000009000000
     bulletPatterns:
     - title: 0. line 2
@@ -156,13 +156,13 @@ MonoBehaviour:
     spawnBullet: 1
     bulletSpawnSettings:
       prefab: {fileID: 6110090707465297226, guid: 0d5847e6210b6b54eb112f198b5afe3b, type: 3}
-      initSpeed: 4
+      initSpeed: 3
       initAngle: 0
       acceleration: 0
       maxSpeed: 10
       angularAcceleration: 0
       maxAngularSpeed: 10
-      initScale: 0.8
+      initScale: 0.6
       spawnPointIndices: 030000000a000000
     bulletPatterns:
     - title: 0. line 2
@@ -206,7 +206,7 @@ MonoBehaviour:
       maxSpeed: 10
       angularAcceleration: 0
       maxAngularSpeed: 10
-      initScale: 0.8
+      initScale: 0.6
       spawnPointIndices: 040000000b000000
     bulletPatterns:
     - title: 0. arc 3
@@ -250,7 +250,7 @@ MonoBehaviour:
       maxSpeed: 10
       angularAcceleration: 0
       maxAngularSpeed: 10
-      initScale: 0.8
+      initScale: 0.6
       spawnPointIndices: 050000000c000000
     bulletPatterns:
     - title: 0. line 2
@@ -294,7 +294,7 @@ MonoBehaviour:
       maxSpeed: 10
       angularAcceleration: 0
       maxAngularSpeed: 10
-      initScale: 0.8
+      initScale: 0.6
       spawnPointIndices: 060000000d000000
     bulletPatterns:
     - title: 0. arc 5
@@ -338,7 +338,7 @@ MonoBehaviour:
       maxSpeed: 10
       angularAcceleration: 0
       maxAngularSpeed: 10
-      initScale: 0.8
+      initScale: 0.6
       spawnPointIndices: 070000000e000000
     bulletPatterns:
     - title: 0. ring 6
@@ -392,4 +392,4 @@ MonoBehaviour:
         addAngSpeed: 0
         addAngSpeedByIndex: 0
     _phaseDuration: 0.2
-  totalDuration: 1.8000002
+  totalDuration: 2.6000004

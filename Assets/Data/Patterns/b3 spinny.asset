@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 193f4d72e9ef5414596d9eaf7e648ca2, type: 3}
-  m_Name: b2 ringzigzag
+  m_Name: b3 spinny
   m_EditorClassIdentifier: 
   defaultBulletPrefab: {fileID: 6110090707465297226, guid: 0d5847e6210b6b54eb112f198b5afe3b, type: 3}
   delayDuration: 0
   patternPhases:
-  - title: 0. phase*3 shoot
+  - title: 0. phase*2
     initialized: 1
     skip: 0
-    delayDuration: 0.6
-    duration: 0.2
-    repetitions: 3
-    spawnBullet: 1
+    delayDuration: 0
+    duration: 0
+    repetitions: 2
+    spawnBullet: 0
     bulletSpawnSettings:
       prefab: {fileID: 6110090707465297226, guid: 0d5847e6210b6b54eb112f198b5afe3b, type: 3}
       initSpeed: 4
@@ -33,104 +33,10 @@ MonoBehaviour:
       initScale: 0.5
       spawnPointIndices: 
     bulletPatterns:
-    - title: 0. ring 8
+    - title: 0. emitter 1
       initialized: 1
-      patternType: 4
-      spawnAmount: 8
-      spacing: 0.5
-      alignmentDegree: 0
-      radius: 0.5
-      startAngle: -90
-      angleDist: 30
-      angleOffset: 0
-      angleTurn: 0
-      angleOut: 1
-      initRandomAngleOffsetMin: 0
-      initRandomAngleOffsetMax: 0
-      modifier:
-        setAccelb: 0
-        setAccel: 0
-        setAngAccelb: 0
-        setAngAccel: 0
-        addAng: 0
-        addAngByIndex: 0
-        addSpeed: 0
-        addSpeedByIndex: 0
-        addAngSpeed: -20
-        addAngSpeedByIndex: 0
-    - title: 1. line 4
-      initialized: 1
-      patternType: 2
-      spawnAmount: 4
-      spacing: 0.8
-      alignmentDegree: 0
-      radius: 0.2
-      startAngle: -90
-      angleDist: 30
-      angleOffset: 0
-      angleTurn: 0
-      angleOut: 1
-      initRandomAngleOffsetMin: 0
-      initRandomAngleOffsetMax: 0
-      modifier:
-        setAccelb: 0
-        setAccel: 0
-        setAngAccelb: 0
-        setAngAccel: 0
-        addAng: 0
-        addAngByIndex: 0
-        addSpeed: 0
-        addSpeedByIndex: 0
-        addAngSpeed: 0
-        addAngSpeedByIndex: 0
-    _phaseDuration: 1.2
-  - title: 1. phase*3 shoot
-    initialized: 1
-    skip: 0
-    delayDuration: 0.6
-    duration: 0.2
-    repetitions: 3
-    spawnBullet: 1
-    bulletSpawnSettings:
-      prefab: {fileID: 6110090707465297226, guid: 0d5847e6210b6b54eb112f198b5afe3b, type: 3}
-      initSpeed: 4
-      initAngle: 0
-      acceleration: 0
-      maxSpeed: 10
-      angularAcceleration: 0
-      maxAngularSpeed: 10
-      initScale: 0.5
-      spawnPointIndices: 
-    bulletPatterns:
-    - title: 0. ring 8
-      initialized: 1
-      patternType: 4
-      spawnAmount: 8
-      spacing: 0.5
-      alignmentDegree: 0
-      radius: 0.5
-      startAngle: -90
-      angleDist: 30
-      angleOffset: 0
-      angleTurn: 0
-      angleOut: 1
-      initRandomAngleOffsetMin: 0
-      initRandomAngleOffsetMax: 0
-      modifier:
-        setAccelb: 0
-        setAccel: 0
-        setAngAccelb: 0
-        setAngAccel: 0
-        addAng: 0
-        addAngByIndex: 0
-        addSpeed: 0
-        addSpeedByIndex: 0
-        addAngSpeed: 20
-        addAngSpeedByIndex: 0
-    - title: 1. ring 4
-      initialized: 1
-      patternType: 4
-      spawnAmount: 4
+      patternType: 7
+      spawnAmount: 1
       spacing: 0.5
       alignmentDegree: 0
       radius: 0.2
@@ -150,15 +56,15 @@ MonoBehaviour:
         addAngByIndex: 0
         addSpeed: 0
         addSpeedByIndex: 0
-        addAngSpeed: 0
+        addAngSpeed: 5
         addAngSpeedByIndex: 0
-    _phaseDuration: 1.2
-  - title: 2. phase*3 shoot
+    _phaseDuration: 0
+  - title: 1. phase*2 shoot
     initialized: 1
     skip: 0
-    delayDuration: 0.6
+    delayDuration: 0.4
     duration: 0.2
-    repetitions: 3
+    repetitions: 2
     spawnBullet: 1
     bulletSpawnSettings:
       prefab: {fileID: 6110090707465297226, guid: 0d5847e6210b6b54eb112f198b5afe3b, type: 3}
@@ -177,7 +83,7 @@ MonoBehaviour:
       spawnAmount: 8
       spacing: 0.5
       alignmentDegree: 0
-      radius: 0.5
+      radius: 1
       startAngle: -90
       angleDist: 30
       angleOffset: 0
@@ -194,15 +100,34 @@ MonoBehaviour:
         addAngByIndex: 0
         addSpeed: 0
         addSpeedByIndex: 0
-        addAngSpeed: 0
+        addAngSpeed: -40
         addAngSpeedByIndex: 0
-    - title: 1. ring 4
+    _phaseDuration: 0.8
+  - title: 2. phase*2 shoot
+    initialized: 1
+    skip: 0
+    delayDuration: 0.4
+    duration: 0.2
+    repetitions: 2
+    spawnBullet: 1
+    bulletSpawnSettings:
+      prefab: {fileID: 6110090707465297226, guid: 0d5847e6210b6b54eb112f198b5afe3b, type: 3}
+      initSpeed: 4
+      initAngle: 0
+      acceleration: 0
+      maxSpeed: 10
+      angularAcceleration: 0
+      maxAngularSpeed: 10
+      initScale: 0.5
+      spawnPointIndices: 
+    bulletPatterns:
+    - title: 0. ring 8
       initialized: 1
       patternType: 4
-      spawnAmount: 4
+      spawnAmount: 8
       spacing: 0.5
       alignmentDegree: 0
-      radius: 0.4
+      radius: 1
       startAngle: -90
       angleDist: 30
       angleOffset: 0
@@ -219,7 +144,7 @@ MonoBehaviour:
         addAngByIndex: 0
         addSpeed: 0
         addSpeedByIndex: 0
-        addAngSpeed: 0
+        addAngSpeed: 40
         addAngSpeedByIndex: 0
-    _phaseDuration: 1.2
-  totalDuration: 3.6000001
+    _phaseDuration: 0.8
+  totalDuration: 1.6

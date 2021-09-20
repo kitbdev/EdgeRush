@@ -332,7 +332,7 @@ MonoBehaviour:
     amountToSpawn: 0
     spawnOffset: {x: 0, y: 0}
     spawnOffsetByIndex: {x: 1, y: 0}
-    pathToFollowSO: {fileID: 11400000, guid: e2328b993e05c1c4b9cb0d15afc45113, type: 2}
+    pathToFollowSO: {fileID: 11400000, guid: 320bb4e03d42bff46b2fd36b2ee46cb0, type: 2}
     attackPatternOverride: {fileID: 0}
     moveSpeedOverride: -1
     clearEnemies: 0
@@ -340,7 +340,7 @@ MonoBehaviour:
     clearPowerups: 0
     clearBullets: 0
     waitDur: 0
-  - title: 24. wait 6s
+  - title: 24. wait 7s
     levelEventType: 5
     spawnPrefab: {fileID: 8968654941522783970, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
     amountToSpawn: 0
@@ -382,7 +382,7 @@ MonoBehaviour:
     clearPowerups: 0
     clearBullets: 0
     waitDur: 4
-  - title: 27. wait 3s
+  - title: 27. wait 6s
     levelEventType: 5
     spawnPrefab: {fileID: 8968654941522783970, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
     amountToSpawn: 0

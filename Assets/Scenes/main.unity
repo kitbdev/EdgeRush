@@ -1020,8 +1020,8 @@ MonoBehaviour:
     coinAmount: 0
     playerSelectedWeapon: 0
   debugLoggingEditor: 0
-  startLevelEditor: 5
-  startLevelEventEditor: 15
+  startLevelEditor: 0
+  startLevelEventEditor: 12
   _currentLevelIndex: 0
   levelEventIndex: 0
 --- !u!4 &864106290
@@ -2781,7 +2781,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4206318768929785144, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 4.7346497
+      value: 4.73468
       objectReference: {fileID: 0}
     - target: {fileID: 4266844541439716316, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3337,7 +3337,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8544450284602899780, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -3.9999695
+      value: -3.999939
+      objectReference: {fileID: 0}
+    - target: {fileID: 8544450284602899780, guid: 65b98c561375819449dee9810ec74b27, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000015258789
       objectReference: {fileID: 0}
     - target: {fileID: 8544450284681937585, guid: 65b98c561375819449dee9810ec74b27, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!95 &4857490152870053582
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2887897383251195426}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ced106dadcf7f844d9fe14aa4094301a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &6081213512014878912
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57,7 +76,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: efe57ecabbe6f884196884b2c8912028, type: 2}
     - target: {fileID: 4103724378864960721, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: maxHealth
-      value: 13
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 4103724378864960721, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: hitInvincibleDur
@@ -70,14 +89,18 @@ PrefabInstance:
     - target: {fileID: 4502045368779004280, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: patternSO
       value: 
-      objectReference: {fileID: 11400000, guid: a66984d08b7230c4f9dcce3a2cca81c7, type: 2}
+      objectReference: {fileID: 11400000, guid: 41bb46442ce4adb44885060acb021dbc, type: 2}
     - target: {fileID: 4502045368779004280, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: totalDuration
-      value: 0.4
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 4502045368779004280, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: bulletsPerLoop
-      value: 32
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502045368779004280, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+      propertyPath: emitterState.angSpeed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5190151523855161804, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: render
@@ -145,6 +168,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+--- !u!1 &2887897383251195426 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8968654941522783970, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+  m_PrefabInstance: {fileID: 6081213512014878912}
+  m_PrefabAsset: {fileID: 0}
 --- !u!23 &6970416375910711869 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 3809811893620218621, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}

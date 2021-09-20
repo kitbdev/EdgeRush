@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad2321aa536f8e4ba82ae618a2c719a, type: 3}
   m_Name: level 4
   m_EditorClassIdentifier: 
-  title: 'Level 4: Level 4 (22 events)'
+  title: 'Level 4: Level 4 (25 events)'
   levelName: Level 4
   skip: 0
   backgroundMat: {fileID: 2100000, guid: 13869c0a42ac8cc4eb2bc90d95116af4, type: 2}
@@ -256,7 +256,7 @@ MonoBehaviour:
     clearPowerups: 0
     clearBullets: 0
     waitDur: 4
-  - title: 22. endLevel
+  - title: 18. spawnMisc
     levelEventType: 3
     spawnPrefab: {fileID: 4739607829735346965, guid: af10c138ae029e64580f7810f8619995, type: 3}
     amountToSpawn: 2
@@ -270,7 +270,7 @@ MonoBehaviour:
     clearPowerups: 0
     clearBullets: 0
     waitDur: 4
-  - title: 22. endLevel
+  - title: 19. wait 5s
     levelEventType: 5
     spawnPrefab: {fileID: 8968654941522783970, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
     amountToSpawn: 0
@@ -284,7 +284,7 @@ MonoBehaviour:
     clearPowerups: 0
     clearBullets: 0
     waitDur: 5
-  - title: 22. endLevel
+  - title: 20. clearMap
     levelEventType: 4
     spawnPrefab: {fileID: 8968654941522783970, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
     amountToSpawn: 0
@@ -298,7 +298,7 @@ MonoBehaviour:
     clearPowerups: 0
     clearBullets: 0
     waitDur: 4
-  - title: 18. checkpoint
+  - title: 21. checkpoint
     levelEventType: 7
     spawnPrefab: {fileID: 0}
     amountToSpawn: 0
@@ -312,11 +312,11 @@ MonoBehaviour:
     clearPowerups: 0
     clearBullets: 0
     waitDur: 0
-  - title: 19. spawnBoss
+  - title: 22. spawnBoss
     levelEventType: 2
     spawnPrefab: {fileID: 2887897383251195426, guid: fe0addd659fb02849958e83368ee0cab, type: 3}
     amountToSpawn: 0
-    spawnOffset: {x: 1, y: 5}
+    spawnOffset: {x: 2, y: 3.5}
     spawnOffsetByIndex: {x: 1, y: 0}
     pathToFollowSO: {fileID: 11400000, guid: 6ed730ef38406884595575dda93519c6, type: 2}
     attackPatternOverride: {fileID: 0}
@@ -326,7 +326,7 @@ MonoBehaviour:
     clearPowerups: 0
     clearBullets: 0
     waitDur: 0
-  - title: 20. waitEnemiesDefeated
+  - title: 23. waitEnemiesDefeated
     levelEventType: 6
     spawnPrefab: {fileID: 0}
     amountToSpawn: 0
@@ -340,7 +340,7 @@ MonoBehaviour:
     clearPowerups: 0
     clearBullets: 0
     waitDur: 0
-  - title: 21. clearMap
+  - title: 24. clearMap
     levelEventType: 4
     spawnPrefab: {fileID: 8968654941522783970, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
     amountToSpawn: 0
@@ -354,7 +354,7 @@ MonoBehaviour:
     clearPowerups: 0
     clearBullets: 1
     waitDur: 5
-  - title: 22. endLevel
+  - title: 25. endLevel
     levelEventType: 8
     spawnPrefab: {fileID: 8968654941522783970, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
     amountToSpawn: 0

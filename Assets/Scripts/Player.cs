@@ -109,6 +109,7 @@ public class Player : MonoBehaviour {
         };
         controls.Player.MoveToPoint.performed += c => {
             // touch down
+            if (Time.timeScale == 0) return;
             if (mouseInBounds) {
                 inputMoveTo = true;
             }

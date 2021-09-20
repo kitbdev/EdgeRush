@@ -10,38 +10,57 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 193f4d72e9ef5414596d9eaf7e648ca2, type: 3}
-  m_Name: b2 ringzigzag
+  m_Name: b4 target dual
   m_EditorClassIdentifier: 
   defaultBulletPrefab: {fileID: 6110090707465297226, guid: 0d5847e6210b6b54eb112f198b5afe3b, type: 3}
-  delayDuration: 0
+  delayDuration: 0.2
   patternPhases:
-  - title: 0. phase*3 shoot
+  - title: 0. phase wait 0.4
     initialized: 1
     skip: 0
-    delayDuration: 0.6
-    duration: 0.2
-    repetitions: 3
+    delayDuration: 0
+    duration: 0.4
+    repetitions: 1
     spawnBullet: 1
     bulletSpawnSettings:
       prefab: {fileID: 6110090707465297226, guid: 0d5847e6210b6b54eb112f198b5afe3b, type: 3}
-      initSpeed: 4
+      initSpeed: 6
       initAngle: 0
       acceleration: 0
       maxSpeed: 10
       angularAcceleration: 0
       maxAngularSpeed: 10
       initScale: 0.5
-      spawnPointIndices: 
+      spawnPointIndices: 0000000001000000
+    bulletPatterns: []
+    _phaseDuration: 0.4
+  - title: 1. phase shoot
+    initialized: 1
+    skip: 0
+    delayDuration: 0
+    duration: 0
+    repetitions: 1
+    spawnBullet: 1
+    bulletSpawnSettings:
+      prefab: {fileID: 6110090707465297226, guid: 0d5847e6210b6b54eb112f198b5afe3b, type: 3}
+      initSpeed: 3
+      initAngle: 0
+      acceleration: 0
+      maxSpeed: 10
+      angularAcceleration: 0
+      maxAngularSpeed: 10
+      initScale: 0.5
+      spawnPointIndices: 0000000001000000
     bulletPatterns:
-    - title: 0. ring 8
+    - title: 0. target 1
       initialized: 1
-      patternType: 4
-      spawnAmount: 8
-      spacing: 0.5
-      alignmentDegree: 0
-      radius: 0.5
+      patternType: 6
+      spawnAmount: 1
+      spacing: 0.2
+      alignmentDegree: 90
+      radius: 0.2
       startAngle: -90
-      angleDist: 30
+      angleDist: 45
       angleOffset: 0
       angleTurn: 0
       angleOut: 1
@@ -56,17 +75,17 @@ MonoBehaviour:
         addAngByIndex: 0
         addSpeed: 0
         addSpeedByIndex: 0
-        addAngSpeed: -20
+        addAngSpeed: 0
         addAngSpeedByIndex: 0
-    - title: 1. line 4
+    - title: 1. line 3
       initialized: 1
       patternType: 2
-      spawnAmount: 4
-      spacing: 0.8
+      spawnAmount: 3
+      spacing: 0.2
       alignmentDegree: 0
       radius: 0.2
       startAngle: -90
-      angleDist: 30
+      angleDist: 45
       angleOffset: 0
       angleTurn: 0
       angleOut: 1
@@ -81,15 +100,15 @@ MonoBehaviour:
         addAngByIndex: 0
         addSpeed: 0
         addSpeedByIndex: 0
-        addAngSpeed: 0
-        addAngSpeedByIndex: 0
-    _phaseDuration: 1.2
-  - title: 1. phase*3 shoot
+        addAngSpeed: 10
+        addAngSpeedByIndex: -10
+    _phaseDuration: 0
+  - title: 2. phase shoot
     initialized: 1
     skip: 0
-    delayDuration: 0.6
-    duration: 0.2
-    repetitions: 3
+    delayDuration: 0
+    duration: 0.4
+    repetitions: 1
     spawnBullet: 1
     bulletSpawnSettings:
       prefab: {fileID: 6110090707465297226, guid: 0d5847e6210b6b54eb112f198b5afe3b, type: 3}
@@ -100,17 +119,17 @@ MonoBehaviour:
       angularAcceleration: 0
       maxAngularSpeed: 10
       initScale: 0.5
-      spawnPointIndices: 
+      spawnPointIndices: 0000000001000000
     bulletPatterns:
-    - title: 0. ring 8
+    - title: 0. target 1
       initialized: 1
-      patternType: 4
-      spawnAmount: 8
-      spacing: 0.5
-      alignmentDegree: 0
-      radius: 0.5
+      patternType: 6
+      spawnAmount: 1
+      spacing: 0.2
+      alignmentDegree: 90
+      radius: 0.2
       startAngle: -90
-      angleDist: 30
+      angleDist: 45
       angleOffset: 0
       angleTurn: 0
       angleOut: 1
@@ -125,17 +144,17 @@ MonoBehaviour:
         addAngByIndex: 0
         addSpeed: 0
         addSpeedByIndex: 0
-        addAngSpeed: 20
+        addAngSpeed: 0
         addAngSpeedByIndex: 0
-    - title: 1. ring 4
+    - title: 1. line 3
       initialized: 1
-      patternType: 4
-      spawnAmount: 4
-      spacing: 0.5
+      patternType: 2
+      spawnAmount: 3
+      spacing: 0.2
       alignmentDegree: 0
       radius: 0.2
       startAngle: -90
-      angleDist: 30
+      angleDist: 45
       angleOffset: 0
       angleTurn: 0
       angleOut: 1
@@ -150,76 +169,7 @@ MonoBehaviour:
         addAngByIndex: 0
         addSpeed: 0
         addSpeedByIndex: 0
-        addAngSpeed: 0
-        addAngSpeedByIndex: 0
-    _phaseDuration: 1.2
-  - title: 2. phase*3 shoot
-    initialized: 1
-    skip: 0
-    delayDuration: 0.6
-    duration: 0.2
-    repetitions: 3
-    spawnBullet: 1
-    bulletSpawnSettings:
-      prefab: {fileID: 6110090707465297226, guid: 0d5847e6210b6b54eb112f198b5afe3b, type: 3}
-      initSpeed: 4
-      initAngle: 0
-      acceleration: 0
-      maxSpeed: 10
-      angularAcceleration: 0
-      maxAngularSpeed: 10
-      initScale: 0.5
-      spawnPointIndices: 
-    bulletPatterns:
-    - title: 0. ring 8
-      initialized: 1
-      patternType: 4
-      spawnAmount: 8
-      spacing: 0.5
-      alignmentDegree: 0
-      radius: 0.5
-      startAngle: -90
-      angleDist: 30
-      angleOffset: 0
-      angleTurn: 0
-      angleOut: 1
-      initRandomAngleOffsetMin: 0
-      initRandomAngleOffsetMax: 0
-      modifier:
-        setAccelb: 0
-        setAccel: 0
-        setAngAccelb: 0
-        setAngAccel: 0
-        addAng: 0
-        addAngByIndex: 0
-        addSpeed: 0
-        addSpeedByIndex: 0
-        addAngSpeed: 0
-        addAngSpeedByIndex: 0
-    - title: 1. ring 4
-      initialized: 1
-      patternType: 4
-      spawnAmount: 4
-      spacing: 0.5
-      alignmentDegree: 0
-      radius: 0.4
-      startAngle: -90
-      angleDist: 30
-      angleOffset: 0
-      angleTurn: 0
-      angleOut: 1
-      initRandomAngleOffsetMin: 0
-      initRandomAngleOffsetMax: 0
-      modifier:
-        setAccelb: 0
-        setAccel: 0
-        setAngAccelb: 0
-        setAngAccel: 0
-        addAng: 0
-        addAngByIndex: 0
-        addSpeed: 0
-        addSpeedByIndex: 0
-        addAngSpeed: 0
-        addAngSpeedByIndex: 0
-    _phaseDuration: 1.2
-  totalDuration: 3.6000001
+        addAngSpeed: 10
+        addAngSpeedByIndex: -10
+    _phaseDuration: 0.4
+  totalDuration: 1

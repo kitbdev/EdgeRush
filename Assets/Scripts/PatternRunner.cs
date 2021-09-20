@@ -216,7 +216,7 @@ public class PatternRunner : MonoBehaviour {
             case SubPattern.PatternType.randomize:
                 nstate = new BulletInitState(initState);
                 float initrandangoffset = Random.Range(subPattern.initRandomAngleOffsetMin, subPattern.initRandomAngleOffsetMax);
-                nstate.angle += initrandangoffset;
+                nstate.angle += initrandangoffset * Mathf.Deg2Rad;
                 newStates.Add(nstate);
                 break;
             case SubPattern.PatternType.emitter:
