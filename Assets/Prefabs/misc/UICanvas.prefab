@@ -571,7 +571,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.14735427, y: 0.05114418}
   m_AnchorMax: {x: 0.80290425, y: 0.93565863}
-  m_AnchoredPosition: {x: 0, y: 0.00005340576}
+  m_AnchoredPosition: {x: 0, y: -0.000061035156}
   m_SizeDelta: {x: 0, y: -0.000053406}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1958307713911527036
@@ -811,7 +811,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00006866455, y: 0.0000076293945}
+  m_AnchoredPosition: {x: -0.00006866455, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1261533321728053207
@@ -1609,7 +1609,7 @@ MonoBehaviour:
     m_Top: 5
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 10
+  m_Spacing: 2
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
@@ -1958,7 +1958,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26.9
+  m_fontSize: 26.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2830,7 +2830,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 63.06}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &6034352496663863623
 GameObject:
@@ -3001,7 +3001,7 @@ RectTransform:
   m_AnchorMin: {x: 0.4251521, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -0.00012207031, y: 4.73468}
-  m_SizeDelta: {x: 0, y: 4.73468}
+  m_SizeDelta: {x: 0, y: 4.7347}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &3286615253776375280
 CanvasRenderer:
@@ -3031,11 +3031,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'space, z
+  m_text: 'Space
 
-    mouse click
+    Right Mouse Click
 
-    gamepad right trigger, south'
+    Gamepad South, Right Trigger'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d3cccd333eea0c74a85dcd21f78eb62f, type: 2}
   m_sharedMaterial: {fileID: 6255036491648346671, guid: d3cccd333eea0c74a85dcd21f78eb62f, type: 2}
@@ -3312,7 +3312,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 62.91}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &6394086179454282162
 GameObject:
@@ -3349,7 +3349,7 @@ RectTransform:
   m_AnchorMin: {x: 0.4251521, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -0.00012207031, y: 4.73468}
-  m_SizeDelta: {x: 0, y: 4.73468}
+  m_SizeDelta: {x: 0, y: 87.518}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &7540698146525270876
 CanvasRenderer:
@@ -3379,8 +3379,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "e/q\n1,2,3,4,5\r\nmouse scroll wheel\r\ngamepad right/left shoulders\ndpad
-    up, left, right, down\r"
+  m_text: 'E/Q 1,2,3
+
+    Mouse Scroll Wheel
+
+    Gamepad Left/Right Shoulders
+
+    Gamepad
+    dpad up, left, right'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d3cccd333eea0c74a85dcd21f78eb62f, type: 2}
   m_sharedMaterial: {fileID: 6255036491648346671, guid: d3cccd333eea0c74a85dcd21f78eb62f, type: 2}
@@ -4181,7 +4187,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "tab\r\nmouse right click\r\ngamepad east button\r"
+  m_text: 'Tab
+
+    Left Mouse Click
+
+    Gamepad East button'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d3cccd333eea0c74a85dcd21f78eb62f, type: 2}
   m_sharedMaterial: {fileID: 6255036491648346671, guid: d3cccd333eea0c74a85dcd21f78eb62f, type: 2}
@@ -4285,7 +4295,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 82.33}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &7359182501122874894
 GameObject:
@@ -4321,7 +4331,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.4251521, y: 0.25800002}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00012207031, y: 4.734604}
+  m_AnchoredPosition: {x: -0.00012207031, y: 4.73468}
   m_SizeDelta: {x: 0, y: 4.7346}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &890027057118002703
@@ -4352,7 +4362,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "wasd, arrow keys\r\nmouse click\r\ngamepad left thumbstick\r"
+  m_text: 'WASD
+
+    Mouse
+
+    Gamepad Left Stick'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d3cccd333eea0c74a85dcd21f78eb62f, type: 2}
   m_sharedMaterial: {fileID: 6255036491648346671, guid: d3cccd333eea0c74a85dcd21f78eb62f, type: 2}
@@ -8021,7 +8035,19 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 7440025594478929031}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
+        m_MethodName: UnPause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Pause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8073,6 +8099,18 @@ MonoBehaviour:
       - m_Target: {fileID: 7440025594478929031}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Pause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: UnPause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11027,7 +11065,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.092087135, y: 0.12727599}
   m_AnchorMax: {x: 0.9345692, y: 0.40075406}
-  m_AnchoredPosition: {x: 0, y: 5.0049973}
+  m_AnchoredPosition: {x: 0, y: 5.0049896}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8544450283619667359
@@ -15668,7 +15706,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.092087135, y: 0.121944256}
   m_AnchorMax: {x: 0.9345692, y: 0.40075406}
-  m_AnchoredPosition: {x: 0, y: 5.0049973}
+  m_AnchoredPosition: {x: 0, y: 5.005005}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8544450284391110340
@@ -17067,7 +17105,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.69100004}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0.000015258789}
+  m_AnchoredPosition: {x: -3.999939, y: 0.000015258789}
   m_SizeDelta: {x: 0, y: -2.4101}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &8544450284602899782
@@ -18636,7 +18674,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 60.87}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1001 &8322981772238444690
 PrefabInstance:
