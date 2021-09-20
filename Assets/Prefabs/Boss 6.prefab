@@ -479,6 +479,10 @@ PrefabInstance:
       value: The Grand Master
       objectReference: {fileID: 0}
     - target: {fileID: 1847968827299102398, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
+      propertyPath: numCoinsToDrop
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 1847968827299102398, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: dropRates.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -512,7 +516,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: d4f96c5b02bea944cbba3a0855a7ea19, type: 2}
     - target: {fileID: 4103724378864960721, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: maxHealth
-      value: 50
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4103724378864960721, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: hitInvincibleDur

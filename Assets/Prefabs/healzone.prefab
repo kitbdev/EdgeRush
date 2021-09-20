@@ -374,7 +374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healRate: 5
-  healRateLowModifier: 4
+  healRateLowModifier: 10
   activeDuration: 5
   gameObjects:
   - {fileID: 7369628240629927867}

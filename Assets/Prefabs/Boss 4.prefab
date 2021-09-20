@@ -43,7 +43,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1847968827299102398, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: numCoinsToDrop
-      value: 3
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1847968827299102398, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: dropRates.Array.size
@@ -83,7 +83,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4103724378864960721, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: maxHealth
-      value: 35
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: 4103724378864960721, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: hitInvincibleDur
@@ -95,11 +95,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 98a258503017f4b47831d2a4c1a3f754, type: 2}
     - target: {fileID: 4502045368779004280, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: totalDuration
-      value: 1.2
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 4502045368779004280, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: bulletsPerLoop
-      value: 12
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4502045368779004280, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: spawnPoints.Array.size

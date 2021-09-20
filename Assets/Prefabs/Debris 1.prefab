@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentHealth: 0
-  maxHealth: 2
+  maxHealth: 8
   hitInvincibleDur: 0
   manualInvincible: 0
   destroyOnDie: 1

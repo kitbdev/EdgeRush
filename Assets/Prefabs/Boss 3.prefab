@@ -32,7 +32,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1847968827299102398, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: numCoinsToDrop
-      value: 3
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1847968827299102398, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: dropRates.Array.size
