@@ -209,10 +209,10 @@ MonoBehaviour:
       initScale: 0.8
       spawnPointIndices: 040000000b000000
     bulletPatterns:
-    - title: 0. line 2
+    - title: 0. arc 3
       initialized: 1
-      patternType: 2
-      spawnAmount: 2
+      patternType: 3
+      spawnAmount: 3
       spacing: 0.2
       alignmentDegree: 90
       radius: 0.2

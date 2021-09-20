@@ -512,7 +512,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: d4f96c5b02bea944cbba3a0855a7ea19, type: 2}
     - target: {fileID: 4103724378864960721, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: maxHealth
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4103724378864960721, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: hitInvincibleDur
@@ -528,7 +528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4502045368779004280, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: bulletsPerLoop
-      value: 4
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4502045368779004280, guid: 8702080b389db4e4f953cffb6c1a6773, type: 3}
       propertyPath: spawnPoints.Array.size
