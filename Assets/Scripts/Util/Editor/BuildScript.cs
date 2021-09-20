@@ -27,16 +27,15 @@ public class BuildScript
     [MenuItem("File/Build Windows")]
     static void BuildWindows()
     {
-        Debug.Log("Building windows");
         string platform = "win";
-        BuildPipeline.BuildPlayer(EditorBuildSettings.scenes, $"./Builds/Windows/{gamename}{ver}_{platform}.exe", BuildTarget.StandaloneWindows, BuildOptions.None);
+        BuildPipeline.BuildPlayer(EditorBuildSettings.scenes, $"./Builds/Windows/{gamename}{ver}_{platform}/{gamename}.exe", BuildTarget.StandaloneWindows, BuildOptions.None);
     }
 
     [MenuItem("File/Build Linux")]
     static void BuildLinux()
     {
         string platform = "linux";
-        BuildPipeline.BuildPlayer(EditorBuildSettings.scenes, $"./Builds/Linux/{gamename}{ver}_{platform}.x86_64", BuildTarget.StandaloneLinux64, BuildOptions.None);
+        BuildPipeline.BuildPlayer(EditorBuildSettings.scenes, $"./Builds/Linux/{gamename}{ver}_{platform}/{gamename}.x86_64", BuildTarget.StandaloneLinux64, BuildOptions.None);
     }
 
     [MenuItem("File/Build OS X")]
